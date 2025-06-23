@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Files\\Cursor\\TriathlonTracker\\TriathlonTracker.csproj": {}
+    "D:\\Files\\github\\triathlontracker\\TriathlonTracker\\TriathlonTracker.csproj": {}
   },
   "projects": {
-    "D:\\Files\\Cursor\\TriathlonTracker\\TriathlonTracker.csproj": {
+    "D:\\Files\\github\\triathlontracker\\TriathlonTracker\\TriathlonTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Files\\Cursor\\TriathlonTracker\\TriathlonTracker.csproj",
+        "projectUniqueName": "D:\\Files\\github\\triathlontracker\\TriathlonTracker\\TriathlonTracker.csproj",
         "projectName": "TriathlonTracker",
-        "projectPath": "D:\\Files\\Cursor\\TriathlonTracker\\TriathlonTracker.csproj",
+        "projectPath": "D:\\Files\\github\\triathlontracker\\TriathlonTracker\\TriathlonTracker.csproj",
         "packagesPath": "C:\\Users\\adamb\\.nuget\\packages\\",
-        "outputPath": "D:\\Files\\Cursor\\TriathlonTracker\\obj\\",
+        "outputPath": "D:\\Files\\github\\triathlontracker\\TriathlonTracker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adamb\\AppData\\Roaming\\NuGet\\NuGet.Config"
