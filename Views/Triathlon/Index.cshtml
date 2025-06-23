@@ -1,0 +1,155 @@
+@model IEnumerable<TriathlonTracker.Models.Triathlon>
+
+@{
+    ViewData["Title"] = "My Races";
+}
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="text-dark fw-bold">
+                    <i class="fas fa-trophy me-2"></i>My Triathlon Races
+                </h1>
+                <a asp-action="Create" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Add New Race
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="fas fa-swimming-pool fa-4x"></i>
+                    <h3>No races yet</h3>
+                    <p>Start tracking your triathlon journey by adding your first race!</p>
+                    <a asp-action="Create" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add Your First Race
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="table-container">
+                    <div class="card-header">
+                        <h5>
+                            <i class="fas fa-list me-2"></i>Race History
+                        </h5>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-flag-checkered me-2"></i>Race Name</th>
+                                    <th><i class="fas fa-calendar-alt me-2"></i>Date</th>
+                                    <th><i class="fas fa-map-marker-alt me-2"></i>Location</th>
+                                    <th><i class="fas fa-swimming-pool me-2"></i>Swim</th>
+                                    <th><i class="fas fa-bicycle me-2"></i>Bike</th>
+                                    <th><i class="fas fa-running me-2"></i>Run</th>
+                                    <th><i class="fas fa-stopwatch me-2"></i>Total Time</th>
+                                    <th><i class="fas fa-cogs me-2"></i>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var race in Model)
+                                {
+                                    <tr class="fade-in">
+                                        <td>
+                                            <div class="race-name">@race.RaceName</div>
+                                        </td>
+                                        <td>
+                                            <div class="race-date">@race.RaceDate.ToString("MMM dd, yyyy")</div>
+                                        </td>
+                                        <td>
+                                            <div class="race-location">@race.Location</div>
+                                        </td>
+                                        <td>
+                                            <div class="discipline-data">
+                                                <div class="distance">@race.SwimDistance @(race.SwimUnit == "yards" ? "yd" : "m")</div>
+                                                <div class="time">@race.SwimTime.ToString(@"mm\:ss")</div>
+                                                <div class="pace">@race.SwimPace.ToString("F1") min/100@(race.SwimUnit == "yards" ? "yd" : "m")</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="discipline-data">
+                                                <div class="distance">@race.BikeDistance @(race.BikeUnit == "miles" ? "mi" : "km")</div>
+                                                <div class="time">@race.BikeTime.ToString(@"hh\:mm\:ss")</div>
+                                                <div class="pace">@race.BikePace.ToString("F2") @(race.BikeUnit == "miles" ? "mph" : "km/h")</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="discipline-data">
+                                                <div class="distance">@race.RunDistance @(race.RunUnit == "miles" ? "mi" : "km")</div>
+                                                <div class="time">@race.RunTime.ToString(@"mm\:ss")</div>
+                                                <div class="pace">@race.RunPace.ToString(@"mm\:ss") /@(race.RunUnit == "miles" ? "mi" : "km")</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="total-time">@race.TotalTime.ToString(@"hh\:mm\:ss")</div>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <a asp-action="Edit" asp-route-id="@race.Id" class="action-btn edit" title="Edit Race">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@race.Id" class="action-btn delete" title="Delete Race">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Statistics Cards -->
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3>@Model.Count()</h3>
+                    <p>Total Races</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3>@Model.Sum(r => r.TotalDistance).ToString("F1")</h3>
+                    <p>Total Distance (km)</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3>@TimeSpan.FromTicks(Model.Sum(r => r.TotalTime.Ticks)).ToString(@"hh\:mm")</h3>
+                    <p>Total Time</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <h3>@Model.Average(r => r.TotalTime.TotalHours).ToString("F1")</h3>
+                    <p>Avg Time per Race</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Add smooth animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.fade-in');
+            rows.forEach((row, index) => {
+                row.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+} 
