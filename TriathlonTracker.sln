@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriathlonTracker", "Triathl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriathlonTracker.Tests", "TriathlonTracker.Tests\TriathlonTracker.Tests.csproj", "{13E81D2F-2024-4AE6-9543-D08475C14FA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriathlonTracker.SeleniumTests", "TriathlonTracker.SeleniumTests\TriathlonTracker.SeleniumTests.csproj", "{6DE3E5C1-9FC3-4714-8106-A9ABC804101A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{13E81D2F-2024-4AE6-9543-D08475C14FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13E81D2F-2024-4AE6-9543-D08475C14FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13E81D2F-2024-4AE6-9543-D08475C14FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DE3E5C1-9FC3-4714-8106-A9ABC804101A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE3E5C1-9FC3-4714-8106-A9ABC804101A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE3E5C1-9FC3-4714-8106-A9ABC804101A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE3E5C1-9FC3-4714-8106-A9ABC804101A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
