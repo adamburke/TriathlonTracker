@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TriathlonTracker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec466d4ec7aeda14a0686d28753882e8e46824fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84a2bd93e047abb76390b7e865f2926de7b03562")]
 [assembly: System.Reflection.AssemblyProductAttribute("TriathlonTracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TriathlonTracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
