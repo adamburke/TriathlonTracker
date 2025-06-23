@@ -86,6 +86,12 @@ namespace TriathlonTracker.Controllers
         }
 
         [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult GoogleLogin(string? returnUrl = null)
         {
             var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", returnUrl);

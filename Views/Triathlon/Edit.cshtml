@@ -512,7 +512,7 @@
                 });
 
                 // Set up form submission handler
-                const form = document.querySelector('form');
+                const form = document.querySelector('form[asp-action="Edit"]');
                 if (form) {
                     form.addEventListener('submit', (e) => {
                         // Ensure all hidden fields are populated before submission

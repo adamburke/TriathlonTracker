@@ -504,7 +504,7 @@
                 });
 
                 // Set up form submission handler
-                const form = document.querySelector('form');
+                const form = document.querySelector('form[asp-action="Create"]');
                 if (form) {
                     form.addEventListener('submit', (e) => {
                         calculatePace();

@@ -118,6 +118,7 @@ D:\Files\Cursor\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.csproj.CoreCo
 D:\Files\Cursor\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.MvcApplicationPartsAssemblyInfo.cache
 D:\Files\Cursor\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.RazorAssemblyInfo.cache
 D:\Files\Cursor\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.RazorAssemblyInfo.cs
+D:\Files\Cursor\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.sourcelink.json
 D:\Files\Cursor\TriathlonTracker\obj\Debug\net8.0\staticwebassets.build.json
 D:\Files\Cursor\TriathlonTracker\obj\Debug\net8.0\staticwebassets.development.json
 D:\Files\Cursor\TriathlonTracker\obj\Debug\net8.0\staticwebassets\msbuild.TriathlonTracker.Microsoft.AspNetCore.StaticWebAssets.props

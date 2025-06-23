@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hT3IelaNKYlUdRK22lzQC7xR/jcCawrKRIhafChxk7o=",
+  "Hash": "dl1dxRWuj1jq4KIJDmpfsxfEDT8LnfA9+rYCAHyFc8c=",
   "Source": "TriathlonTracker",
   "BasePath": "_content/TriathlonTracker",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Files\\Cursor\\TriathlonTracker\\wwwroot\\favicon.svg",
+      "SourceId": "TriathlonTracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Files\\Cursor\\TriathlonTracker\\wwwroot\\",
+      "BasePath": "_content/TriathlonTracker",
+      "RelativePath": "favicon.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.svg"
     },
     {
       "Identity": "D:\\Files\\Cursor\\TriathlonTracker\\wwwroot\\js\\site.js",
