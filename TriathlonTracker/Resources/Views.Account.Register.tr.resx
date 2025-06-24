@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Register" xml:space="preserve"><value>Kayıt Ol</value></data>
+  <data name="Create Account" xml:space="preserve"><value>Hesap Oluştur</value></data>
+  <data name="Join TriathlonTracker and start tracking your races" xml:space="preserve"><value>TriathlonTracker'a katılın ve yarışlarınızı takip etmeye başlayın</value></data>
+  <data name="First Name" xml:space="preserve"><value>Ad</value></data>
+  <data name="Enter first name" xml:space="preserve"><value>Adınızı girin</value></data>
+  <data name="Last Name" xml:space="preserve"><value>Soyad</value></data>
+  <data name="Enter last name" xml:space="preserve"><value>Soyadınızı girin</value></data>
+  <data name="Email Address" xml:space="preserve"><value>E-posta Adresi</value></data>
+  <data name="Enter your email" xml:space="preserve"><value>E-postanızı girin</value></data>
+  <data name="Password" xml:space="preserve"><value>Şifre</value></data>
+  <data name="Enter password" xml:space="preserve"><value>Şifre girin</value></data>
+  <data name="Password must be at least 8 characters long and contain:" xml:space="preserve"><value>Şifre en az 8 karakter uzunluğunda olmalı ve şunları içermelidir:</value></data>
+  <data name="At least one uppercase letter" xml:space="preserve"><value>En az bir büyük harf</value></data>
+  <data name="At least one lowercase letter" xml:space="preserve"><value>En az bir küçük harf</value></data>
+  <data name="At least one number" xml:space="preserve"><value>En az bir rakam</value></data>
+  <data name="At least one special character" xml:space="preserve"><value>En az bir özel karakter</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Şifreyi Onayla</value></data>
+  <data name="Confirm your password" xml:space="preserve"><value>Şifrenizi onaylayın</value></data>
+  <data name="Already have an account?" xml:space="preserve"><value>Zaten bir hesabınız var mı?</value></data>
+  <data name="Sign in here" xml:space="preserve"><value>Buradan giriş yapın</value></data>
+</root> 

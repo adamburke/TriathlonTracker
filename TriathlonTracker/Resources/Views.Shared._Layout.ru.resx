@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>Мои гонки</value></data>
+  <data name="Add Race" xml:space="preserve"><value>Добавить гонку</value></data>
+  <data name="Logout" xml:space="preserve"><value>Выйти</value></data>
+  <data name="Login" xml:space="preserve"><value>Войти</value></data>
+  <data name="Register" xml:space="preserve"><value>Зарегистрироваться</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Конфиденциальность</value></data>
+</root> 

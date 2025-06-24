@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Register" xml:space="preserve"><value>Register</value></data>
+  <data name="Create Account" xml:space="preserve"><value>Create Account</value></data>
+  <data name="Join TriathlonTracker and start tracking your races" xml:space="preserve"><value>Join TriathlonTracker and start tracking your races</value></data>
+  <data name="First Name" xml:space="preserve"><value>First Name</value></data>
+  <data name="Enter first name" xml:space="preserve"><value>Enter first name</value></data>
+  <data name="Last Name" xml:space="preserve"><value>Last Name</value></data>
+  <data name="Enter last name" xml:space="preserve"><value>Enter last name</value></data>
+  <data name="Email Address" xml:space="preserve"><value>Email Address</value></data>
+  <data name="Enter your email" xml:space="preserve"><value>Enter your email</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Enter password" xml:space="preserve"><value>Enter password</value></data>
+  <data name="Password must be at least 8 characters long and contain:" xml:space="preserve"><value>Password must be at least 8 characters long and contain:</value></data>
+  <data name="At least one uppercase letter" xml:space="preserve"><value>At least one uppercase letter</value></data>
+  <data name="At least one lowercase letter" xml:space="preserve"><value>At least one lowercase letter</value></data>
+  <data name="At least one number" xml:space="preserve"><value>At least one number</value></data>
+  <data name="At least one special character" xml:space="preserve"><value>At least one special character</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Confirm Password</value></data>
+  <data name="Confirm your password" xml:space="preserve"><value>Confirm your password</value></data>
+  <data name="Already have an account?" xml:space="preserve"><value>Already have an account?</value></data>
+  <data name="Sign in here" xml:space="preserve"><value>Sign in here</value></data>
+</root> 

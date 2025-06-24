@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="DeleteRace_Title" xml:space="preserve">
+    <value>Supprimer la course</value>
+  </data>
+  <data name="BackToRaces" xml:space="preserve">
+    <value>Retour aux courses</value>
+  </data>
+  <data name="ConfirmDeletion" xml:space="preserve">
+    <value>Confirmer la suppression</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Attention :</value>
+  </data>
+  <data name="DeleteWarning" xml:space="preserve">
+    <value>Cette action est irréversible. Êtes-vous sûr de vouloir supprimer cette course ?</value>
+  </data>
+  <data name="RaceDetails" xml:space="preserve">
+    <value>Détails de la course</value>
+  </data>
+  <data name="RaceName" xml:space="preserve">
+    <value>Nom de la course :</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date :</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Lieu :</value>
+  </data>
+  <data name="PerformanceSummary" xml:space="preserve">
+    <value>Résumé des performances</value>
+  </data>
+  <data name="TotalDistance" xml:space="preserve">
+    <value>Distance totale :</value>
+  </data>
+  <data name="TotalTime" xml:space="preserve">
+    <value>Temps total :</value>
+  </data>
+  <data name="Swim" xml:space="preserve">
+    <value>Natation :</value>
+  </data>
+  <data name="Bike" xml:space="preserve">
+    <value>Vélo :</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Course à pied :</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+</root> 

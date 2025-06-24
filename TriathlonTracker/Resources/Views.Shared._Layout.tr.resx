@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>Yarışlarım</value></data>
+  <data name="Add Race" xml:space="preserve"><value>Yarış Ekle</value></data>
+  <data name="Logout" xml:space="preserve"><value>Çıkış Yap</value></data>
+  <data name="Login" xml:space="preserve"><value>Giriş Yap</value></data>
+  <data name="Register" xml:space="preserve"><value>Kayıt Ol</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Gizlilik</value></data>
+</root> 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>Meine Rennen</value></data>
+  <data name="Add Race" xml:space="preserve"><value>Rennen hinzufügen</value></data>
+  <data name="Logout" xml:space="preserve"><value>Abmelden</value></data>
+  <data name="Login" xml:space="preserve"><value>Anmelden</value></data>
+  <data name="Register" xml:space="preserve"><value>Registrieren</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Datenschutz</value></data>
+</root> 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>Мои гонки</value></data>
+  <data name="My Triathlon Races" xml:space="preserve"><value>Мои триатлонные гонки</value></data>
+  <data name="Add New Race" xml:space="preserve"><value>Добавить новую гонку</value></data>
+  <data name="No races yet" xml:space="preserve"><value>Пока нет гонок</value></data>
+  <data name="Start tracking your triathlon journey by adding your first race!" xml:space="preserve"><value>Начните отслеживать свой путь в триатлоне, добавив свою первую гонку!</value></data>
+  <data name="Add Your First Race" xml:space="preserve"><value>Добавить первую гонку</value></data>
+  <data name="Race History" xml:space="preserve"><value>История гонок</value></data>
+  <data name="Race Name" xml:space="preserve"><value>Название гонки</value></data>
+  <data name="Date" xml:space="preserve"><value>Дата</value></data>
+  <data name="Location" xml:space="preserve"><value>Место проведения</value></data>
+  <data name="Swim" xml:space="preserve"><value>Плавание</value></data>
+  <data name="Bike" xml:space="preserve"><value>Велосипед</value></data>
+  <data name="Run" xml:space="preserve"><value>Бег</value></data>
+  <data name="Total Time" xml:space="preserve"><value>Общее время</value></data>
+  <data name="Actions" xml:space="preserve"><value>Действия</value></data>
+  <data name="Edit Race" xml:space="preserve"><value>Редактировать гонку</value></data>
+  <data name="Delete Race" xml:space="preserve"><value>Удалить гонку</value></data>
+  <data name="Total Races" xml:space="preserve"><value>Всего гонок</value></data>
+  <data name="Total Distance Raced (M)" xml:space="preserve"><value>Общая дистанция (М)</value></data>
+  <data name="Total Time Racing" xml:space="preserve"><value>Общее время гонок</value></data>
+  <data name="Avg Time per Race" xml:space="preserve"><value>Среднее время на гонку</value></data>
+</root> 

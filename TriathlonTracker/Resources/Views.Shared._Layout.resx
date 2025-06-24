@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>My Races</value></data>
+  <data name="Add Race" xml:space="preserve"><value>Add Race</value></data>
+  <data name="Logout" xml:space="preserve"><value>Logout</value></data>
+  <data name="Login" xml:space="preserve"><value>Login</value></data>
+  <data name="Register" xml:space="preserve"><value>Register</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Privacy</value></data>
+</root> 

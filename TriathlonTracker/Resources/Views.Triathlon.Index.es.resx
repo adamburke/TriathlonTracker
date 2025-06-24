@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>Mis Carreras</value></data>
+  <data name="My Triathlon Races" xml:space="preserve"><value>Mis Carreras de Triatlón</value></data>
+  <data name="Add New Race" xml:space="preserve"><value>Agregar Nueva Carrera</value></data>
+  <data name="No races yet" xml:space="preserve"><value>Todavía no hay carreras</value></data>
+  <data name="Start tracking your triathlon journey by adding your first race!" xml:space="preserve"><value>¡Comienza a registrar tu viaje de triatlón agregando tu primera carrera!</value></data>
+  <data name="Add Your First Race" xml:space="preserve"><value>Agrega Tu Primera Carrera</value></data>
+  <data name="Race History" xml:space="preserve"><value>Historial de Carreras</value></data>
+  <data name="Race Name" xml:space="preserve"><value>Nombre de la Carrera</value></data>
+  <data name="Date" xml:space="preserve"><value>Fecha</value></data>
+  <data name="Location" xml:space="preserve"><value>Ubicación</value></data>
+  <data name="Swim" xml:space="preserve"><value>Natación</value></data>
+  <data name="Bike" xml:space="preserve"><value>Ciclismo</value></data>
+  <data name="Run" xml:space="preserve"><value>Correr</value></data>
+  <data name="Total Time" xml:space="preserve"><value>Tiempo Total</value></data>
+  <data name="Actions" xml:space="preserve"><value>Acciones</value></data>
+  <data name="Edit Race" xml:space="preserve"><value>Editar Carrera</value></data>
+  <data name="Delete Race" xml:space="preserve"><value>Eliminar Carrera</value></data>
+  <data name="Total Races" xml:space="preserve"><value>Total de Carreras</value></data>
+  <data name="Total Distance Raced (M)" xml:space="preserve"><value>Distancia Total Recorrida (M)</value></data>
+  <data name="Total Time Racing" xml:space="preserve"><value>Tiempo Total de Carrera</value></data>
+  <data name="Avg Time per Race" xml:space="preserve"><value>Tiempo Promedio por Carrera</value></data>
+</root> 
