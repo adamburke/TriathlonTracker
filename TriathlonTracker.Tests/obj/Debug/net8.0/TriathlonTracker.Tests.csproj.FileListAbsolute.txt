@@ -22,15 +22,6 @@ D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microso
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.TestPlatform.CoreUtilities.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
@@ -43,7 +34,6 @@ D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Newtons
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Npgsql.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\NuGet.Frameworks.dll
-D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\xunit.abstractions.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\xunit.assert.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\xunit.core.dll
