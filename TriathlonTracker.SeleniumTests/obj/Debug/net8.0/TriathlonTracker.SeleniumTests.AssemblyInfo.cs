@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TriathlonTracker.SeleniumTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86e669568de5ec3a70897fdc256e662df24fd205")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07d42ec56da301d24dc527b42578a80832b6f91c")]
 [assembly: System.Reflection.AssemblyProductAttribute("TriathlonTracker.SeleniumTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TriathlonTracker.SeleniumTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

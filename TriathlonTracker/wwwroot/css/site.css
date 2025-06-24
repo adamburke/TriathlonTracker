@@ -198,184 +198,170 @@ body {
 
 /* Race name styling */
 .race-name {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--primary-blue);
-  font-size: 1.1rem;
-  text-decoration: none;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
 .race-name:hover {
   color: var(--secondary-blue);
-  text-decoration: none;
+  transform: translateX(5px);
 }
 
-/* Date styling */
 .race-date {
   color: var(--medium-grey);
   font-weight: 500;
-  font-size: 0.9rem;
 }
 
-/* Location styling */
 .race-location {
   color: var(--dark-grey);
   font-weight: 500;
 }
 
-/* Discipline data styling */
 .discipline-data {
-  background: var(--light-grey);
-  border-radius: 0;
-  padding: 12px;
-  margin: 2px 0;
-  border-left: 4px solid var(--secondary-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .discipline-data .distance {
-  color: var(--medium-grey);
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: var(--dark-grey);
+  font-size: 0.9rem;
 }
 
 .discipline-data .time {
-  color: var(--dark-grey);
-  font-weight: 700;
-  font-size: 1rem;
-  margin: 4px 0;
+  font-weight: 500;
+  color: var(--primary-blue);
+  font-size: 0.95rem;
 }
 
 .discipline-data .pace {
-  color: var(--primary-blue);
-  font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  color: var(--medium-grey);
 }
 
-/* Total time styling */
 .total-time {
-  background: var(--primary-blue);
-  color: var(--white);
-  padding: 12px 16px;
-  border-radius: 0;
   font-weight: 700;
+  color: var(--primary-blue);
   font-size: 1.1rem;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(30, 58, 138, 0.2);
 }
 
-/* Action buttons styling */
 .action-buttons {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
   justify-content: center;
 }
 
 .action-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   border: none;
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.2s ease;
   font-size: 0.9rem;
 }
 
 .action-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .action-btn.edit {
-  background: #10b981;
-  color: white;
+  background: var(--secondary-blue);
 }
 
 .action-btn.delete {
   background: #ef4444;
-  color: white;
 }
 
-/* Responsive table */
 @media (max-width: 768px) {
   .table-responsive {
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
   }
   
   .table thead th {
     padding: 15px 10px;
-    font-size: 0.8rem;
   }
   
   .table tbody td {
     padding: 15px 10px;
-    font-size: 0.9rem;
   }
   
   .discipline-data {
-    padding: 8px;
+    gap: 0.15rem;
   }
   
   .discipline-data .time {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .total-time {
-    padding: 10px 12px;
     font-size: 1rem;
   }
   
   .action-btn {
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     font-size: 0.8rem;
   }
 }
 
-/* Login/Register Form Styling */
 .auth-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--light-grey) 0%, var(--light-blue) 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .auth-card {
-  max-width: 400px;
-  width: 100%;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   padding: 2rem;
+  width: 100%;
+  max-width: 400px;
 }
 
-/* Triathlon Stats Cards */
 .stats-card {
-  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-  color: var(--white);
+  background: var(--white);
   border-radius: 15px;
   padding: 1.5rem;
-  margin-bottom: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .stats-card h3 {
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 700;
+  color: var(--primary-blue);
   margin-bottom: 0.5rem;
 }
 
 .stats-card p {
-  margin-bottom: 0;
-  opacity: 0.9;
+  color: var(--medium-grey);
+  font-weight: 500;
+  margin: 0;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .container-fluid {
-    padding: 0 15px;
+    padding: 1rem;
   }
   
   .card {
@@ -383,18 +369,17 @@ body {
   }
   
   .table-responsive {
-    border-radius: 15px;
+    font-size: 0.85rem;
   }
   
   .btn {
-    width: 100%;
-    margin-bottom: 0.5rem;
+    padding: 8px 20px;
+    font-size: 0.9rem;
   }
 }
 
-/* Animation Classes */
 .fade-in {
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -408,7 +393,6 @@ body {
   }
 }
 
-/* Google OAuth Button */
 .btn-google {
   background: #4285f4;
   color: white;
@@ -417,81 +401,80 @@ body {
   padding: 12px 25px;
   font-weight: 600;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
   margin-bottom: 1rem;
 }
 
 .btn-google:hover {
-  background: #3367d6;
+  background: #357abd;
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(66, 133, 244, 0.3);
   color: white;
 }
 
-/* Pace Display */
 .pace-display {
-  background: var(--light-blue);
+  background: linear-gradient(135deg, var(--light-blue) 0%, #e0f2fe 100%);
   border-radius: 10px;
-  padding: 10px;
-  margin-top: 10px;
-  font-weight: 600;
-  color: var(--primary-blue);
-  text-align: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-left: 4px solid var(--primary-blue);
 }
 
-/* Loading Spinner */
 .spinner-border {
   color: var(--primary-blue);
 }
 
-/* Alert Styling */
 .alert {
   border-radius: 10px;
   border: none;
-  padding: 15px 20px;
+  font-weight: 500;
 }
 
 .alert-success {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-  color: white;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #065f46;
 }
 
 .alert-danger {
-  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
-  color: white;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #991b1b;
 }
 
 .alert-warning {
-  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-  color: white;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
 }
 
-/* Enhanced table styling */
 .table-container {
   background: var(--white);
-  border-radius: 0;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin-bottom: 2rem;
 }
 
 .table-container .card-header {
-  background: var(--primary-blue);
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
   color: var(--white);
+  border-radius: 15px 15px 0 0 !important;
   border: none;
-  padding: 1.5rem;
+  padding: 1.5rem 2rem;
 }
 
 .table-container .card-header h5 {
   margin: 0;
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
-/* Table row animations */
 .table tbody tr {
-  animation: slideInUp 0.6s ease-out;
-  animation-fill-mode: both;
+  animation: slideInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .table tbody tr:nth-child(1) { animation-delay: 0.1s; }
@@ -501,41 +484,40 @@ body {
 .table tbody tr:nth-child(5) { animation-delay: 0.5s; }
 
 @keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Discipline data hover effects */
 .discipline-data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   transition: all 0.3s ease;
-  cursor: default;
 }
 
 .discipline-data:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
-  border-left-color: var(--primary-blue);
-  background: #e5e7eb;
+  transform: translateX(5px);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin: -0.5rem;
 }
 
-/* Total time hover effect */
 .total-time {
+  font-weight: 700;
+  color: var(--primary-blue);
+  font-size: 1.1rem;
+  text-align: center;
   transition: all 0.3s ease;
-  cursor: default;
 }
 
 .total-time:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+  transform: scale(1.1);
+  color: var(--secondary-blue);
 }
 
-/* Empty state styling */
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
