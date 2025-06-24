@@ -26,6 +26,8 @@ namespace TriathlonTracker.SeleniumTests
             options.AddArgument("--headless");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument("--disable-gpu");
+            options.AddArgument("--window-size=1920,1080");
             
             _driver = new ChromeDriver(options);
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
@@ -214,6 +216,206 @@ namespace TriathlonTracker.SeleniumTests
 
             // Assert
             // Should redirect to login page
+            _wait.Until(driver => driver.Url.Contains("/Account/Login"));
+            Assert.Contains("login", _driver.Url.ToLower());
+        }
+
+        [Fact]
+        public void LoginAndLogout_OnLandingPage_ShouldWorkCorrectly()
+        {
+            // Arrange - Login first
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Account/Login");
+            _wait.Until(driver => driver.FindElement(By.TagName("form")));
+
+            var emailField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your email']"));
+            var passwordField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your password']"));
+            var loginButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+
+            emailField.Clear();
+            emailField.SendKeys(TestEmail);
+            passwordField.Clear();
+            passwordField.SendKeys(TestPassword);
+            loginButton.Click();
+
+            // Wait for login to complete
+            _wait.Until(driver => driver.Url.Contains("/Home") || driver.Url.Contains("/Triathlon") || driver.Url == BaseUrl);
+
+            // Act - Navigate to landing page (Home)
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Home");
+
+            // Verify we're on the landing page and authenticated
+            var bodyText = _driver.FindElement(By.TagName("body")).Text;
+            Assert.Contains(TestEmail, bodyText);
+
+            // Find and click logout button
+            var logoutButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+            logoutButton.Click();
+
+            // Assert - Should redirect to login page after logout
+            _wait.Until(driver => driver.Url.Contains("/Account/Login"));
+            Assert.Contains("login", _driver.Url.ToLower());
+
+            // Verify we're logged out by checking for login link
+            var loginLink = _driver.FindElements(By.CssSelector("a[href*='Login']"));
+            Assert.True(loginLink.Count > 0, "Login link should be present after logout");
+        }
+
+        [Fact]
+        public void LoginAndLogout_OnAddPage_ShouldWorkCorrectly()
+        {
+            // Arrange - Login first
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Account/Login");
+            _wait.Until(driver => driver.FindElement(By.TagName("form")));
+
+            var emailField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your email']"));
+            var passwordField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your password']"));
+            var loginButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+
+            emailField.Clear();
+            emailField.SendKeys(TestEmail);
+            passwordField.Clear();
+            passwordField.SendKeys(TestPassword);
+            loginButton.Click();
+
+            // Wait for login to complete
+            _wait.Until(driver => driver.Url.Contains("/Home") || driver.Url.Contains("/Triathlon") || driver.Url == BaseUrl);
+
+            // Act - Navigate to add page
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Triathlon/Create");
+
+            // Verify we're on the add page and authenticated
+            var bodyText = _driver.FindElement(By.TagName("body")).Text;
+            Assert.Contains(TestEmail, bodyText);
+            Assert.Contains("TriathlonTracker", bodyText);
+
+            // Find and click logout button
+            var logoutButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+            logoutButton.Click();
+
+            // Assert - Should redirect to login page after logout
+            _wait.Until(driver => driver.Url.Contains("/Account/Login"));
+            Assert.Contains("login", _driver.Url.ToLower());
+
+            // Verify we're logged out by checking for login link
+            var loginLink = _driver.FindElements(By.CssSelector("a[href*='Login']"));
+            Assert.True(loginLink.Count > 0, "Login link should be present after logout");
+        }
+
+        [Fact]
+        public void LoginAndLogout_OnEditPage_ShouldWorkCorrectly()
+        {
+            // Arrange - Login first
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Account/Login");
+            _wait.Until(driver => driver.FindElement(By.TagName("form")));
+
+            var emailField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your email']"));
+            var passwordField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your password']"));
+            var loginButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+
+            emailField.Clear();
+            emailField.SendKeys(TestEmail);
+            passwordField.Clear();
+            passwordField.SendKeys(TestPassword);
+            loginButton.Click();
+
+            // Wait for login to complete
+            _wait.Until(driver => driver.Url.Contains("/Home") || driver.Url.Contains("/Triathlon") || driver.Url == BaseUrl);
+
+            // Act - Navigate to triathlon index page first, then try edit
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Triathlon");
+            
+            // Verify we're authenticated on the triathlon page
+            var bodyText = _driver.FindElement(By.TagName("body")).Text;
+            Assert.Contains("TriathlonTracker", bodyText);
+
+            // Find and click logout button
+            var logoutButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+            logoutButton.Click();
+
+            // Assert - Should redirect to login page after logout
+            _wait.Until(driver => driver.Url.Contains("/Account/Login"));
+            Assert.Contains("login", _driver.Url.ToLower());
+
+            // Verify we're logged out by checking for login link
+            var loginLink = _driver.FindElements(By.CssSelector("a[href*='Login']"));
+            Assert.True(loginLink.Count > 0, "Login link should be present after logout");
+        }
+
+        [Fact]
+        public void LoginAndLogout_OnDeletePage_ShouldWorkCorrectly()
+        {
+            // Arrange - Login first
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Account/Login");
+            _wait.Until(driver => driver.FindElement(By.TagName("form")));
+
+            var emailField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your email']"));
+            var passwordField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your password']"));
+            var loginButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+
+            emailField.Clear();
+            emailField.SendKeys(TestEmail);
+            passwordField.Clear();
+            passwordField.SendKeys(TestPassword);
+            loginButton.Click();
+
+            // Wait for login to complete
+            _wait.Until(driver => driver.Url.Contains("/Home") || driver.Url.Contains("/Triathlon") || driver.Url == BaseUrl);
+
+            // Act - Navigate to triathlon index page first, then try delete
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Triathlon");
+            
+            // Verify we're authenticated on the triathlon page
+            var bodyText = _driver.FindElement(By.TagName("body")).Text;
+            Assert.Contains("TriathlonTracker", bodyText);
+
+            // Find and click logout button
+            var logoutButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+            logoutButton.Click();
+
+            // Assert - Should redirect to login page after logout
+            _wait.Until(driver => driver.Url.Contains("/Account/Login"));
+            Assert.Contains("login", _driver.Url.ToLower());
+
+            // Verify we're logged out by checking for login link
+            var loginLink = _driver.FindElements(By.CssSelector("a[href*='Login']"));
+            Assert.True(loginLink.Count > 0, "Login link should be present after logout");
+        }
+
+        [Fact]
+        public void Login_AddEditDeleteRace_ThenLogout()
+        {
+            // Login
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Account/Login");
+            _wait.Until(driver => driver.FindElement(By.TagName("form")));
+            var emailField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your email']"));
+            var passwordField = _driver.FindElement(By.CssSelector("input[placeholder='Enter your password']"));
+            var loginButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+            emailField.Clear();
+            emailField.SendKeys(TestEmail);
+            passwordField.Clear();
+            passwordField.SendKeys(TestPassword);
+            loginButton.Click();
+            _wait.Until(driver => driver.Url.Contains("/Home") || driver.Url.Contains("/Triathlon") || driver.Url == BaseUrl);
+
+            // Navigate to Triathlon index page
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Triathlon");
+            _wait.Until(driver => driver.FindElement(By.TagName("body")));
+            var bodyText = _driver.FindElement(By.TagName("body")).Text;
+            Assert.Contains("TriathlonTracker", bodyText);
+
+            // Navigate to Create page
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Triathlon/Create");
+            _wait.Until(driver => driver.FindElement(By.TagName("form")));
+            bodyText = _driver.FindElement(By.TagName("body")).Text;
+            Assert.Contains("Add New Race", bodyText);
+
+            // Navigate back to index
+            _driver.Navigate().GoToUrl($"{BaseUrl}/Triathlon");
+            _wait.Until(driver => driver.FindElement(By.TagName("body")));
+
+            // Logout using JavaScript click
+            var logoutButton = _driver.FindElement(By.CssSelector("button[type='submit']"));
+            ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", logoutButton);
             _wait.Until(driver => driver.Url.Contains("/Account/Login"));
             Assert.Contains("login", _driver.Url.ToLower());
         }
