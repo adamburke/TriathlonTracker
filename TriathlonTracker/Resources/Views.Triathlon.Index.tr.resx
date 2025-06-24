@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>Yarışlarım</value></data>
+  <data name="My Triathlon Races" xml:space="preserve"><value>Triatlon Yarışlarım</value></data>
+  <data name="Add New Race" xml:space="preserve"><value>Yeni Yarış Ekle</value></data>
+  <data name="No races yet" xml:space="preserve"><value>Henüz yarış yok</value></data>
+  <data name="Start tracking your triathlon journey by adding your first race!" xml:space="preserve"><value>İlk yarışınızı ekleyerek triatlon yolculuğunuzu takip etmeye başlayın!</value></data>
+  <data name="Add Your First Race" xml:space="preserve"><value>İlk Yarışınızı Ekleyin</value></data>
+  <data name="Race History" xml:space="preserve"><value>Yarış Geçmişi</value></data>
+  <data name="Race Name" xml:space="preserve"><value>Yarış Adı</value></data>
+  <data name="Date" xml:space="preserve"><value>Tarih</value></data>
+  <data name="Location" xml:space="preserve"><value>Konum</value></data>
+  <data name="Swim" xml:space="preserve"><value>Yüzme</value></data>
+  <data name="Bike" xml:space="preserve"><value>Bisiklet</value></data>
+  <data name="Run" xml:space="preserve"><value>Koşu</value></data>
+  <data name="Total Time" xml:space="preserve"><value>Toplam Süre</value></data>
+  <data name="Actions" xml:space="preserve"><value>İşlemler</value></data>
+  <data name="Edit Race" xml:space="preserve"><value>Yarışı Düzenle</value></data>
+  <data name="Delete Race" xml:space="preserve"><value>Yarışı Sil</value></data>
+  <data name="Total Races" xml:space="preserve"><value>Toplam Yarış</value></data>
+  <data name="Total Distance Raced (M)" xml:space="preserve"><value>Toplam Kat Edilen Mesafe (M)</value></data>
+  <data name="Total Time Racing" xml:space="preserve"><value>Toplam Yarış Süresi</value></data>
+  <data name="Avg Time per Race" xml:space="preserve"><value>Yarış Başına Ortalama Süre</value></data>
+</root> 

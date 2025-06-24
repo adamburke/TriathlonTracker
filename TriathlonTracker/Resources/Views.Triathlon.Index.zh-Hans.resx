@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>我的比赛</value></data>
+  <data name="My Triathlon Races" xml:space="preserve"><value>我的铁人三项比赛</value></data>
+  <data name="Add New Race" xml:space="preserve"><value>添加新比赛</value></data>
+  <data name="No races yet" xml:space="preserve"><value>还没有比赛</value></data>
+  <data name="Start tracking your triathlon journey by adding your first race!" xml:space="preserve"><value>通过添加您的第一场比赛开始记录您的铁人三项之旅！</value></data>
+  <data name="Add Your First Race" xml:space="preserve"><value>添加您的第一场比赛</value></data>
+  <data name="Race History" xml:space="preserve"><value>比赛历史</value></data>
+  <data name="Race Name" xml:space="preserve"><value>比赛名称</value></data>
+  <data name="Date" xml:space="preserve"><value>日期</value></data>
+  <data name="Location" xml:space="preserve"><value>地点</value></data>
+  <data name="Swim" xml:space="preserve"><value>游泳</value></data>
+  <data name="Bike" xml:space="preserve"><value>自行车</value></data>
+  <data name="Run" xml:space="preserve"><value>跑步</value></data>
+  <data name="Total Time" xml:space="preserve"><value>总时间</value></data>
+  <data name="Actions" xml:space="preserve"><value>操作</value></data>
+  <data name="Edit Race" xml:space="preserve"><value>编辑比赛</value></data>
+  <data name="Delete Race" xml:space="preserve"><value>删除比赛</value></data>
+  <data name="Total Races" xml:space="preserve"><value>比赛总数</value></data>
+  <data name="Total Distance Raced (M)" xml:space="preserve"><value>总比赛距离（米）</value></data>
+  <data name="Total Time Racing" xml:space="preserve"><value>总比赛时间</value></data>
+  <data name="Avg Time per Race" xml:space="preserve"><value>每场比赛平均时间</value></data>
+</root> 

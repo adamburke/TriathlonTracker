@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>Ocurrió un error al procesar su solicitud.</value>
+  </data>
+  <data name="RequestId" xml:space="preserve">
+    <value>ID de solicitud:</value>
+  </data>
+  <data name="DevelopmentMode" xml:space="preserve">
+    <value>Modo de desarrollo</value>
+  </data>
+  <data name="DevelopmentMode_Info1" xml:space="preserve">
+    <value>Cambiar al entorno <strong>Desarrollo</strong> mostrará información más detallada sobre el error ocurrido.</value>
+  </data>
+  <data name="DevelopmentMode_Warning" xml:space="preserve">
+    <value>El entorno de desarrollo no debe estar habilitado en aplicaciones desplegadas.</value>
+  </data>
+  <data name="DevelopmentMode_Info2" xml:space="preserve">
+    <value>Puede mostrar información sensible de las excepciones a los usuarios finales. Para depuración local, habilite el entorno <strong>Desarrollo</strong> configurando la variable de entorno <strong>ASPNETCORE_ENVIRONMENT</strong> a <strong>Development</strong> y reiniciando la aplicación.</value>
+  </data>
+</root> 

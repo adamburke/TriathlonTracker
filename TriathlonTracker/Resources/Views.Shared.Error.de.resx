@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Error_Title" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>Bei der Verarbeitung Ihrer Anfrage ist ein Fehler aufgetreten.</value>
+  </data>
+  <data name="RequestId" xml:space="preserve">
+    <value>Anfrage-ID:</value>
+  </data>
+  <data name="DevelopmentMode" xml:space="preserve">
+    <value>Entwicklungsmodus</value>
+  </data>
+  <data name="DevelopmentMode_Info1" xml:space="preserve">
+    <value>Das Wechseln in die <strong>Entwicklungsumgebung</strong> zeigt detailliertere Informationen über den aufgetretenen Fehler an.</value>
+  </data>
+  <data name="DevelopmentMode_Warning" xml:space="preserve">
+    <value>Die Entwicklungsumgebung sollte für bereitgestellte Anwendungen nicht aktiviert sein.</value>
+  </data>
+  <data name="DevelopmentMode_Info2" xml:space="preserve">
+    <value>Dies kann dazu führen, dass sensible Informationen aus Ausnahmen Endbenutzern angezeigt werden. Für das lokale Debugging aktivieren Sie die <strong>Entwicklungsumgebung</strong>, indem Sie die Umgebungsvariable <strong>ASPNETCORE_ENVIRONMENT</strong> auf <strong>Development</strong> setzen und die App neu starten.</value>
+  </data>
+</root> 

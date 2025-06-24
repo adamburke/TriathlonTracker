@@ -1,7 +1,8 @@
 @model TriathlonTracker.Models.Triathlon
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Delete Race";
+    ViewData["Title"] = Localizer["DeleteRace_Title"];
 }
 
 <div class="container-fluid">
@@ -9,10 +10,10 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="text-dark fw-bold">
-                    <i class="fas fa-trash me-2"></i>Delete Race
+                    <i class="fas fa-trash me-2"></i>@Localizer["DeleteRace_Title"]
                 </h1>
                 <a asp-action="Index" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Races
+                    <i class="fas fa-arrow-left me-2"></i>@Localizer["BackToRaces"]
                 </a>
             </div>
         </div>
@@ -23,46 +24,46 @@
             <div class="card">
                 <div class="card-header bg-danger text-white">
                     <h5 class="mb-0">
-                        <i class="fas fa-exclamation-triangle me-2"></i>Confirm Deletion
+                        <i class="fas fa-exclamation-triangle me-2"></i>@Localizer["ConfirmDeletion"]
                     </h5>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle me-2"></i>
-                        <strong>Warning:</strong> This action cannot be undone. Are you sure you want to delete this race?
+                        <strong>@Localizer["Warning"]</strong> @Localizer["DeleteWarning"]
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="text-primary">Race Details</h6>
+                            <h6 class="text-primary">@Localizer["RaceDetails"]</h6>
                             <dl class="row">
-                                <dt class="col-sm-4">Race Name:</dt>
+                                <dt class="col-sm-4">@Localizer["RaceName"]</dt>
                                 <dd class="col-sm-8">@Model.RaceName</dd>
 
-                                <dt class="col-sm-4">Date:</dt>
+                                <dt class="col-sm-4">@Localizer["Date"]</dt>
                                 <dd class="col-sm-8">@Model.RaceDate.ToString("MMM dd, yyyy")</dd>
 
-                                <dt class="col-sm-4">Location:</dt>
+                                <dt class="col-sm-4">@Localizer["Location"]</dt>
                                 <dd class="col-sm-8">@Model.Location</dd>
                             </dl>
                         </div>
                         <div class="col-md-6">
-                            <h6 class="text-primary">Performance Summary</h6>
+                            <h6 class="text-primary">@Localizer["PerformanceSummary"]</h6>
                             <dl class="row">
-                                <dt class="col-sm-4">Total Distance:</dt>
+                                <dt class="col-sm-4">@Localizer["TotalDistance"]</dt>
                                 <dd class="col-sm-8">@Model.TotalDistance.ToString("F1") km</dd>
 
-                                <dt class="col-sm-4">Total Time:</dt>
+                                <dt class="col-sm-4">@Localizer["TotalTime"]</dt>
                                 <dd class="col-sm-8">@Model.TotalTime.ToString(@"hh\:mm\:ss")</dd>
 
-                                <dt class="col-sm-4">Swim:</dt>
-                                <dd class="col-sm-8">@Model.SwimDistance m in @Model.SwimTime.ToString(@"mm\:ss")</dd>
+                                <dt class="col-sm-4">@Localizer["Swim"]</dt>
+                                <dd class="col-sm-8">@Model.SwimDistance m @Localizer["In"] @Model.SwimTime.ToString(@"mm\:ss")</dd>
 
-                                <dt class="col-sm-4">Bike:</dt>
-                                <dd class="col-sm-8">@Model.BikeDistance km in @Model.BikeTime.ToString(@"hh\:mm\:ss")</dd>
+                                <dt class="col-sm-4">@Localizer["Bike"]</dt>
+                                <dd class="col-sm-8">@Model.BikeDistance km @Localizer["In"] @Model.BikeTime.ToString(@"hh\:mm\:ss")</dd>
 
-                                <dt class="col-sm-4">Run:</dt>
-                                <dd class="col-sm-8">@Model.RunDistance km in @Model.RunTime.ToString(@"mm\:ss")</dd>
+                                <dt class="col-sm-4">@Localizer["Run"]</dt>
+                                <dd class="col-sm-8">@Model.RunDistance km @Localizer["In"] @Model.RunTime.ToString(@"mm\:ss")</dd>
                             </dl>
                         </div>
                     </div>
@@ -71,10 +72,10 @@
                         <input type="hidden" asp-for="Id" />
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a asp-action="Index" class="btn btn-outline-secondary me-md-2">
-                                <i class="fas fa-times me-2"></i>Cancel
+                                <i class="fas fa-times me-2"></i>@Localizer["Cancel"]
                             </a>
                             <button type="submit" class="btn btn-danger">
-                                <i class="fas fa-trash me-2"></i>Delete Race
+                                <i class="fas fa-trash me-2"></i>@Localizer["DeleteRace_Title"]
                             </button>
                         </div>
                     </form>

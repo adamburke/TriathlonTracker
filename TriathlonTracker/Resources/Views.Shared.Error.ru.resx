@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Error_Title" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>Произошла ошибка при обработке вашего запроса.</value>
+  </data>
+  <data name="RequestId" xml:space="preserve">
+    <value>ID запроса:</value>
+  </data>
+  <data name="DevelopmentMode" xml:space="preserve">
+    <value>Режим разработки</value>
+  </data>
+  <data name="DevelopmentMode_Info1" xml:space="preserve">
+    <value>Переключение в среду <strong>Разработка</strong> покажет более подробную информацию об ошибке.</value>
+  </data>
+  <data name="DevelopmentMode_Warning" xml:space="preserve">
+    <value>Среда разработки не должна быть включена для развернутых приложений.</value>
+  </data>
+  <data name="DevelopmentMode_Info2" xml:space="preserve">
+    <value>Это может привести к отображению конфиденциальной информации из исключений конечным пользователям. Для локальной отладки включите среду <strong>Разработка</strong>, установив переменную среды <strong>ASPNETCORE_ENVIRONMENT</strong> в значение <strong>Development</strong> и перезапустив приложение.</value>
+  </data>
+</root> 

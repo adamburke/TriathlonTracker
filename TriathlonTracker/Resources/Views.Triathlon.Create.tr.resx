@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Add New Race" xml:space="preserve"><value>Yeni Yarış Ekle</value></data>
+  <data name="Back to Races" xml:space="preserve"><value>Yarışlara Geri Dön</value></data>
+  <data name="Race Information" xml:space="preserve"><value>Yarış Bilgileri</value></data>
+  <data name="Race Name" xml:space="preserve"><value>Yarış Adı</value></data>
+  <data name="Enter race name" xml:space="preserve"><value>Yarış adını girin</value></data>
+  <data name="Race Date" xml:space="preserve"><value>Yarış Tarihi</value></data>
+  <data name="Location" xml:space="preserve"><value>Konum</value></data>
+  <data name="Enter race location" xml:space="preserve"><value>Yarış konumunu girin</value></data>
+  <data name="Swim" xml:space="preserve"><value>Yüzme</value></data>
+  <data name="Distance" xml:space="preserve"><value>Mesafe</value></data>
+  <data name="Unit" xml:space="preserve"><value>Birim</value></data>
+  <data name="Yards" xml:space="preserve"><value>Yard</value></data>
+  <data name="Meters" xml:space="preserve"><value>Metre</value></data>
+  <data name="Time (HH:MM:SS)" xml:space="preserve"><value>Zaman (SS:DD:SS)</value></data>
+  <data name="HH" xml:space="preserve"><value>SS</value></data>
+  <data name="MM" xml:space="preserve"><value>DD</value></data>
+  <data name="SS" xml:space="preserve"><value>SS</value></data>
+  <data name="Swim Pace" xml:space="preserve"><value>Yüzme Hızı</value></data>
+  <data name="Bike" xml:space="preserve"><value>Bisiklet</value></data>
+  <data name="Miles" xml:space="preserve"><value>Mil</value></data>
+  <data name="Kilometers" xml:space="preserve"><value>Kilometre</value></data>
+  <data name="Bike Pace" xml:space="preserve"><value>Bisiklet Hızı</value></data>
+  <data name="Run" xml:space="preserve"><value>Koşu</value></data>
+  <data name="Run Pace" xml:space="preserve"><value>Koşu Hızı</value></data>
+  <data name="Cancel" xml:space="preserve"><value>İptal</value></data>
+  <data name="Save Race" xml:space="preserve"><value>Yarışı Kaydet</value></data>
+  <data name="Race Summary" xml:space="preserve"><value>Yarış Özeti</value></data>
+  <data name="Fill in the race details to see your summary" xml:space="preserve"><value>Özetinizi görmek için yarış detaylarını doldurun</value></data>
+  <data name="Total Distance" xml:space="preserve">
+    <value>Toplam Mesafe</value>
+  </data>
+  <data name="Total Time" xml:space="preserve">
+    <value>Toplam Süre</value>
+  </data>
+</root> 

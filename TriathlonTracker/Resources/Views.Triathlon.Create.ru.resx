@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Add New Race" xml:space="preserve"><value>Добавить новую гонку</value></data>
+  <data name="Back to Races" xml:space="preserve"><value>Назад к гонкам</value></data>
+  <data name="Race Information" xml:space="preserve"><value>Информация о гонке</value></data>
+  <data name="Race Name" xml:space="preserve"><value>Название гонки</value></data>
+  <data name="Enter race name" xml:space="preserve"><value>Введите название гонки</value></data>
+  <data name="Race Date" xml:space="preserve"><value>Дата гонки</value></data>
+  <data name="Location" xml:space="preserve"><value>Место проведения</value></data>
+  <data name="Enter race location" xml:space="preserve"><value>Введите место проведения гонки</value></data>
+  <data name="Swim" xml:space="preserve"><value>Плавание</value></data>
+  <data name="Distance" xml:space="preserve"><value>Дистанция</value></data>
+  <data name="Unit" xml:space="preserve"><value>Единица измерения</value></data>
+  <data name="Yards" xml:space="preserve"><value>Ярды</value></data>
+  <data name="Meters" xml:space="preserve"><value>Метры</value></data>
+  <data name="Time (HH:MM:SS)" xml:space="preserve"><value>Время (ЧЧ:ММ:СС)</value></data>
+  <data name="HH" xml:space="preserve"><value>ЧЧ</value></data>
+  <data name="MM" xml:space="preserve"><value>ММ</value></data>
+  <data name="SS" xml:space="preserve"><value>СС</value></data>
+  <data name="Swim Pace" xml:space="preserve"><value>Темп плавания</value></data>
+  <data name="Bike" xml:space="preserve"><value>Велосипед</value></data>
+  <data name="Miles" xml:space="preserve"><value>Мили</value></data>
+  <data name="Kilometers" xml:space="preserve"><value>Километры</value></data>
+  <data name="Bike Pace" xml:space="preserve"><value>Темп на велосипеде</value></data>
+  <data name="Run" xml:space="preserve"><value>Бег</value></data>
+  <data name="Run Pace" xml:space="preserve"><value>Темп бега</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Отмена</value></data>
+  <data name="Save Race" xml:space="preserve"><value>Сохранить гонку</value></data>
+  <data name="Race Summary" xml:space="preserve"><value>Сводка гонки</value></data>
+  <data name="Fill in the race details to see your summary" xml:space="preserve"><value>Заполните детали гонки, чтобы увидеть сводку</value></data>
+  <data name="Total Distance" xml:space="preserve">
+    <value>Общая дистанция</value>
+  </data>
+  <data name="Total Time" xml:space="preserve">
+    <value>Общее время</value>
+  </data>
+</root> 
