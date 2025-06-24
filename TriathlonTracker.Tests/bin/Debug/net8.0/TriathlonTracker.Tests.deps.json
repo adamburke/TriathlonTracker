@@ -1213,6 +1213,32 @@
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
+        },
+        "resources": {
+          "de/TriathlonTracker.resources.dll": {
+            "locale": "de"
+          },
+          "es/TriathlonTracker.resources.dll": {
+            "locale": "es"
+          },
+          "es-MX/TriathlonTracker.resources.dll": {
+            "locale": "es-MX"
+          },
+          "fr/TriathlonTracker.resources.dll": {
+            "locale": "fr"
+          },
+          "fr-CA/TriathlonTracker.resources.dll": {
+            "locale": "fr-CA"
+          },
+          "ru/TriathlonTracker.resources.dll": {
+            "locale": "ru"
+          },
+          "tr/TriathlonTracker.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/TriathlonTracker.resources.dll": {
+            "locale": "zh-Hans"
+          }
         }
       }
     }

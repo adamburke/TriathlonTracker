@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Welcome Back" xml:space="preserve"><value>С возвращением</value></data>
+  <data name="Sign in to your TriathlonTracker account" xml:space="preserve"><value>Войдите в свой аккаунт TriathlonTracker</value></data>
+  <data name="Email Address" xml:space="preserve"><value>Электронная почта</value></data>
+  <data name="Enter your email" xml:space="preserve"><value>Введите вашу электронную почту</value></data>
+  <data name="Password" xml:space="preserve"><value>Пароль</value></data>
+  <data name="Enter your password" xml:space="preserve"><value>Введите ваш пароль</value></data>
+  <data name="Remember me" xml:space="preserve"><value>Запомнить меня</value></data>
+  <data name="Sign In" xml:space="preserve"><value>Войти</value></data>
+  <data name="or" xml:space="preserve"><value>или</value></data>
+  <data name="Sign in with Google" xml:space="preserve"><value>Войти через Google</value></data>
+  <data name="Don't have an account?" xml:space="preserve"><value>Нет аккаунта?</value></data>
+  <data name="Register here" xml:space="preserve"><value>Зарегистрироваться здесь</value></data>
+</root> 
