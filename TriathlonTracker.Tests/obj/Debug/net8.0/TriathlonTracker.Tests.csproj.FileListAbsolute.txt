@@ -105,6 +105,14 @@ D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\zh-Hant
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\TriathlonTracker.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\TriathlonTracker.pdb
+D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\de\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\es\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\es-MX\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\fr\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\fr-CA\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\ru\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\tr\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker.Tests\bin\Debug\net8.0\zh-Hans\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\obj\Debug\net8.0\TriathlonTracker.Tests.csproj.AssemblyReference.cache
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\obj\Debug\net8.0\TriathlonTracker.Tests.GeneratedMSBuildEditorConfig.editorconfig
 D:\Files\github\triathlontracker\TriathlonTracker.Tests\obj\Debug\net8.0\TriathlonTracker.Tests.AssemblyInfoInputs.cache

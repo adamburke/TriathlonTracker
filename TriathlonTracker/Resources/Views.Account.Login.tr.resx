@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Welcome Back" xml:space="preserve"><value>Tekrar hoş geldiniz</value></data>
+  <data name="Sign in to your TriathlonTracker account" xml:space="preserve"><value>TriathlonTracker hesabınıza giriş yapın</value></data>
+  <data name="Email Address" xml:space="preserve"><value>E-posta adresi</value></data>
+  <data name="Enter your email" xml:space="preserve"><value>E-postanızı girin</value></data>
+  <data name="Password" xml:space="preserve"><value>Şifre</value></data>
+  <data name="Enter your password" xml:space="preserve"><value>Şifrenizi girin</value></data>
+  <data name="Remember me" xml:space="preserve"><value>Beni hatırla</value></data>
+  <data name="Sign In" xml:space="preserve"><value>Giriş yap</value></data>
+  <data name="or" xml:space="preserve"><value>veya</value></data>
+  <data name="Sign in with Google" xml:space="preserve"><value>Google ile giriş yap</value></data>
+  <data name="Don't have an account?" xml:space="preserve"><value>Hesabınız yok mu?</value></data>
+  <data name="Register here" xml:space="preserve"><value>Buradan kaydolun</value></data>
+</root> 
