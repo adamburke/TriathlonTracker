@@ -74,21 +74,21 @@
                                             <div class="discipline-data">
                                                 <div class="distance">@race.SwimDistance @(race.SwimUnit == "yards" ? "yd" : "m")</div>
                                                 <div class="time">@race.SwimTime.ToString(@"mm\:ss")</div>
-                                                <div class="pace">@race.SwimPace.ToString("F1") min/100@(race.SwimUnit == "yards" ? "yd" : "m")</div>
+                                                <div class="pace">@TimeSpan.FromMinutes(race.SwimPace).ToString(@"mm\:ss") /100@(race.SwimUnit == "yards" ? "yd" : "m")</div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="discipline-data">
                                                 <div class="distance">@race.BikeDistance @(race.BikeUnit == "miles" ? "mi" : "km")</div>
                                                 <div class="time">@race.BikeTime.ToString(@"hh\:mm\:ss")</div>
-                                                <div class="pace">@race.BikePace.ToString("F2") @(race.BikeUnit == "miles" ? "mph" : "km/h")</div>
+                                                <div class="pace">@race.BikePace.ToString("F2") @(race.BikeUnit == "miles" ? "mph" : "km/hr")</div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="discipline-data">
                                                 <div class="distance">@race.RunDistance @(race.RunUnit == "miles" ? "mi" : "km")</div>
                                                 <div class="time">@race.RunTime.ToString(@"mm\:ss")</div>
-                                                <div class="pace">@race.RunPace.ToString(@"mm\:ss") /@(race.RunUnit == "miles" ? "mi" : "km")</div>
+                                                <div class="pace">@TimeSpan.FromMinutes(race.RunPace).ToString(@"mm\:ss") /@(race.RunUnit == "miles" ? "mile" : "km")</div>
                                             </div>
                                         </td>
                                         <td>
@@ -122,19 +122,19 @@
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
-                    <h3>@Model.Sum(r => r.TotalDistance).ToString("F1")</h3>
-                    <p>Total Distance (km)</p>
+                    <h3>@(Model.Sum(r => r.TotalDistance * 0.621371).ToString("F1"))</h3>
+                    <p>Total Distance Raced (M)</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
-                    <h3>@TimeSpan.FromTicks(Model.Sum(r => r.TotalTime.Ticks)).ToString(@"hh\:mm")</h3>
-                    <p>Total Time</p>
+                    <h3>@TimeSpan.FromTicks(Model.Sum(r => r.TotalTime.Ticks)).ToString(@"hh\:mm\:ss")</h3>
+                    <p>Total Time Racing</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
-                    <h3>@Model.Average(r => r.TotalTime.TotalHours).ToString("F1")</h3>
+                    <h3>@TimeSpan.FromHours(Model.Average(r => r.TotalTime.TotalHours)).ToString(@"hh\:mm\:ss")</h3>
                     <p>Avg Time per Race</p>
                 </div>
             </div>
