@@ -1,7 +1,7 @@
 Remove-Item -Recurse -Force ".\TriathlonTracker.Tests\TestResults\";
 dotnet clean; 
 dotnet build; 
-dotnet test --collect:"XPlat Code Coverage" --settings ".\TriathlonTracker.Tests\coverlet.runsettings"; 
+dotnet test TriathlonTracker.Tests --collect:"XPlat Code Coverage" --settings ".\TriathlonTracker.Tests\coverlet.runsettings"; 
 
 # Find the coverage file
 $coverageFile = Get-ChildItem -Path . -Recurse -Name "coverage.cobertura.xml" | Select-Object -First 1
