@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Add New Race" xml:space="preserve">
+    <value>Adicionar Nova Corrida</value>
+  </data>
+  <data name="Total Distance" xml:space="preserve">
+    <value>Distância Total</value>
+  </data>
+  <data name="Total Time" xml:space="preserve">
+    <value>Tempo Total</value>
+  </data>
+  <data name="miles_lower" xml:space="preserve">
+    <value>milhas</value>
+  </data>
+  <data name="Back to Races" xml:space="preserve">
+    <value>Voltar às Corridas</value>
+  </data>
+  <data name="Race Information" xml:space="preserve">
+    <value>Informações da Corrida</value>
+  </data>
+  <data name="Race Name" xml:space="preserve">
+    <value>Nome da Corrida</value>
+  </data>
+  <data name="Enter race name" xml:space="preserve">
+    <value>Digite o nome da corrida</value>
+  </data>
+  <data name="Race Date" xml:space="preserve">
+    <value>Data da Corrida</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Enter race location" xml:space="preserve">
+    <value>Digite o local da corrida</value>
+  </data>
+  <data name="Swim" xml:space="preserve">
+    <value>Natação</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distância</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unidade</value>
+  </data>
+  <data name="Yards" xml:space="preserve">
+    <value>Jardas</value>
+  </data>
+  <data name="Meters" xml:space="preserve">
+    <value>Metros</value>
+  </data>
+  <data name="Time (HH:MM:SS)" xml:space="preserve">
+    <value>Tempo (HH:MM:SS)</value>
+  </data>
+  <data name="HH" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="MM" xml:space="preserve">
+    <value>MM</value>
+  </data>
+  <data name="SS" xml:space="preserve">
+    <value>SS</value>
+  </data>
+  <data name="Swim Pace" xml:space="preserve">
+    <value>Ritmo de Natação</value>
+  </data>
+  <data name="Bike" xml:space="preserve">
+    <value>Ciclismo</value>
+  </data>
+  <data name="Miles" xml:space="preserve">
+    <value>Milhas</value>
+  </data>
+  <data name="Kilometers" xml:space="preserve">
+    <value>Quilômetros</value>
+  </data>
+  <data name="Bike Pace" xml:space="preserve">
+    <value>Ritmo de Ciclismo</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Corrida</value>
+  </data>
+  <data name="Run Pace" xml:space="preserve">
+    <value>Ritmo de Corrida</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Save Race" xml:space="preserve">
+    <value>Salvar Corrida</value>
+  </data>
+  <data name="Race Summary" xml:space="preserve">
+    <value>Resumo da Corrida</value>
+  </data>
+  <data name="Fill in the race details to see your summary" xml:space="preserve">
+    <value>Preencha os detalhes da corrida para ver seu resumo</value>
+  </data>
+</root> 

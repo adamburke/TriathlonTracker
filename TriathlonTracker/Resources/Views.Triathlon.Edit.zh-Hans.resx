@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Edit Race" xml:space="preserve">
+    <value>编辑比赛</value>
+  </data>
+  <data name="Edit Race Information" xml:space="preserve">
+    <value>编辑比赛信息</value>
+  </data>
+  <data name="Current Race Summary" xml:space="preserve">
+    <value>当前比赛摘要</value>
+  </data>
+  <data name="Back to Races" xml:space="preserve">
+    <value>返回比赛</value>
+  </data>
+  <data name="Race Name" xml:space="preserve">
+    <value>比赛名称</value>
+  </data>
+  <data name="Race Date" xml:space="preserve">
+    <value>比赛日期</value>
+  </data>
+  <data name="Time (HH:MM:SS)" xml:space="preserve">
+    <value>时间 (HH:MM:SS)</value>
+  </data>
+  <data name="Total Time" xml:space="preserve">
+    <value>总时间</value>
+  </data>
+  <data name="Swim Pace" xml:space="preserve">
+    <value>游泳配速</value>
+  </data>
+  <data name="Bike Pace" xml:space="preserve">
+    <value>自行车配速</value>
+  </data>
+  <data name="Run Pace" xml:space="preserve">
+    <value>跑步配速</value>
+  </data>
+  <data name="Swim Pace:" xml:space="preserve">
+    <value>游泳配速：</value>
+  </data>
+  <data name="Bike Pace:" xml:space="preserve">
+    <value>自行车配速：</value>
+  </data>
+  <data name="Run Pace:" xml:space="preserve">
+    <value>跑步配速：</value>
+  </data>
+  <data name="Update Race" xml:space="preserve">
+    <value>更新比赛</value>
+  </data>
+  <data name="EditRace_Title" xml:space="preserve">
+    <value>编辑比赛</value>
+  </data>
+  <data name="BackToRaces" xml:space="preserve">
+    <value>返回比赛列表</value>
+  </data>
+  <data name="EditRaceInfo" xml:space="preserve">
+    <value>编辑比赛信息</value>
+  </data>
+  <data name="EnterRaceName" xml:space="preserve">
+    <value>输入比赛名称</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>地点</value>
+  </data>
+  <data name="EnterRaceLocation" xml:space="preserve">
+    <value>输入比赛地点</value>
+  </data>
+  <data name="Swim" xml:space="preserve">
+    <value>游泳</value>
+  </data>
+  <data name="Bike" xml:space="preserve">
+    <value>自行车</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>跑步</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>距离</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="Yards" xml:space="preserve">
+    <value>码</value>
+  </data>
+  <data name="Meters" xml:space="preserve">
+    <value>米</value>
+  </data>
+  <data name="Miles" xml:space="preserve">
+    <value>英里</value>
+  </data>
+  <data name="miles_lower" xml:space="preserve">
+    <value>英里</value>
+  </data>
+  <data name="Kilometers" xml:space="preserve">
+    <value>公里</value>
+  </data>
+  <data name="HH" xml:space="preserve">
+    <value>时</value>
+  </data>
+  <data name="MM" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="SS" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="MinPer100Yd" xml:space="preserve">
+    <value>分/100码</value>
+  </data>
+  <data name="MinPer100M" xml:space="preserve">
+    <value>分/100米</value>
+  </data>
+  <data name="Mph" xml:space="preserve">
+    <value>英里/小时</value>
+  </data>
+  <data name="KmPerHr" xml:space="preserve">
+    <value>公里/小时</value>
+  </data>
+  <data name="MinPerMile" xml:space="preserve">
+    <value>分/英里</value>
+  </data>
+  <data name="MinPerKm" xml:space="preserve">
+    <value>分/公里</value>
+  </data>
+  <data name="RequiredFieldsAlert" xml:space="preserve">
+    <value>请填写所有必填项（比赛名称、比赛日期和地点）。</value>
+  </data>
+  <data name="AtLeastOneDisciplineAlert" xml:space="preserve">
+    <value>请至少输入一个项目的距离。</value>
+  </data>
+  <data name="Total Distance" xml:space="preserve">
+    <value>总距离</value>
+  </data>
+</root> 

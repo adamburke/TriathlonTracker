@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model IEnumerable<TriathlonTracker.Models.Triathlon>
 
 @{
-    ViewData["Title"] = "My Races";
+    ViewData["Title"] = Localizer["My Races"];
 }
 
 <div class="container-fluid">
@@ -9,10 +11,10 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="text-dark fw-bold">
-                    <i class="fas fa-trophy me-2"></i>My Triathlon Races
+                    <i class="fas fa-trophy me-2"></i>@Localizer["My Triathlon Races"]
                 </h1>
                 <a asp-action="Create" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Add New Race
+                    <i class="fas fa-plus me-2"></i>@Localizer["Add New Race"]
                 </a>
             </div>
         </div>
@@ -24,10 +26,10 @@
             <div class="col-12">
                 <div class="empty-state">
                     <i class="fas fa-swimming-pool fa-4x"></i>
-                    <h3>No races yet</h3>
-                    <p>Start tracking your triathlon journey by adding your first race!</p>
+                    <h3>@Localizer["No races yet"]</h3>
+                    <p>@Localizer["Start tracking your triathlon journey by adding your first race!"]</p>
                     <a asp-action="Create" class="btn btn-primary">
-                        <i class="fas fa-plus me-2"></i>Add Your First Race
+                        <i class="fas fa-plus me-2"></i>@Localizer["Add Your First Race"]
                     </a>
                 </div>
             </div>
@@ -40,21 +42,21 @@
                 <div class="table-container">
                     <div class="card-header">
                         <h5>
-                            <i class="fas fa-list me-2"></i>Race History
+                            <i class="fas fa-list me-2"></i>@Localizer["Race History"]
                         </h5>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
                             <thead>
                                 <tr>
-                                    <th><i class="fas fa-flag-checkered me-2"></i>Race Name</th>
-                                    <th><i class="fas fa-calendar-alt me-2"></i>Date</th>
-                                    <th><i class="fas fa-map-marker-alt me-2"></i>Location</th>
-                                    <th><i class="fas fa-swimming-pool me-2"></i>Swim</th>
-                                    <th><i class="fas fa-bicycle me-2"></i>Bike</th>
-                                    <th><i class="fas fa-running me-2"></i>Run</th>
-                                    <th><i class="fas fa-stopwatch me-2"></i>Total Time</th>
-                                    <th><i class="fas fa-cogs me-2"></i>Actions</th>
+                                    <th><i class="fas fa-flag-checkered me-2"></i>@Localizer["Race Name"]</th>
+                                    <th><i class="fas fa-calendar-alt me-2"></i>@Localizer["Date"]</th>
+                                    <th><i class="fas fa-map-marker-alt me-2"></i>@Localizer["Location"]</th>
+                                    <th><i class="fas fa-swimming-pool me-2"></i>@Localizer["Swim"]</th>
+                                    <th><i class="fas fa-bicycle me-2"></i>@Localizer["Bike"]</th>
+                                    <th><i class="fas fa-running me-2"></i>@Localizer["Run"]</th>
+                                    <th><i class="fas fa-stopwatch me-2"></i>@Localizer["Total Time"]</th>
+                                    <th><i class="fas fa-cogs me-2"></i>@Localizer["Actions"]</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,10 +98,10 @@
                                         </td>
                                         <td>
                                             <div class="action-buttons">
-                                                <a asp-action="Edit" asp-route-id="@race.Id" class="action-btn edit" title="Edit Race">
+                                                <a asp-action="Edit" asp-route-id="@race.Id" class="action-btn edit" title="@Localizer["Edit Race"]">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a asp-action="Delete" asp-route-id="@race.Id" class="action-btn delete" title="Delete Race">
+                                                <a asp-action="Delete" asp-route-id="@race.Id" class="action-btn delete" title="@Localizer["Delete Race"]">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </div>
@@ -117,25 +119,25 @@
             <div class="col-md-3">
                 <div class="stats-card">
                     <h3>@Model.Count()</h3>
-                    <p>Total Races</p>
+                    <p>@Localizer["Total Races"]</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
                     <h3>@(Model.Sum(r => r.TotalDistance * 0.621371).ToString("F1"))</h3>
-                    <p>Total Distance Raced (M)</p>
+                    <p>@Localizer["Total Distance Raced (M)"]</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
                     <h3>@TimeSpan.FromTicks(Model.Sum(r => r.TotalTime.Ticks)).ToString(@"hh\:mm\:ss")</h3>
-                    <p>Total Time Racing</p>
+                    <p>@Localizer["Total Time Racing"]</p>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-card">
                     <h3>@TimeSpan.FromHours(Model.Average(r => r.TotalTime.TotalHours)).ToString(@"hh\:mm\:ss")</h3>
-                    <p>Avg Time per Race</p>
+                    <p>@Localizer["Avg Time per Race"]</p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Register" xml:space="preserve"><value>注册</value></data>
+  <data name="Create Account" xml:space="preserve"><value>创建账户</value></data>
+  <data name="Join TriathlonTracker and start tracking your races" xml:space="preserve"><value>加入TriathlonTracker并开始记录您的比赛</value></data>
+  <data name="First Name" xml:space="preserve"><value>名字</value></data>
+  <data name="Enter first name" xml:space="preserve"><value>请输入名字</value></data>
+  <data name="Last Name" xml:space="preserve"><value>姓氏</value></data>
+  <data name="Enter last name" xml:space="preserve"><value>请输入姓氏</value></data>
+  <data name="Email Address" xml:space="preserve"><value>电子邮件地址</value></data>
+  <data name="Enter your email" xml:space="preserve"><value>请输入您的电子邮件</value></data>
+  <data name="Password" xml:space="preserve"><value>密码</value></data>
+  <data name="Enter password" xml:space="preserve"><value>请输入密码</value></data>
+  <data name="Password must be at least 8 characters long and contain:" xml:space="preserve"><value>密码必须至少8个字符并包含：</value></data>
+  <data name="At least one uppercase letter" xml:space="preserve"><value>至少一个大写字母</value></data>
+  <data name="At least one lowercase letter" xml:space="preserve"><value>至少一个小写字母</value></data>
+  <data name="At least one number" xml:space="preserve"><value>至少一个数字</value></data>
+  <data name="At least one special character" xml:space="preserve"><value>至少一个特殊字符</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>确认密码</value></data>
+  <data name="Confirm your password" xml:space="preserve"><value>请确认您的密码</value></data>
+  <data name="Already have an account?" xml:space="preserve"><value>已经有账户？</value></data>
+  <data name="Sign in here" xml:space="preserve"><value>在这里登录</value></data>
+</root> 

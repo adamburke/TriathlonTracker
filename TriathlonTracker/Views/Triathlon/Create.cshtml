@@ -1,7 +1,30 @@
 @model TriathlonTracker.Models.Triathlon
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Add New Race";
+    ViewData["Title"] = Localizer["Add New Race"];
+    var totalDistance = Localizer["Total Distance"];
+    var totalTime = Localizer["Total Time"];
+    var swimPace = Localizer["Swim Pace"];
+    var bikePace = Localizer["Bike Pace"];
+    var runPace = Localizer["Run Pace"];
+    var minPer100Yd = Localizer["min/100yd"];
+    var minPer100M = Localizer["min/100m"];
+    var mph = Localizer["mph"];
+    var kmPerHr = Localizer["km/hr"];
+    var minPerMile = Localizer["min/mile"];
+    var minPerKm = Localizer["min/km"];
+    var swimTimeRequired = Localizer["Swim time is required when swim distance is provided."];
+    var bikeTimeRequired = Localizer["Bike time is required when bike distance is provided."];
+    var runTimeRequired = Localizer["Run time is required when run distance is provided."];
+    var raceNameRequired = Localizer["Race Name is required."];
+    var raceDateRequired = Localizer["Race Date is required."];
+    var locationRequired = Localizer["Location is required."];
+    var requiredFieldsAlert = Localizer["Please fill in all required fields."];
+    var atLeastOneDisciplineAlert = Localizer["Please enter at least one discipline (swim, bike, or run)."];
+    var totalDistanceLabel = Localizer["Total Distance"];
+    var totalDistanceUnitMiles = Localizer["miles_lower"];
 }
 
 <div class="container-fluid">
@@ -9,10 +32,10 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center">
                 <h1 class="text-dark fw-bold">
-                    <i class="fas fa-plus me-2"></i>Add New Race
+                    <i class="fas fa-plus me-2"></i>@Localizer["Add New Race"]
                 </h1>
                 <a asp-action="Index" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Races
+                    <i class="fas fa-arrow-left me-2"></i>@Localizer["Back to Races"]
                 </a>
             </div>
         </div>
@@ -23,7 +46,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="mb-0">
-                        <i class="fas fa-edit me-2"></i>Race Information
+                        <i class="fas fa-edit me-2"></i>@Localizer["Race Information"]
                     </h5>
                 </div>
                 <div class="card-body">
@@ -33,14 +56,14 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label asp-for="RaceName" class="form-label">
-                                    <i class="fas fa-trophy me-2"></i>Race Name
+                                    <i class="fas fa-trophy me-2"></i>@Localizer["Race Name"]
                                 </label>
-                                <input asp-for="RaceName" class="form-control" placeholder="Enter race name" />
+                                <input asp-for="RaceName" class="form-control" placeholder="@Localizer["Enter race name"]" />
                                 <span asp-validation-for="RaceName" class="text-danger"></span>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label asp-for="RaceDate" class="form-label">
-                                    <i class="fas fa-calendar me-2"></i>Race Date
+                                    <i class="fas fa-calendar me-2"></i>@Localizer["Race Date"]
                                 </label>
                                 <input asp-for="RaceDate" class="form-control" type="date" />
                                 <span asp-validation-for="RaceDate" class="text-danger"></span>
@@ -49,9 +72,9 @@
 
                         <div class="mb-3">
                             <label asp-for="Location" class="form-label">
-                                <i class="fas fa-map-marker-alt me-2"></i>Location
+                                <i class="fas fa-map-marker-alt me-2"></i>@Localizer["Location"]
                             </label>
-                            <input asp-for="Location" class="form-control" placeholder="Enter race location" />
+                            <input asp-for="Location" class="form-control" placeholder="@Localizer["Enter race location"]" />
                             <span asp-validation-for="Location" class="text-danger"></span>
                         </div>
 
@@ -61,33 +84,33 @@
                         <div class="row">
                             <div class="col-12">
                                 <h5 class="text-primary mb-3">
-                                    <i class="fas fa-swimming-pool me-2"></i>Swim
+                                    <i class="fas fa-swimming-pool me-2"></i>@Localizer["Swim"]
                                 </h5>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label asp-for="SwimDistance" class="form-label">Distance</label>
+                                <label asp-for="SwimDistance" class="form-label">@Localizer["Distance"]</label>
                                 <input asp-for="SwimDistance" class="form-control" type="number" step="0.1" min="0" id="swimDistance" />
                                 <span asp-validation-for="SwimDistance" class="text-danger"></span>
                             </div>
                             <div class="col-md-2 mb-3">
-                                <label class="form-label">Unit</label>
+                                <label class="form-label">@Localizer["Unit"]</label>
                                 <select class="form-control" id="swimUnit">
-                                    <option value="yards">Yards</option>
-                                    <option value="meters">Meters</option>
+                                    <option value="yards">@Localizer["Yards"]</option>
+                                    <option value="meters">@Localizer["Meters"]</option>
                                 </select>
                                 <input asp-for="SwimUnit" type="hidden" id="swimUnitHidden" value="yards" />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Time (HH:MM:SS)</label>
+                                <label class="form-label">@Localizer["Time (HH:MM:SS)"]</label>
                                 <div class="row">
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="swimHours" placeholder="HH" min="0" max="23" />
+                                        <input type="number" class="form-control" id="swimHours" placeholder="@Localizer["HH"]" min="0" max="23" />
                                     </div>
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="swimMinutes" placeholder="MM" min="0" max="59" />
+                                        <input type="number" class="form-control" id="swimMinutes" placeholder="@Localizer["MM"]" min="0" max="59" />
                                     </div>
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="swimSeconds" placeholder="SS" min="0" max="59" />
+                                        <input type="number" class="form-control" id="swimSeconds" placeholder="@Localizer["SS"]" min="0" max="59" />
                                     </div>
                                 </div>
                                 <input asp-for="SwimTime" type="hidden" id="swimTime" />
@@ -96,7 +119,7 @@
                         </div>
                         <div class="mb-3">
                             <div id="swimPace" class="pace-display" style="display: none;">
-                                <i class="fas fa-tachometer-alt me-2"></i>Swim Pace: <span id="swimPaceValue">0</span> <span id="swimPaceUnit">min/m</span>
+                                <i class="fas fa-tachometer-alt me-2"></i>@Localizer["Swim Pace"]: <span id="swimPaceValue">0</span> <span id="swimPaceUnit">min/m</span>
                             </div>
                         </div>
 
@@ -104,33 +127,33 @@
                         <div class="row">
                             <div class="col-12">
                                 <h5 class="text-primary mb-3">
-                                    <i class="fas fa-bicycle me-2"></i>Bike
+                                    <i class="fas fa-bicycle me-2"></i>@Localizer["Bike"]
                                 </h5>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label asp-for="BikeDistance" class="form-label">Distance</label>
+                                <label asp-for="BikeDistance" class="form-label">@Localizer["Distance"]</label>
                                 <input asp-for="BikeDistance" class="form-control" type="number" step="0.1" min="0" id="bikeDistance" />
                                 <span asp-validation-for="BikeDistance" class="text-danger"></span>
                             </div>
                             <div class="col-md-2 mb-3">
-                                <label class="form-label">Unit</label>
+                                <label class="form-label">@Localizer["Unit"]</label>
                                 <select class="form-control" id="bikeUnit">
-                                    <option value="miles">Miles</option>
-                                    <option value="km">Kilometers</option>
+                                    <option value="miles">@Localizer["Miles"]</option>
+                                    <option value="km">@Localizer["Kilometers"]</option>
                                 </select>
                                 <input asp-for="BikeUnit" type="hidden" id="bikeUnitHidden" value="miles" />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Time (HH:MM:SS)</label>
+                                <label class="form-label">@Localizer["Time (HH:MM:SS)"]</label>
                                 <div class="row">
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="bikeHours" placeholder="HH" min="0" max="23" />
+                                        <input type="number" class="form-control" id="bikeHours" placeholder="@Localizer["HH"]" min="0" max="23" />
                                     </div>
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="bikeMinutes" placeholder="MM" min="0" max="59" />
+                                        <input type="number" class="form-control" id="bikeMinutes" placeholder="@Localizer["MM"]" min="0" max="59" />
                                     </div>
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="bikeSeconds" placeholder="SS" min="0" max="59" />
+                                        <input type="number" class="form-control" id="bikeSeconds" placeholder="@Localizer["SS"]" min="0" max="59" />
                                     </div>
                                 </div>
                                 <input asp-for="BikeTime" type="hidden" id="bikeTime" />
@@ -139,7 +162,7 @@
                         </div>
                         <div class="mb-3">
                             <div id="bikePace" class="pace-display" style="display: none;">
-                                <i class="fas fa-tachometer-alt me-2"></i>Bike Pace: <span id="bikePaceValue">0</span> <span id="bikePaceUnit">mph</span>
+                                <i class="fas fa-tachometer-alt me-2"></i>@Localizer["Bike Pace"]: <span id="bikePaceValue">0</span> <span id="bikePaceUnit">mph</span>
                             </div>
                         </div>
 
@@ -147,33 +170,33 @@
                         <div class="row">
                             <div class="col-12">
                                 <h5 class="text-primary mb-3">
-                                    <i class="fas fa-running me-2"></i>Run
+                                    <i class="fas fa-running me-2"></i>@Localizer["Run"]
                                 </h5>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label asp-for="RunDistance" class="form-label">Distance</label>
+                                <label asp-for="RunDistance" class="form-label">@Localizer["Distance"]</label>
                                 <input asp-for="RunDistance" class="form-control" type="number" step="0.1" min="0" id="runDistance" />
                                 <span asp-validation-for="RunDistance" class="text-danger"></span>
                             </div>
                             <div class="col-md-2 mb-3">
-                                <label class="form-label">Unit</label>
+                                <label class="form-label">@Localizer["Unit"]</label>
                                 <select class="form-control" id="runUnit">
-                                    <option value="miles">Miles</option>
-                                    <option value="km">Kilometers</option>
+                                    <option value="miles">@Localizer["Miles"]</option>
+                                    <option value="km">@Localizer["Kilometers"]</option>
                                 </select>
                                 <input asp-for="RunUnit" type="hidden" id="runUnitHidden" value="miles" />
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Time (HH:MM:SS)</label>
+                                <label class="form-label">@Localizer["Time (HH:MM:SS)"]</label>
                                 <div class="row">
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="runHours" placeholder="HH" min="0" max="23" />
+                                        <input type="number" class="form-control" id="runHours" placeholder="@Localizer["HH"]" min="0" max="23" />
                                     </div>
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="runMinutes" placeholder="MM" min="0" max="59" />
+                                        <input type="number" class="form-control" id="runMinutes" placeholder="@Localizer["MM"]" min="0" max="59" />
                                     </div>
                                     <div class="col-4">
-                                        <input type="number" class="form-control" id="runSeconds" placeholder="SS" min="0" max="59" />
+                                        <input type="number" class="form-control" id="runSeconds" placeholder="@Localizer["SS"]" min="0" max="59" />
                                     </div>
                                 </div>
                                 <input asp-for="RunTime" type="hidden" id="runTime" />
@@ -182,14 +205,14 @@
                         </div>
                         <div class="mb-3">
                             <div id="runPace" class="pace-display" style="display: none;">
-                                <i class="fas fa-tachometer-alt me-2"></i>Run Pace: <span id="runPaceValue">0</span> <span id="runPaceUnit">min/mile</span>
+                                <i class="fas fa-tachometer-alt me-2"></i>@Localizer["Run Pace"]: <span id="runPaceValue">0</span> <span id="runPaceUnit">min/mile</span>
                             </div>
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a asp-action="Index" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                            <a asp-action="Index" class="btn btn-outline-secondary me-md-2">@Localizer["Cancel"]</a>
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save me-2"></i>Save Race
+                                <i class="fas fa-save me-2"></i>@Localizer["Save Race"]
                             </button>
                         </div>
                     </form>
@@ -201,24 +224,24 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="mb-0">
-                        <i class="fas fa-calculator me-2"></i>Race Summary
+                        <i class="fas fa-calculator me-2"></i>@Localizer["Race Summary"]
                     </h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="distanceUnit" id="distanceMiles" value="miles" checked>
-                            <label class="form-check-label" for="distanceMiles">Miles</label>
+                            <label class="form-check-label" for="distanceMiles">@Localizer["Miles"]</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="distanceUnit" id="distanceKm" value="km">
-                            <label class="form-check-label" for="distanceKm">Kilometers</label>
+                            <label class="form-check-label" for="distanceKm">@Localizer["Kilometers"]</label>
                         </div>
                     </div>
                     <div id="raceSummary">
                         <div className="text-center text-muted">
                             <i class="fas fa-info-circle fa-2x mb-2"></i>
-                            <p>Fill in the race details to see your summary</p>
+                            <p>@Localizer["Fill in the race details to see your summary"]</p>
                         </div>
                     </div>
                 </div>
@@ -230,6 +253,32 @@
 @section Scripts {
     <script type="text/babel">
         const { useState, useEffect } = React;
+
+        // Localized strings from Razor
+        const summaryStrings = {
+            totalDistance: "@totalDistanceLabel",
+            totalDistanceUnitMiles: "@totalDistanceUnitMiles",
+            totalTime: "@totalTime",
+            swimPace: "@swimPace",
+            bikePace: "@bikePace",
+            runPace: "@runPace",
+            minPer100Yd: "@minPer100Yd",
+            minPer100M: "@minPer100M",
+            mph: "@mph",
+            kmPerHr: "@kmPerHr",
+            minPerMile: "@minPerMile",
+            minPerKm: "@minPerKm"
+        };
+        const alertStrings = {
+            requiredFields: "@requiredFieldsAlert",
+            atLeastOneDiscipline: "@atLeastOneDisciplineAlert",
+            swimTimeRequired: "@swimTimeRequired",
+            bikeTimeRequired: "@bikeTimeRequired",
+            runTimeRequired: "@runTimeRequired",
+            raceNameRequired: "@raceNameRequired",
+            raceDateRequired: "@raceDateRequired",
+            locationRequired: "@locationRequired"
+        };
 
         function RaceSummary() {
             const [summary, setSummary] = useState({
@@ -482,13 +531,13 @@
                     const runDistance = parseFloat(document.getElementById('runDistance')?.value) || 0;
                     const runTime = document.getElementById('runTime')?.value;
 
-                    if (!raceName) errors.push('Race Name is required.');
-                    if (!raceDate) errors.push('Race Date is required.');
-                    if (!location) errors.push('Location is required.');
-                    if (swimDistance > 0 && !swimTime) errors.push('Swim time is required when swim distance is provided.');
-                    if (bikeDistance > 0 && !bikeTime) errors.push('Bike time is required when bike distance is provided.');
-                    if (runDistance > 0 && !runTime) errors.push('Run time is required when run distance is provided.');
-                    if (swimDistance === 0 && bikeDistance === 0 && runDistance === 0) errors.push('Please enter at least one discipline distance.');
+                    if (!raceName) errors.push(raceNameRequired);
+                    if (!raceDate) errors.push(raceDateRequired);
+                    if (!location) errors.push(locationRequired);
+                    if (swimDistance > 0 && !swimTime) errors.push(swimTimeRequired);
+                    if (bikeDistance > 0 && !bikeTime) errors.push(bikeTimeRequired);
+                    if (runDistance > 0 && !runTime) errors.push(runTimeRequired);
+                    if (swimDistance === 0 && bikeDistance === 0 && runDistance === 0) errors.push(atLeastOneDisciplineAlert);
                     showValidationErrors(errors);
                     return errors.length === 0;
                 };
@@ -551,31 +600,31 @@
                 <div>
                     <div className="stats-card mb-3">
                         <h3>{summary.totalDistance}</h3>
-                        <p>Total Distance ({document.querySelector('input[name="distanceUnit"]:checked')?.value || 'miles'})</p>
+                        <p>{summaryStrings.totalDistance} ({summaryStrings.totalDistanceUnitMiles})</p>
                     </div>
                     <div className="stats-card mb-3">
                         <h3>{summary.totalTime}</h3>
-                        <p>Total Time</p>
+                        <p>{summaryStrings.totalTime}</p>
                     </div>
                     <div className="row">
                         <div className="col-6">
                             <div className="text-center p-2 bg-light rounded">
-                                <small className="text-muted">Swim Pace</small>
-                                <div className="fw-bold text-primary">{summary.swimPace} <span id="swimPaceUnitDisplay">min/100yd</span></div>
+                                <small className="text-muted">{summaryStrings.swimPace}</small>
+                                <div className="fw-bold text-primary">{summary.swimPace} <span id="swimPaceUnitDisplay">{summaryStrings.minPer100Yd}</span></div>
                             </div>
                         </div>
                         <div className="col-6">
                             <div className="text-center p-2 bg-light rounded">
-                                <small className="text-muted">Bike Pace</small>
-                                <div className="fw-bold text-primary">{summary.bikePace} <span id="bikePaceUnitDisplay">mph</span></div>
+                                <small className="text-muted">{summaryStrings.bikePace}</small>
+                                <div className="fw-bold text-primary">{summary.bikePace} <span id="bikePaceUnitDisplay">{summaryStrings.mph}</span></div>
                             </div>
                         </div>
                     </div>
                     <div className="row mt-2">
                         <div className="col-12">
                             <div className="text-center p-2 bg-light rounded">
-                                <small className="text-muted">Run Pace</small>
-                                <div className="fw-bold text-primary">{summary.runPace} <span id="runPaceUnitDisplay">min/mile</span></div>
+                                <small className="text-muted">{summaryStrings.runPace}</small>
+                                <div className="fw-bold text-primary">{summary.runPace} <span id="runPaceUnitDisplay">{summaryStrings.minPerMile}</span></div>
                             </div>
                         </div>
                     </div>

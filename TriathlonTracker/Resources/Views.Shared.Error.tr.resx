@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Error_Title" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>İsteğiniz işlenirken bir hata oluştu.</value>
+  </data>
+  <data name="RequestId" xml:space="preserve">
+    <value>İstek Kimliği:</value>
+  </data>
+  <data name="DevelopmentMode" xml:space="preserve">
+    <value>Geliştirme Modu</value>
+  </data>
+  <data name="DevelopmentMode_Info1" xml:space="preserve">
+    <value><strong>Geliştirme</strong> ortamına geçmek, oluşan hatayla ilgili daha ayrıntılı bilgi gösterir.</value>
+  </data>
+  <data name="DevelopmentMode_Warning" xml:space="preserve">
+    <value>Geliştirme ortamı, dağıtılmış uygulamalarda etkinleştirilmemelidir.</value>
+  </data>
+  <data name="DevelopmentMode_Info2" xml:space="preserve">
+    <value>Bu, son kullanıcılara istisnalardan hassas bilgilerin gösterilmesine neden olabilir. Yerel hata ayıklama için, <strong>Geliştirme</strong> ortamını <strong>ASPNETCORE_ENVIRONMENT</strong> ortam değişkenini <strong>Development</strong> olarak ayarlayarak ve uygulamayı yeniden başlatarak etkinleştirin.</value>
+  </data>
+</root> 

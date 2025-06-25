@@ -213,7 +213,7 @@ var assemblies = [
   {
     "name": "TriathlonTracker",
     "classes": [
-      { "name": "Program", "rp": "TriathlonTracker_Program.html", "cl": 0, "ucl": 68, "cal": 68, "tl": 100, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "TriathlonTracker_Program.html", "cl": 0, "ucl": 90, "cal": 90, "tl": 129, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Controllers.AccountController", "rp": "TriathlonTracker_AccountController.html", "cl": 20, "ucl": 82, "cal": 102, "tl": 163, "cb": 0, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Controllers.HomeController", "rp": "TriathlonTracker_HomeController.html", "cl": 13, "ucl": 0, "cal": 13, "tl": 33, "cb": 3, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Controllers.TriathlonController", "rp": "TriathlonTracker_TriathlonController.html", "cl": 143, "ucl": 38, "cal": 181, "tl": 279, "cb": 56, "tb": 76, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -251,7 +251,7 @@ var riskHotspots = [
       { "value": 46, "exceeded": true },
     ]},
   {
-    "assembly": "TriathlonTracker", "class": "Program", "reportPath": "TriathlonTracker_Program.html", "methodName": "<Main>$()", "methodShortName": "<Main>$()", "fileIndex": 0, "line": 6,
+    "assembly": "TriathlonTracker", "class": "Program", "reportPath": "TriathlonTracker_Program.html", "methodName": "<Main>$()", "methodShortName": "<Main>$()", "fileIndex": 0, "line": 8,
     "metrics": [
       { "value": 72, "exceeded": true },
       { "value": 8, "exceeded": false },

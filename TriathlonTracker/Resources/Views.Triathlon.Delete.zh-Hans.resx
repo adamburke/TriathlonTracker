@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="DeleteRace_Title" xml:space="preserve">
+    <value>删除比赛</value>
+  </data>
+  <data name="BackToRaces" xml:space="preserve">
+    <value>返回比赛列表</value>
+  </data>
+  <data name="ConfirmDeletion" xml:space="preserve">
+    <value>确认删除</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告：</value>
+  </data>
+  <data name="DeleteWarning" xml:space="preserve">
+    <value>此操作无法撤销。您确定要删除此比赛吗？</value>
+  </data>
+  <data name="RaceDetails" xml:space="preserve">
+    <value>比赛详情</value>
+  </data>
+  <data name="RaceName" xml:space="preserve">
+    <value>比赛名称：</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期：</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>地点：</value>
+  </data>
+  <data name="PerformanceSummary" xml:space="preserve">
+    <value>成绩摘要</value>
+  </data>
+  <data name="TotalDistance" xml:space="preserve">
+    <value>总距离：</value>
+  </data>
+  <data name="TotalTime" xml:space="preserve">
+    <value>总时间：</value>
+  </data>
+  <data name="Swim" xml:space="preserve">
+    <value>游泳：</value>
+  </data>
+  <data name="Bike" xml:space="preserve">
+    <value>自行车：</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>跑步：</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>用时</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+</root> 

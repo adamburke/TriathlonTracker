@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Register" xml:space="preserve"><value>Регистрация</value></data>
+  <data name="Create Account" xml:space="preserve"><value>Создать аккаунт</value></data>
+  <data name="Join TriathlonTracker and start tracking your races" xml:space="preserve"><value>Присоединяйтесь к TriathlonTracker и начните отслеживать свои гонки</value></data>
+  <data name="First Name" xml:space="preserve"><value>Имя</value></data>
+  <data name="Enter first name" xml:space="preserve"><value>Введите имя</value></data>
+  <data name="Last Name" xml:space="preserve"><value>Фамилия</value></data>
+  <data name="Enter last name" xml:space="preserve"><value>Введите фамилию</value></data>
+  <data name="Email Address" xml:space="preserve"><value>Электронная почта</value></data>
+  <data name="Enter your email" xml:space="preserve"><value>Введите электронную почту</value></data>
+  <data name="Password" xml:space="preserve"><value>Пароль</value></data>
+  <data name="Enter password" xml:space="preserve"><value>Введите пароль</value></data>
+  <data name="Password must be at least 8 characters long and contain:" xml:space="preserve"><value>Пароль должен содержать не менее 8 символов и включать:</value></data>
+  <data name="At least one uppercase letter" xml:space="preserve"><value>Хотя бы одну заглавную букву</value></data>
+  <data name="At least one lowercase letter" xml:space="preserve"><value>Хотя бы одну строчную букву</value></data>
+  <data name="At least one number" xml:space="preserve"><value>Хотя бы одну цифру</value></data>
+  <data name="At least one special character" xml:space="preserve"><value>Хотя бы один специальный символ</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Подтвердите пароль</value></data>
+  <data name="Confirm your password" xml:space="preserve"><value>Подтвердите ваш пароль</value></data>
+  <data name="Already have an account?" xml:space="preserve"><value>Уже есть аккаунт?</value></data>
+  <data name="Sign in here" xml:space="preserve"><value>Войти здесь</value></data>
+</root> 

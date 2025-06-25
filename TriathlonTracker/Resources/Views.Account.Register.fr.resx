@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Register" xml:space="preserve"><value>S'inscrire</value></data>
+  <data name="Create Account" xml:space="preserve"><value>Créer un compte</value></data>
+  <data name="Join TriathlonTracker and start tracking your races" xml:space="preserve"><value>Rejoignez TriathlonTracker et commencez à suivre vos courses</value></data>
+  <data name="First Name" xml:space="preserve"><value>Prénom</value></data>
+  <data name="Enter first name" xml:space="preserve"><value>Entrez votre prénom</value></data>
+  <data name="Last Name" xml:space="preserve"><value>Nom</value></data>
+  <data name="Enter last name" xml:space="preserve"><value>Entrez votre nom</value></data>
+  <data name="Email Address" xml:space="preserve"><value>Adresse e-mail</value></data>
+  <data name="Enter your email" xml:space="preserve"><value>Entrez votre e-mail</value></data>
+  <data name="Password" xml:space="preserve"><value>Mot de passe</value></data>
+  <data name="Enter password" xml:space="preserve"><value>Entrez un mot de passe</value></data>
+  <data name="Password must be at least 8 characters long and contain:" xml:space="preserve"><value>Le mot de passe doit comporter au moins 8 caractères et contenir :</value></data>
+  <data name="At least one uppercase letter" xml:space="preserve"><value>Au moins une lettre majuscule</value></data>
+  <data name="At least one lowercase letter" xml:space="preserve"><value>Au moins une lettre minuscule</value></data>
+  <data name="At least one number" xml:space="preserve"><value>Au moins un chiffre</value></data>
+  <data name="At least one special character" xml:space="preserve"><value>Au moins un caractère spécial</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Confirmer le mot de passe</value></data>
+  <data name="Confirm your password" xml:space="preserve"><value>Confirmez votre mot de passe</value></data>
+  <data name="Already have an account?" xml:space="preserve"><value>Vous avez déjà un compte ?</value></data>
+  <data name="Sign in here" xml:space="preserve"><value>Connectez-vous ici</value></data>
+</root> 

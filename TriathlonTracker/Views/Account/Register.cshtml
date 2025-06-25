@@ -1,7 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @model TriathlonTracker.ViewModels.RegisterViewModel
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = Localizer["Register"];
     Layout = null;
 }
 
@@ -21,8 +23,8 @@
             <div class="card-body">
                 <div class="text-center mb-4">
                     <i class="fas fa-swimming-pool fa-3x text-primary mb-3"></i>
-                    <h2 class="text-dark fw-bold">Create Account</h2>
-                    <p class="text-muted">Join TriathlonTracker and start tracking your races</p>
+                    <h2 class="text-dark fw-bold">@Localizer["Create Account"]</h2>
+                    <p class="text-muted">@Localizer["Join TriathlonTracker and start tracking your races"]</p>
                 </div>
 
                 <form asp-action="Register" method="post">
@@ -31,41 +33,41 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label asp-for="FirstName" class="form-label">
-                                <i class="fas fa-user me-2"></i>First Name
+                                <i class="fas fa-user me-2"></i>@Localizer["First Name"]
                             </label>
-                            <input asp-for="FirstName" class="form-control" placeholder="Enter first name" />
+                            <input asp-for="FirstName" class="form-control" placeholder="@Localizer["Enter first name"]" />
                             <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label asp-for="LastName" class="form-label">
-                                <i class="fas fa-user me-2"></i>Last Name
+                                <i class="fas fa-user me-2"></i>@Localizer["Last Name"]
                             </label>
-                            <input asp-for="LastName" class="form-control" placeholder="Enter last name" />
+                            <input asp-for="LastName" class="form-control" placeholder="@Localizer["Enter last name"]" />
                             <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label asp-for="Email" class="form-label">
-                            <i class="fas fa-envelope me-2"></i>Email Address
+                            <i class="fas fa-envelope me-2"></i>@Localizer["Email Address"]
                         </label>
-                        <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                        <input asp-for="Email" class="form-control" placeholder="@Localizer["Enter your email"]" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3">
                         <label asp-for="Password" class="form-label">
-                            <i class="fas fa-lock me-2"></i>Password
+                            <i class="fas fa-lock me-2"></i>@Localizer["Password"]
                         </label>
-                        <input asp-for="Password" class="form-control" placeholder="Enter password" />
+                        <input asp-for="Password" class="form-control" placeholder="@Localizer["Enter password"]" />
                         <div class="form-text">
                             <small class="text-muted">
-                                Password must be at least 8 characters long and contain:
+                                @Localizer["Password must be at least 8 characters long and contain:"]
                                 <ul class="mt-1 mb-0">
-                                    <li>At least one uppercase letter</li>
-                                    <li>At least one lowercase letter</li>
-                                    <li>At least one number</li>
-                                    <li>At least one special character</li>
+                                    <li>@Localizer["At least one uppercase letter"]</li>
+                                    <li>@Localizer["At least one lowercase letter"]</li>
+                                    <li>@Localizer["At least one number"]</li>
+                                    <li>@Localizer["At least one special character"]</li>
                                 </ul>
                             </small>
                         </div>
@@ -74,23 +76,23 @@
 
                     <div class="mb-3">
                         <label asp-for="ConfirmPassword" class="form-label">
-                            <i class="fas fa-lock me-2"></i>Confirm Password
+                            <i class="fas fa-lock me-2"></i>@Localizer["Confirm Password"]
                         </label>
-                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm your password" />
+                        <input asp-for="ConfirmPassword" class="form-control" placeholder="@Localizer["Confirm your password"]" />
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
 
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-user-plus me-2"></i>Create Account
+                            <i class="fas fa-user-plus me-2"></i>@Localizer["Create Account"]
                         </button>
                     </div>
                 </form>
 
                 <div class="text-center mt-4">
                     <p class="text-muted">
-                        Already have an account? 
-                        <a asp-action="Login" class="text-decoration-none fw-bold">Sign in here</a>
+                        @Localizer["Already have an account?"]
+                        <a asp-action="Login" class="text-decoration-none fw-bold">@Localizer["Sign in here"]</a>
                     </p>
                 </div>
             </div>

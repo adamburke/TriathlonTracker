@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Add New Race" xml:space="preserve"><value>Agregar Nueva Carrera</value></data>
+  <data name="Back to Races" xml:space="preserve"><value>Volver a Carreras</value></data>
+  <data name="Race Information" xml:space="preserve"><value>Información de la Carrera</value></data>
+  <data name="Race Name" xml:space="preserve"><value>Nombre de la Carrera</value></data>
+  <data name="Enter race name" xml:space="preserve"><value>Ingresa el nombre de la carrera</value></data>
+  <data name="Race Date" xml:space="preserve"><value>Fecha de la Carrera</value></data>
+  <data name="Location" xml:space="preserve"><value>Ubicación</value></data>
+  <data name="Enter race location" xml:space="preserve"><value>Ingresa la ubicación de la carrera</value></data>
+  <data name="Swim" xml:space="preserve"><value>Natación</value></data>
+  <data name="Distance" xml:space="preserve"><value>Distancia</value></data>
+  <data name="Unit" xml:space="preserve"><value>Unidad</value></data>
+  <data name="Yards" xml:space="preserve"><value>Yardas</value></data>
+  <data name="Meters" xml:space="preserve"><value>Metros</value></data>
+  <data name="Time (HH:MM:SS)" xml:space="preserve"><value>Tiempo (HH:MM:SS)</value></data>
+  <data name="HH" xml:space="preserve"><value>HH</value></data>
+  <data name="MM" xml:space="preserve"><value>MM</value></data>
+  <data name="SS" xml:space="preserve"><value>SS</value></data>
+  <data name="Swim Pace" xml:space="preserve"><value>Ritmo de Natación</value></data>
+  <data name="Bike" xml:space="preserve"><value>Ciclismo</value></data>
+  <data name="Miles" xml:space="preserve"><value>Millas</value></data>
+  <data name="miles_lower" xml:space="preserve"><value>millas</value></data>
+  <data name="Kilometers" xml:space="preserve"><value>Kilómetros</value></data>
+  <data name="Bike Pace" xml:space="preserve"><value>Ritmo de Ciclismo</value></data>
+  <data name="Run" xml:space="preserve"><value>Correr</value></data>
+  <data name="Run Pace" xml:space="preserve"><value>Ritmo de Carrera</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Save Race" xml:space="preserve"><value>Guardar Carrera</value></data>
+  <data name="Race Summary" xml:space="preserve"><value>Resumen de la Carrera</value></data>
+  <data name="Fill in the race details to see your summary" xml:space="preserve"><value>Completa los detalles de la carrera para ver tu resumen</value></data>
+  <data name="Total Distance" xml:space="preserve">
+    <value>Distancia Total</value>
+  </data>
+  <data name="Total Time" xml:space="preserve">
+    <value>Tiempo Total</value>
+  </data>
+</root> 
