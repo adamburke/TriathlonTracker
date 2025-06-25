@@ -210,58 +210,16 @@ for (i = 0, l = charts.length; i < l; i++) {
 }
 
 var assemblies = [
-  {
-    "name": "TriathlonTracker",
-    "classes": [
-      { "name": "Program", "rp": "TriathlonTracker_Program.html", "cl": 0, "ucl": 90, "cal": 90, "tl": 129, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Controllers.AccountController", "rp": "TriathlonTracker_AccountController.html", "cl": 20, "ucl": 82, "cal": 102, "tl": 163, "cb": 0, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Controllers.HomeController", "rp": "TriathlonTracker_HomeController.html", "cl": 13, "ucl": 0, "cal": 13, "tl": 33, "cb": 3, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Controllers.TriathlonController", "rp": "TriathlonTracker_TriathlonController.html", "cl": 143, "ucl": 38, "cal": 181, "tl": 279, "cb": 56, "tb": 76, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Data.ApplicationDbContext", "rp": "TriathlonTracker_ApplicationDbContext.html", "cl": 28, "ucl": 0, "cal": 28, "tl": 46, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Migrations.AddUnitProperties", "rp": "TriathlonTracker_AddUnitProperties.html", "cl": 0, "ucl": 555, "cal": 555, "tl": 633, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Migrations.ApplicationDbContextModelSnapshot", "rp": "TriathlonTracker_ApplicationDbContextModelSnapshot.html", "cl": 0, "ucl": 328, "cal": 328, "tl": 363, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Models.ErrorViewModel", "rp": "TriathlonTracker_ErrorViewModel.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 8, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Models.Triathlon", "rp": "TriathlonTracker_Triathlon.html", "cl": 45, "ucl": 1, "cal": 46, "tl": 105, "cb": 12, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Models.User", "rp": "TriathlonTracker_User.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.ViewModels.LoginViewModel", "rp": "TriathlonTracker_LoginViewModel.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 18, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.ViewModels.RegisterViewModel", "rp": "TriathlonTracker_RegisterViewModel.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 31, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-    ]},
 ];
 
-var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" }, { "name": "Cyclomatic complexity", "abbreviation": "cc", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" }, { "name": "Line coverage", "abbreviation": "cov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }, { "name": "Branch coverage", "abbreviation": "bcov", "explanationUrl": "https://en.wikipedia.org/wiki/Code_coverage" }];
+var metrics = [];
 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
-      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
-      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
-  {
-    "assembly": "TriathlonTracker", "class": "TriathlonTracker.Controllers.AccountController", "reportPath": "TriathlonTracker_AccountController.html", "methodName": "ExternalLoginCallback()", "methodShortName": "ExternalLoginCallback()", "fileIndex": 0, "line": 103,
-    "metrics": [
-      { "value": 210, "exceeded": true },
-      { "value": 14, "exceeded": false },
-    ]},
-  {
-    "assembly": "TriathlonTracker", "class": "TriathlonTracker.Controllers.TriathlonController", "reportPath": "TriathlonTracker_TriathlonController.html", "methodName": "Create()", "methodShortName": "Create()", "fileIndex": 0, "line": 43,
-    "metrics": [
-      { "value": 108, "exceeded": true },
-      { "value": 46, "exceeded": true },
-    ]},
-  {
-    "assembly": "TriathlonTracker", "class": "Program", "reportPath": "TriathlonTracker_Program.html", "methodName": "<Main>$()", "methodShortName": "<Main>$()", "fileIndex": 0, "line": 8,
-    "metrics": [
-      { "value": 72, "exceeded": true },
-      { "value": 8, "exceeded": false },
-    ]},
-  {
-    "assembly": "TriathlonTracker", "class": "TriathlonTracker.Controllers.TriathlonController", "reportPath": "TriathlonTracker_TriathlonController.html", "methodName": "Edit()", "methodShortName": "Edit()", "fileIndex": 0, "line": 159,
-    "metrics": [
-      { "value": 35, "exceeded": true },
-      { "value": 22, "exceeded": true },
-    ]},
 ];
 
 var branchCoverageAvailable = true;
