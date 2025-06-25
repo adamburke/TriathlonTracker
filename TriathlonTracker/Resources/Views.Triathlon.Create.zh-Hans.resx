@@ -20,6 +20,7 @@
   <data name="Swim Pace" xml:space="preserve"><value>游泳配速</value></data>
   <data name="Bike" xml:space="preserve"><value>自行车</value></data>
   <data name="Miles" xml:space="preserve"><value>英里</value></data>
+  <data name="miles_lower" xml:space="preserve"><value>英里</value></data>
   <data name="Kilometers" xml:space="preserve"><value>公里</value></data>
   <data name="Bike Pace" xml:space="preserve"><value>骑行配速</value></data>
   <data name="Run" xml:space="preserve"><value>跑步</value></data>

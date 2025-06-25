@@ -97,7 +97,10 @@
     <value>Mètres</value>
   </data>
   <data name="Miles" xml:space="preserve">
-    <value>Miles</value>
+    <value>Milles</value>
+  </data>
+  <data name="miles_lower" xml:space="preserve">
+    <value>milles</value>
   </data>
   <data name="Kilometers" xml:space="preserve">
     <value>Kilomètres</value>

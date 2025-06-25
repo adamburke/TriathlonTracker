@@ -148,6 +148,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\bin\Debug\net8.0\es-MX\Triathl
 D:\Files\github\triathlontracker\TriathlonTracker\bin\Debug\net8.0\es\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker\bin\Debug\net8.0\fr-CA\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker\bin\Debug\net8.0\fr\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker\bin\Debug\net8.0\pt\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker\bin\Debug\net8.0\ru\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker\bin\Debug\net8.0\tr\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker\bin\Debug\net8.0\zh-Hans\TriathlonTracker.resources.dll
@@ -240,6 +241,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.AccessDenied.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.AccessDenied.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.AccessDenied.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.AccessDenied.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.AccessDenied.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.AccessDenied.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.AccessDenied.zh-Hans.resources
@@ -248,6 +250,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Login.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Login.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Login.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Login.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Login.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Login.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Login.zh-Hans.resources
@@ -256,6 +259,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Register.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Register.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Register.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Register.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Register.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Register.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Account.Register.zh-Hans.resources
@@ -264,6 +268,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared.Error.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared.Error.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared.Error.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared.Error.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared.Error.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared.Error.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared.Error.zh-Hans.resources
@@ -272,6 +277,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared._Layout.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared._Layout.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared._Layout.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared._Layout.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared._Layout.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared._Layout.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Shared._Layout.zh-Hans.resources
@@ -280,6 +286,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Create.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Create.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Create.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Create.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Create.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Create.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Create.zh-Hans.resources
@@ -288,6 +295,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Delete.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Delete.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Delete.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Delete.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Delete.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Delete.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Delete.zh-Hans.resources
@@ -296,6 +304,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Edit.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Edit.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Edit.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Edit.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Edit.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Edit.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Edit.zh-Hans.resources
@@ -304,6 +313,7 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTrac
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Index.es.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Index.fr-CA.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Index.fr.resources
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Index.pt.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Index.ru.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Index.tr.resources
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\TriathlonTracker.Resources.Views.Triathlon.Index.zh-Hans.resources
@@ -326,6 +336,8 @@ D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\fr-CA\Triathl
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\fr-CA\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\fr\TriathlonTracker.resources.cs
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\fr\TriathlonTracker.resources.dll
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\pt\TriathlonTracker.resources.cs
+D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\pt\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\ru\TriathlonTracker.resources.cs
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\ru\TriathlonTracker.resources.dll
 D:\Files\github\triathlontracker\TriathlonTracker\obj\Debug\net8.0\tr\TriathlonTracker.resources.cs

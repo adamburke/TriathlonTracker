@@ -20,6 +20,7 @@
   <data name="Swim Pace" xml:space="preserve"><value>Темп плавания</value></data>
   <data name="Bike" xml:space="preserve"><value>Велосипед</value></data>
   <data name="Miles" xml:space="preserve"><value>Мили</value></data>
+  <data name="miles_lower" xml:space="preserve"><value>мили</value></data>
   <data name="Kilometers" xml:space="preserve"><value>Километры</value></data>
   <data name="Bike Pace" xml:space="preserve"><value>Темп на велосипеде</value></data>
   <data name="Run" xml:space="preserve"><value>Бег</value></data>

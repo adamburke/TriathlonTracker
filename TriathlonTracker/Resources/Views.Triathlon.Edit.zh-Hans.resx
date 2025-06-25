@@ -99,6 +99,9 @@
   <data name="Miles" xml:space="preserve">
     <value>英里</value>
   </data>
+  <data name="miles_lower" xml:space="preserve">
+    <value>英里</value>
+  </data>
   <data name="Kilometers" xml:space="preserve">
     <value>公里</value>
   </data>
