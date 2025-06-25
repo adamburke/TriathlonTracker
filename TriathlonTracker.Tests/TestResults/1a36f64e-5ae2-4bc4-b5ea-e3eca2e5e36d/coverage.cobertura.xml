@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.19329999999999997" branch-rate="0.5615" version="1.9" timestamp="1750783401" lines-covered="262" lines-valid="1355" branches-covered="73" branches-valid="130">
+<coverage line-rate="0.1932" branch-rate="0.5615" version="1.9" timestamp="1750813537" lines-covered="262" lines-valid="1356" branches-covered="73" branches-valid="130">
   <sources>
     <source>D:\Files\github\triathlontracker\TriathlonTracker\</source>
   </sources>
   <packages>
-    <package name="TriathlonTracker" line-rate="0.19329999999999997" branch-rate="0.5615" complexity="182">
+    <package name="TriathlonTracker" line-rate="0.1932" branch-rate="0.5615" complexity="182">
       <classes>
         <class name="Program/&lt;&lt;Main&gt;$&gt;d__0" filename="Program.cs" line-rate="0" branch-rate="0" complexity="8">
           <methods>
@@ -68,41 +68,41 @@
                 <line number="72" hits="0" branch="False" />
                 <line number="73" hits="0" branch="False" />
                 <line number="74" hits="0" branch="False" />
-                <line number="76" hits="0" branch="False" />
+                <line number="75" hits="0" branch="False" />
                 <line number="77" hits="0" branch="False" />
                 <line number="78" hits="0" branch="False" />
                 <line number="79" hits="0" branch="False" />
                 <line number="80" hits="0" branch="False" />
                 <line number="81" hits="0" branch="False" />
-                <line number="84" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="82" hits="0" branch="False" />
+                <line number="85" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="632" type="jump" coverage="0%" />
+                    <condition number="646" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="85" hits="0" branch="False" />
                 <line number="86" hits="0" branch="False" />
-                <line number="88" hits="0" branch="False" />
+                <line number="87" hits="0" branch="False" />
                 <line number="89" hits="0" branch="False" />
-                <line number="91" hits="0" branch="False" />
+                <line number="90" hits="0" branch="False" />
                 <line number="92" hits="0" branch="False" />
-                <line number="94" hits="0" branch="False" />
-                <line number="96" hits="0" branch="False" />
+                <line number="93" hits="0" branch="False" />
+                <line number="95" hits="0" branch="False" />
                 <line number="97" hits="0" branch="False" />
-                <line number="99" hits="0" branch="False" />
+                <line number="98" hits="0" branch="False" />
                 <line number="100" hits="0" branch="False" />
                 <line number="101" hits="0" branch="False" />
-                <line number="104" hits="0" branch="False" />
+                <line number="102" hits="0" branch="False" />
                 <line number="105" hits="0" branch="False" />
                 <line number="106" hits="0" branch="False" />
                 <line number="107" hits="0" branch="False" />
-                <line number="110" hits="0" branch="False" />
-                <line number="113" hits="0" branch="False" />
-                <line number="114" hits="0" branch="True" condition-coverage="0% (0/2)">
+                <line number="108" hits="0" branch="False" />
+                <line number="111" hits="0" branch="False" />
+                <line number="114" hits="0" branch="False" />
+                <line number="115" hits="0" branch="True" condition-coverage="0% (0/2)">
                   <conditions>
-                    <condition number="1097" type="jump" coverage="0%" />
+                    <condition number="1111" type="jump" coverage="0%" />
                   </conditions>
                 </line>
-                <line number="115" hits="0" branch="False" />
                 <line number="116" hits="0" branch="False" />
                 <line number="117" hits="0" branch="False" />
                 <line number="118" hits="0" branch="False" />
@@ -114,7 +114,8 @@
                 <line number="124" hits="0" branch="False" />
                 <line number="125" hits="0" branch="False" />
                 <line number="126" hits="0" branch="False" />
-                <line number="128" hits="0" branch="False" />
+                <line number="127" hits="0" branch="False" />
+                <line number="129" hits="0" branch="False" />
               </lines>
             </method>
           </methods>
@@ -177,41 +178,41 @@
             <line number="72" hits="0" branch="False" />
             <line number="73" hits="0" branch="False" />
             <line number="74" hits="0" branch="False" />
-            <line number="76" hits="0" branch="False" />
+            <line number="75" hits="0" branch="False" />
             <line number="77" hits="0" branch="False" />
             <line number="78" hits="0" branch="False" />
             <line number="79" hits="0" branch="False" />
             <line number="80" hits="0" branch="False" />
             <line number="81" hits="0" branch="False" />
-            <line number="84" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="82" hits="0" branch="False" />
+            <line number="85" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="632" type="jump" coverage="0%" />
+                <condition number="646" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="85" hits="0" branch="False" />
             <line number="86" hits="0" branch="False" />
-            <line number="88" hits="0" branch="False" />
+            <line number="87" hits="0" branch="False" />
             <line number="89" hits="0" branch="False" />
-            <line number="91" hits="0" branch="False" />
+            <line number="90" hits="0" branch="False" />
             <line number="92" hits="0" branch="False" />
-            <line number="94" hits="0" branch="False" />
-            <line number="96" hits="0" branch="False" />
+            <line number="93" hits="0" branch="False" />
+            <line number="95" hits="0" branch="False" />
             <line number="97" hits="0" branch="False" />
-            <line number="99" hits="0" branch="False" />
+            <line number="98" hits="0" branch="False" />
             <line number="100" hits="0" branch="False" />
             <line number="101" hits="0" branch="False" />
-            <line number="104" hits="0" branch="False" />
+            <line number="102" hits="0" branch="False" />
             <line number="105" hits="0" branch="False" />
             <line number="106" hits="0" branch="False" />
             <line number="107" hits="0" branch="False" />
-            <line number="110" hits="0" branch="False" />
-            <line number="113" hits="0" branch="False" />
-            <line number="114" hits="0" branch="True" condition-coverage="0% (0/2)">
+            <line number="108" hits="0" branch="False" />
+            <line number="111" hits="0" branch="False" />
+            <line number="114" hits="0" branch="False" />
+            <line number="115" hits="0" branch="True" condition-coverage="0% (0/2)">
               <conditions>
-                <condition number="1097" type="jump" coverage="0%" />
+                <condition number="1111" type="jump" coverage="0%" />
               </conditions>
             </line>
-            <line number="115" hits="0" branch="False" />
             <line number="116" hits="0" branch="False" />
             <line number="117" hits="0" branch="False" />
             <line number="118" hits="0" branch="False" />
@@ -223,7 +224,8 @@
             <line number="124" hits="0" branch="False" />
             <line number="125" hits="0" branch="False" />
             <line number="126" hits="0" branch="False" />
-            <line number="128" hits="0" branch="False" />
+            <line number="127" hits="0" branch="False" />
+            <line number="129" hits="0" branch="False" />
           </lines>
         </class>
         <class name="TriathlonTracker.ViewModels.LoginViewModel" filename="ViewModels\LoginViewModel.cs" line-rate="1" branch-rate="1" complexity="3">

@@ -70,7 +70,8 @@ var supportedCultures = new[]
     new CultureInfo("zh-Hans"),
     new CultureInfo("de"),
     new CultureInfo("tr"),
-    new CultureInfo("ru")
+    new CultureInfo("ru"),
+    new CultureInfo("pt")
 };
 
 app.UseRequestLocalization(new RequestLocalizationOptions

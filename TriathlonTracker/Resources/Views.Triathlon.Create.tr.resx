@@ -20,6 +20,7 @@
   <data name="Swim Pace" xml:space="preserve"><value>Yüzme Hızı</value></data>
   <data name="Bike" xml:space="preserve"><value>Bisiklet</value></data>
   <data name="Miles" xml:space="preserve"><value>Mil</value></data>
+  <data name="miles_lower" xml:space="preserve"><value>mil</value></data>
   <data name="Kilometers" xml:space="preserve"><value>Kilometre</value></data>
   <data name="Bike Pace" xml:space="preserve"><value>Bisiklet Hızı</value></data>
   <data name="Run" xml:space="preserve"><value>Koşu</value></data>

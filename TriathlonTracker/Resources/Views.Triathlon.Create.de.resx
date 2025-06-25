@@ -20,6 +20,7 @@
   <data name="Swim Pace" xml:space="preserve"><value>Schwimmtempo</value></data>
   <data name="Bike" xml:space="preserve"><value>Radfahren</value></data>
   <data name="Miles" xml:space="preserve"><value>Meilen</value></data>
+  <data name="miles_lower" xml:space="preserve"><value>meilen</value></data>
   <data name="Kilometers" xml:space="preserve"><value>Kilometer</value></data>
   <data name="Bike Pace" xml:space="preserve"><value>Radsporttempo</value></data>
   <data name="Run" xml:space="preserve"><value>Laufen</value></data>

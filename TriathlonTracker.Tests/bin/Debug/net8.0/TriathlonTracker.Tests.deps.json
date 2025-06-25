@@ -1230,6 +1230,9 @@
           "fr-CA/TriathlonTracker.resources.dll": {
             "locale": "fr-CA"
           },
+          "pt/TriathlonTracker.resources.dll": {
+            "locale": "pt"
+          },
           "ru/TriathlonTracker.resources.dll": {
             "locale": "ru"
           },
