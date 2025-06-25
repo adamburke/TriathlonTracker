@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Total Distance Raced (M)" xml:space="preserve">
+    <value>Distância Total Percorrida (M)</value>
+  </data>
+  <data name="Total Time" xml:space="preserve">
+    <value>Tempo Total</value>
+  </data>
+  <data name="Total Time Racing" xml:space="preserve">
+    <value>Tempo Total de Prova</value>
+  </data>
+  <data name="My Races" xml:space="preserve">
+    <value>Minhas Provas</value>
+  </data>
+  <data name="My Triathlon Races" xml:space="preserve">
+    <value>Minhas Provas de Triatlo</value>
+  </data>
+  <data name="Add New Race" xml:space="preserve">
+    <value>Adicionar Nova Prova</value>
+  </data>
+  <data name="No races yet" xml:space="preserve">
+    <value>Ainda não há provas</value>
+  </data>
+  <data name="Start tracking your triathlon journey by adding your first race!" xml:space="preserve">
+    <value>Comece a acompanhar sua jornada no triatlo adicionando sua primeira prova!</value>
+  </data>
+  <data name="Add Your First Race" xml:space="preserve">
+    <value>Adicione sua primeira prova</value>
+  </data>
+  <data name="Race History" xml:space="preserve">
+    <value>Histórico de Provas</value>
+  </data>
+  <data name="Race Name" xml:space="preserve">
+    <value>Nome da Prova</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Swim" xml:space="preserve">
+    <value>Natação</value>
+  </data>
+  <data name="Bike" xml:space="preserve">
+    <value>Ciclismo</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Corrida</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Ações</value>
+  </data>
+  <data name="Edit Race" xml:space="preserve">
+    <value>Editar Prova</value>
+  </data>
+  <data name="Delete Race" xml:space="preserve">
+    <value>Excluir Prova</value>
+  </data>
+  <data name="Total Races" xml:space="preserve">
+    <value>Total de Provas</value>
+  </data>
+  <data name="Avg Time per Race" xml:space="preserve">
+    <value>Tempo Médio por Prova</value>
+  </data>
+</root> 

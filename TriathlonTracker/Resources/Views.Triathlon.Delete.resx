@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="DeleteRace_Title" xml:space="preserve">
+    <value>Delete Race</value>
+  </data>
+  <data name="BackToRaces" xml:space="preserve">
+    <value>Back to Races</value>
+  </data>
+  <data name="ConfirmDeletion" xml:space="preserve">
+    <value>Confirm Deletion</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning:</value>
+  </data>
+  <data name="DeleteWarning" xml:space="preserve">
+    <value>This action cannot be undone. Are you sure you want to delete this race?</value>
+  </data>
+  <data name="RaceDetails" xml:space="preserve">
+    <value>Race Details</value>
+  </data>
+  <data name="RaceName" xml:space="preserve">
+    <value>Race Name:</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date:</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location:</value>
+  </data>
+  <data name="PerformanceSummary" xml:space="preserve">
+    <value>Performance Summary</value>
+  </data>
+  <data name="TotalDistance" xml:space="preserve">
+    <value>Total Distance:</value>
+  </data>
+  <data name="TotalTime" xml:space="preserve">
+    <value>Total Time:</value>
+  </data>
+  <data name="Swim" xml:space="preserve">
+    <value>Swim:</value>
+  </data>
+  <data name="Bike" xml:space="preserve">
+    <value>Bike:</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Run:</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>in</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+</root> 

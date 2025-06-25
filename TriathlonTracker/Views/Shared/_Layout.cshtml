@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,12 +35,12 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Triathlon" asp-action="Index">
-                                    <i class="fas fa-list me-1"></i>My Races
+                                    <i class="fas fa-list me-1"></i>@Localizer["My Races"]
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Triathlon" asp-action="Create">
-                                    <i class="fas fa-plus me-1"></i>Add Race
+                                    <i class="fas fa-plus me-1"></i>@Localizer["Add Race"]
                                 </a>
                             </li>
                         }
@@ -54,7 +56,7 @@
                             <li class="nav-item">
                                 <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
                                     <button type="submit" class="btn btn-outline-light">
-                                        <i class="fas fa-sign-out-alt me-1"></i>Logout
+                                        <i class="fas fa-sign-out-alt me-1"></i>@Localizer["Logout"]
                                     </button>
                                 </form>
                             </li>
@@ -63,12 +65,12 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-controller="Account" asp-action="Login">
-                                    <i class="fas fa-sign-in-alt me-1"></i>Login
+                                    <i class="fas fa-sign-in-alt me-1"></i>@Localizer["Login"]
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-controller="Account" asp-action="Register">
-                                    <i class="fas fa-user-plus me-1"></i>Register
+                                    <i class="fas fa-user-plus me-1"></i>@Localizer["Register"]
                                 </a>
                             </li>
                         }
@@ -85,7 +87,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - TriathlonTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - TriathlonTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

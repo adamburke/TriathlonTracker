@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Error_Title" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="Error_Message" xml:space="preserve">
+    <value>处理您的请求时发生错误。</value>
+  </data>
+  <data name="RequestId" xml:space="preserve">
+    <value>请求 ID：</value>
+  </data>
+  <data name="DevelopmentMode" xml:space="preserve">
+    <value>开发模式</value>
+  </data>
+  <data name="DevelopmentMode_Info1" xml:space="preserve">
+    <value>切换到 <strong>开发</strong> 环境将显示有关发生错误的更多详细信息。</value>
+  </data>
+  <data name="DevelopmentMode_Warning" xml:space="preserve">
+    <value>不应为已部署的应用程序启用开发环境。</value>
+  </data>
+  <data name="DevelopmentMode_Info2" xml:space="preserve">
+    <value>这可能会导致向最终用户显示异常中的敏感信息。要进行本地调试，请将 <strong>ASPNETCORE_ENVIRONMENT</strong> 环境变量设置为 <strong>Development</strong> 并重新启动应用程序以启用 <strong>开发</strong> 环境。</value>
+  </data>
+</root> 

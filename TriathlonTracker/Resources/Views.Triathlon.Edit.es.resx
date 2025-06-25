@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="EditRace_Title" xml:space="preserve">
+    <value>Editar carrera</value>
+  </data>
+  <data name="BackToRaces" xml:space="preserve">
+    <value>Volver a carreras</value>
+  </data>
+  <data name="EditRaceInfo" xml:space="preserve">
+    <value>Editar información de la carrera</value>
+  </data>
+  <data name="RaceName" xml:space="preserve">
+    <value>Nombre de la carrera</value>
+  </data>
+  <data name="EnterRaceName" xml:space="preserve">
+    <value>Ingrese el nombre de la carrera</value>
+  </data>
+  <data name="RaceDate" xml:space="preserve">
+    <value>Fecha de la carrera</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="EnterRaceLocation" xml:space="preserve">
+    <value>Ingrese la ubicación de la carrera</value>
+  </data>
+  <data name="Swim" xml:space="preserve">
+    <value>Natación</value>
+  </data>
+  <data name="Bike" xml:space="preserve">
+    <value>Ciclismo</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Correr</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unidad</value>
+  </data>
+  <data name="Yards" xml:space="preserve">
+    <value>Yardas</value>
+  </data>
+  <data name="Meters" xml:space="preserve">
+    <value>Metros</value>
+  </data>
+  <data name="Miles" xml:space="preserve">
+    <value>Millas</value>
+  </data>
+  <data name="miles_lower" xml:space="preserve">
+    <value>millas</value>
+  </data>
+  <data name="Kilometers" xml:space="preserve">
+    <value>Kilómetros</value>
+  </data>
+  <data name="Time_HHMMSS" xml:space="preserve">
+    <value>Tiempo (HH:MM:SS)</value>
+  </data>
+  <data name="HH" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="MM" xml:space="preserve">
+    <value>MM</value>
+  </data>
+  <data name="SS" xml:space="preserve">
+    <value>SS</value>
+  </data>
+  <data name="SwimPace" xml:space="preserve">
+    <value>Ritmo de natación</value>
+  </data>
+  <data name="BikePace" xml:space="preserve">
+    <value>Ritmo de ciclismo</value>
+  </data>
+  <data name="RunPace" xml:space="preserve">
+    <value>Ritmo de carrera</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="UpdateRace" xml:space="preserve">
+    <value>Actualizar carrera</value>
+  </data>
+  <data name="CurrentRaceSummary" xml:space="preserve">
+    <value>Resumen actual de la carrera</value>
+  </data>
+  <data name="FillInRaceDetails" xml:space="preserve">
+    <value>Complete los detalles de la carrera para ver su resumen</value>
+  </data>
+  <data name="TotalDistance" xml:space="preserve">
+    <value>Distancia total</value>
+  </data>
+  <data name="TotalTime" xml:space="preserve">
+    <value>Tiempo total</value>
+  </data>
+  <data name="MinPer100Yd" xml:space="preserve">
+    <value>min/100yd</value>
+  </data>
+  <data name="MinPer100M" xml:space="preserve">
+    <value>min/100m</value>
+  </data>
+  <data name="Mph" xml:space="preserve">
+    <value>mph</value>
+  </data>
+  <data name="KmPerHr" xml:space="preserve">
+    <value>km/h</value>
+  </data>
+  <data name="MinPerMile" xml:space="preserve">
+    <value>min/milla</value>
+  </data>
+  <data name="MinPerKm" xml:space="preserve">
+    <value>min/km</value>
+  </data>
+  <data name="RequiredFieldsAlert" xml:space="preserve">
+    <value>Por favor, complete todos los campos obligatorios (Nombre de la carrera, Fecha de la carrera y Ubicación).</value>
+  </data>
+  <data name="AtLeastOneDisciplineAlert" xml:space="preserve">
+    <value>Por favor, ingrese al menos una distancia de disciplina.</value>
+  </data>
+  <data name="Total Distance" xml:space="preserve">
+    <value>Distancia Total</value>
+  </data>
+  <data name="Edit Race" xml:space="preserve">
+    <value>Editar Carrera</value>
+  </data>
+  <data name="Edit Race Information" xml:space="preserve">
+    <value>Editar Información de la Carrera</value>
+  </data>
+  <data name="Current Race Summary" xml:space="preserve">
+    <value>Resumen Actual de la Carrera</value>
+  </data>
+  <data name="Back to Races" xml:space="preserve">
+    <value>Volver a Carreras</value>
+  </data>
+  <data name="Race Name" xml:space="preserve">
+    <value>Nombre de la Carrera</value>
+  </data>
+  <data name="Race Date" xml:space="preserve">
+    <value>Fecha de la Carrera</value>
+  </data>
+  <data name="Time (HH:MM:SS)" xml:space="preserve">
+    <value>Tiempo (HH:MM:SS)</value>
+  </data>
+  <data name="Total Time" xml:space="preserve">
+    <value>Tiempo Total</value>
+  </data>
+  <data name="Swim Pace" xml:space="preserve">
+    <value>Ritmo de Natación</value>
+  </data>
+  <data name="Bike Pace" xml:space="preserve">
+    <value>Ritmo de Ciclismo</value>
+  </data>
+  <data name="Run Pace" xml:space="preserve">
+    <value>Ritmo de Carrera</value>
+  </data>
+  <data name="Swim Pace:" xml:space="preserve">
+    <value>Ritmo de Natación:</value>
+  </data>
+  <data name="Bike Pace:" xml:space="preserve">
+    <value>Ritmo de Ciclismo:</value>
+  </data>
+  <data name="Run Pace:" xml:space="preserve">
+    <value>Ritmo de Carrera:</value>
+  </data>
+  <data name="Update Race" xml:space="preserve">
+    <value>Actualizar Carrera</value>
+  </data>
+</root> 

@@ -2,11 +2,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TriathlonTracker.Data;
 using TriathlonTracker.Models;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add localization services
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization();
 
 // Add Entity Framework with PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -51,6 +57,29 @@ builder.Services.AddAuthentication()
     });
 
 var app = builder.Build();
+
+// Supported cultures
+var supportedCultures = new[]
+{
+    new CultureInfo("en"),
+    new CultureInfo("es"),
+    new CultureInfo("es-ES"),
+    new CultureInfo("es-MX"),
+    new CultureInfo("fr"),
+    new CultureInfo("fr-CA"),
+    new CultureInfo("zh-Hans"),
+    new CultureInfo("de"),
+    new CultureInfo("tr"),
+    new CultureInfo("ru"),
+    new CultureInfo("pt")
+};
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("en"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

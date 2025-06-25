@@ -16,6 +16,35 @@
         },
         "runtime": {
           "TriathlonTracker.dll": {}
+        },
+        "resources": {
+          "de/TriathlonTracker.resources.dll": {
+            "locale": "de"
+          },
+          "es-MX/TriathlonTracker.resources.dll": {
+            "locale": "es-MX"
+          },
+          "es/TriathlonTracker.resources.dll": {
+            "locale": "es"
+          },
+          "fr-CA/TriathlonTracker.resources.dll": {
+            "locale": "fr-CA"
+          },
+          "fr/TriathlonTracker.resources.dll": {
+            "locale": "fr"
+          },
+          "pt/TriathlonTracker.resources.dll": {
+            "locale": "pt"
+          },
+          "ru/TriathlonTracker.resources.dll": {
+            "locale": "ru"
+          },
+          "tr/TriathlonTracker.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/TriathlonTracker.resources.dll": {
+            "locale": "zh-Hans"
+          }
         }
       },
       "Humanizer.Core/2.14.1": {

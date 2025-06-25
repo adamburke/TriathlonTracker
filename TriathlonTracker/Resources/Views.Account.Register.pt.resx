@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Register" xml:space="preserve">
+    <value>Registrar</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="Confirm Password" xml:space="preserve">
+    <value>Confirmar Senha</value>
+  </data>
+  <data name="Create Account" xml:space="preserve">
+    <value>Criar Conta</value>
+  </data>
+  <data name="Join TriathlonTracker and start tracking your races" xml:space="preserve">
+    <value>Junte-se ao TriathlonTracker e comece a registrar suas provas</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Enter first name" xml:space="preserve">
+    <value>Insira o nome</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Sobrenome</value>
+  </data>
+  <data name="Enter last name" xml:space="preserve">
+    <value>Insira o sobrenome</value>
+  </data>
+  <data name="Email Address" xml:space="preserve">
+    <value>Endereço de Email</value>
+  </data>
+  <data name="Enter your email" xml:space="preserve">
+    <value>Insira seu email</value>
+  </data>
+  <data name="Enter password" xml:space="preserve">
+    <value>Insira a senha</value>
+  </data>
+  <data name="Password must be at least 8 characters long and contain:" xml:space="preserve">
+    <value>A senha deve ter pelo menos 8 caracteres e conter:</value>
+  </data>
+  <data name="At least one uppercase letter" xml:space="preserve">
+    <value>Pelo menos uma letra maiúscula</value>
+  </data>
+  <data name="At least one lowercase letter" xml:space="preserve">
+    <value>Pelo menos uma letra minúscula</value>
+  </data>
+  <data name="At least one number" xml:space="preserve">
+    <value>Pelo menos um número</value>
+  </data>
+  <data name="At least one special character" xml:space="preserve">
+    <value>Pelo menos um caractere especial</value>
+  </data>
+  <data name="Confirm your password" xml:space="preserve">
+    <value>Confirme sua senha</value>
+  </data>
+  <data name="Already have an account?" xml:space="preserve">
+    <value>Já tem uma conta?</value>
+  </data>
+  <data name="Sign in here" xml:space="preserve">
+    <value>Entre aqui</value>
+  </data>
+</root> 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Add New Race" xml:space="preserve"><value>添加新比赛</value></data>
+  <data name="Back to Races" xml:space="preserve"><value>返回比赛列表</value></data>
+  <data name="Race Information" xml:space="preserve"><value>比赛信息</value></data>
+  <data name="Race Name" xml:space="preserve"><value>比赛名称</value></data>
+  <data name="Enter race name" xml:space="preserve"><value>输入比赛名称</value></data>
+  <data name="Race Date" xml:space="preserve"><value>比赛日期</value></data>
+  <data name="Location" xml:space="preserve"><value>地点</value></data>
+  <data name="Enter race location" xml:space="preserve"><value>输入比赛地点</value></data>
+  <data name="Swim" xml:space="preserve"><value>游泳</value></data>
+  <data name="Distance" xml:space="preserve"><value>距离</value></data>
+  <data name="Unit" xml:space="preserve"><value>单位</value></data>
+  <data name="Yards" xml:space="preserve"><value>码</value></data>
+  <data name="Meters" xml:space="preserve"><value>米</value></data>
+  <data name="Time (HH:MM:SS)" xml:space="preserve"><value>时间 (HH:MM:SS)</value></data>
+  <data name="HH" xml:space="preserve"><value>小时</value></data>
+  <data name="MM" xml:space="preserve"><value>分钟</value></data>
+  <data name="SS" xml:space="preserve"><value>秒</value></data>
+  <data name="Swim Pace" xml:space="preserve"><value>游泳配速</value></data>
+  <data name="Bike" xml:space="preserve"><value>自行车</value></data>
+  <data name="Miles" xml:space="preserve"><value>英里</value></data>
+  <data name="miles_lower" xml:space="preserve"><value>英里</value></data>
+  <data name="Kilometers" xml:space="preserve"><value>公里</value></data>
+  <data name="Bike Pace" xml:space="preserve"><value>骑行配速</value></data>
+  <data name="Run" xml:space="preserve"><value>跑步</value></data>
+  <data name="Run Pace" xml:space="preserve"><value>跑步配速</value></data>
+  <data name="Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Save Race" xml:space="preserve"><value>保存比赛</value></data>
+  <data name="Race Summary" xml:space="preserve"><value>比赛摘要</value></data>
+  <data name="Fill in the race details to see your summary" xml:space="preserve"><value>填写比赛详情以查看摘要</value></data>
+  <data name="Total Distance" xml:space="preserve">
+    <value>总距离</value>
+  </data>
+  <data name="Total Time" xml:space="preserve">
+    <value>总时间</value>
+  </data>
+</root> 
