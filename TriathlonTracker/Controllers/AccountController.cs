@@ -94,7 +94,8 @@ namespace TriathlonTracker.Controllers
         [HttpGet]
         public IActionResult GoogleLogin(string? returnUrl = null)
         {
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", returnUrl);
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
             return Challenge(properties, "Google");
         }
 
