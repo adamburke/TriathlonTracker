@@ -12,6 +12,7 @@ namespace TriathlonTracker.Data
         }
 
         public DbSet<Triathlon> Triathlons { get; set; }
+        public DbSet<Configuration> Configurations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -40,6 +41,18 @@ namespace TriathlonTracker.Data
                 entity.Property(e => e.FirstName).IsRequired();
                 entity.Property(e => e.LastName).IsRequired();
                 entity.Property(e => e.CreatedAt).IsRequired();
+            });
+
+            // Configure Configuration entity
+            builder.Entity<Configuration>(entity =>
+            {
+                entity.HasKey(e => e.Key);
+                entity.Property(e => e.Key).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Value).IsRequired();
+                entity.Property(e => e.Description).HasMaxLength(500);
+                entity.Property(e => e.IsEncrypted).IsRequired();
+                entity.Property(e => e.CreatedAt).IsRequired();
+                entity.Property(e => e.UpdatedAt).IsRequired();
             });
         }
     }
