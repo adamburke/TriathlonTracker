@@ -213,16 +213,28 @@ var assemblies = [
   {
     "name": "TriathlonTracker",
     "classes": [
-      { "name": "Program", "rp": "TriathlonTracker_Program.html", "cl": 0, "ucl": 90, "cal": 90, "tl": 129, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Controllers.AccountController", "rp": "TriathlonTracker_AccountController.html", "cl": 20, "ucl": 82, "cal": 102, "tl": 163, "cb": 0, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Program", "rp": "TriathlonTracker_Program.html", "cl": 0, "ucl": 187, "cal": 187, "tl": 248, "cb": 0, "tb": 24, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.ConfigurationSeeder", "rp": "TriathlonTracker_ConfigurationSeeder.html", "cl": 0, "ucl": 18, "cal": 18, "tl": 106, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Controllers.AccountController", "rp": "TriathlonTracker_AccountController.html", "cl": 21, "ucl": 82, "cal": 103, "tl": 164, "cb": 0, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Controllers.HomeController", "rp": "TriathlonTracker_HomeController.html", "cl": 13, "ucl": 0, "cal": 13, "tl": 33, "cb": 3, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Controllers.RacesController", "rp": "TriathlonTracker_RacesController.html", "cl": 102, "ucl": 1, "cal": 103, "tl": 163, "cb": 14, "tb": 22, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Controllers.TriathlonController", "rp": "TriathlonTracker_TriathlonController.html", "cl": 143, "ucl": 38, "cal": 181, "tl": 279, "cb": 56, "tb": 76, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Data.ApplicationDbContext", "rp": "TriathlonTracker_ApplicationDbContext.html", "cl": 28, "ucl": 0, "cal": 28, "tl": 46, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Data.ApplicationDbContext", "rp": "TriathlonTracker_ApplicationDbContext.html", "cl": 39, "ucl": 0, "cal": 39, "tl": 59, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Migrations.AddConfigurationTable", "rp": "TriathlonTracker_AddConfigurationTable.html", "cl": 0, "ucl": 372, "cal": 372, "tl": 428, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Migrations.AddIsEncryptedToConfiguration", "rp": "TriathlonTracker_AddIsEncryptedToConfiguration.html", "cl": 0, "ucl": 368, "cal": 368, "tl": 423, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Migrations.AddUnitProperties", "rp": "TriathlonTracker_AddUnitProperties.html", "cl": 0, "ucl": 555, "cal": 555, "tl": 633, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TriathlonTracker.Migrations.ApplicationDbContextModelSnapshot", "rp": "TriathlonTracker_ApplicationDbContextModelSnapshot.html", "cl": 0, "ucl": 328, "cal": 328, "tl": 363, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Migrations.ApplicationDbContextModelSnapshot", "rp": "TriathlonTracker_ApplicationDbContextModelSnapshot.html", "cl": 0, "ucl": 355, "cal": 355, "tl": 391, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Models.Configuration", "rp": "TriathlonTracker_Configuration.html", "cl": 0, "ucl": 6, "cal": 6, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Models.ErrorViewModel", "rp": "TriathlonTracker_ErrorViewModel.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 8, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Models.Triathlon", "rp": "TriathlonTracker_Triathlon.html", "cl": 45, "ucl": 1, "cal": 46, "tl": 105, "cb": 12, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.Models.User", "rp": "TriathlonTracker_User.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Services.AesEncryptionService", "rp": "TriathlonTracker_AesEncryptionService.html", "cl": 0, "ucl": 46, "cal": 46, "tl": 81, "cb": 0, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Services.DatabaseConfigurationExtensions", "rp": "TriathlonTracker_DatabaseConfigurationExtensions.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 141, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Services.DatabaseConfigurationProvider", "rp": "TriathlonTracker_DatabaseConfigurationProvider.html", "cl": 0, "ucl": 22, "cal": 22, "tl": 141, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Services.DatabaseConfigurationService", "rp": "TriathlonTracker_DatabaseConfigurationService.html", "cl": 0, "ucl": 48, "cal": 48, "tl": 76, "cb": 0, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Services.DatabaseConfigurationSource", "rp": "TriathlonTracker_DatabaseConfigurationSource.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 141, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.Services.SimpleEncryptionService", "rp": "TriathlonTracker_SimpleEncryptionService.html", "cl": 0, "ucl": 42, "cal": 42, "tl": 141, "cb": 0, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TriathlonTracker.SimpleEncryptionService", "rp": "TriathlonTracker_SimpleEncryptionService.2.html", "cl": 0, "ucl": 42, "cal": 42, "tl": 106, "cb": 0, "tb": 10, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.ViewModels.LoginViewModel", "rp": "TriathlonTracker_LoginViewModel.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 18, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TriathlonTracker.ViewModels.RegisterViewModel", "rp": "TriathlonTracker_RegisterViewModel.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 31, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
@@ -239,7 +251,13 @@ var riskHotspotMetrics = [
 
 var riskHotspots = [
   {
-    "assembly": "TriathlonTracker", "class": "TriathlonTracker.Controllers.AccountController", "reportPath": "TriathlonTracker_AccountController.html", "methodName": "ExternalLoginCallback()", "methodShortName": "ExternalLoginCallback()", "fileIndex": 0, "line": 103,
+    "assembly": "TriathlonTracker", "class": "Program", "reportPath": "TriathlonTracker_Program.html", "methodName": "<Main>$()", "methodShortName": "<Main>$()", "fileIndex": 0, "line": 12,
+    "metrics": [
+      { "value": 342, "exceeded": true },
+      { "value": 18, "exceeded": true },
+    ]},
+  {
+    "assembly": "TriathlonTracker", "class": "TriathlonTracker.Controllers.AccountController", "reportPath": "TriathlonTracker_AccountController.html", "methodName": "ExternalLoginCallback()", "methodShortName": "ExternalLoginCallback()", "fileIndex": 0, "line": 104,
     "metrics": [
       { "value": 210, "exceeded": true },
       { "value": 14, "exceeded": false },
@@ -251,15 +269,27 @@ var riskHotspots = [
       { "value": 46, "exceeded": true },
     ]},
   {
-    "assembly": "TriathlonTracker", "class": "Program", "reportPath": "TriathlonTracker_Program.html", "methodName": "<Main>$()", "methodShortName": "<Main>$()", "fileIndex": 0, "line": 8,
+    "assembly": "TriathlonTracker", "class": "Program", "reportPath": "TriathlonTracker_Program.html", "methodName": "MigrateExistingSensitiveValues()", "methodShortName": "MigrateExistingSensitiveValues()", "fileIndex": 0, "line": 234,
     "metrics": [
-      { "value": 72, "exceeded": true },
-      { "value": 8, "exceeded": false },
+      { "value": 42, "exceeded": true },
+      { "value": 6, "exceeded": false },
+    ]},
+  {
+    "assembly": "TriathlonTracker", "class": "TriathlonTracker.Services.DatabaseConfigurationService", "reportPath": "TriathlonTracker_DatabaseConfigurationService.html", "methodName": "SetValueAsync()", "methodShortName": "SetValueAsync()", "fileIndex": 0, "line": 39,
+    "metrics": [
+      { "value": 42, "exceeded": true },
+      { "value": 6, "exceeded": false },
     ]},
   {
     "assembly": "TriathlonTracker", "class": "TriathlonTracker.Controllers.TriathlonController", "reportPath": "TriathlonTracker_TriathlonController.html", "methodName": "Edit()", "methodShortName": "Edit()", "fileIndex": 0, "line": 159,
     "metrics": [
       { "value": 35, "exceeded": true },
+      { "value": 22, "exceeded": true },
+    ]},
+  {
+    "assembly": "TriathlonTracker", "class": "TriathlonTracker.Controllers.RacesController", "reportPath": "TriathlonTracker_RacesController.html", "methodName": "GetAll()", "methodShortName": "GetAll()", "fileIndex": 0, "line": 59,
+    "metrics": [
+      { "value": 22, "exceeded": false },
       { "value": 22, "exceeded": true },
     ]},
 ];
