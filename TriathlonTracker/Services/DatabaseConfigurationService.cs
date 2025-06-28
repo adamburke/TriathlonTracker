@@ -12,6 +12,7 @@ namespace TriathlonTracker.Services
         // Keys that should be encrypted
         private readonly HashSet<string> _sensitiveKeys = new()
         {
+            "Authentication:Google:ClientId",
             "Authentication:Google:ClientSecret",
             "Jwt:Key"
         };

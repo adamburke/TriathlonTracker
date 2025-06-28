@@ -196,7 +196,7 @@ using (var scope = app.Services.CreateScope())
     {
         await configService.SetValueAsync(
             "Authentication:Google:ClientId",
-            "598784048246-kj8n20pbh7dgscelrodt1jk6oh6d1g2r.apps.googleusercontent.com",
+            "YOUR_GOOGLE_CLIENT_ID_HERE",
             "Google OAuth Client ID for authentication"
         );
     }
@@ -205,7 +205,7 @@ using (var scope = app.Services.CreateScope())
     {
         await configService.SetValueAsync(
             "Authentication:Google:ClientSecret",
-            "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",
+            "YOUR_GOOGLE_CLIENT_SECRET_HERE",
             "Google OAuth Client Secret for authentication"
         );
     }
@@ -232,7 +232,7 @@ using (var scope = app.Services.CreateScope())
 // Helper method to migrate existing unencrypted sensitive values
 static async Task MigrateExistingSensitiveValues(ApplicationDbContext context, IConfigurationService configService)
 {
-    var sensitiveKeys = new[] { "Authentication:Google:ClientSecret", "Jwt:Key" };
+    var sensitiveKeys = new[] { "Authentication:Google:ClientId", "Authentication:Google:ClientSecret", "Jwt:Key" };
     
     foreach (var key in sensitiveKeys)
     {

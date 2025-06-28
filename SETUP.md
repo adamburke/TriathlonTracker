@@ -31,25 +31,41 @@ GRANT ALL PRIVILEGES ON DATABASE TriathlonTracker TO TriathlonTrackerUser;
 
 ### 3. Configuration Management
 
-**Important**: This application stores sensitive configuration (like Google OAuth credentials) securely in the PostgreSQL database, not in configuration files or user secrets.
+**Important**: This application stores sensitive configuration (like Google OAuth credentials) securely **encrypted** in the PostgreSQL database, not in configuration files or user secrets.
+
+#### Initial Setup of Google OAuth Credentials
+
+After setting up your Google Cloud Console credentials, you need to securely store them in the database:
+
+**Option 1: Using the Configuration Seeder (Recommended)**
+```csharp
+// Add this to a temporary console app or run in the application
+await ConfigurationSeeder.SeedGoogleCredentials(
+    "Host=localhost;Database=TriathlonTracker;Username=TriathlonTrackerUser;Password=TriathlonTrackerUser",
+    "YOUR_ACTUAL_GOOGLE_CLIENT_ID",
+    "YOUR_ACTUAL_GOOGLE_CLIENT_SECRET"
+);
+```
+
+**Option 2: Direct Database Update**
+1. Connect to your PostgreSQL database
+2. Insert/Update the encrypted credentials:
+   ```sql
+   -- The application will automatically encrypt these values
+   INSERT INTO "Configurations" ("Key", "Value", "Description", "IsEncrypted", "CreatedAt", "UpdatedAt")
+   VALUES
+   ('Authentication:Google:ClientId', 'YOUR_ACTUAL_CLIENT_ID', 'Google OAuth Client ID', true, NOW(), NOW()),
+   ('Authentication:Google:ClientSecret', 'YOUR_ACTUAL_CLIENT_SECRET', 'Google OAuth Client Secret', true, NOW(), NOW())
+   ON CONFLICT ("Key") DO UPDATE SET
+       "Value" = EXCLUDED."Value",
+       "UpdatedAt" = NOW();
+   ```
 
 The application will automatically:
 - Create the necessary database tables on first run
-- Seed the Google OAuth credentials into the database
-- Load configuration from the database at startup
-
-To update Google OAuth credentials after initial setup:
-1. Connect to your PostgreSQL database
-2. Update the `Configurations` table:
-   ```sql
-   UPDATE "Configurations"
-   SET "Value" = 'YOUR_NEW_CLIENT_ID', "UpdatedAt" = NOW()
-   WHERE "Key" = 'Authentication:Google:ClientId';
-   
-   UPDATE "Configurations"
-   SET "Value" = 'YOUR_NEW_CLIENT_SECRET', "UpdatedAt" = NOW()
-   WHERE "Key" = 'Authentication:Google:ClientSecret';
-   ```
+- Encrypt sensitive configuration values (Client ID, Client Secret, JWT keys)
+- Load and decrypt configuration from the database at startup
+- Migrate existing unencrypted values to encrypted format
 
 ## Running the Application
 
