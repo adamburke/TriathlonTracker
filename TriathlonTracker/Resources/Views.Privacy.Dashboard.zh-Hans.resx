@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>隐私控制面板</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>在一处管理您的隐私设置和数据偏好</value>
+  </data>
+  <data name="PersonalDataHeader" xml:space="preserve">
+    <value>个人数据</value>
+  </data>
+  <data name="PersonalDataDescription" xml:space="preserve">
+    <value>查看和管理我们收集的您的个人信息</value>
+  </data>
+  <data name="TrainingDataHeader" xml:space="preserve">
+    <value>训练数据</value>
+  </data>
+  <data name="TrainingDataDescription" xml:space="preserve">
+    <value>关于您的训练课程和表现指标的信息</value>
+  </data>
+  <data name="UsageDataHeader" xml:space="preserve">
+    <value>使用数据</value>
+  </data>
+  <data name="UsageDataDescription" xml:space="preserve">
+    <value>关于您如何使用我们的服务和功能的信息</value>
+  </data>
+  <data name="RightToAccessHeader" xml:space="preserve">
+    <value>访问权</value>
+  </data>
+  <data name="RightToAccessDescription" xml:space="preserve">
+    <value>请求获取我们持有的您的所有个人数据副本</value>
+  </data>
+  <data name="RightToEraseHeader" xml:space="preserve">
+    <value>删除权</value>
+  </data>
+  <data name="RightToEraseDescription" xml:space="preserve">
+    <value>请求从我们的系统中删除您的个人数据</value>
+  </data>
+  <data name="RightToRectifyHeader" xml:space="preserve">
+    <value>更正权</value>
+  </data>
+  <data name="RightToRectifyDescription" xml:space="preserve">
+    <value>请求更正不准确的个人数据</value>
+  </data>
+  <data name="ExportDataButton" xml:space="preserve">
+    <value>导出我的数据</value>
+  </data>
+  <data name="DeleteDataButton" xml:space="preserve">
+    <value>删除我的数据</value>
+  </data>
+  <data name="UpdateDataButton" xml:space="preserve">
+    <value>更新我的数据</value>
+  </data>
+  <data name="ManageConsentButton" xml:space="preserve">
+    <value>管理同意设置</value>
+  </data>
+</root>

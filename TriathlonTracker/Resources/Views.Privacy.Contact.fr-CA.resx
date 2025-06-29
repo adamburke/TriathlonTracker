@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Contacter l'équipe de confidentialité</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Communiquez avec notre équipe de confidentialité pour toute question ou préoccupation</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Votre nom</value>
+  </data>
+  <data name="NamePlaceholder" xml:space="preserve">
+    <value>Entrez votre nom complet</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Adresse courriel</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>Entrez votre adresse courriel</value>
+  </data>
+  <data name="SubjectLabel" xml:space="preserve">
+    <value>Sujet</value>
+  </data>
+  <data name="SubjectPlaceholder" xml:space="preserve">
+    <value>Sélectionnez le sujet de votre demande</value>
+  </data>
+  <data name="SubjectDataAccess" xml:space="preserve">
+    <value>Demande d'accès aux données</value>
+  </data>
+  <data name="SubjectDataDeletion" xml:space="preserve">
+    <value>Demande de suppression des données</value>
+  </data>
+  <data name="SubjectDataCorrection" xml:space="preserve">
+    <value>Demande de correction des données</value>
+  </data>
+  <data name="SubjectConsent" xml:space="preserve">
+    <value>Gestion du consentement</value>
+  </data>
+  <data name="SubjectBreach" xml:space="preserve">
+    <value>Signalement d'une atteinte à la confidentialité</value>
+  </data>
+  <data name="SubjectOther" xml:space="preserve">
+    <value>Autre question de confidentialité</value>
+  </data>
+  <data name="MessageLabel" xml:space="preserve">
+    <value>Votre message</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Veuillez fournir les détails de votre demande concernant la confidentialité</value>
+  </data>
+  <data name="ConsentCheckbox" xml:space="preserve">
+    <value>Je consens au traitement de mes renseignements personnels pour le traitement de cette demande</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>Soumettre la demande</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>Votre demande a été soumise avec succès. Nous vous répondrons dans un délai de 48 heures.</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la soumission de votre demande. Veuillez réessayer.</value>
+  </data>
+  <data name="ValidationNameRequired" xml:space="preserve">
+    <value>Veuillez entrer votre nom</value>
+  </data>
+  <data name="ValidationEmailRequired" xml:space="preserve">
+    <value>Veuillez entrer votre adresse courriel</value>
+  </data>
+  <data name="ValidationEmailInvalid" xml:space="preserve">
+    <value>Veuillez entrer une adresse courriel valide</value>
+  </data>
+  <data name="ValidationSubjectRequired" xml:space="preserve">
+    <value>Veuillez sélectionner un sujet</value>
+  </data>
+  <data name="ValidationMessageRequired" xml:space="preserve">
+    <value>Veuillez entrer votre message</value>
+  </data>
+  <data name="ValidationConsentRequired" xml:space="preserve">
+    <value>Veuillez consentir au traitement de votre demande</value>
+  </data>
+</root>

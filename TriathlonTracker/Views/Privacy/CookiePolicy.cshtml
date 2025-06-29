@@ -1,0 +1,243 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = @Localizer["Cookie Policy"];
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h1 class="h3 mb-0">
+                        <i class="fas fa-cookie-bite me-2"></i>
+                        @Localizer["Cookie Policy"]
+                    </h1>
+                    <small>@Localizer["Last updated: June 2025"]</small>
+                </div>
+                <div class="card-body">
+                    <div class="cookie-policy-content">
+                        
+                        <section class="mb-4">
+                            <h2>@Localizer["What Are Cookies?"]</h2>
+                            <p>
+                                @Localizer["Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and enabling certain functionality."]
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h2>@Localizer["How We Use Cookies"]</h2>
+                            
+                            <h3>@Localizer["Essential Cookies"]</h3>
+                            <p>@Localizer["These cookies are necessary for the website to function properly:"]</p>
+                            <ul>
+                                <li><strong>@Localizer["Authentication:"]</strong> @Localizer["Keep you logged in during your session"]</li>
+                                <li><strong>@Localizer["Security:"]</strong> @Localizer["Protect against cross-site request forgery"]</li>
+                                <li><strong>@Localizer["Preferences:"]</strong> @Localizer["Remember your language and display settings"]</li>
+                            </ul>
+
+                            <h3>@Localizer["Functional Cookies"]</h3>
+                            <p>@Localizer["These cookies enhance your experience (with your consent):"]</p>
+                            <ul>
+                                <li><strong>@Localizer["User Preferences:"]</strong> @Localizer["Remember your dashboard layout and settings"]</li>
+                                <li><strong>@Localizer["Form Data:"]</strong> @Localizer["Save partially completed forms"]</li>
+                                <li><strong>@Localizer["Accessibility:"]</strong> @Localizer["Remember accessibility preferences"]</li>
+                            </ul>
+
+                            <h3>@Localizer["Analytics Cookies"]</h3>
+                            <p>@Localizer["These cookies help us understand how you use our service (with your consent):"]</p>
+                            <ul>
+                                <li><strong>@Localizer["Usage Analytics:"]</strong> @Localizer["Track page views and user interactions"]</li>
+                                <li><strong>@Localizer["Performance:"]</strong> @Localizer["Monitor application performance and errors"]</li>
+                                <li><strong>@Localizer["Improvements:"]</strong> @Localizer["Identify areas for enhancement"]</li>
+                            </ul>
+                        </section>
+
+                        <section class="mb-4">
+                            <h2>@Localizer["Cookie Categories"]</h2>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>@Localizer["Category"]</th>
+                                            <th>@Localizer["Purpose"]</th>
+                                            <th>@Localizer["Duration"]</th>
+                                            <th>@Localizer["Consent Required"]</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>@Localizer["Essential"]</strong></td>
+                                            <td>@Localizer["Authentication, security, basic functionality"]</td>
+                                            <td>@Localizer["Session / 1 year"]</td>
+                                            <td><span class="badge bg-secondary">@Localizer["No"]</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>@Localizer["Functional"]</strong></td>
+                                            <td>@Localizer["Enhanced user experience and preferences"]</td>
+                                            <td>@Localizer["1 year"]</td>
+                                            <td><span class="badge bg-warning">@Localizer["Yes"]</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>@Localizer["Analytics"]</strong></td>
+                                            <td>@Localizer["Usage tracking and performance monitoring"]</td>
+                                            <td>@Localizer["2 years"]</td>
+                                            <td><span class="badge bg-warning">@Localizer["Yes"]</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>@Localizer["Marketing"]</strong></td>
+                                            <td>@Localizer["Personalized content and advertising"]</td>
+                                            <td>@Localizer["1 year"]</td>
+                                            <td><span class="badge bg-warning">@Localizer["Yes"]</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h2>@Localizer["Managing Your Cookie Preferences"]</h2>
+                            
+                            <h3>@Localizer["Through Our Website"]</h3>
+                            <p>@Localizer["You can manage your cookie preferences at any time:"]</p>
+                            <ul>
+                                <li>@Localizer["Visit your"] <a href="@Url.Action("Index", "Consent")">@Localizer["Consent Management"]</a> @Localizer["page"]</li>
+                                <li>@Localizer["Use the cookie banner when it appears"]</li>
+                                <li>@Localizer["Access settings through your"] <a href="@Url.Action("Dashboard", "Privacy")">@Localizer["Privacy Dashboard"]</a></li>
+                            </ul>
+
+                            <h3>@Localizer["Through Your Browser"]</h3>
+                            <p>@Localizer["You can also control cookies through your browser settings:"]</p>
+                            <ul>
+                                <li><strong>@Localizer["Chrome:"]</strong> @Localizer["Settings > Privacy and Security > Cookies"]</li>
+                                <li><strong>@Localizer["Firefox:"]</strong> @Localizer["Options > Privacy & Security > Cookies"]</li>
+                                <li><strong>@Localizer["Safari:"]</strong> @Localizer["Preferences > Privacy > Cookies"]</li>
+                                <li><strong>@Localizer["Edge:"]</strong> @Localizer["Settings > Cookies and Site Permissions"]</li>
+                            </ul>
+                            
+                            <div class="alert alert-warning">
+                                <strong>@Localizer["Note:"]</strong> @Localizer["Disabling essential cookies may affect the functionality of our website."]
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h2>@Localizer["Third-Party Cookies"]</h2>
+                            <p>@Localizer["We may use third-party services that set their own cookies:"]</p>
+                            
+                            <h3>@Localizer["Authentication Services"]</h3>
+                            <ul>
+                                <li><strong>@Localizer["Google OAuth:"]</strong> @Localizer["For secure login functionality"]</li>
+                            </ul>
+
+                            <h3>@Localizer["Analytics Services (with consent)"]</h3>
+                            <ul>
+                                <li><strong>@Localizer["Application Insights:"]</strong> @Localizer["For performance monitoring"]</li>
+                                <li><strong>@Localizer["Custom Analytics:"]</strong> @Localizer["For usage tracking"]</li>
+                            </ul>
+                            
+                            <p>
+                                @Localizer["These third parties have their own privacy policies and cookie practices. We recommend reviewing their policies for more information."]
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h2>@Localizer["Cookie Retention"]</h2>
+                            <p>@Localizer["Different types of cookies are retained for different periods:"]</p>
+                            <ul>
+                                <li><strong>@Localizer["Session Cookies:"]</strong> @Localizer["Deleted when you close your browser"]</li>
+                                <li><strong>@Localizer["Persistent Cookies:"]</strong> @Localizer["Remain until expiration or manual deletion"]</li>
+                                <li><strong>@Localizer["Essential Cookies:"]</strong> @Localizer["Up to 1 year"]</li>
+                                <li><strong>@Localizer["Preference Cookies:"]</strong> @Localizer["Up to 1 year"]</li>
+                                <li><strong>@Localizer["Analytics Cookies:"]</strong> @Localizer["Up to 2 years"]</li>
+                            </ul>
+                        </section>
+
+                        <section class="mb-4">
+                            <h2>@Localizer["Updates to This Policy"]</h2>
+                            <p>
+                                @Localizer["We may update this Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated policy on this page."]
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h2>@Localizer["Contact Us"]</h2>
+                            <p>
+                                @Localizer["If you have questions about our use of cookies, please contact us:"]
+                            </p>
+                            <ul>
+                                <li><strong>@Localizer["Email:"]</strong> privacy@triathlontracker.com</li>
+                                <li><strong>@Localizer["Contact Form:"]</strong> <a href="@Url.Action("Contact", "Privacy")">@Localizer["Privacy Contact"]</a></li>
+                            </ul>
+                        </section>
+
+                        <div class="alert alert-primary">
+                            <h4>@Localizer["Quick Actions"]</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="@Url.Action("Index", "Consent")" class="btn btn-primary btn-sm me-2">
+                                        <i class="fas fa-cog me-1"></i>
+                                        @Localizer["Manage Cookies"]
+                                    </a>
+                                    <a href="@Url.Action("Dashboard", "Privacy")" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-tachometer-alt me-1"></i>
+                                        @Localizer["Privacy Dashboard"]
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="@Url.Action("Policy", "Privacy")" class="btn btn-outline-secondary btn-sm me-2">
+                                        <i class="fas fa-file-alt me-1"></i>
+                                        @Localizer["Privacy Policy"]
+                                    </a>
+                                    <a href="@Url.Action("Contact", "Privacy")" class="btn btn-outline-info btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>
+                                        @Localizer["Contact Us"]
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.cookie-policy-content h2 {
+    color: #17a2b8;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.cookie-policy-content h3 {
+    color: #495057;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.cookie-policy-content ul {
+    margin-bottom: 1.5rem;
+}
+
+.cookie-policy-content li {
+    margin-bottom: 0.5rem;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+}
+
+.badge {
+    font-size: 0.75rem;
+}
+
+.alert-primary h4 {
+    color: #084298;
+    margin-bottom: 1rem;
+}
+</style>

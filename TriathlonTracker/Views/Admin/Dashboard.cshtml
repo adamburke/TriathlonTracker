@@ -1,0 +1,229 @@
+@model TriathlonTracker.Models.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">GDPR Admin Dashboard</h1>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>@(Model?.ComplianceMetrics?.TotalUsers ?? 0)</h4>
+                            <p class="mb-0">Total Users</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>@(Model?.ComplianceMetrics?.UsersWithConsent ?? 0)</h4>
+                            <p class="mb-0">Consented Users</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>@(Model?.ComplianceMetrics?.PendingDataRequests ?? 0)</h4>
+                            <p class="mb-0">Pending Requests</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-clock fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>@(Model?.ComplianceMetrics?.ConsentRate.ToString("F1") ?? "0.0")%</h4>
+                            <p class="mb-0">Compliance Score</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a href="@Url.Action("Users", "Admin")" class="btn btn-outline-primary btn-block">
+                                <i class="fas fa-users"></i><br>
+                                Manage Users
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="@Url.Action("Compliance", "Admin")" class="btn btn-outline-success btn-block">
+                                <i class="fas fa-shield-alt"></i><br>
+                                Compliance
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="@Url.Action("DataRetention", "Admin")" class="btn btn-outline-warning btn-block">
+                                <i class="fas fa-database"></i><br>
+                                Data Retention
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="@Url.Action("Reports", "Admin")" class="btn btn-outline-info btn-block">
+                                <i class="fas fa-chart-bar"></i><br>
+                                Reports
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="@Url.Action("Analytics", "Admin")" class="btn btn-outline-secondary btn-block">
+                                <i class="fas fa-analytics"></i><br>
+                                Analytics
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="@Url.Action("Security", "Admin")" class="btn btn-outline-danger btn-block">
+                                <i class="fas fa-lock"></i><br>
+                                Security
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent GDPR Requests</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model?.RecentActivities?.Any() == true)
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var activity in Model.RecentActivities.Take(5))
+                            {
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>@activity.Type</strong><br>
+                                        <small class="text-muted">@activity.UserEmail - @activity.Timestamp.ToString("MMM dd, yyyy")</small>
+                                    </div>
+                                    <span class="badge badge-@(activity.Status == "Completed" ? "success" : activity.Status == "Pending" ? "warning" : "secondary")">
+                                        @activity.Status
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No recent requests</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">System Status</h5>
+                </div>
+                <div class="card-body">
+                    @{
+                        var systemStatus = ViewBag.SystemStatus as Dictionary<string, object> ?? new Dictionary<string, object>();
+                        string GetStatusBadgeClass(string status) => status switch
+                        {
+                            "Operational" => "badge-success",
+                            "Warning" => "badge-warning",
+                            "Error" => "badge-danger",
+                            "Critical" => "badge-danger",
+                            _ => "badge-secondary"
+                        };
+                    }
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Data Processing</span>
+                            <span class="badge @GetStatusBadgeClass(systemStatus.GetValueOrDefault("dataProcessing", "Unknown")?.ToString() ?? "Unknown")">
+                                @systemStatus.GetValueOrDefault("dataProcessing", "Unknown")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Consent Management</span>
+                            <span class="badge @GetStatusBadgeClass(systemStatus.GetValueOrDefault("consentManagement", "Unknown")?.ToString() ?? "Unknown")">
+                                @systemStatus.GetValueOrDefault("consentManagement", "Unknown")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Data Retention</span>
+                            <span class="badge @GetStatusBadgeClass(systemStatus.GetValueOrDefault("dataRetention", "Unknown")?.ToString() ?? "Unknown")">
+                                @systemStatus.GetValueOrDefault("dataRetention", "Unknown")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Security Monitoring</span>
+                            <span class="badge @GetStatusBadgeClass(systemStatus.GetValueOrDefault("securityMonitoring", "Unknown")?.ToString() ?? "Unknown")">
+                                @systemStatus.GetValueOrDefault("securityMonitoring", "Unknown")
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <small class="text-muted">
+                        Last updated: @(systemStatus.ContainsKey("lastUpdated") ?
+                            ((DateTime)systemStatus["lastUpdated"]).ToString("MMM dd, yyyy HH:mm") :
+                            DateTime.Now.ToString("MMM dd, yyyy HH:mm"))
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto-refresh dashboard every 5 minutes
+        setTimeout(function() {
+            location.reload();
+        }, 300000);
+    </script>
+}

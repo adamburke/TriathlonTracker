@@ -1,0 +1,160 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Cookie Policy"].Value;
+}
+
+<div class="container mt-4">
+    <h1>@Localizer["Cookie Policy"]</h1>
+    <p class="lead">@Localizer["Last updated: June 2025"]</p>
+
+    <div class="row">
+        <div class="col-md-8">
+            <section class="mb-5">
+                <h2>@Localizer["What Are Cookies"]</h2>
+                <p>@Localizer["Cookie explanation"]</p>
+            </section>
+
+            <section class="mb-5">
+                <h2>@Localizer["How We Use Cookies"]</h2>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="h5 mb-0">@Localizer["Essential Cookies"]</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>@Localizer["Essential cookies explanation"]</p>
+                        <ul class="list-unstyled">
+                            <li><code>.AspNetCore.Identity.Application</code> - @Localizer["Authentication cookie description"]</li>
+                            <li><code>.AspNetCore.Antiforgery</code> - @Localizer["Security cookie description"]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="h5 mb-0">@Localizer["Functional Cookies"]</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>@Localizer["Functional cookies explanation"]</p>
+                        <ul class="list-unstyled">
+                            <li><code>PreferredLanguage</code> - @Localizer["Language cookie description"]</li>
+                            <li><code>DisplayPreferences</code> - @Localizer["Display cookie description"]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="h5 mb-0">@Localizer["Analytics Cookies"]</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>@Localizer["Analytics cookies explanation"]</p>
+                        <ul class="list-unstyled">
+                            <li><code>_ga</code> - @Localizer["Google Analytics cookie description"]</li>
+                            <li><code>_gid</code> - @Localizer["Session cookie description"]</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>@Localizer["Managing Cookies"]</h2>
+                <p>@Localizer["Cookie management explanation"]</p>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    @Localizer["Browser settings notice"]
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h2>@Localizer["Third-Party Cookies"]</h2>
+                <p>@Localizer["Third-party cookies explanation"]</p>
+            </section>
+
+            <section class="mb-5">
+                <h2>@Localizer["More Information"]</h2>
+                <p>@Localizer["Additional information text"]</p>
+                <a href="@Url.Action("Contact", "Privacy", new { culture = Context.Request.Query["culture"] })" class="btn btn-primary">
+                    <i class="fas fa-envelope me-2"></i>@Localizer["Contact Us"]
+                </a>
+            </section>
+        </div>
+
+        <div class="col-md-4">
+            <div class="sticky-top pt-4" style="top: 2rem;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="h5 mb-0">@Localizer["Cookie Settings"]</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="cookieSettingsForm">
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="essentialCookies" checked disabled>
+                                    <label class="form-check-label" for="essentialCookies">
+                                        @Localizer["Essential Cookies"]
+                                    </label>
+                                </div>
+                                <small class="text-muted">@Localizer["Essential cookies required"]</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="functionalCookies">
+                                    <label class="form-check-label" for="functionalCookies">
+                                        @Localizer["Functional Cookies"]
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="analyticsCookies">
+                                    <label class="form-check-label" for="analyticsCookies">
+                                        @Localizer["Analytics Cookies"]
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-save me-2"></i>@Localizer["Save Preferences"]
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('cookieSettingsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const settings = {
+                functional: document.getElementById('functionalCookies').checked,
+                analytics: document.getElementById('analyticsCookies').checked
+            };
+            
+            fetch('/api/cookie-preferences', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(settings)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('@Localizer["Cookie preferences saved"]');
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('@Localizer["Error saving preferences"]');
+            });
+        });
+    </script>
+}

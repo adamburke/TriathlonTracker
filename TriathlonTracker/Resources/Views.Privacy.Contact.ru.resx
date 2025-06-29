@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Связаться с командой по конфиденциальности</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Свяжитесь с нашей командой по конфиденциальности по любым вопросам или проблемам</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Ваше имя</value>
+  </data>
+  <data name="NamePlaceholder" xml:space="preserve">
+    <value>Введите ваше полное имя</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Адрес электронной почты</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>Введите ваш адрес электронной почты</value>
+  </data>
+  <data name="SubjectLabel" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="SubjectPlaceholder" xml:space="preserve">
+    <value>Выберите тему вашего запроса</value>
+  </data>
+  <data name="SubjectDataAccess" xml:space="preserve">
+    <value>Запрос на доступ к данным</value>
+  </data>
+  <data name="SubjectDataDeletion" xml:space="preserve">
+    <value>Запрос на удаление данных</value>
+  </data>
+  <data name="SubjectDataCorrection" xml:space="preserve">
+    <value>Запрос на исправление данных</value>
+  </data>
+  <data name="SubjectConsent" xml:space="preserve">
+    <value>Управление согласием</value>
+  </data>
+  <data name="SubjectBreach" xml:space="preserve">
+    <value>Сообщение о нарушении конфиденциальности</value>
+  </data>
+  <data name="SubjectOther" xml:space="preserve">
+    <value>Другой вопрос конфиденциальности</value>
+  </data>
+  <data name="MessageLabel" xml:space="preserve">
+    <value>Ваше сообщение</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Пожалуйста, предоставьте подробности вашего запроса о конфиденциальности</value>
+  </data>
+  <data name="ConsentCheckbox" xml:space="preserve">
+    <value>Я даю согласие на обработку моих персональных данных для рассмотрения этого запроса</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>Отправить запрос</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>Ваш запрос успешно отправлен. Мы ответим в течение 48 часов.</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>При отправке вашего запроса произошла ошибка. Пожалуйста, попробуйте снова.</value>
+  </data>
+  <data name="ValidationNameRequired" xml:space="preserve">
+    <value>Пожалуйста, введите ваше имя</value>
+  </data>
+  <data name="ValidationEmailRequired" xml:space="preserve">
+    <value>Пожалуйста, введите ваш адрес электронной почты</value>
+  </data>
+  <data name="ValidationEmailInvalid" xml:space="preserve">
+    <value>Пожалуйста, введите действительный адрес электронной почты</value>
+  </data>
+  <data name="ValidationSubjectRequired" xml:space="preserve">
+    <value>Пожалуйста, выберите тему</value>
+  </data>
+  <data name="ValidationMessageRequired" xml:space="preserve">
+    <value>Пожалуйста, введите ваше сообщение</value>
+  </data>
+  <data name="ValidationConsentRequired" xml:space="preserve">
+    <value>Пожалуйста, дайте согласие на обработку вашего запроса</value>
+  </data>
+</root>

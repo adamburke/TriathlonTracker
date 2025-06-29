@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Consent Management" xml:space="preserve">
+    <value>同意管理</value>
+  </data>
+  <data name="Privacy Dashboard" xml:space="preserve">
+    <value>隐私仪表板</value>
+  </data>
+  <data name="Current Consent Status" xml:space="preserve">
+    <value>当前同意状态</value>
+  </data>
+  <data name="Data Processing" xml:space="preserve">
+    <value>数据处理</value>
+  </data>
+  <data name="Granted" xml:space="preserve">
+    <value>已授予</value>
+  </data>
+  <data name="Not Granted" xml:space="preserve">
+    <value>未授予</value>
+  </data>
+  <data name="Essential for application functionality" xml:space="preserve">
+    <value>应用程序功能必需</value>
+  </data>
+  <data name="Withdraw" xml:space="preserve">
+    <value>撤回</value>
+  </data>
+  <data name="Grant" xml:space="preserve">
+    <value>授予</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>营销</value>
+  </data>
+  <data name="Promotional emails and updates" xml:space="preserve">
+    <value>促销邮件和更新</value>
+  </data>
+  <data name="Analytics" xml:space="preserve">
+    <value>分析</value>
+  </data>
+  <data name="Usage analytics and improvements" xml:space="preserve">
+    <value>使用分析和改进</value>
+  </data>
+  <data name="What This Means" xml:space="preserve">
+    <value>这意味着什么</value>
+  </data>
+  <data name="Data Processing Consent" xml:space="preserve">
+    <value>数据处理同意</value>
+  </data>
+  <data name="Data processing consent description" xml:space="preserve">
+    <value>此同意允许我们处理您的个人数据以提供核心应用程序功能，包括存储您的铁人三项记录、管理您的账户和提供个性化功能。这是应用程序正常运行所必需的。</value>
+  </data>
+  <data name="Marketing Consent" xml:space="preserve">
+    <value>营销同意</value>
+  </data>
+  <data name="Marketing consent description" xml:space="preserve">
+    <value>此同意允许我们向您发送促销邮件、训练技巧、功能更新和其他营销通信。您可以随时撤回此同意，而不会影响您对应用程序的使用。</value>
+  </data>
+  <data name="Analytics Consent" xml:space="preserve">
+    <value>分析同意</value>
+  </data>
+  <data name="Analytics consent description" xml:space="preserve">
+    <value>此同意允许我们收集匿名使用数据以了解您如何使用应用程序、识别热门功能并改进我们的服务。这些数据是汇总的，不能用于个人识别您。</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>您的权利</value>
+  </data>
+  <data name="Your rights description" xml:space="preserve">
+    <value>您有权随时撤回您的同意。您还有权访问、导出、更正或删除您的个人数据。访问您的隐私仪表板以行使这些权利。</value>
+  </data>
+  <data name="Recent Consent Changes" xml:space="preserve">
+    <value>最近的同意变更</value>
+  </data>
+  <data name="View Full History" xml:space="preserve">
+    <value>查看完整历史</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Consent Type" xml:space="preserve">
+    <value>同意类型</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>目的</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>已撤回</value>
+  </data>
+  <data name="An error occurred while updating your consent" xml:space="preserve">
+    <value>更新您的同意时发生错误</value>
+  </data>
+  <data name="Processing personal data for application functionality" xml:space="preserve">
+    <value>处理个人数据以提供应用程序功能</value>
+  </data>
+  <data name="Marketing communications and promotional content" xml:space="preserve">
+    <value>营销通信和促销内容</value>
+  </data>
+  <data name="Analytics and performance tracking" xml:space="preserve">
+    <value>分析和性能跟踪</value>
+  </data>
+  <data name="User consent management" xml:space="preserve">
+    <value>用户同意管理</value>
+  </data>
+</root> 

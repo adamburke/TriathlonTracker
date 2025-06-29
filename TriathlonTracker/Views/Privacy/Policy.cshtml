@@ -1,0 +1,116 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Privacy Policy"].Value;
+}
+
+<div class="container mt-4">
+    <h1>@Localizer["Privacy Policy"]</h1>
+    <p class="lead">@Localizer["Last updated: June 2025"]</p>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sticky-top pt-4" style="top: 2rem;">
+                <div class="list-group">
+                    <a href="#overview" class="list-group-item list-group-item-action">@Localizer["Overview"]</a>
+                    <a href="#collection" class="list-group-item list-group-item-action">@Localizer["Data Collection"]</a>
+                    <a href="#use" class="list-group-item list-group-item-action">@Localizer["Data Use"]</a>
+                    <a href="#sharing" class="list-group-item list-group-item-action">@Localizer["Data Sharing"]</a>
+                    <a href="#rights" class="list-group-item list-group-item-action">@Localizer["Your Rights"]</a>
+                    <a href="#security" class="list-group-item list-group-item-action">@Localizer["Security"]</a>
+                    <a href="#contact" class="list-group-item list-group-item-action">@Localizer["Contact"]</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <section id="overview" class="mb-5">
+                <h2>@Localizer["Overview"]</h2>
+                <p>@Localizer["Privacy policy overview text"]</p>
+            </section>
+
+            <section id="collection" class="mb-5">
+                <h2>@Localizer["Data Collection"]</h2>
+                <h4>@Localizer["Personal Information"]</h4>
+                <p>@Localizer["Personal information collection details"]</p>
+                <h4>@Localizer["Training Data"]</h4>
+                <p>@Localizer["Training data collection details"]</p>
+                <h4>@Localizer["Usage Data"]</h4>
+                <p>@Localizer["Usage data collection details"]</p>
+            </section>
+
+            <section id="use" class="mb-5">
+                <h2>@Localizer["Data Use"]</h2>
+                <p>@Localizer["Data use explanation"]</p>
+                <ul>
+                    <li>@Localizer["Service provision"]</li>
+                    <li>@Localizer["Performance analysis"]</li>
+                    <li>@Localizer["User support"]</li>
+                    <li>@Localizer["Service improvement"]</li>
+                </ul>
+            </section>
+
+            <section id="sharing" class="mb-5">
+                <h2>@Localizer["Data Sharing"]</h2>
+                <p>@Localizer["Data sharing policy"]</p>
+                <h4>@Localizer["Third-Party Service Providers"]</h4>
+                <p>@Localizer["Third-party service providers explanation"]</p>
+                <h4>@Localizer["Legal Requirements"]</h4>
+                <p>@Localizer["Legal requirements explanation"]</p>
+            </section>
+
+            <section id="rights" class="mb-5">
+                <h2>@Localizer["Your Rights"]</h2>
+                <p>@Localizer["User rights explanation"]</p>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>@Localizer["Right to Access"]</h5>
+                        <p>@Localizer["Right to access explanation"]</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>@Localizer["Right to Rectification"]</h5>
+                        <p>@Localizer["Right to rectification explanation"]</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>@Localizer["Right to Erasure"]</h5>
+                        <p>@Localizer["Right to erasure explanation"]</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="security" class="mb-5">
+                <h2>@Localizer["Security"]</h2>
+                <p>@Localizer["Security measures explanation"]</p>
+            </section>
+
+            <section id="contact" class="mb-5">
+                <h2>@Localizer["Contact"]</h2>
+                <p>@Localizer["Contact information text"]</p>
+                <a href="@Url.Action("Contact", "Privacy", new { culture = Context.Request.Query["culture"] })" class="btn btn-primary">
+                    <i class="fas fa-envelope me-2"></i>@Localizer["Contact DPO"]
+                </a>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.list-group-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+}

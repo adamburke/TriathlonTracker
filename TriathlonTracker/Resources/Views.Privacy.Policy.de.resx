@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Datenschutzerklärung</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Zuletzt aktualisiert: Juni 2025</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Übersicht</value>
+  </data>
+  <data name="Data Collection" xml:space="preserve">
+    <value>Datenerhebung</value>
+  </data>
+  <data name="Data Use" xml:space="preserve">
+    <value>Datenverwendung</value>
+  </data>
+  <data name="Data Sharing" xml:space="preserve">
+    <value>Datenweitergabe</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Ihre Rechte</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Sicherheit</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="Privacy policy overview text" xml:space="preserve">
+    <value>Diese Datenschutzerklärung beschreibt, wie TriathlonTracker Ihre persönlichen Daten erhebt, verwendet und schützt, wenn Sie unseren Triathlon-Tracking-Service nutzen.</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>Persönliche Informationen</value>
+  </data>
+  <data name="Personal information collection details" xml:space="preserve">
+    <value>Wir erheben grundlegende persönliche Informationen einschließlich Ihres Namens, Ihrer E-Mail-Adresse und Kontoeinstellungen, um unsere Dienste bereitzustellen.</value>
+  </data>
+  <data name="Training Data" xml:space="preserve">
+    <value>Trainingsdaten</value>
+  </data>
+  <data name="Training data collection details" xml:space="preserve">
+    <value>Wir erheben Ihre Triathlon-Renn-Daten einschließlich Distanzen, Zeiten, Standorte und Leistungsmetriken, um Ihren Fortschritt zu verfolgen.</value>
+  </data>
+  <data name="Usage Data" xml:space="preserve">
+    <value>Nutzungsdaten</value>
+  </data>
+  <data name="Usage data collection details" xml:space="preserve">
+    <value>Wir erheben Informationen darüber, wie Sie unsere Anwendung nutzen, um unsere Dienste und die Benutzererfahrung zu verbessern.</value>
+  </data>
+  <data name="Data use explanation" xml:space="preserve">
+    <value>Wir verwenden Ihre Daten für folgende Zwecke:</value>
+  </data>
+  <data name="Service provision" xml:space="preserve">
+    <value>Zur Bereitstellung und Wartung unseres Triathlon-Tracking-Services</value>
+  </data>
+  <data name="Performance analysis" xml:space="preserve">
+    <value>Zur Analyse Ihrer Leistung und Bereitstellung von Einblicken</value>
+  </data>
+  <data name="User support" xml:space="preserve">
+    <value>Zur Bereitstellung von Kundensupport und Beantwortung von Anfragen</value>
+  </data>
+  <data name="Service improvement" xml:space="preserve">
+    <value>Zur Verbesserung unserer Dienste und Entwicklung neuer Funktionen</value>
+  </data>
+  <data name="Data sharing policy" xml:space="preserve">
+    <value>Wir verkaufen Ihre persönlichen Informationen nicht. Wir können Ihre Daten nur in bestimmten Umständen weitergeben:</value>
+  </data>
+  <data name="Third-Party Service Providers" xml:space="preserve">
+    <value>Drittanbieter-Dienstleister</value>
+  </data>
+  <data name="Third-party service providers explanation" xml:space="preserve">
+    <value>Wir können Daten mit vertrauenswürdigen Dienstleistern teilen, die uns beim Betrieb unseres Services helfen, wie Hosting-Anbieter und Analyse-Dienste.</value>
+  </data>
+  <data name="Legal Requirements" xml:space="preserve">
+    <value>Rechtliche Anforderungen</value>
+  </data>
+  <data name="Legal requirements explanation" xml:space="preserve">
+    <value>Wir können Ihre Informationen offenlegen, wenn dies gesetzlich vorgeschrieben ist oder um unsere Rechte und Sicherheit zu schützen.</value>
+  </data>
+  <data name="User rights explanation" xml:space="preserve">
+    <value>Nach DSGVO und anderen Datenschutzgesetzen haben Sie mehrere Rechte bezüglich Ihrer persönlichen Daten:</value>
+  </data>
+  <data name="Right to Access" xml:space="preserve">
+    <value>Recht auf Auskunft</value>
+  </data>
+  <data name="Right to access explanation" xml:space="preserve">
+    <value>Sie haben das Recht, eine Kopie der persönlichen Daten zu verlangen, die wir über Sie speichern.</value>
+  </data>
+  <data name="Right to Rectification" xml:space="preserve">
+    <value>Recht auf Berichtigung</value>
+  </data>
+  <data name="Right to rectification explanation" xml:space="preserve">
+    <value>Sie haben das Recht, die Berichtigung ungenauer oder unvollständiger persönlicher Daten zu verlangen.</value>
+  </data>
+  <data name="Right to Erasure" xml:space="preserve">
+    <value>Recht auf Löschung</value>
+  </data>
+  <data name="Right to erasure explanation" xml:space="preserve">
+    <value>Sie haben das Recht, die Löschung Ihrer persönlichen Daten in bestimmten Umständen zu verlangen.</value>
+  </data>
+  <data name="Security measures explanation" xml:space="preserve">
+    <value>Wir implementieren angemessene technische und organisatorische Maßnahmen zum Schutz Ihrer persönlichen Daten vor unbefugtem Zugriff, Änderung, Offenlegung oder Zerstörung.</value>
+  </data>
+  <data name="Contact information text" xml:space="preserve">
+    <value>Wenn Sie Fragen zu dieser Datenschutzerklärung haben oder Ihre Rechte ausüben möchten, kontaktieren Sie bitte unseren Datenschutzbeauftragten.</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>DPO kontaktieren</value>
+  </data>
+</root>

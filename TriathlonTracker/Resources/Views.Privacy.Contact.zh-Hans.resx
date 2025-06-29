@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>联系隐私团队</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>如有任何问题或疑虑，请联系我们的隐私团队</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>您的姓名</value>
+  </data>
+  <data name="NamePlaceholder" xml:space="preserve">
+    <value>请输入您的全名</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>电子邮件地址</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>请输入您的电子邮件地址</value>
+  </data>
+  <data name="SubjectLabel" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="SubjectPlaceholder" xml:space="preserve">
+    <value>请选择您的咨询主题</value>
+  </data>
+  <data name="SubjectDataAccess" xml:space="preserve">
+    <value>数据访问请求</value>
+  </data>
+  <data name="SubjectDataDeletion" xml:space="preserve">
+    <value>数据删除请求</value>
+  </data>
+  <data name="SubjectDataCorrection" xml:space="preserve">
+    <value>数据更正请求</value>
+  </data>
+  <data name="SubjectConsent" xml:space="preserve">
+    <value>同意管理</value>
+  </data>
+  <data name="SubjectBreach" xml:space="preserve">
+    <value>数据泄露报告</value>
+  </data>
+  <data name="SubjectOther" xml:space="preserve">
+    <value>其他隐私事项</value>
+  </data>
+  <data name="MessageLabel" xml:space="preserve">
+    <value>您的消息</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>请提供有关您的隐私咨询的详细信息</value>
+  </data>
+  <data name="ConsentCheckbox" xml:space="preserve">
+    <value>我同意处理我的个人数据以处理此咨询</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>提交咨询</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>您的咨询已成功提交。我们将在48小时内回复。</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>提交咨询时发生错误。请重试。</value>
+  </data>
+  <data name="ValidationNameRequired" xml:space="preserve">
+    <value>请输入您的姓名</value>
+  </data>
+  <data name="ValidationEmailRequired" xml:space="preserve">
+    <value>请输入您的电子邮件地址</value>
+  </data>
+  <data name="ValidationEmailInvalid" xml:space="preserve">
+    <value>请输入有效的电子邮件地址</value>
+  </data>
+  <data name="ValidationSubjectRequired" xml:space="preserve">
+    <value>请选择主题</value>
+  </data>
+  <data name="ValidationMessageRequired" xml:space="preserve">
+    <value>请输入您的消息</value>
+  </data>
+  <data name="ValidationConsentRequired" xml:space="preserve">
+    <value>请同意处理您的咨询</value>
+  </data>
+</root>

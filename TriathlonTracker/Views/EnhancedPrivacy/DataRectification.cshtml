@@ -1,0 +1,320 @@
+@model IEnumerable<TriathlonTracker.Models.DataRectificationRequest>
+@{
+    ViewData["Title"] = "Data Rectification Requests";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Data Rectification Requests
+                    </h4>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rectificationModal">
+                        <i class="fas fa-plus me-1"></i>New Rectification Request
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        You have the right to request correction of inaccurate or incomplete personal data. All requests are reviewed by our team.
+                    </div>
+
+                    @if (Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Request Date</th>
+                                        <th>Data Type</th>
+                                        <th>Field</th>
+                                        <th>Current Value</th>
+                                        <th>Requested Value</th>
+                                        <th>Status</th>
+                                        <th>Priority</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var request in Model)
+                                    {
+                                        <tr>
+                                            <td>@request.RequestDate.ToString("yyyy-MM-dd HH:mm")</td>
+                                            <td>
+                                                <span class="badge bg-secondary">@request.DataType</span>
+                                            </td>
+                                            <td>@request.FieldName</td>
+                                            <td>
+                                                <span class="text-muted">@(string.IsNullOrEmpty(request.CurrentValue) ? "N/A" : request.CurrentValue)</span>
+                                            </td>
+                                            <td>
+                                                <strong>@request.RequestedValue</strong>
+                                            </td>
+                                            <td>
+                                                @switch (request.Status)
+                                                {
+                                                    case "Pending":
+                                                        <span class="badge bg-warning">Pending</span>
+                                                        break;
+                                                    case "UnderReview":
+                                                        <span class="badge bg-info">Under Review</span>
+                                                        break;
+                                                    case "Approved":
+                                                        <span class="badge bg-primary">Approved</span>
+                                                        break;
+                                                    case "Rejected":
+                                                        <span class="badge bg-danger">Rejected</span>
+                                                        break;
+                                                    case "Completed":
+                                                        <span class="badge bg-success">Completed</span>
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>
+                                                @switch (request.Priority)
+                                                {
+                                                    case 3:
+                                                        <span class="badge bg-danger">High</span>
+                                                        break;
+                                                    case 2:
+                                                        <span class="badge bg-warning">Medium</span>
+                                                        break;
+                                                    case 1:
+                                                        <span class="badge bg-success">Low</span>
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-outline-info" 
+                                                        onclick="showRequestDetails(@request.Id)">
+                                                    <i class="fas fa-eye me-1"></i>Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <i class="fas fa-edit fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No rectification requests found</h5>
+                            <p class="text-muted">Click "New Rectification Request" to request a data correction.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rectification Request Modal -->
+<div class="modal fade" id="rectificationModal" tabindex="-1" aria-labelledby="rectificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rectificationModalLabel">Request Data Rectification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="rectificationForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="dataType" class="form-label">Data Type</label>
+                                <select class="form-select" id="dataType" name="dataType" required>
+                                    <option value="">Select data type...</option>
+                                    <option value="PersonalData">Personal Data</option>
+                                    <option value="TriathlonData">Triathlon Data</option>
+                                    <option value="AccountData">Account Data</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="fieldName" class="form-label">Field Name</label>
+                                <select class="form-select" id="fieldName" name="fieldName" required>
+                                    <option value="">Select field...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="currentValue" class="form-label">Current Value</label>
+                        <input type="text" class="form-control" id="currentValue" name="currentValue" 
+                               placeholder="Enter the current incorrect value">
+                        <div class="form-text">Leave blank if the field is currently empty.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="requestedValue" class="form-label">Requested Value <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="requestedValue" name="requestedValue" 
+                               placeholder="Enter the correct value" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason" class="form-label">Reason for Correction <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="reason" name="reason" rows="3" 
+                                  placeholder="Please explain why this correction is needed..." required></textarea>
+                        <div class="form-text">Provide a clear explanation for the requested change.</div>
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Important:</strong> All rectification requests are reviewed by our team. 
+                        You may be asked to provide supporting documentation for certain changes.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-1"></i>Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Request Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Request Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="detailsContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Field options for different data types
+            const fieldOptions = {
+                'PersonalData': [
+                    { value: 'FirstName', text: 'First Name' },
+                    { value: 'LastName', text: 'Last Name' },
+                    { value: 'Email', text: 'Email Address' },
+                    { value: 'PhoneNumber', text: 'Phone Number' }
+                ],
+                'TriathlonData': [
+                    { value: 'RaceName', text: 'Race Name' },
+                    { value: 'Location', text: 'Location' },
+                    { value: 'RaceDate', text: 'Race Date' },
+                    { value: 'SwimTime', text: 'Swim Time' },
+                    { value: 'BikeTime', text: 'Bike Time' },
+                    { value: 'RunTime', text: 'Run Time' }
+                ],
+                'AccountData': [
+                    { value: 'UserName', text: 'Username' },
+                    { value: 'PreferredDataFormat', text: 'Preferred Data Format' }
+                ]
+            };
+
+            // Update field options when data type changes
+            $('#dataType').on('change', function() {
+                const dataType = $(this).val();
+                const fieldSelect = $('#fieldName');
+                
+                fieldSelect.empty().append('<option value="">Select field...</option>');
+                
+                if (dataType && fieldOptions[dataType]) {
+                    fieldOptions[dataType].forEach(option => {
+                        fieldSelect.append(`<option value="${option.value}">${option.text}</option>`);
+                    });
+                }
+            });
+
+            // Handle rectification form submission
+            $('#rectificationForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    dataType: $('#dataType').val(),
+                    fieldName: $('#fieldName').val(),
+                    currentValue: $('#currentValue').val(),
+                    requestedValue: $('#requestedValue').val(),
+                    reason: $('#reason').val()
+                };
+                
+                const submitBtn = $(this).find('button[type="submit"]');
+                const originalText = submitBtn.html();
+                
+                submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>Submitting...');
+                
+                $.ajax({
+                    url: '@Url.Action("RequestDataRectification", "EnhancedPrivacy")',
+                    type: 'POST',
+                    data: formData,
+                    headers: {
+                        'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $('#rectificationModal').modal('hide');
+                            showAlert('success', response.message);
+                            setTimeout(() => location.reload(), 2000);
+                        } else {
+                            showAlert('danger', response.message);
+                        }
+                    },
+                    error: function() {
+                        showAlert('danger', 'An error occurred while processing your request.');
+                    },
+                    complete: function() {
+                        submitBtn.prop('disabled', false).html(originalText);
+                    }
+                });
+            });
+
+            function showAlert(type, message) {
+                const alert = `
+                    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                        ${message}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                `;
+                $('.container').prepend(alert);
+            }
+        });
+
+        function showRequestDetails(requestId) {
+            $.ajax({
+                url: '@Url.Action("RectificationStatus", "EnhancedPrivacy")/' + requestId,
+                type: 'GET',
+                success: function(response) {
+                    const content = `
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Request Information</h6>
+                                <p><strong>Status:</strong> ${response.status}</p>
+                                <p><strong>Request Date:</strong> ${new Date(response.requestDate).toLocaleString()}</p>
+                                ${response.reviewDate ? `<p><strong>Review Date:</strong> ${new Date(response.reviewDate).toLocaleString()}</p>` : ''}
+                                ${response.completedDate ? `<p><strong>Completed Date:</strong> ${new Date(response.completedDate).toLocaleString()}</p>` : ''}
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Review Notes</h6>
+                                ${response.reviewNotes ? `<p>${response.reviewNotes}</p>` : '<p class="text-muted">No review notes available.</p>'}
+                                ${response.rejectionReason ? `<div class="alert alert-danger"><strong>Rejection Reason:</strong> ${response.rejectionReason}</div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                    $('#detailsContent').html(content);
+                    $('#detailsModal').modal('show');
+                },
+                error: function() {
+                    showAlert('danger', 'Failed to load request details.');
+                }
+            });
+        }
+    </script>
+}

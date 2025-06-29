@@ -8,6 +8,7 @@ using System.Globalization;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +64,21 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddSingleton<IEncryptionService, AesEncryptionService>();
 builder.Services.AddScoped<IConfigurationService, DatabaseConfigurationService>();
 
+// Add GDPR services
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IGdprService, GdprService>();
+builder.Services.AddScoped<IConsentService, ConsentService>();
+builder.Services.AddScoped<IEnhancedGdprService, EnhancedGdprService>();
+
+// Add Phase 3 GDPR services
+builder.Services.AddScoped<IAdminDashboardService, AdminDashboardService>();
+builder.Services.AddScoped<IGdprMonitoringService, GdprMonitoringService>();
+builder.Services.AddScoped<IDataRetentionService, DataRetentionService>();
+builder.Services.AddScoped<ISecurityService, SecurityService>();
+
+// TODO: Add rate limiting for API endpoints
+// Rate limiting will be implemented after resolving API compatibility
+
 // Add Google Authentication
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
@@ -93,9 +109,17 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "TriathlonTracker Reporting API",
+        Title = "TriathlonTracker API",
         Version = "v1",
-        Description = "API for reporting system integration. Secured with JWT Bearer (OAuth2)."
+        Description = "API for TriathlonTracker including GDPR compliance endpoints. Secured with JWT Bearer (OAuth2)."
+    });
+    
+    // Add GDPR API documentation
+    options.SwaggerDoc("gdpr", new OpenApiInfo
+    {
+        Title = "TriathlonTracker GDPR API",
+        Version = "v1",
+        Description = "GDPR compliance API endpoints for data subject rights management."
     });
     // Enable XML comments if available
     var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -165,7 +189,8 @@ if (!app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TriathlonTracker Reporting API v1");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TriathlonTracker API v1");
+    c.SwaggerEndpoint("/swagger/gdpr/swagger.json", "TriathlonTracker GDPR API v1");
     c.RoutePrefix = "swagger";
 });
 
@@ -173,6 +198,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+// TODO: app.UseRateLimiter(); - Add back when rate limiting is properly configured
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -210,8 +236,12 @@ using (var scope = app.Services.CreateScope())
         );
     }
     
-    // Seed test user
+    // Seed roles and users
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    
+    // Create roles if they don't exist
+    await SeedRoles(roleManager);
     
     // Check if test user exists using FirstOrDefaultAsync to avoid duplicate issues
     var existingUser = await context.Users.FirstOrDefaultAsync(u => u.Email == "test@test.com");
@@ -225,7 +255,156 @@ using (var scope = app.Services.CreateScope())
             LastName = "User",
             EmailConfirmed = true
         };
-        await userManager.CreateAsync(testUser, "Test@123");
+        var result = await userManager.CreateAsync(testUser, "Test@123");
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(testUser, "User");
+        }
+    }
+    else
+    {
+        // Ensure existing test user has User role
+        if (!await userManager.IsInRoleAsync(existingUser, "User"))
+        {
+            await userManager.AddToRoleAsync(existingUser, "User");
+        }
+    }
+    
+    // Check if admin user exists
+    var existingAdmin = await context.Users.FirstOrDefaultAsync(u => u.Email == "admin@test.com");
+    if (existingAdmin == null)
+    {
+        var adminUser = new User
+        {
+            UserName = "admin@test.com",
+            Email = "admin@test.com",
+            FirstName = "Admin",
+            LastName = "User",
+            EmailConfirmed = true
+        };
+        var result = await userManager.CreateAsync(adminUser, "Test@123");
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(adminUser, "Admin");
+        }
+    }
+    else
+    {
+        // Ensure existing admin user has Admin role
+        if (!await userManager.IsInRoleAsync(existingAdmin, "Admin"))
+        {
+            await userManager.AddToRoleAsync(existingAdmin, "Admin");
+        }
+    }
+    
+    // Fix existing Google OAuth users who don't have roles assigned
+    var googleUsers = await context.Users
+        .Where(u => u.Email != null && !u.Email.EndsWith("@test.com"))
+        .ToListAsync();
+    
+    foreach (var user in googleUsers)
+    {
+        var userRoles = await userManager.GetRolesAsync(user);
+        if (!userRoles.Any())
+        {
+            await userManager.AddToRoleAsync(user, "User");
+        }
+    }
+    
+    // Seed default data retention policies
+    await SeedDataRetentionPolicies(context);
+}
+
+// Helper method to seed roles
+static async Task SeedRoles(RoleManager<IdentityRole> roleManager)
+{
+    var roles = new[] { "Admin", "User", "DataProtectionOfficer" };
+    
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+}
+
+// Helper method to seed data retention policies
+static async Task SeedDataRetentionPolicies(ApplicationDbContext context)
+{
+    if (!await context.DataRetentionPolicies.AnyAsync())
+    {
+        var policies = new[]
+        {
+            new DataRetentionPolicy
+            {
+                DataType = "PersonalData",
+                Description = "User personal information and account data",
+                RetentionPeriodDays = 2555, // 7 years
+                LegalBasis = "Contract",
+                RetentionReason = "Required for account management and legal compliance",
+                IsActive = true,
+                AutoDelete = false,
+                DeletionMethod = "SoftDelete",
+                CreatedBy = "System",
+                UpdatedBy = "System"
+            },
+            new DataRetentionPolicy
+            {
+                DataType = "TriathlonData",
+                Description = "Triathlon performance records and training data",
+                RetentionPeriodDays = 1825, // 5 years
+                LegalBasis = "Contract",
+                RetentionReason = "Service provision and user experience",
+                IsActive = true,
+                AutoDelete = false,
+                DeletionMethod = "SoftDelete",
+                CreatedBy = "System",
+                UpdatedBy = "System"
+            },
+            new DataRetentionPolicy
+            {
+                DataType = "ConsentRecords",
+                Description = "User consent and withdrawal records",
+                RetentionPeriodDays = 2555, // 7 years
+                LegalBasis = "LegalObligation",
+                RetentionReason = "GDPR compliance and audit requirements",
+                IsActive = true,
+                AutoDelete = false,
+                DeletionMethod = "HardDelete",
+                CreatedBy = "System",
+                UpdatedBy = "System"
+            },
+            new DataRetentionPolicy
+            {
+                DataType = "ProcessingLogs",
+                Description = "Data processing activity logs",
+                RetentionPeriodDays = 1095, // 3 years
+                LegalBasis = "LegalObligation",
+                RetentionReason = "Audit trail and compliance monitoring",
+                IsActive = true,
+                AutoDelete = true,
+                DeletionMethod = "HardDelete",
+                CreatedBy = "System",
+                UpdatedBy = "System"
+            },
+            new DataRetentionPolicy
+            {
+                DataType = "MarketingData",
+                Description = "Marketing preferences and communication history",
+                RetentionPeriodDays = 730, // 2 years
+                LegalBasis = "Consent",
+                RetentionReason = "Marketing communications and preference management",
+                IsActive = true,
+                AutoDelete = true,
+                DeletionMethod = "Anonymize",
+                CreatedBy = "System",
+                UpdatedBy = "System"
+            }
+        };
+
+        context.DataRetentionPolicies.AddRange(policies);
+        await context.SaveChangesAsync();
     }
 }
 

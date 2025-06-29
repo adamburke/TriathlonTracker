@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cookie Policy" xml:space="preserve">
+    <value>Çerez Politikası</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Son güncelleme: Haziran 2025</value>
+  </data>
+  <data name="What Are Cookies" xml:space="preserve">
+    <value>Çerezler Nedir</value>
+  </data>
+  <data name="Cookie explanation" xml:space="preserve">
+    <value>Çerezler, web sitemizi ziyaret ettiğinizde cihazınızda saklanan küçük metin dosyalarıdır. Size daha iyi bir deneyim sunmamıza ve hizmetimizi nasıl kullandığınızı anlamamıza yardımcı olurlar.</value>
+  </data>
+  <data name="How We Use Cookies" xml:space="preserve">
+    <value>Çerezleri Nasıl Kullanıyoruz</value>
+  </data>
+  <data name="Essential Cookies" xml:space="preserve">
+    <value>Gerekli Çerezler</value>
+  </data>
+  <data name="Essential cookies explanation" xml:space="preserve">
+    <value>Bu çerezler web sitesinin düzgün çalışması için gereklidir ve devre dışı bırakılamaz.</value>
+  </data>
+  <data name="Authentication cookie description" xml:space="preserve">
+    <value>Giriş oturumunuzu ve kimlik doğrulama durumunuzu korur</value>
+  </data>
+  <data name="Security cookie description" xml:space="preserve">
+    <value>Site genelinde istek sahteciliği saldırılarına karşı koruma sağlar</value>
+  </data>
+  <data name="Functional Cookies" xml:space="preserve">
+    <value>İşlevsel Çerezler</value>
+  </data>
+  <data name="Functional cookies explanation" xml:space="preserve">
+    <value>Bu çerezler tercihlerinizi ve ayarlarınızı hatırlayarak deneyiminizi geliştirir.</value>
+  </data>
+  <data name="Language cookie description" xml:space="preserve">
+    <value>Tercih ettiğiniz dil ayarını hatırlar</value>
+  </data>
+  <data name="Display cookie description" xml:space="preserve">
+    <value>Görüntü tercihlerinizi ve kullanıcı arayüzü ayarlarınızı saklar</value>
+  </data>
+  <data name="Analytics Cookies" xml:space="preserve">
+    <value>Analitik Çerezler</value>
+  </data>
+  <data name="Analytics cookies explanation" xml:space="preserve">
+    <value>Bu çerezler ziyaretçilerin web sitemizi nasıl kullandığını anlamamıza ve hizmetlerimizi geliştirmemize yardımcı olur.</value>
+  </data>
+  <data name="Google Analytics cookie description" xml:space="preserve">
+    <value>Benzersiz kullanıcıları ayırt etmek ve web sitesi kullanımını takip etmek için kullanılır</value>
+  </data>
+  <data name="Session cookie description" xml:space="preserve">
+    <value>Kullanıcıları ayırt etmek ve oturum verilerini takip etmek için kullanılır</value>
+  </data>
+  <data name="Managing Cookies" xml:space="preserve">
+    <value>Çerezleri Yönetme</value>
+  </data>
+  <data name="Cookie management explanation" xml:space="preserve">
+    <value>Çerezleri tarayıcı ayarlarınız aracılığıyla kontrol edebilir ve yönetebilirsiniz. Ancak, belirli çerezleri devre dışı bırakmak web sitemizin işlevselliğini etkileyebilir.</value>
+  </data>
+  <data name="Browser settings notice" xml:space="preserve">
+    <value>Çoğu tarayıcı çerezleri görüntülemenize, yönetmenize ve silmenize izin verir. Lütfen belirli talimatlar için tarayıcınızın yardım belgelerine bakın.</value>
+  </data>
+  <data name="Third-Party Cookies" xml:space="preserve">
+    <value>Üçüncü Taraf Çerezler</value>
+  </data>
+  <data name="Third-party cookies explanation" xml:space="preserve">
+    <value>Kendi çerezlerini ayarlayan üçüncü taraf hizmetler kullanabiliriz. Bu hizmetler analitik sağlamamıza ve web sitemizin işlevselliğini geliştirmemize yardımcı olur.</value>
+  </data>
+  <data name="More Information" xml:space="preserve">
+    <value>Daha Fazla Bilgi</value>
+  </data>
+  <data name="Additional information text" xml:space="preserve">
+    <value>Çerez kullanımımız veya bu Çerez Politikası hakkında herhangi bir sorunuz varsa, lütfen bizimle iletişime geçin.</value>
+  </data>
+  <data name="Contact Us" xml:space="preserve">
+    <value>Bize Ulaşın</value>
+  </data>
+  <data name="Cookie Settings" xml:space="preserve">
+    <value>Çerez Ayarları</value>
+  </data>
+  <data name="Essential cookies required" xml:space="preserve">
+    <value>Bu çerezler web sitesinin çalışması için gereklidir</value>
+  </data>
+  <data name="Save Preferences" xml:space="preserve">
+    <value>Tercihleri Kaydet</value>
+  </data>
+  <data name="Cookie preferences saved" xml:space="preserve">
+    <value>Çerez tercihleri kaydedildi</value>
+  </data>
+  <data name="Error saving preferences" xml:space="preserve">
+    <value>Tercihleri kaydederken hata oluştu</value>
+  </data>
+</root>

@@ -6,4 +6,9 @@
   <data name="Login" xml:space="preserve"><value>Giriş Yap</value></data>
   <data name="Register" xml:space="preserve"><value>Kayıt Ol</value></data>
   <data name="Privacy" xml:space="preserve"><value>Gizlilik</value></data>
+  <data name="PrivacyDashboard" xml:space="preserve"><value>Gizlilik Paneli</value></data>
+  <data name="ManageConsent" xml:space="preserve"><value>Rıza Yönetimi</value></data>
+  <data name="PrivacyPolicy" xml:space="preserve"><value>Gizlilik Politikası</value></data>
+  <data name="CookiePolicy" xml:space="preserve"><value>Çerez Politikası</value></data>
+  <data name="Contact" xml:space="preserve"><value>İletişim</value></data>
 </root> 

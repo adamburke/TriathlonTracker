@@ -1,0 +1,275 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<div id="consent-banner" class="consent-banner" style="display: none;">
+    <div class="consent-banner-content">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h5 class="mb-2">@Localizer["CookieBannerTitle"]</h5>
+                    <p class="mb-0">
+                        @Html.Raw(Localizer["CookieBannerContent"].Value.Replace("{0}",
+                            $"<a href='{Url.Action("Policy", "Privacy", new { culture = Context.Request.Query["culture"] })}' target='_blank'>{Localizer["PrivacyPolicy"].Value}</a>").Replace("{1}",
+                            $"<a href='{Url.Action("CookiePolicy", "Privacy", new { culture = Context.Request.Query["culture"] })}' target='_blank'>{Localizer["CookiePolicy"].Value}</a>"))
+                    </p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <div class="consent-buttons">
+                        <button type="button" class="btn btn-outline-light btn-sm me-2" onclick="showConsentModal()">
+                            @Localizer["CustomizeButton"]
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="acceptAllConsents()">
+                            @Localizer["AcceptAllButton"]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Consent Modal -->
+<div class="modal fade" id="consentModal" tabindex="-1" aria-labelledby="consentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="consentModalLabel">@Localizer["PrivacyPreferencesTitle"]</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-4">
+                    @Localizer["PrivacyPreferencesDescription"]
+                </p>
+                
+                <div class="consent-category mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0">@Localizer["EssentialCookiesTitle"]</h6>
+                        <span class="badge bg-secondary">@Localizer["AlwaysActive"]</span>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        @Localizer["EssentialCookiesDescription"]
+                    </p>
+                </div>
+
+                <div class="consent-category mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0">@Localizer["DataProcessingTitle"]</h6>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="dataProcessingConsent" checked>
+                            <label class="form-check-label" for="dataProcessingConsent"></label>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        @Localizer["DataProcessingDescription"]
+                    </p>
+                </div>
+
+                <div class="consent-category mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0">@Localizer["MarketingCommunicationsTitle"]</h6>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="marketingConsent">
+                            <label class="form-check-label" for="marketingConsent"></label>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        @Localizer["MarketingCommunicationsDescription"]
+                    </p>
+                </div>
+
+                <div class="consent-category mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0">@Localizer["AnalyticsPerformanceTitle"]</h6>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="analyticsConsent">
+                            <label class="form-check-label" for="analyticsConsent"></label>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        @Localizer["AnalyticsPerformanceDescription"]
+                    </p>
+                </div>
+
+                <div class="alert alert-info">
+                    <small>
+                        <strong>@Localizer["YourRights"]:</strong> @Html.Raw(Localizer["YourRightsNotice"].Value.Replace("{0}",
+                            $"<a href='{Url.Action("Dashboard", "Privacy", new { culture = Context.Request.Query["culture"] })}'>{Localizer["PrivacyDashboard"]}</a>"))
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" onclick="rejectOptionalConsents()">
+                    @Localizer["EssentialOnlyButton"]
+                </button>
+                <button type="button" class="btn btn-primary" onclick="saveConsentPreferences()">
+                    @Localizer["SavePreferencesButton"]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    z-index: 1050;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.consent-banner-content {
+    padding: 1rem 0;
+}
+
+.consent-banner h5 {
+    color: white;
+    font-weight: 600;
+}
+
+.consent-banner p {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+}
+
+.consent-banner a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: underline;
+}
+
+.consent-banner a:hover {
+    color: white;
+}
+
+.consent-buttons .btn {
+    min-width: 100px;
+}
+
+.consent-category {
+    border: 1px solid #e9ecef;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user has already made consent choices
+    checkConsentStatus();
+});
+
+function checkConsentStatus() {
+    fetch('@Url.Action("Status", "Consent")')
+        .then(response => response.json())
+        .then(data => {
+            if (data.authenticated && !data.hasDataProcessingConsent) {
+                // Show banner if user is authenticated but hasn't given consent
+                document.getElementById('consent-banner').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error checking consent status:', error);
+        });
+}
+
+function showConsentModal() {
+    var modal = new bootstrap.Modal(document.getElementById('consentModal'));
+    modal.show();
+}
+
+function acceptAllConsents() {
+    fetch('@Url.Action("AcceptAll", "Consent")', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            hideConsentBanner();
+            showNotification('@Localizer["ConsentSavedSuccess"]', 'success');
+        } else {
+            showNotification('@Localizer["ConsentSaveError"].Value'.replace('{0}', data.message), 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error accepting consents:', error);
+        showNotification('@Localizer["ConsentSaveGenericError"]', 'error');
+    });
+}
+
+function saveConsentPreferences() {
+    const preferences = {
+        dataProcessing: document.getElementById('dataProcessingConsent').checked,
+        marketing: document.getElementById('marketingConsent').checked,
+        analytics: document.getElementById('analyticsConsent').checked
+    };
+
+    fetch('@Url.Action("AcceptSelected", "Consent")', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+        },
+        body: JSON.stringify(preferences)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            hideConsentBanner();
+            bootstrap.Modal.getInstance(document.getElementById('consentModal')).hide();
+            showNotification('@Localizer["ConsentSavedSuccess"]', 'success');
+        } else {
+            showNotification('@Localizer["ConsentSaveError"].Value'.replace('{0}', data.message), 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error saving consent preferences:', error);
+        showNotification('@Localizer["ConsentSaveGenericError"]', 'error');
+    });
+}
+
+function rejectOptionalConsents() {
+    // Uncheck optional consents
+    document.getElementById('marketingConsent').checked = false;
+    document.getElementById('analyticsConsent').checked = false;
+    
+    // Save with only essential and data processing
+    saveConsentPreferences();
+}
+
+function hideConsentBanner() {
+    document.getElementById('consent-banner').style.display = 'none';
+}
+
+function showNotification(message, type) {
+    // Simple notification - you can replace with your preferred notification system
+    const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    const notification = document.createElement('div');
+    notification.className = `alert ${alertClass} alert-dismissible fade show position-fixed`;
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 1060; min-width: 300px;';
+    notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 5000);
+}
+</script>

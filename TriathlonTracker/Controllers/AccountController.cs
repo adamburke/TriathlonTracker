@@ -134,6 +134,7 @@ namespace TriathlonTracker.Controllers
                         EmailConfirmed = true
                     };
                     await _userManager.CreateAsync(user);
+                    await _userManager.AddToRoleAsync(user, "User");
                 }
                 await _userManager.AddLoginAsync(user, info);
                 await _signInManager.SignInAsync(user, isPersistent: false);

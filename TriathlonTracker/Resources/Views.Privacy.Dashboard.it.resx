@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Dashboard Privacy</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Gestisci le tue impostazioni di privacy e le preferenze dei dati in un unico posto</value>
+  </data>
+  <data name="PersonalDataHeader" xml:space="preserve">
+    <value>Dati Personali</value>
+  </data>
+  <data name="PersonalDataDescription" xml:space="preserve">
+    <value>Visualizza e gestisci le informazioni personali che raccogliamo su di te</value>
+  </data>
+  <data name="TrainingDataHeader" xml:space="preserve">
+    <value>Dati di Allenamento</value>
+  </data>
+  <data name="TrainingDataDescription" xml:space="preserve">
+    <value>Informazioni sulle tue sessioni di allenamento e metriche delle prestazioni</value>
+  </data>
+  <data name="UsageDataHeader" xml:space="preserve">
+    <value>Dati di Utilizzo</value>
+  </data>
+  <data name="UsageDataDescription" xml:space="preserve">
+    <value>Informazioni su come utilizzi i nostri servizi e funzionalità</value>
+  </data>
+  <data name="RightToAccessHeader" xml:space="preserve">
+    <value>Diritto di Accesso</value>
+  </data>
+  <data name="RightToAccessDescription" xml:space="preserve">
+    <value>Richiedi una copia di tutti i dati personali che conserviamo su di te</value>
+  </data>
+  <data name="RightToEraseHeader" xml:space="preserve">
+    <value>Diritto alla Cancellazione</value>
+  </data>
+  <data name="RightToEraseDescription" xml:space="preserve">
+    <value>Richiedi la cancellazione dei tuoi dati personali dai nostri sistemi</value>
+  </data>
+  <data name="RightToRectifyHeader" xml:space="preserve">
+    <value>Diritto di Rettifica</value>
+  </data>
+  <data name="RightToRectifyDescription" xml:space="preserve">
+    <value>Richiedi correzioni ai dati personali inesatti</value>
+  </data>
+  <data name="ExportDataButton" xml:space="preserve">
+    <value>Esporta i Miei Dati</value>
+  </data>
+  <data name="DeleteDataButton" xml:space="preserve">
+    <value>Elimina i Miei Dati</value>
+  </data>
+  <data name="UpdateDataButton" xml:space="preserve">
+    <value>Aggiorna i Miei Dati</value>
+  </data>
+  <data name="ManageConsentButton" xml:space="preserve">
+    <value>Gestisci Impostazioni Consenso</value>
+  </data>
+  <data name="Privacy Dashboard" xml:space="preserve">
+    <value>Dashboard Privacy</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>I Tuoi Diritti</value>
+  </data>
+  <data name="Quick Actions" xml:space="preserve">
+    <value>Azioni Rapide</value>
+  </data>
+  <data name="View Privacy Policy" xml:space="preserve">
+    <value>Visualizza Informativa Privacy</value>
+  </data>
+  <data name="Manage Cookies" xml:space="preserve">
+    <value>Gestisci Cookie</value>
+  </data>
+  <data name="Manage Consent" xml:space="preserve">
+    <value>Gestisci Consenso</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Contatta DPO</value>
+  </data>
+  <data name="Confirm Data Deletion" xml:space="preserve">
+    <value>Conferma Cancellazione Dati</value>
+  </data>
+  <data name="Data deletion warning" xml:space="preserve">
+    <value>Attenzione: Questa azione non può essere annullata</value>
+  </data>
+  <data name="Data deletion explanation" xml:space="preserve">
+    <value>Procedendo, avvierai il processo per eliminare permanentemente tutti i tuoi dati personali dai nostri sistemi. Questo processo può richiedere fino a 30 giorni per essere completato.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="Request Deletion" xml:space="preserve">
+    <value>Richiedi Cancellazione</value>
+  </data>
+  <data name="Request Access" xml:space="preserve">
+    <value>Richiedi Accesso</value>
+  </data>
+  <data name="Request Correction" xml:space="preserve">
+    <value>Richiedi Correzione</value>
+  </data>
+</root>

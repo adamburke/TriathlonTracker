@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Panel Prywatności</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Zarządzaj ustawieniami prywatności i preferencjami danych w jednym miejscu</value>
+  </data>
+  <data name="PersonalDataHeader" xml:space="preserve">
+    <value>Dane Osobowe</value>
+  </data>
+  <data name="PersonalDataDescription" xml:space="preserve">
+    <value>Przeglądaj i zarządzaj informacjami osobowymi, które o Tobie gromadzimy</value>
+  </data>
+  <data name="TrainingDataHeader" xml:space="preserve">
+    <value>Dane Treningowe</value>
+  </data>
+  <data name="TrainingDataDescription" xml:space="preserve">
+    <value>Informacje o sesjach treningowych i metrykach wydajności</value>
+  </data>
+  <data name="UsageDataHeader" xml:space="preserve">
+    <value>Dane Użytkowania</value>
+  </data>
+  <data name="UsageDataDescription" xml:space="preserve">
+    <value>Informacje o tym, jak korzystasz z naszych usług i funkcji</value>
+  </data>
+  <data name="RightToAccessHeader" xml:space="preserve">
+    <value>Prawo Dostępu</value>
+  </data>
+  <data name="RightToAccessDescription" xml:space="preserve">
+    <value>Poproś o kopię wszystkich danych osobowych, które o Tobie przechowujemy</value>
+  </data>
+  <data name="RightToEraseHeader" xml:space="preserve">
+    <value>Prawo do Usunięcia</value>
+  </data>
+  <data name="RightToEraseDescription" xml:space="preserve">
+    <value>Poproś o usunięcie Twoich danych osobowych z naszych systemów</value>
+  </data>
+  <data name="RightToRectifyHeader" xml:space="preserve">
+    <value>Prawo do Sprostowania</value>
+  </data>
+  <data name="RightToRectifyDescription" xml:space="preserve">
+    <value>Poproś o poprawki nieprawidłowych danych osobowych</value>
+  </data>
+  <data name="ExportDataButton" xml:space="preserve">
+    <value>Eksportuj Moje Dane</value>
+  </data>
+  <data name="DeleteDataButton" xml:space="preserve">
+    <value>Usuń Moje Dane</value>
+  </data>
+  <data name="UpdateDataButton" xml:space="preserve">
+    <value>Zaktualizuj Moje Dane</value>
+  </data>
+  <data name="ManageConsentButton" xml:space="preserve">
+    <value>Zarządzaj Ustawieniami Zgody</value>
+  </data>
+  <data name="Privacy Dashboard" xml:space="preserve">
+    <value>Panel Prywatności</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Twoje Prawa</value>
+  </data>
+  <data name="Quick Actions" xml:space="preserve">
+    <value>Szybkie Akcje</value>
+  </data>
+  <data name="View Privacy Policy" xml:space="preserve">
+    <value>Zobacz Politykę Prywatności</value>
+  </data>
+  <data name="Manage Cookies" xml:space="preserve">
+    <value>Zarządzaj Cookies</value>
+  </data>
+  <data name="Manage Consent" xml:space="preserve">
+    <value>Zarządzaj Zgodą</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Skontaktuj się z IOD</value>
+  </data>
+  <data name="Confirm Data Deletion" xml:space="preserve">
+    <value>Potwierdź Usunięcie Danych</value>
+  </data>
+  <data name="Data deletion warning" xml:space="preserve">
+    <value>Ostrzeżenie: Ta akcja nie może być cofnięta</value>
+  </data>
+  <data name="Data deletion explanation" xml:space="preserve">
+    <value>Kontynuując, rozpoczniesz proces trwałego usunięcia wszystkich Twoich danych osobowych z naszych systemów. Ten proces może potrwać do 30 dni.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="Request Deletion" xml:space="preserve">
+    <value>Poproś o Usunięcie</value>
+  </data>
+  <data name="Request Access" xml:space="preserve">
+    <value>Poproś o Dostęp</value>
+  </data>
+  <data name="Request Correction" xml:space="preserve">
+    <value>Poproś o Poprawkę</value>
+  </data>
+</root>

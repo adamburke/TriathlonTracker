@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Politique de confidentialité</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Dernière mise à jour : {0}</value>
+  </data>
+  <data name="IntroductionHeader" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="IntroductionText" xml:space="preserve">
+    <value>Cette politique de confidentialité explique comment nous recueillons, utilisons et protégeons vos renseignements personnels lorsque vous utilisez nos services de suivi de triathlon.</value>
+  </data>
+  <data name="DataCollectionHeader" xml:space="preserve">
+    <value>Données que nous recueillons</value>
+  </data>
+  <data name="PersonalDataSection" xml:space="preserve">
+    <value>Renseignements personnels</value>
+  </data>
+  <data name="PersonalDataText" xml:space="preserve">
+    <value>Nom, adresse courriel, date de naissance et coordonnées fournis lors de l'inscription</value>
+  </data>
+  <data name="TrainingDataSection" xml:space="preserve">
+    <value>Données d'entraînement</value>
+  </data>
+  <data name="TrainingDataText" xml:space="preserve">
+    <value>Détails des séances d'entraînement, mesures de performance et horaires d'entraînement</value>
+  </data>
+  <data name="TechnicalDataSection" xml:space="preserve">
+    <value>Données techniques</value>
+  </data>
+  <data name="TechnicalDataText" xml:space="preserve">
+    <value>Informations sur l'appareil, adresse IP et statistiques d'utilisation</value>
+  </data>
+  <data name="DataUsageHeader" xml:space="preserve">
+    <value>Comment nous utilisons vos données</value>
+  </data>
+  <data name="DataUsageText" xml:space="preserve">
+    <value>Nous utilisons vos données pour fournir des analyses d'entraînement personnalisées, améliorer nos services et assurer la sécurité de la plateforme</value>
+  </data>
+  <data name="DataSharingHeader" xml:space="preserve">
+    <value>Partage des données</value>
+  </data>
+  <data name="DataSharingText" xml:space="preserve">
+    <value>Nous ne partageons vos données avec des tiers que lorsque nécessaire pour la prestation de services ou avec votre consentement explicite</value>
+  </data>
+  <data name="DataRetentionHeader" xml:space="preserve">
+    <value>Conservation des données</value>
+  </data>
+  <data name="DataRetentionText" xml:space="preserve">
+    <value>Nous conservons vos données uniquement pendant la durée nécessaire à la prestation de nos services et au respect de nos obligations légales</value>
+  </data>
+  <data name="YourRightsHeader" xml:space="preserve">
+    <value>Vos droits</value>
+  </data>
+  <data name="YourRightsText" xml:space="preserve">
+    <value>Vous avez le droit d'accéder à vos renseignements personnels, de les corriger ou de les supprimer, et de vous opposer à leur traitement ou d'en restreindre le traitement</value>
+  </data>
+  <data name="ContactHeader" xml:space="preserve">
+    <value>Nous contacter</value>
+  </data>
+  <data name="ContactText" xml:space="preserve">
+    <value>Pour toute question relative à la confidentialité, veuillez contacter notre responsable de la protection des renseignements personnels</value>
+  </data>
+</root>

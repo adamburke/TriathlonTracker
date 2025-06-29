@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Política de Privacidad</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Última actualización: Junio 2025</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="Data Collection" xml:space="preserve">
+    <value>Recopilación de Datos</value>
+  </data>
+  <data name="Data Use" xml:space="preserve">
+    <value>Uso de Datos</value>
+  </data>
+  <data name="Data Sharing" xml:space="preserve">
+    <value>Compartir Datos</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Sus Derechos</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Seguridad</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="Privacy policy overview text" xml:space="preserve">
+    <value>Esta Política de Privacidad describe cómo TriathlonTracker recopila, usa y protege su información personal cuando utiliza nuestro servicio de seguimiento de triatlón.</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>Información Personal</value>
+  </data>
+  <data name="Personal information collection details" xml:space="preserve">
+    <value>Recopilamos información personal básica incluyendo su nombre, dirección de correo electrónico y preferencias de cuenta para proporcionar nuestros servicios.</value>
+  </data>
+  <data name="Training Data" xml:space="preserve">
+    <value>Datos de Entrenamiento</value>
+  </data>
+  <data name="Training data collection details" xml:space="preserve">
+    <value>Recopilamos sus datos de carreras de triatlón incluyendo distancias, tiempos, ubicaciones y métricas de rendimiento para rastrear su progreso.</value>
+  </data>
+  <data name="Usage Data" xml:space="preserve">
+    <value>Datos de Uso</value>
+  </data>
+  <data name="Usage data collection details" xml:space="preserve">
+    <value>Recopilamos información sobre cómo utiliza nuestra aplicación para mejorar nuestros servicios y experiencia del usuario.</value>
+  </data>
+  <data name="Data use explanation" xml:space="preserve">
+    <value>Utilizamos sus datos para los siguientes propósitos:</value>
+  </data>
+  <data name="Service provision" xml:space="preserve">
+    <value>Para proporcionar y mantener nuestro servicio de seguimiento de triatlón</value>
+  </data>
+  <data name="Performance analysis" xml:space="preserve">
+    <value>Para analizar su rendimiento y proporcionar información</value>
+  </data>
+  <data name="User support" xml:space="preserve">
+    <value>Para proporcionar soporte al cliente y responder a consultas</value>
+  </data>
+  <data name="Service improvement" xml:space="preserve">
+    <value>Para mejorar nuestros servicios y desarrollar nuevas funciones</value>
+  </data>
+  <data name="Data sharing policy" xml:space="preserve">
+    <value>No vendemos su información personal. Podemos compartir sus datos solo en circunstancias específicas:</value>
+  </data>
+  <data name="Third-Party Service Providers" xml:space="preserve">
+    <value>Proveedores de Servicios de Terceros</value>
+  </data>
+  <data name="Third-party service providers explanation" xml:space="preserve">
+    <value>Podemos compartir datos con proveedores de servicios confiables que nos ayudan a operar nuestro servicio, como proveedores de hosting y servicios de análisis.</value>
+  </data>
+  <data name="Legal Requirements" xml:space="preserve">
+    <value>Requisitos Legales</value>
+  </data>
+  <data name="Legal requirements explanation" xml:space="preserve">
+    <value>Podemos divulgar su información si es requerido por ley o para proteger nuestros derechos y seguridad.</value>
+  </data>
+  <data name="User rights explanation" xml:space="preserve">
+    <value>Bajo GDPR y otras leyes de privacidad, tiene varios derechos con respecto a sus datos personales:</value>
+  </data>
+  <data name="Right to Access" xml:space="preserve">
+    <value>Derecho de Acceso</value>
+  </data>
+  <data name="Right to access explanation" xml:space="preserve">
+    <value>Tiene el derecho de solicitar una copia de los datos personales que tenemos sobre usted.</value>
+  </data>
+  <data name="Right to Rectification" xml:space="preserve">
+    <value>Derecho de Rectificación</value>
+  </data>
+  <data name="Right to rectification explanation" xml:space="preserve">
+    <value>Tiene el derecho de solicitar la corrección de datos personales inexactos o incompletos.</value>
+  </data>
+  <data name="Right to Erasure" xml:space="preserve">
+    <value>Derecho de Borrado</value>
+  </data>
+  <data name="Right to erasure explanation" xml:space="preserve">
+    <value>Tiene el derecho de solicitar la eliminación de sus datos personales en ciertas circunstancias.</value>
+  </data>
+  <data name="Security measures explanation" xml:space="preserve">
+    <value>Implementamos medidas técnicas y organizativas apropiadas para proteger sus datos personales contra acceso no autorizado, alteración, divulgación o destrucción.</value>
+  </data>
+  <data name="Contact information text" xml:space="preserve">
+    <value>Si tiene alguna pregunta sobre esta Política de Privacidad o desea ejercer sus derechos, por favor contacte a nuestro Oficial de Protección de Datos.</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Contactar al DPO</value>
+  </data>
+</root>

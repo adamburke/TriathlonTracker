@@ -1,0 +1,141 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = @Localizer["Privacy Dashboard"];
+}
+
+<div class="container mt-4">
+    <h1>@Localizer["Privacy Dashboard"]</h1>
+    <p class="lead">@Localizer["PageDescription"]</p>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">@Localizer["PersonalDataHeader"]</h2>
+                </div>
+                <div class="card-body">
+                    <p>@Localizer["PersonalDataDescription"]</p>
+                    <a href="@Url.Action("Profile", "Account", new { culture = Context.Request.Query["culture"] })" class="btn btn-outline-primary">
+                        <i class="fas fa-user-edit me-2"></i>@Localizer["UpdateDataButton"]
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">@Localizer["TrainingDataHeader"]</h2>
+                </div>
+                <div class="card-body">
+                    <p>@Localizer["TrainingDataDescription"]</p>
+                    <a href="@Url.Action("Export", "Privacy", new { culture = Context.Request.Query["culture"] })" class="btn btn-outline-primary">
+                        <i class="fas fa-download me-2"></i>@Localizer["ExportDataButton"]
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">@Localizer["UsageDataHeader"]</h2>
+                </div>
+                <div class="card-body">
+                    <p>@Localizer["UsageDataDescription"]</p>
+                    <a href="@Url.Action("Cookie", "Privacy", new { culture = Context.Request.Query["culture"] })" class="btn btn-outline-primary">
+                        <i class="fas fa-cookie-bite me-2"></i>@Localizer["ManageConsentButton"]
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">@Localizer["Your Rights"]</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h3 class="h6">@Localizer["RightToAccessHeader"]</h3>
+                        <p class="mb-2">@Localizer["RightToAccessDescription"]</p>
+                        <a href="@Url.Action("Contact", "Privacy", new { type = "access", culture = Context.Request.Query["culture"] })" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-file-download me-2"></i>@Localizer["Request Access"]
+                        </a>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="h6">@Localizer["RightToEraseHeader"]</h3>
+                        <p class="mb-2">@Localizer["RightToEraseDescription"]</p>
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteDataModal">
+                            <i class="fas fa-trash-alt me-2"></i>@Localizer["DeleteDataButton"]
+                        </button>
+                    </div>
+
+                    <div>
+                        <h3 class="h6">@Localizer["RightToRectifyHeader"]</h3>
+                        <p class="mb-2">@Localizer["RightToRectifyDescription"]</p>
+                        <a href="@Url.Action("Contact", "Privacy", new { type = "rectification", culture = Context.Request.Query["culture"] })" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-edit me-2"></i>@Localizer["Request Correction"]
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">@Localizer["Quick Actions"]</h2>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="@Url.Action("Policy", "Privacy", new { culture = Context.Request.Query["culture"] })" class="list-group-item list-group-item-action">
+                            <i class="fas fa-shield-alt me-2"></i>@Localizer["View Privacy Policy"]
+                        </a>
+                        <a href="@Url.Action("Cookie", "Privacy", new { culture = Context.Request.Query["culture"] })" class="list-group-item list-group-item-action">
+                            <i class="fas fa-cookie me-2"></i>@Localizer["Manage Cookies"]
+                        </a>
+                        <a href="@Url.Action("Consent", "Privacy", new { culture = Context.Request.Query["culture"] })" class="list-group-item list-group-item-action">
+                            <i class="fas fa-tasks me-2"></i>@Localizer["Manage Consent"]
+                        </a>
+                        <a href="@Url.Action("Contact", "Privacy", new { culture = Context.Request.Query["culture"] })" class="list-group-item list-group-item-action">
+                            <i class="fas fa-envelope me-2"></i>@Localizer["Contact DPO"]
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Data Modal -->
+<div class="modal fade" id="deleteDataModal" tabindex="-1" aria-labelledby="deleteDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteDataModalLabel">@Localizer["Confirm Data Deletion"]</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    @Localizer["Data deletion warning"]
+                </div>
+                <p>@Localizer["Data deletion explanation"]</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>@Localizer["Cancel"]
+                </button>
+                <a href="@Url.Action("Contact", "Privacy", new { type = "deletion", culture = Context.Request.Query["culture"] })" class="btn btn-danger">
+                    <i class="fas fa-trash-alt me-2"></i>@Localizer["Request Deletion"]
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

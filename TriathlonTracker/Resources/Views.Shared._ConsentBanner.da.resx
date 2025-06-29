@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CookieBannerTitle" xml:space="preserve">
+    <value>🍪 Vi værdsætter dit privatliv</value>
+  </data>
+  <data name="CookieBannerContent" xml:space="preserve">
+    <value>Vi bruger cookies og lignende teknologier til at forbedre din oplevelse, analysere brug og levere personaliseret indhold. Ved at fortsætte med at bruge vores tjeneste samtykker du til brugen af cookies som beskrevet i vores {0} og {1}.</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privatlivspolitik</value>
+  </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Cookie-politik</value>
+  </data>
+  <data name="CustomizeButton" xml:space="preserve">
+    <value>Tilpas</value>
+  </data>
+  <data name="AcceptAllButton" xml:space="preserve">
+    <value>Accepter alle</value>
+  </data>
+  <data name="PrivacyPreferencesTitle" xml:space="preserve">
+    <value>Privatlivsindstillinger</value>
+  </data>
+  <data name="PrivacyPreferencesDescription" xml:space="preserve">
+    <value>Vi respekterer dit privatliv og giver dig kontrol over, hvordan dine data bruges. Gennemgå og tilpas dine indstillinger nedenfor.</value>
+  </data>
+  <data name="EssentialCookiesTitle" xml:space="preserve">
+    <value>Nødvendige Cookies</value>
+  </data>
+  <data name="EssentialCookiesDescription" xml:space="preserve">
+    <value>Disse cookies er nødvendige for hjemmesidens funktion og kan ikke deaktiveres. De indstilles normalt kun som reaktion på dine handlinger.</value>
+  </data>
+  <data name="AlwaysActive" xml:space="preserve">
+    <value>Altid aktiv</value>
+  </data>
+  <data name="DataProcessingTitle" xml:space="preserve">
+    <value>Databehandling</value>
+  </data>
+  <data name="DataProcessingDescription" xml:space="preserve">
+    <value>Tillad os at behandle dine personlige data for at levere applikationens kernefunktionalitet, herunder lagring af dine triathlon-rekorder og kontooplysninger.</value>
+  </data>
+  <data name="MarketingCommunicationsTitle" xml:space="preserve">
+    <value>Marketingkommunikation</value>
+  </data>
+  <data name="MarketingCommunicationsDescription" xml:space="preserve">
+    <value>Modtag opdateringer om nye funktioner, træningstips og markedsføringsindhold tilpasset dine interesser.</value>
+  </data>
+  <data name="AnalyticsPerformanceTitle" xml:space="preserve">
+    <value>Analyse &amp; Ydeevne</value>
+  </data>
+  <data name="AnalyticsPerformanceDescription" xml:space="preserve">
+    <value>Hjælp os med at forbedre vores tjeneste ved at lade os analysere, hvordan du bruger applikationen og identificere forbedringsområder.</value>
+  </data>
+  <data name="YourRightsNotice" xml:space="preserve">
+    <value>Du kan ændre disse indstillinger når som helst i dit {0}. Du har også ret til at få adgang til, eksportere eller slette dine personlige data.</value>
+  </data>
+  <data name="PrivacyDashboard" xml:space="preserve">
+    <value>Privatlivsdashboard</value>
+  </data>
+  <data name="EssentialOnlyButton" xml:space="preserve">
+    <value>Kun nødvendige</value>
+  </data>
+  <data name="SavePreferencesButton" xml:space="preserve">
+    <value>Gem indstillinger</value>
+  </data>
+  <data name="ConsentSavedSuccess" xml:space="preserve">
+    <value>Samtykkeindstillinger gemt med succes</value>
+  </data>
+  <data name="ConsentSaveError" xml:space="preserve">
+    <value>Fejl ved gemning af samtykkeindstillinger: {0}</value>
+  </data>
+  <data name="ConsentSaveGenericError" xml:space="preserve">
+    <value>Der opstod en fejl ved gemning af dine indstillinger</value>
+  </data>
+  <data name="YourRights" xml:space="preserve">
+    <value>Dine Rettigheder</value>
+  </data>
+</root>

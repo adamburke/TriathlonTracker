@@ -4,6 +4,11 @@
   <data name="Add Race" xml:space="preserve"><value>Добавить гонку</value></data>
   <data name="Logout" xml:space="preserve"><value>Выйти</value></data>
   <data name="Login" xml:space="preserve"><value>Войти</value></data>
-  <data name="Register" xml:space="preserve"><value>Зарегистрироваться</value></data>
+  <data name="Register" xml:space="preserve"><value>Регистрация</value></data>
   <data name="Privacy" xml:space="preserve"><value>Конфиденциальность</value></data>
+  <data name="PrivacyDashboard" xml:space="preserve"><value>Панель конфиденциальности</value></data>
+  <data name="ManageConsent" xml:space="preserve"><value>Управление согласием</value></data>
+  <data name="PrivacyPolicy" xml:space="preserve"><value>Политика конфиденциальности</value></data>
+  <data name="CookiePolicy" xml:space="preserve"><value>Политика использования файлов cookie</value></data>
+  <data name="Contact" xml:space="preserve"><value>Контакты</value></data>
 </root> 

@@ -1,0 +1,174 @@
+@model TriathlonTracker.Models.UserGdprStatus
+@{
+    ViewData["Title"] = "Edit User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-user-edit me-2"></i>Edit User</h2>
+                <a href="@Url.Action("Users")" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Back to Users
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">User Information</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="EditUser" asp-route-userId="@Model.UserId">
+                        @Html.AntiForgeryToken()
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" 
+                                           value="@(Model.Name?.Split(' ').FirstOrDefault())" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" 
+                                           value="@(Model.Name?.Split(' ').Skip(1).FirstOrDefault())" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   value="@Model.Email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="hasConsent" name="hasConsent" 
+                                       value="true" @(Model.HasConsent ? "checked" : "")>
+                                <input type="hidden" name="hasConsent" value="false">
+                                <label class="form-check-label" for="hasConsent">
+                                    Has given consent for data processing
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Check this box if the user has provided consent for data processing.
+                            </small>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">User ID</label>
+                                    <input type="text" class="form-control" value="@Model.UserId" readonly>
+                                    <small class="form-text text-muted">User ID cannot be changed</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Registration Date</label>
+                                    <input type="text" class="form-control" value="@Model.CreatedDate.ToString("MMM dd, yyyy")" readonly>
+                                    <small class="form-text text-muted">Registration date cannot be changed</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (Model.ConsentDate.HasValue)
+                        {
+                            <div class="mb-3">
+                                <label class="form-label">Consent Date</label>
+                                <input type="text" class="form-control" value="@Model.ConsentDate.Value.ToString("MMM dd, yyyy HH:mm")" readonly>
+                                <small class="form-text text-muted">Last consent date</small>
+                            </div>
+                        }
+
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i>Save Changes
+                                </button>
+                                <a href="@Url.Action("Users")" class="btn btn-secondary ms-2">
+                                    <i class="fas fa-times me-1"></i>Cancel
+                                </a>
+                            </div>
+                            <div>
+                                <a href="@Url.Action("UserDetails", new { userId = Model.UserId })" class="btn btn-info">
+                                    <i class="fas fa-eye me-1"></i>View Details
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- User Statistics -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">User Statistics</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h4 class="text-primary">@Model.PendingRequests</h4>
+                                <small class="text-muted">Pending Requests</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h4 class="@(Model.HasRetentionViolation ? "text-danger" : "text-success")">
+                                    @(Model.HasRetentionViolation ? "Yes" : "No")
+                                </h4>
+                                <small class="text-muted">Retention Violations</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h4 class="text-info">
+                                    @(Model.LastDataAccess?.ToString("MMM dd") ?? "Never")
+                                </h4>
+                                <small class="text-muted">Last Data Access</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h4 class="@(Model.HasConsent ? "text-success" : "text-danger")">
+                                    @(Model.HasConsent ? "Active" : "Inactive")
+                                </h4>
+                                <small class="text-muted">Consent Status</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (!firstName || !lastName || !email) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+                return false;
+            }
+
+            // Basic email validation
+            const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+            if (!emailRegex.test(email)) {
+                e.preventDefault();
+                alert('Please enter a valid email address.');
+                return false;
+            }
+        });
+    </script>
+}

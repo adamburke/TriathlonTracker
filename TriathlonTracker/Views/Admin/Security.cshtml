@@ -1,0 +1,546 @@
+@using TriathlonTracker.Models
+@{
+    ViewData["Title"] = "Security Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-lock me-2"></i>Security Dashboard</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-warning" onclick="runSecurityScan()">
+                        <i class="fas fa-shield-alt me-1"></i>Run Security Scan
+                    </button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#emergencyModal">
+                        <i class="fas fa-exclamation-triangle me-1"></i>Emergency Actions
+                    </button>
+                </div>
+            </div>
+
+            <!-- Security Status Overview -->
+            @{
+                var securityStatus = ViewBag.SecurityStatus as SecurityStatus;
+                var overallStatus = securityStatus?.OverallStatus ?? "Unknown";
+                var cardClass = overallStatus == "Good" ? "bg-success" : overallStatus == "Warning" ? "bg-warning" : "bg-danger";
+            }
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card @cardClass text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@overallStatus</h4>
+                                    <p class="card-text">Security Risk Level</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-shield-alt fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@{
+                                        var recentEvents = ViewBag.RecentEvents as IEnumerable<object>;
+                                        var recentEventsCount = recentEvents?.Count() ?? 0;
+                                    }@(recentEventsCount)</h4>
+                                    <p class="card-text">Recent Events</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-bell fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@{
+                                        var ipControls = ViewBag.IpControls as IEnumerable<object>;
+                                        var ipControlsCount = ipControls?.Count() ?? 0;
+                                    }@(ipControlsCount)</h4>
+                                    <p class="card-text">IP Controls</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-ban fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-secondary text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@{
+                                        var securityStatus2 = ViewBag.SecurityStatus as SecurityStatus;
+                                        var activeSessions = securityStatus2?.RecentIncidents ?? 0;
+                                    }@(activeSessions)</h4>
+                                    <p class="card-text">Active Sessions</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-users fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Metrics -->
+            <div class="row mb-4">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Security Metrics</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Authentication Security</span>
+                                            <span>92%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 92%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Data Encryption</span>
+                                            <span>100%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Access Control</span>
+                                            <span>88%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 88%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Network Security</span>
+                                            <span>75%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Audit Logging</span>
+                                            <span>95%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Incident Response</span>
+                                            <span>82%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 82%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Threat Level</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="threat-indicator mb-3">
+                                <div class="threat-circle bg-success mx-auto" style="width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <span class="text-white fw-bold fs-4">LOW</span>
+                                </div>
+                            </div>
+                            <p class="text-muted">Current threat level is low. All systems operating normally.</p>
+                            <button class="btn btn-outline-primary btn-sm" onclick="viewThreatDetails()">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Security Events -->
+            @if (ViewBag.RecentEvents != null && ((IEnumerable<dynamic>)ViewBag.RecentEvents).Any())
+            {
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Recent Security Events</h5>
+                            <a href="@Url.Action("AuditLog")" class="btn btn-sm btn-outline-primary">
+                                View All Events
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Severity</th>
+                                        <th>Event Type</th>
+                                        <th>Description</th>
+                                        <th>Source</th>
+                                        <th>Timestamp</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var evt in ViewBag.RecentEvents.Take(10))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <span class="badge @(evt.Severity switch {
+                                                    "Critical" => "bg-danger",
+                                                    "High" => "bg-warning",
+                                                    "Medium" => "bg-info",
+                                                    "Low" => "bg-success",
+                                                    _ => "bg-secondary"
+                                                })">
+                                                    @evt.Severity
+                                                </span>
+                                            </td>
+                                            <td>@evt.EventType</td>
+                                            <td>@evt.Description</td>
+                                            <td>@evt.Source</td>
+                                            <td>@evt.Timestamp.ToString("MMM dd, HH:mm")</td>
+                                            <td>
+                                                <span class="badge @(evt.IsResolved ? "bg-success" : "bg-warning")">
+                                                    @(evt.IsResolved ? "Resolved" : "Open")
+                                                </span>
+                                            </td>
+                                            <td>
+                                                @if (!evt.IsResolved)
+                                                {
+                                                    <button class="btn btn-sm btn-outline-primary" onclick="investigateEvent('@evt.Id')">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-success" onclick="resolveEvent('@evt.Id')">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <button class="btn btn-sm btn-outline-info" onclick="viewEventDetails('@evt.Id')">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- IP Access Controls -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">IP Access Controls</h5>
+                                <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addIpControlModal">
+                                    <i class="fas fa-plus me-1"></i>Add IP Control
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            @if (ViewBag.IpControls != null && ((IEnumerable<dynamic>)ViewBag.IpControls).Any())
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>IP Address/Range</th>
+                                                <th>Access Type</th>
+                                                <th>Reason</th>
+                                                <th>Created</th>
+                                                <th>Hits</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var ipControl in ViewBag.IpControls.Take(10))
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <code>@(ipControl.IpRange ?? ipControl.IpAddress)</code>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge @(ipControl.AccessType == "Allow" ? "bg-success" : "bg-danger")">
+                                                            @ipControl.AccessType
+                                                        </span>
+                                                    </td>
+                                                    <td>@ipControl.Reason</td>
+                                                    <td>@ipControl.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                                    <td>@ipControl.HitCount</td>
+                                                    <td>
+                                                        <span class="badge @(ipControl.IsActive ? "bg-success" : "bg-secondary")">
+                                                            @(ipControl.IsActive ? "Active" : "Inactive")
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-warning" onclick="editIpControl('@ipControl.Id')">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-danger" onclick="deleteIpControl('@ipControl.Id')">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center py-3">
+                                    <i class="fas fa-ban fa-2x text-muted mb-2"></i>
+                                    <p class="text-muted">No IP access controls configured</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Security Actions</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-primary" onclick="viewFailedLogins()">
+                                    <i class="fas fa-sign-in-alt me-1"></i>Failed Login Attempts
+                                </button>
+                                <button class="btn btn-outline-info" onclick="viewActiveSessions()">
+                                    <i class="fas fa-users me-1"></i>Active Sessions
+                                </button>
+                                <button class="btn btn-outline-warning" onclick="viewSuspiciousActivity()">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>Suspicious Activity
+                                </button>
+                                <button class="btn btn-outline-success" onclick="viewEncryptionStatus()">
+                                    <i class="fas fa-lock me-1"></i>Encryption Status
+                                </button>
+                                <hr>
+                                <button class="btn btn-outline-danger" onclick="lockdownSystem()">
+                                    <i class="fas fa-shield-alt me-1"></i>Emergency Lockdown
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add IP Control Modal -->
+<div class="modal fade" id="addIpControlModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add IP Access Control</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="ipControlForm">
+                    <div class="mb-3">
+                        <label for="ipAddress" class="form-label">IP Address or Range</label>
+                        <input type="text" class="form-control" id="ipAddress" placeholder="192.168.1.1 or 192.168.1.0/24" required>
+                        <div class="form-text">Enter a single IP address or CIDR range</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="accessType" class="form-label">Access Type</label>
+                        <select class="form-select" id="accessType" required>
+                            <option value="">Select access type...</option>
+                            <option value="Allow">Allow</option>
+                            <option value="Block">Block</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason" class="form-label">Reason</label>
+                        <textarea class="form-control" id="reason" rows="3" placeholder="Reason for this IP control rule" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="expiresAt" class="form-label">Expires At (Optional)</label>
+                        <input type="datetime-local" class="form-control" id="expiresAt">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addIpControl()">Add Control</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Emergency Actions Modal -->
+<div class="modal fade" id="emergencyModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Emergency Security Actions</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle me-1"></i>
+                    <strong>Warning:</strong> These actions should only be used in emergency situations.
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-danger" onclick="emergencyLockdown()">
+                        <i class="fas fa-lock me-1"></i>Full System Lockdown
+                    </button>
+                    <button class="btn btn-outline-warning" onclick="terminateAllSessions()">
+                        <i class="fas fa-sign-out-alt me-1"></i>Terminate All User Sessions
+                    </button>
+                    <button class="btn btn-outline-info" onclick="enableMaintenanceMode()">
+                        <i class="fas fa-tools me-1"></i>Enable Maintenance Mode
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="backupSecurityLogs()">
+                        <i class="fas fa-download me-1"></i>Backup Security Logs
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function runSecurityScan() {
+            if (confirm('Run a comprehensive security scan? This may take several minutes.')) {
+                alert('Security scan functionality would be implemented here.');
+            }
+        }
+
+        function viewThreatDetails() {
+            alert('Threat intelligence details would be displayed here.');
+        }
+
+        function investigateEvent(eventId) {
+            alert('Event investigation interface would be opened for event: ' + eventId);
+        }
+
+        function resolveEvent(eventId) {
+            if (confirm('Mark this security event as resolved?')) {
+                alert('Event resolution functionality would be implemented here for event: ' + eventId);
+            }
+        }
+
+        function viewEventDetails(eventId) {
+            alert('Event details would be displayed here for event: ' + eventId);
+        }
+
+        function addIpControl() {
+            const form = document.getElementById('ipControlForm');
+            
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const data = {
+                ipAddress: document.getElementById('ipAddress').value,
+                accessType: document.getElementById('accessType').value,
+                reason: document.getElementById('reason').value,
+                expiresAt: document.getElementById('expiresAt').value
+            };
+
+            alert('IP control would be added with data: ' + JSON.stringify(data));
+            bootstrap.Modal.getInstance(document.getElementById('addIpControlModal')).hide();
+        }
+
+        function editIpControl(controlId) {
+            alert('IP control editing would be implemented here for control: ' + controlId);
+        }
+
+        function deleteIpControl(controlId) {
+            if (confirm('Are you sure you want to delete this IP control rule?')) {
+                alert('IP control deletion would be implemented here for control: ' + controlId);
+            }
+        }
+
+        function viewFailedLogins() {
+            alert('Failed login attempts view would be implemented here.');
+        }
+
+        function viewActiveSessions() {
+            alert('Active sessions view would be implemented here.');
+        }
+
+        function viewSuspiciousActivity() {
+            alert('Suspicious activity monitoring would be implemented here.');
+        }
+
+        function viewEncryptionStatus() {
+            alert('Encryption status dashboard would be implemented here.');
+        }
+
+        function lockdownSystem() {
+            if (confirm('EMERGENCY: Lock down the entire system? This will prevent all user access.')) {
+                alert('System lockdown functionality would be implemented here.');
+            }
+        }
+
+        function emergencyLockdown() {
+            if (confirm('CRITICAL: This will immediately lock down the entire system. Continue?')) {
+                alert('Emergency lockdown would be executed here.');
+            }
+        }
+
+        function terminateAllSessions() {
+            if (confirm('This will log out all users immediately. Continue?')) {
+                alert('Session termination would be executed here.');
+            }
+        }
+
+        function enableMaintenanceMode() {
+            if (confirm('Enable maintenance mode? This will show a maintenance page to users.')) {
+                alert('Maintenance mode would be enabled here.');
+            }
+        }
+
+        function backupSecurityLogs() {
+            alert('Security log backup would be initiated here.');
+        }
+    </script>
+}

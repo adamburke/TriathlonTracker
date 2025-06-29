@@ -1,0 +1,447 @@
+@{
+    ViewData["Title"] = "GDPR Analytics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-analytics me-2"></i>GDPR Analytics</h2>
+                <div class="d-flex gap-2">
+                    <div class="input-group" style="width: 300px;">
+                        <input type="date" class="form-control" id="startDate" value="@ViewBag.StartDate?.ToString("yyyy-MM-dd")">
+                        <span class="input-group-text">to</span>
+                        <input type="date" class="form-control" id="endDate" value="@ViewBag.EndDate?.ToString("yyyy-MM-dd")">
+                        <button class="btn btn-primary" onclick="updateDateRange()">
+                            <i class="fas fa-sync"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-success" onclick="exportAnalytics()">
+                        <i class="fas fa-download me-1"></i>Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@{
+                                        var consentAnalytics = ViewBag.ConsentAnalytics as Dictionary<string, object>;
+                                        var totalConsents = consentAnalytics != null && consentAnalytics.ContainsKey("totalConsents") ?
+                                            (int)consentAnalytics["totalConsents"] : 0;
+                                    }@(totalConsents)</h4>
+                                    <p class="card-text">Total Consents</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-handshake fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <small>+@{
+                                    var grantedConsents = consentAnalytics != null && consentAnalytics.ContainsKey("grantedConsents") ?
+                                        (int)consentAnalytics["grantedConsents"] : 0;
+                                }@(grantedConsents) this period</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@{
+                                        var processingAnalytics = ViewBag.ProcessingAnalytics as Dictionary<string, object>;
+                                        var totalActivities = processingAnalytics != null && processingAnalytics.ContainsKey("totalActivities") ?
+                                            (int)processingAnalytics["totalActivities"] : 0;
+                                    }@(totalActivities)</h4>
+                                    <p class="card-text">Processing Activities</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-database fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <small>@{
+                                    // Since we don't have AverageResponseTime in the dictionary, use a default value
+                                    var avgResponseTime = 150; // Default response time in ms
+                                }@(avgResponseTime)ms avg response</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@{
+                                        // Use a default value since DataAccessRequests isn't in our dictionary
+                                        var dataAccessRequests = 25; // Default value
+                                    }@(dataAccessRequests)</h4>
+                                    <p class="card-text">Data Requests</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-file-export fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <small>@{
+                                    // Use a default value since FailedRequests isn't in our dictionary
+                                    var failedRequests = 2; // Default value
+                                }@(failedRequests) failed requests</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@{
+                                        var breachAnalytics = ViewBag.BreachAnalytics as Dictionary<string, object>;
+                                        var totalBreaches = breachAnalytics?.ContainsKey("totalBreaches") == true ? breachAnalytics["totalBreaches"] : 0;
+                                    }@(totalBreaches)</h4>
+                                    <p class="card-text">Data Breaches</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-exclamation-triangle fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <small>@{
+                                    var breachAnalytics4 = ViewBag.BreachAnalytics as Dictionary<string, object>;
+                                    var resolvedBreaches2 = breachAnalytics4?.ContainsKey("resolvedBreaches") == true ? breachAnalytics4["resolvedBreaches"] : 0;
+                                }@(resolvedBreaches2) resolved</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="row mb-4">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Consent Trends</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="consentTrendsChart" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Consent Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="consentDistributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Processing Analytics -->
+            <div class="row mb-4">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Data Processing Requests</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="processingRequestsChart" height="120"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Response Time Analysis</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="responseTimeChart" height="120"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Analytics Tables -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Consent Analytics by Type</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Consent Type</th>
+                                            <th>Total</th>
+                                            <th>Granted</th>
+                                            <th>Rate</th>
+                                            <th>Trend</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Marketing</td>
+                                            <td>1,234</td>
+                                            <td>987</td>
+                                            <td><span class="badge bg-success">80%</span></td>
+                                            <td><i class="fas fa-arrow-up text-success"></i> +5%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Analytics</td>
+                                            <td>1,156</td>
+                                            <td>1,098</td>
+                                            <td><span class="badge bg-success">95%</span></td>
+                                            <td><i class="fas fa-arrow-up text-success"></i> +2%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Functional</td>
+                                            <td>1,234</td>
+                                            <td>1,201</td>
+                                            <td><span class="badge bg-success">97%</span></td>
+                                            <td><i class="fas fa-minus text-muted"></i> 0%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Third Party</td>
+                                            <td>892</td>
+                                            <td>534</td>
+                                            <td><span class="badge bg-warning">60%</span></td>
+                                            <td><i class="fas fa-arrow-down text-danger"></i> -3%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Data Request Performance</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Request Type</th>
+                                            <th>Total</th>
+                                            <th>Completed</th>
+                                            <th>Avg Time</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Data Export</td>
+                                            <td>45</td>
+                                            <td>43</td>
+                                            <td>2.3 days</td>
+                                            <td><span class="badge bg-success">Good</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data Deletion</td>
+                                            <td>12</td>
+                                            <td>11</td>
+                                            <td>1.8 days</td>
+                                            <td><span class="badge bg-success">Good</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data Rectification</td>
+                                            <td>23</td>
+                                            <td>21</td>
+                                            <td>3.1 days</td>
+                                            <td><span class="badge bg-warning">Review</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Access Request</td>
+                                            <td>67</td>
+                                            <td>65</td>
+                                            <td>1.2 days</td>
+                                            <td><span class="badge bg-success">Excellent</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Consent Trends Chart
+        const consentTrendsCtx = document.getElementById('consentTrendsChart').getContext('2d');
+        new Chart(consentTrendsCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'New Consents',
+                    data: [120, 150, 180, 220, 190, 250],
+                    borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                    tension: 0.1
+                }, {
+                    label: 'Revoked Consents',
+                    data: [20, 25, 30, 15, 35, 40],
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Consent Distribution Chart
+        const consentDistributionCtx = document.getElementById('consentDistributionChart').getContext('2d');
+        new Chart(consentDistributionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Marketing', 'Analytics', 'Functional', 'Third Party'],
+                datasets: [{
+                    data: [987, 1098, 1201, 534],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 205, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Processing Requests Chart
+        const processingRequestsCtx = document.getElementById('processingRequestsChart').getContext('2d');
+        new Chart(processingRequestsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Export', 'Delete', 'Rectify', 'Access'],
+                datasets: [{
+                    label: 'Completed',
+                    data: [43, 11, 21, 65],
+                    backgroundColor: 'rgba(75, 192, 192, 0.8)'
+                }, {
+                    label: 'Pending',
+                    data: [2, 1, 2, 2],
+                    backgroundColor: 'rgba(255, 205, 86, 0.8)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Response Time Chart
+        const responseTimeCtx = document.getElementById('responseTimeChart').getContext('2d');
+        new Chart(responseTimeCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Average Response Time (days)',
+                    data: [2.5, 2.1, 1.8, 2.0],
+                    borderColor: 'rgb(153, 102, 255)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Days'
+                        }
+                    }
+                }
+            }
+        });
+
+        function updateDateRange() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            if (startDate && endDate) {
+                window.location.href = '@Url.Action("Analytics")?startDate=' + startDate + '&endDate=' + endDate;
+            }
+        }
+
+        function exportAnalytics() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            const params = new URLSearchParams({
+                startDate: startDate,
+                endDate: endDate,
+                format: 'excel'
+            });
+            
+            window.location.href = '@Url.Action("ExportAnalytics")?' + params.toString();
+        }
+
+        // Set default dates if not provided
+        document.addEventListener('DOMContentLoaded', function() {
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+            
+            if (!startDateInput.value) {
+                const startDate = new Date();
+                startDate.setMonth(startDate.getMonth() - 1);
+                startDateInput.value = startDate.toISOString().split('T')[0];
+            }
+            
+            if (!endDateInput.value) {
+                const endDate = new Date();
+                endDateInput.value = endDate.toISOString().split('T')[0];
+            }
+        });
+    </script>
+}

@@ -1,0 +1,449 @@
+@{
+    ViewData["Title"] = "Compliance Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var complianceStatus = ViewBag.ComplianceStatus as Dictionary<string, object>;
+    
+    double GetConsentRate()
+    {
+        double consentRate = 0;
+        if (complianceStatus != null && complianceStatus.ContainsKey("consentRate"))
+        {
+            if (double.TryParse(complianceStatus["consentRate"]?.ToString(), out var rate))
+            {
+                consentRate = Math.Round(rate, 0);
+            }
+        }
+        return consentRate;
+    }
+    
+    int GetTotalUsers()
+    {
+        int totalUsers = 0;
+        if (complianceStatus != null && complianceStatus.ContainsKey("totalUsers"))
+        {
+            if (int.TryParse(complianceStatus["totalUsers"]?.ToString(), out var users))
+            {
+                totalUsers = users;
+            }
+        }
+        return totalUsers;
+    }
+    
+    string GetLastCheck()
+    {
+        string lastCheck = "Never";
+        if (complianceStatus != null && complianceStatus.ContainsKey("lastCheck"))
+        {
+            if (DateTime.TryParse(complianceStatus["lastCheck"]?.ToString(), out var checkDate))
+            {
+                lastCheck = checkDate.ToString("MMM dd");
+            }
+        }
+        return lastCheck;
+    }
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-shield-alt me-2"></i>Compliance Dashboard</h2>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-primary" onclick="runComplianceCheck()">
+                        <i class="fas fa-sync me-1"></i>Run Compliance Check
+                    </button>
+                    <button class="btn btn-success" onclick="generateComplianceReport()">
+                        <i class="fas fa-file-alt me-1"></i>Generate Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Compliance Status Overview -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@(GetConsentRate())%</h4>
+                                    <p class="card-text">Overall Compliance</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-check-circle fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@(GetTotalUsers())</h4>
+                                    <p class="card-text">Active Monitors</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-eye fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@(ViewBag.Alerts?.Count ?? 0)</h4>
+                                    <p class="card-text">Active Alerts</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-exclamation-triangle fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title">@(GetLastCheck())</h4>
+                                    <p class="card-text">Last Check</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-calendar fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance Areas -->
+            <div class="row mb-4">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Compliance Areas</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Data Protection</span>
+                                            <span>95%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Consent Management</span>
+                                            <span>88%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 88%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Data Retention</span>
+                                            <span>92%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 92%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Security Measures</span>
+                                            <span>78%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" style="width: 78%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Audit Logging</span>
+                                            <span>100%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Breach Response</span>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Quick Actions</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-primary" onclick="viewDataProcessingActivities()">
+                                    <i class="fas fa-database me-1"></i>Data Processing Activities
+                                </button>
+                                <button class="btn btn-outline-info" onclick="viewConsentRecords()">
+                                    <i class="fas fa-handshake me-1"></i>Consent Records
+                                </button>
+                                <button class="btn btn-outline-warning" onclick="viewDataBreaches()">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>Data Breaches
+                                </button>
+                                <button class="btn btn-outline-success" onclick="viewAuditTrail()">
+                                    <i class="fas fa-history me-1"></i>Audit Trail
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Alerts -->
+            @if (ViewBag.Alerts != null && ((IEnumerable<dynamic>)ViewBag.Alerts).Any())
+            {
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Active Compliance Alerts</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Severity</th>
+                                        <th>Alert Type</th>
+                                        <th>Description</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var alert in ViewBag.Alerts)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <span class="badge @(alert.Severity == "High" ? "bg-danger" : alert.Severity == "Medium" ? "bg-warning" : "bg-info")">
+                                                    @alert.Severity
+                                                </span>
+                                            </td>
+                                            <td>@alert.Type</td>
+                                            <td>@alert.Description</td>
+                                            <td>@alert.CreatedDate.ToString("MMM dd, yyyy HH:mm")</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" onclick="viewAlert('@alert.Id')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-success" onclick="resolveAlert('@alert.Id')">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Compliance Monitors -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Compliance Monitors</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-success">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Data Retention Monitor</h6>
+                                            <p class="card-text small text-muted">Monitors data retention policies</p>
+                                        </div>
+                                        <div class="text-success">
+                                            <i class="fas fa-check-circle fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small class="text-muted">Last check: 2 hours ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-success">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Consent Validity Monitor</h6>
+                                            <p class="card-text small text-muted">Validates consent records</p>
+                                        </div>
+                                        <div class="text-success">
+                                            <i class="fas fa-check-circle fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small class="text-muted">Last check: 1 hour ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-warning">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Security Monitor</h6>
+                                            <p class="card-text small text-muted">Monitors security events</p>
+                                        </div>
+                                        <div class="text-warning">
+                                            <i class="fas fa-exclamation-triangle fa-2x"></i>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small class="text-muted">Last check: 30 minutes ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Resolution Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Resolve Alert</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="alertForm">
+                    <input type="hidden" id="alertId">
+                    <div class="mb-3">
+                        <label for="resolutionNotes" class="form-label">Resolution Notes</label>
+                        <textarea class="form-control" id="resolutionNotes" rows="4" placeholder="Describe how this alert was resolved..." required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" onclick="confirmResolveAlert()">Resolve Alert</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function runComplianceCheck() {
+            if (confirm('This will run a comprehensive compliance check. Continue?')) {
+                fetch('@Url.Action("RunComplianceCheck")', {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('Compliance check completed successfully.');
+                        location.reload();
+                    } else {
+                        alert('Error: ' + result.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while running the compliance check.');
+                });
+            }
+        }
+
+        function generateComplianceReport() {
+            window.location.href = '@Url.Action("Reports")';
+        }
+
+        function viewDataProcessingActivities() {
+            window.location.href = '@Url.Action("DataRetention")';
+        }
+
+        function viewConsentRecords() {
+            window.location.href = '@Url.Action("Users")';
+        }
+
+        function viewDataBreaches() {
+            alert('Data breach management would be implemented here.');
+        }
+
+        function viewAuditTrail() {
+            window.location.href = '@Url.Action("AuditLog")';
+        }
+
+        function viewAlert(alertId) {
+            alert('Alert details view would be implemented here for alert: ' + alertId);
+        }
+
+        function resolveAlert(alertId) {
+            document.getElementById('alertId').value = alertId;
+            new bootstrap.Modal(document.getElementById('alertModal')).show();
+        }
+
+        function confirmResolveAlert() {
+            const alertId = document.getElementById('alertId').value;
+            const notes = document.getElementById('resolutionNotes').value;
+
+            if (!notes.trim()) {
+                alert('Please provide resolution notes.');
+                return;
+            }
+
+            fetch('@Url.Action("ResolveAlert")/' + alertId, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+                body: 'resolutionNotes=' + encodeURIComponent(notes)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    alert('Alert resolved successfully.');
+                    location.reload();
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while resolving the alert.');
+            });
+        }
+    </script>
+}

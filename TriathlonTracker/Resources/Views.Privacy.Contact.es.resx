@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Contactar al DPO</value>
+  </data>
+  <data name="Contact form description" xml:space="preserve">
+    <value>Contacte a nuestro Oficial de Protección de Datos para consultas relacionadas con la privacidad, solicitudes de datos o inquietudes sobre su información personal.</value>
+  </data>
+  <data name="Data Protection Officer" xml:space="preserve">
+    <value>Oficial de Protección de Datos</value>
+  </data>
+  <data name="DPO contact information" xml:space="preserve">
+    <value>Nuestro Oficial de Protección de Datos está disponible para ayudarlo con cualquier asunto relacionado con la privacidad.</value>
+  </data>
+  <data name="DPO email" xml:space="preserve">
+    <value>dpo@triathlontracker.com</value>
+  </data>
+  <data name="DPO phone" xml:space="preserve">
+    <value>+1 (555) 123-4567</value>
+  </data>
+  <data name="Request Type" xml:space="preserve">
+    <value>Tipo de Solicitud</value>
+  </data>
+  <data name="Select request type" xml:space="preserve">
+    <value>Seleccionar tipo de solicitud</value>
+  </data>
+  <data name="Data Access Request" xml:space="preserve">
+    <value>Solicitud de Acceso a Datos</value>
+  </data>
+  <data name="Data Rectification" xml:space="preserve">
+    <value>Rectificación de Datos</value>
+  </data>
+  <data name="Data Erasure" xml:space="preserve">
+    <value>Borrado de Datos</value>
+  </data>
+  <data name="Data Portability" xml:space="preserve">
+    <value>Portabilidad de Datos</value>
+  </data>
+  <data name="Consent Withdrawal" xml:space="preserve">
+    <value>Retiro de Consentimiento</value>
+  </data>
+  <data name="Privacy Complaint" xml:space="preserve">
+    <value>Queja de Privacidad</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Otro</value>
+  </data>
+  <data name="Please select a request type" xml:space="preserve">
+    <value>Por favor seleccione un tipo de solicitud</value>
+  </data>
+  <data name="Full Name" xml:space="preserve">
+    <value>Nombre Completo</value>
+  </data>
+  <data name="Please enter your full name" xml:space="preserve">
+    <value>Por favor ingrese su nombre completo</value>
+  </data>
+  <data name="Email Address" xml:space="preserve">
+    <value>Dirección de Correo Electrónico</value>
+  </data>
+  <data name="Please enter a valid email address" xml:space="preserve">
+    <value>Por favor ingrese una dirección de correo electrónico válida</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="Please enter your message" xml:space="preserve">
+    <value>Por favor ingrese su mensaje</value>
+  </data>
+  <data name="Message length notice" xml:space="preserve">
+    <value>Por favor proporcione información detallada sobre su solicitud (mínimo 50 caracteres)</value>
+  </data>
+  <data name="Identity verification consent" xml:space="preserve">
+    <value>Consiento los procedimientos de verificación de identidad para procesar mi solicitud</value>
+  </data>
+  <data name="Please confirm identity verification" xml:space="preserve">
+    <value>Por favor confirme la verificación de identidad</value>
+  </data>
+  <data name="Privacy policy agreement" xml:space="preserve">
+    <value>He leído y acepto la {0}</value>
+  </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Política de Privacidad</value>
+  </data>
+  <data name="Please accept privacy policy" xml:space="preserve">
+    <value>Por favor acepte la política de privacidad</value>
+  </data>
+  <data name="Response time notice" xml:space="preserve">
+    <value>Responderemos a su solicitud dentro de 30 días según lo requieren las regulaciones GDPR.</value>
+  </data>
+  <data name="Submit Request" xml:space="preserve">
+    <value>Enviar Solicitud</value>
+  </data>
+  <data name="Request submitted successfully" xml:space="preserve">
+    <value>Solicitud enviada exitosamente</value>
+  </data>
+  <data name="Error submitting request" xml:space="preserve">
+    <value>Error al enviar la solicitud</value>
+  </data>
+</root>

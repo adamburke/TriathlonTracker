@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Política de Privacidade</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Última atualização: Junho 2025</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Visão Geral</value>
+  </data>
+  <data name="Data Collection" xml:space="preserve">
+    <value>Coleta de Dados</value>
+  </data>
+  <data name="Data Use" xml:space="preserve">
+    <value>Uso de Dados</value>
+  </data>
+  <data name="Data Sharing" xml:space="preserve">
+    <value>Compartilhamento de Dados</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Seus Direitos</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Segurança</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contato</value>
+  </data>
+  <data name="Privacy policy overview text" xml:space="preserve">
+    <value>Esta Política de Privacidade descreve como o TriathlonTracker coleta, usa e protege suas informações pessoais quando você usa nosso serviço de rastreamento de triatlo.</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>Informações Pessoais</value>
+  </data>
+  <data name="Personal information collection details" xml:space="preserve">
+    <value>Coletamos informações pessoais básicas incluindo seu nome, endereço de e-mail e preferências de conta para fornecer nossos serviços.</value>
+  </data>
+  <data name="Training Data" xml:space="preserve">
+    <value>Dados de Treinamento</value>
+  </data>
+  <data name="Training data collection details" xml:space="preserve">
+    <value>Coletamos seus dados de corrida de triatlo incluindo distâncias, tempos, localizações e métricas de desempenho para rastrear seu progresso.</value>
+  </data>
+  <data name="Usage Data" xml:space="preserve">
+    <value>Dados de Uso</value>
+  </data>
+  <data name="Usage data collection details" xml:space="preserve">
+    <value>Coletamos informações sobre como você usa nossa aplicação para melhorar nossos serviços e experiência do usuário.</value>
+  </data>
+  <data name="Data use explanation" xml:space="preserve">
+    <value>Usamos seus dados para os seguintes propósitos:</value>
+  </data>
+  <data name="Service provision" xml:space="preserve">
+    <value>Para fornecer e manter nosso serviço de rastreamento de triatlo</value>
+  </data>
+  <data name="Performance analysis" xml:space="preserve">
+    <value>Para analisar seu desempenho e fornecer insights</value>
+  </data>
+  <data name="User support" xml:space="preserve">
+    <value>Para fornecer suporte ao cliente e responder a consultas</value>
+  </data>
+  <data name="Service improvement" xml:space="preserve">
+    <value>Para melhorar nossos serviços e desenvolver novos recursos</value>
+  </data>
+  <data name="Data sharing policy" xml:space="preserve">
+    <value>Não vendemos suas informações pessoais. Podemos compartilhar seus dados apenas em circunstâncias específicas:</value>
+  </data>
+  <data name="Third-Party Service Providers" xml:space="preserve">
+    <value>Provedores de Serviços Terceiros</value>
+  </data>
+  <data name="Third-party service providers explanation" xml:space="preserve">
+    <value>Podemos compartilhar dados com provedores de serviços confiáveis que nos ajudam a operar nosso serviço, como provedores de hospedagem e serviços de análise.</value>
+  </data>
+  <data name="Legal Requirements" xml:space="preserve">
+    <value>Requisitos Legais</value>
+  </data>
+  <data name="Legal requirements explanation" xml:space="preserve">
+    <value>Podemos divulgar suas informações se exigido por lei ou para proteger nossos direitos e segurança.</value>
+  </data>
+  <data name="User rights explanation" xml:space="preserve">
+    <value>Sob GDPR e outras leis de privacidade, você tem vários direitos em relação aos seus dados pessoais:</value>
+  </data>
+  <data name="Right to Access" xml:space="preserve">
+    <value>Direito de Acesso</value>
+  </data>
+  <data name="Right to access explanation" xml:space="preserve">
+    <value>Você tem o direito de solicitar uma cópia dos dados pessoais que mantemos sobre você.</value>
+  </data>
+  <data name="Right to Rectification" xml:space="preserve">
+    <value>Direito de Retificação</value>
+  </data>
+  <data name="Right to rectification explanation" xml:space="preserve">
+    <value>Você tem o direito de solicitar a correção de dados pessoais imprecisos ou incompletos.</value>
+  </data>
+  <data name="Right to Erasure" xml:space="preserve">
+    <value>Direito de Exclusão</value>
+  </data>
+  <data name="Right to erasure explanation" xml:space="preserve">
+    <value>Você tem o direito de solicitar a exclusão de seus dados pessoais em certas circunstâncias.</value>
+  </data>
+  <data name="Security measures explanation" xml:space="preserve">
+    <value>Implementamos medidas técnicas e organizacionais apropriadas para proteger seus dados pessoais contra acesso não autorizado, alteração, divulgação ou destruição.</value>
+  </data>
+  <data name="Contact information text" xml:space="preserve">
+    <value>Se você tiver alguma dúvida sobre esta Política de Privacidade ou desejar exercer seus direitos, entre em contato com nosso Encarregado de Proteção de Dados.</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Contatar o DPO</value>
+  </data>
+</root>

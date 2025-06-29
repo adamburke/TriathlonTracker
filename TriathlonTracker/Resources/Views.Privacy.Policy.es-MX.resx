@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Aviso de Privacidad</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Última actualización: {0}</value>
+  </data>
+  <data name="IntroductionHeader" xml:space="preserve">
+    <value>Introducción</value>
+  </data>
+  <data name="IntroductionText" xml:space="preserve">
+    <value>Este Aviso de Privacidad explica cómo recolectamos, utilizamos y protegemos su información personal cuando utiliza nuestros servicios de seguimiento de triatlón.</value>
+  </data>
+  <data name="DataCollectionHeader" xml:space="preserve">
+    <value>Datos que Recolectamos</value>
+  </data>
+  <data name="PersonalDataSection" xml:space="preserve">
+    <value>Información Personal</value>
+  </data>
+  <data name="PersonalDataText" xml:space="preserve">
+    <value>Nombre, correo electrónico, fecha de nacimiento e información de contacto proporcionada durante el registro</value>
+  </data>
+  <data name="TrainingDataSection" xml:space="preserve">
+    <value>Datos de Entrenamiento</value>
+  </data>
+  <data name="TrainingDataText" xml:space="preserve">
+    <value>Detalles de entrenamientos, métricas de desempeño y programas de entrenamiento</value>
+  </data>
+  <data name="TechnicalDataSection" xml:space="preserve">
+    <value>Datos Técnicos</value>
+  </data>
+  <data name="TechnicalDataText" xml:space="preserve">
+    <value>Información del dispositivo, dirección IP y estadísticas de uso</value>
+  </data>
+  <data name="DataUsageHeader" xml:space="preserve">
+    <value>Cómo Utilizamos sus Datos</value>
+  </data>
+  <data name="DataUsageText" xml:space="preserve">
+    <value>Utilizamos sus datos para proporcionar información personalizada sobre entrenamientos, mejorar nuestros servicios y garantizar la seguridad de la plataforma</value>
+  </data>
+  <data name="DataSharingHeader" xml:space="preserve">
+    <value>Transferencia de Datos</value>
+  </data>
+  <data name="DataSharingText" xml:space="preserve">
+    <value>Solo compartimos sus datos con terceros cuando es necesario para la prestación del servicio o con su consentimiento expreso</value>
+  </data>
+  <data name="DataRetentionHeader" xml:space="preserve">
+    <value>Conservación de Datos</value>
+  </data>
+  <data name="DataRetentionText" xml:space="preserve">
+    <value>Conservamos sus datos únicamente durante el tiempo necesario para proporcionar nuestros servicios y cumplir con las obligaciones legales</value>
+  </data>
+  <data name="YourRightsHeader" xml:space="preserve">
+    <value>Sus Derechos ARCO</value>
+  </data>
+  <data name="YourRightsText" xml:space="preserve">
+    <value>Tiene derecho a Acceder, Rectificar, Cancelar u Oponerse al tratamiento de sus datos personales</value>
+  </data>
+  <data name="ContactHeader" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="ContactText" xml:space="preserve">
+    <value>Para consultas relacionadas con la privacidad, favor de contactar a nuestro Oficial de Protección de Datos</value>
+  </data>
+</root>

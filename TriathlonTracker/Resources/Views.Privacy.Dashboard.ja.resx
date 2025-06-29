@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>プライバシーダッシュボード</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>プライバシー設定とデータ設定を一箇所で管理</value>
+  </data>
+  <data name="PersonalDataHeader" xml:space="preserve">
+    <value>個人データ</value>
+  </data>
+  <data name="PersonalDataDescription" xml:space="preserve">
+    <value>お客様について収集した個人情報を表示・管理</value>
+  </data>
+  <data name="TrainingDataHeader" xml:space="preserve">
+    <value>トレーニングデータ</value>
+  </data>
+  <data name="TrainingDataDescription" xml:space="preserve">
+    <value>トレーニングセッションとパフォーマンス指標に関する情報</value>
+  </data>
+  <data name="UsageDataHeader" xml:space="preserve">
+    <value>使用データ</value>
+  </data>
+  <data name="UsageDataDescription" xml:space="preserve">
+    <value>サービスと機能の使用方法に関する情報</value>
+  </data>
+  <data name="RightToAccessHeader" xml:space="preserve">
+    <value>アクセス権</value>
+  </data>
+  <data name="RightToAccessDescription" xml:space="preserve">
+    <value>お客様について保持している全ての個人データのコピーを要求</value>
+  </data>
+  <data name="RightToEraseHeader" xml:space="preserve">
+    <value>削除権</value>
+  </data>
+  <data name="RightToEraseDescription" xml:space="preserve">
+    <value>システムからの個人データの削除を要求</value>
+  </data>
+  <data name="RightToRectifyHeader" xml:space="preserve">
+    <value>訂正権</value>
+  </data>
+  <data name="RightToRectifyDescription" xml:space="preserve">
+    <value>不正確な個人データの訂正を要求</value>
+  </data>
+  <data name="ExportDataButton" xml:space="preserve">
+    <value>データをエクスポート</value>
+  </data>
+  <data name="DeleteDataButton" xml:space="preserve">
+    <value>データを削除</value>
+  </data>
+  <data name="UpdateDataButton" xml:space="preserve">
+    <value>データを更新</value>
+  </data>
+  <data name="ManageConsentButton" xml:space="preserve">
+    <value>同意設定を管理</value>
+  </data>
+  <data name="Privacy Dashboard" xml:space="preserve">
+    <value>プライバシーダッシュボード</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>お客様の権利</value>
+  </data>
+  <data name="Quick Actions" xml:space="preserve">
+    <value>クイックアクション</value>
+  </data>
+  <data name="View Privacy Policy" xml:space="preserve">
+    <value>プライバシーポリシーを表示</value>
+  </data>
+  <data name="Manage Cookies" xml:space="preserve">
+    <value>Cookieを管理</value>
+  </data>
+  <data name="Manage Consent" xml:space="preserve">
+    <value>同意を管理</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>DPOに連絡</value>
+  </data>
+  <data name="Confirm Data Deletion" xml:space="preserve">
+    <value>データ削除の確認</value>
+  </data>
+  <data name="Data deletion warning" xml:space="preserve">
+    <value>警告：この操作は元に戻せません</value>
+  </data>
+  <data name="Data deletion explanation" xml:space="preserve">
+    <value>続行すると、システムからすべての個人データを永続的に削除するプロセスが開始されます。このプロセスは完了まで最大30日かかる場合があります。</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Request Deletion" xml:space="preserve">
+    <value>削除を要求</value>
+  </data>
+  <data name="Request Access" xml:space="preserve">
+    <value>アクセスを要求</value>
+  </data>
+  <data name="Request Correction" xml:space="preserve">
+    <value>訂正を要求</value>
+  </data>
+</root>

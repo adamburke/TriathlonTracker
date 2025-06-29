@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Contatta il Responsabile della Protezione dei Dati</value>
+  </data>
+  <data name="Contact form description" xml:space="preserve">
+    <value>Utilizza questo modulo per contattare il nostro Responsabile della Protezione dei Dati riguardo questioni sulla privacy, richieste di dati o preoccupazioni.</value>
+  </data>
+  <data name="Data Protection Officer" xml:space="preserve">
+    <value>Responsabile della Protezione dei Dati</value>
+  </data>
+  <data name="DPO contact information" xml:space="preserve">
+    <value>Puoi raggiungere il nostro Responsabile della Protezione dei Dati attraverso i seguenti canali:</value>
+  </data>
+  <data name="Request Type" xml:space="preserve">
+    <value>Tipo di Richiesta</value>
+  </data>
+  <data name="Select request type" xml:space="preserve">
+    <value>Seleziona il tipo di richiesta</value>
+  </data>
+  <data name="Data Access Request" xml:space="preserve">
+    <value>Richiesta di Accesso ai Dati</value>
+  </data>
+  <data name="Data Rectification" xml:space="preserve">
+    <value>Richiesta di Correzione dei Dati Personali</value>
+  </data>
+  <data name="Data Erasure" xml:space="preserve">
+    <value>Richiesta di Cancellazione dei Dati Personali</value>
+  </data>
+  <data name="Data Portability" xml:space="preserve">
+    <value>Richiesta di Esportazione Dati</value>
+  </data>
+  <data name="Consent Withdrawal" xml:space="preserve">
+    <value>Ritiro del Consenso al Trattamento</value>
+  </data>
+  <data name="Privacy Complaint" xml:space="preserve">
+    <value>Reclamo sulla Privacy</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Altra Questione sulla Privacy</value>
+  </data>
+  <data name="Full Name" xml:space="preserve">
+    <value>Nome Completo</value>
+  </data>
+  <data name="Please enter your full name" xml:space="preserve">
+    <value>Inserisci il tuo nome completo</value>
+  </data>
+  <data name="Email Address" xml:space="preserve">
+    <value>Indirizzo Email</value>
+  </data>
+  <data name="Please enter a valid email address" xml:space="preserve">
+    <value>Inserisci un indirizzo email valido</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Messaggio</value>
+  </data>
+  <data name="Please enter your message" xml:space="preserve">
+    <value>Inserisci il tuo messaggio</value>
+  </data>
+  <data name="Message length notice" xml:space="preserve">
+    <value>Fornisci dettagli sufficienti per aiutarci a comprendere e affrontare efficacemente la tua richiesta.</value>
+  </data>
+  <data name="Identity verification consent" xml:space="preserve">
+    <value>Comprendo che potrei dover fornire ulteriore verifica della mia identità per elaborare questa richiesta</value>
+  </data>
+  <data name="Please confirm identity verification" xml:space="preserve">
+    <value>Devi riconoscere il requisito di verifica dell'identità</value>
+  </data>
+  <data name="Privacy policy agreement" xml:space="preserve">
+    <value>Ho letto e accetto l'{0}</value>
+  </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Informativa sulla Privacy</value>
+  </data>
+  <data name="Please accept privacy policy" xml:space="preserve">
+    <value>Devi accettare l'informativa sulla privacy per inviare questa richiesta</value>
+  </data>
+  <data name="Response time notice" xml:space="preserve">
+    <value>Miriamo a rispondere a tutte le richieste relative alla privacy entro 30 giorni come richiesto dal GDPR. Le richieste complesse potrebbero richiedere più tempo, nel qual caso ti avviseremo.</value>
+  </data>
+  <data name="Submit Request" xml:space="preserve">
+    <value>Invia Richiesta</value>
+  </data>
+  <data name="Request submitted successfully" xml:space="preserve">
+    <value>La tua richiesta è stata inviata con successo. Ti contatteremo via email con aggiornamenti.</value>
+  </data>
+  <data name="Error submitting request" xml:space="preserve">
+    <value>Si è verificato un errore nell'invio della tua richiesta. Riprova o contattaci direttamente.</value>
+  </data>
+  <data name="DPO email" xml:space="preserve">
+    <value>privacy@triathlontracker.com</value>
+  </data>
+  <data name="DPO phone" xml:space="preserve">
+    <value>+1 (555) 123-4567</value>
+  </data>
+  <data name="Please select a request type" xml:space="preserve">
+    <value>Seleziona un tipo di richiesta</value>
+  </data>
+</root>

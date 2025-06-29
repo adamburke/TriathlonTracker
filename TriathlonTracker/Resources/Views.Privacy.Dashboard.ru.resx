@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Панель управления конфиденциальностью</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Управляйте настройками конфиденциальности и параметрами данных в одном месте</value>
+  </data>
+  <data name="PersonalDataHeader" xml:space="preserve">
+    <value>Персональные данные</value>
+  </data>
+  <data name="PersonalDataDescription" xml:space="preserve">
+    <value>Просмотр и управление личной информацией, которую мы собираем о вас</value>
+  </data>
+  <data name="TrainingDataHeader" xml:space="preserve">
+    <value>Данные тренировок</value>
+  </data>
+  <data name="TrainingDataDescription" xml:space="preserve">
+    <value>Информация о ваших тренировках и показателях производительности</value>
+  </data>
+  <data name="UsageDataHeader" xml:space="preserve">
+    <value>Данные использования</value>
+  </data>
+  <data name="UsageDataDescription" xml:space="preserve">
+    <value>Информация о том, как вы используете наши сервисы и функции</value>
+  </data>
+  <data name="RightToAccessHeader" xml:space="preserve">
+    <value>Право на доступ</value>
+  </data>
+  <data name="RightToAccessDescription" xml:space="preserve">
+    <value>Запросить копию всех персональных данных, которые мы храним о вас</value>
+  </data>
+  <data name="RightToEraseHeader" xml:space="preserve">
+    <value>Право на удаление</value>
+  </data>
+  <data name="RightToEraseDescription" xml:space="preserve">
+    <value>Запросить удаление ваших персональных данных из наших систем</value>
+  </data>
+  <data name="RightToRectifyHeader" xml:space="preserve">
+    <value>Право на исправление</value>
+  </data>
+  <data name="RightToRectifyDescription" xml:space="preserve">
+    <value>Запросить исправление неточных персональных данных</value>
+  </data>
+  <data name="ExportDataButton" xml:space="preserve">
+    <value>Экспортировать мои данные</value>
+  </data>
+  <data name="DeleteDataButton" xml:space="preserve">
+    <value>Удалить мои данные</value>
+  </data>
+  <data name="UpdateDataButton" xml:space="preserve">
+    <value>Обновить мои данные</value>
+  </data>
+  <data name="ManageConsentButton" xml:space="preserve">
+    <value>Управление настройками согласия</value>
+  </data>
+</root>

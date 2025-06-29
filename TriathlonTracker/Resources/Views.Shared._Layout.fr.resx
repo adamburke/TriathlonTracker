@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <data name="My Races" xml:space="preserve"><value>Mes courses</value></data>
-  <data name="Add Race" xml:space="preserve"><value>Ajouter une course</value></data>
-  <data name="Logout" xml:space="preserve"><value>Déconnexion</value></data>
-  <data name="Login" xml:space="preserve"><value>Connexion</value></data>
+  <data name="My Races" xml:space="preserve"><value>Mes Courses</value></data>
+  <data name="Add Race" xml:space="preserve"><value>Ajouter une Course</value></data>
+  <data name="Logout" xml:space="preserve"><value>Se Déconnecter</value></data>
+  <data name="Login" xml:space="preserve"><value>Se Connecter</value></data>
   <data name="Register" xml:space="preserve"><value>S'inscrire</value></data>
   <data name="Privacy" xml:space="preserve"><value>Confidentialité</value></data>
-</root> 
+  <data name="PrivacyDashboard" xml:space="preserve"><value>Tableau de Bord de Confidentialité</value></data>
+  <data name="ManageConsent" xml:space="preserve"><value>Gérer le Consentement</value></data>
+  <data name="PrivacyPolicy" xml:space="preserve"><value>Politique de Confidentialité</value></data>
+  <data name="CookiePolicy" xml:space="preserve"><value>Politique des Cookies</value></data>
+  <data name="Contact" xml:space="preserve"><value>Contact</value></data>
+</root>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Politique de témoins</value>
+  </data>
+  <data name="LastUpdatedJune2025" xml:space="preserve">
+    <value>Dernière mise à jour : 28 juin 2025 | Version 1.0</value>
+  </data>
+  <data name="WhatAreCookies" xml:space="preserve">
+    <value>Que sont les témoins?</value>
+  </data>
+  <data name="CookiesDescription" xml:space="preserve">
+    <value>Les témoins sont de petits fichiers texte qui sont stockés sur votre appareil lorsque vous visitez notre site web. Ils nous aident à vous offrir une meilleure expérience en se souvenant de vos préférences et en activant certaines fonctionnalités.</value>
+  </data>
+  <data name="HowWeUseCookies" xml:space="preserve">
+    <value>Comment nous utilisons les témoins</value>
+  </data>
+  <data name="EssentialCookies" xml:space="preserve">
+    <value>Témoins essentiels</value>
+  </data>
+  <data name="EssentialCookiesDescription" xml:space="preserve">
+    <value>Ces témoins sont nécessaires au bon fonctionnement du site web :</value>
+  </data>
+  <data name="Authentication" xml:space="preserve">
+    <value>Authentification :</value>
+  </data>
+  <data name="KeepLoggedInSession" xml:space="preserve">
+    <value>Vous garder connecté pendant votre session</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Sécurité :</value>
+  </data>
+  <data name="ProtectAgainstCSRF" xml:space="preserve">
+    <value>Protéger contre la falsification de requête intersites</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Préférences :</value>
+  </data>
+  <data name="RememberLanguageSettings" xml:space="preserve">
+    <value>Se souvenir de votre langue et paramètres d'affichage</value>
+  </data>
+  <data name="FunctionalCookies" xml:space="preserve">
+    <value>Témoins fonctionnels</value>
+  </data>
+  <data name="FunctionalCookiesDescription" xml:space="preserve">
+    <value>Ces témoins améliorent votre expérience (avec votre consentement) :</value>
+  </data>
+  <data name="UserPreferences" xml:space="preserve">
+    <value>Préférences utilisateur :</value>
+  </data>
+  <data name="RememberDashboardLayout" xml:space="preserve">
+    <value>Se souvenir de la disposition et des paramètres de votre tableau de bord</value>
+  </data>
+  <data name="FormData" xml:space="preserve">
+    <value>Données de formulaire :</value>
+  </data>
+  <data name="SavePartialForms" xml:space="preserve">
+    <value>Sauvegarder les formulaires partiellement complétés</value>
+  </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Accessibilité :</value>
+  </data>
+  <data name="RememberAccessibilityPreferences" xml:space="preserve">
+    <value>Se souvenir des préférences d'accessibilité</value>
+  </data>
+  <data name="AnalyticsCookies" xml:space="preserve">
+    <value>Témoins d'analyse</value>
+  </data>
+  <data name="AnalyticsCookiesDescription" xml:space="preserve">
+    <value>Ces témoins nous aident à comprendre comment vous utilisez notre service (avec votre consentement) :</value>
+  </data>
+  <data name="UsageAnalytics" xml:space="preserve">
+    <value>Analyse d'utilisation :</value>
+  </data>
+  <data name="TrackPageViews" xml:space="preserve">
+    <value>Suivre les vues de page et les interactions utilisateur</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Performance :</value>
+  </data>
+  <data name="MonitorPerformance" xml:space="preserve">
+    <value>Surveiller les performances de l'application et les erreurs</value>
+  </data>
+  <data name="Improvements" xml:space="preserve">
+    <value>Améliorations :</value>
+  </data>
+  <data name="IdentifyEnhancements" xml:space="preserve">
+    <value>Identifier les domaines d'amélioration</value>
+  </data>
+  <data name="CookieCategories" xml:space="preserve">
+    <value>Catégories de témoins</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Objectif</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Durée</value>
+  </data>
+  <data name="ConsentRequired" xml:space="preserve">
+    <value>Consentement requis</value>
+  </data>
+  <data name="Essential" xml:space="preserve">
+    <value>Essentiel</value>
+  </data>
+  <data name="AuthSecurityBasicFunc" xml:space="preserve">
+    <value>Authentification, sécurité, fonctionnalité de base</value>
+  </data>
+  <data name="SessionOneYear" xml:space="preserve">
+    <value>Session / 1 an</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="Functional" xml:space="preserve">
+    <value>Fonctionnel</value>
+  </data>
+  <data name="EnhancedUserExperience" xml:space="preserve">
+    <value>Expérience utilisateur améliorée et préférences</value>
+  </data>
+  <data name="OneYear" xml:space="preserve">
+    <value>1 an</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="Analytics" xml:space="preserve">
+    <value>Analyse</value>
+  </data>
+  <data name="UsageTrackingPerformance" xml:space="preserve">
+    <value>Suivi d'utilisation et surveillance des performances</value>
+  </data>
+  <data name="TwoYears" xml:space="preserve">
+    <value>2 ans</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="PersonalizedContent" xml:space="preserve">
+    <value>Contenu personnalisé et publicité</value>
+  </data>
+  <data name="ManagingCookiePreferences" xml:space="preserve">
+    <value>Gestion de vos préférences de témoins</value>
+  </data>
+  <data name="ThroughOurWebsite" xml:space="preserve">
+    <value>Par notre site web</value>
+  </data>
+  <data name="ManageCookiePreferencesAnytime" xml:space="preserve">
+    <value>Vous pouvez gérer vos préférences de témoins à tout moment :</value>
+  </data>
+  <data name="VisitYour" xml:space="preserve">
+    <value>Visitez votre</value>
+  </data>
+  <data name="ConsentManagement" xml:space="preserve">
+    <value>Gestion du consentement</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>page</value>
+  </data>
+  <data name="UseCookieBanner" xml:space="preserve">
+    <value>Utilisez la bannière de témoins lorsqu'elle apparaît</value>
+  </data>
+  <data name="AccessSettingsThrough" xml:space="preserve">
+    <value>Accédez aux paramètres via votre</value>
+  </data>
+  <data name="PrivacyDashboard" xml:space="preserve">
+    <value>Tableau de bord de confidentialité</value>
+  </data>
+  <data name="ThroughYourBrowser" xml:space="preserve">
+    <value>Par votre navigateur</value>
+  </data>
+  <data name="ControlCookiesBrowser" xml:space="preserve">
+    <value>Vous pouvez également contrôler les témoins via les paramètres de votre navigateur :</value>
+  </data>
+  <data name="Chrome" xml:space="preserve">
+    <value>Chrome :</value>
+  </data>
+  <data name="ChromeSettings" xml:space="preserve">
+    <value>Paramètres > Confidentialité et sécurité > Témoins</value>
+  </data>
+  <data name="Firefox" xml:space="preserve">
+    <value>Firefox :</value>
+  </data>
+  <data name="FirefoxOptions" xml:space="preserve">
+    <value>Options > Vie privée et sécurité > Témoins</value>
+  </data>
+  <data name="Safari" xml:space="preserve">
+    <value>Safari :</value>
+  </data>
+  <data name="SafariPreferences" xml:space="preserve">
+    <value>Préférences > Confidentialité > Témoins</value>
+  </data>
+  <data name="Edge" xml:space="preserve">
+    <value>Edge :</value>
+  </data>
+  <data name="EdgeSettings" xml:space="preserve">
+    <value>Paramètres > Témoins et autorisations de site</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note :</value>
+  </data>
+  <data name="DisablingEssentialCookies" xml:space="preserve">
+    <value>Désactiver les témoins essentiels peut affecter la fonctionnalité de notre site web.</value>
+  </data>
+  <data name="ThirdPartyCookies" xml:space="preserve">
+    <value>Témoins de tiers</value>
+  </data>
+  <data name="ThirdPartyServices" xml:space="preserve">
+    <value>Nous pouvons utiliser des services tiers qui définissent leurs propres témoins :</value>
+  </data>
+  <data name="AuthenticationServices" xml:space="preserve">
+    <value>Services d'authentification</value>
+  </data>
+  <data name="GoogleOAuth" xml:space="preserve">
+    <value>Google OAuth :</value>
+  </data>
+  <data name="SecureLoginFunctionality" xml:space="preserve">
+    <value>Pour la fonctionnalité de connexion sécurisée</value>
+  </data>
+  <data name="AnalyticsServicesConsent" xml:space="preserve">
+    <value>Services d'analyse (avec consentement)</value>
+  </data>
+  <data name="ApplicationInsights" xml:space="preserve">
+    <value>Application Insights :</value>
+  </data>
+  <data name="PerformanceMonitoring" xml:space="preserve">
+    <value>Pour la surveillance des performances</value>
+  </data>
+  <data name="CustomAnalytics" xml:space="preserve">
+    <value>Analyse personnalisée :</value>
+  </data>
+  <data name="UsageTracking" xml:space="preserve">
+    <value>Pour le suivi d'utilisation</value>
+  </data>
+  <data name="ThirdPartyPolicies" xml:space="preserve">
+    <value>Ces tiers ont leurs propres politiques de confidentialité et pratiques de témoins. Nous recommandons de consulter leurs politiques pour plus d'informations.</value>
+  </data>
+  <data name="CookieRetention" xml:space="preserve">
+    <value>Rétention des témoins</value>
+  </data>
+  <data name="CookieRetentionPeriods" xml:space="preserve">
+    <value>Différents types de témoins sont conservés pour différentes périodes :</value>
+  </data>
+  <data name="SessionCookies" xml:space="preserve">
+    <value>Témoins de session :</value>
+  </data>
+  <data name="DeletedWhenCloseBrowser" xml:space="preserve">
+    <value>Supprimés lorsque vous fermez votre navigateur</value>
+  </data>
+  <data name="PersistentCookies" xml:space="preserve">
+    <value>Témoins persistants :</value>
+  </data>
+  <data name="RemainUntilExpiration" xml:space="preserve">
+    <value>Restent jusqu'à expiration ou suppression manuelle</value>
+  </data>
+  <data name="EssentialCookiesColon" xml:space="preserve">
+    <value>Témoins essentiels :</value>
+  </data>
+  <data name="UpToOneYear" xml:space="preserve">
+    <value>Jusqu'à 1 an</value>
+  </data>
+  <data name="PreferenceCookies" xml:space="preserve">
+    <value>Témoins de préférence :</value>
+  </data>
+  <data name="AnalyticsCookiesColon" xml:space="preserve">
+    <value>Témoins d'analyse :</value>
+  </data>
+  <data name="UpToTwoYears" xml:space="preserve">
+    <value>Jusqu'à 2 ans</value>
+  </data>
+  <data name="UpdatesToPolicy" xml:space="preserve">
+    <value>Mises à jour de cette politique</value>
+  </data>
+  <data name="PolicyUpdateNotice" xml:space="preserve">
+    <value>Nous pouvons mettre à jour cette politique de témoins de temps à autre pour refléter les changements dans nos pratiques ou pour d'autres raisons opérationnelles, légales ou réglementaires. Nous vous informerons de tout changement important en publiant la politique mise à jour sur cette page.</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Contactez-nous</value>
+  </data>
+  <data name="CookieQuestions" xml:space="preserve">
+    <value>Si vous avez des questions sur notre utilisation des témoins, veuillez nous contacter :</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Courriel :</value>
+  </data>
+  <data name="ContactForm" xml:space="preserve">
+    <value>Formulaire de contact :</value>
+  </data>
+  <data name="PrivacyContact" xml:space="preserve">
+    <value>Contact confidentialité</value>
+  </data>
+  <data name="QuickActions" xml:space="preserve">
+    <value>Actions rapides</value>
+  </data>
+  <data name="ManageCookies" xml:space="preserve">
+    <value>Gérer les témoins</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Politique de confidentialité</value>
+  </data>
+</root>

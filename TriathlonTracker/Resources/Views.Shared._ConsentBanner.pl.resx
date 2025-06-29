@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CookieBannerTitle" xml:space="preserve">
+    <value>🍪 Cenimy Twoją prywatność</value>
+  </data>
+  <data name="CookieBannerContent" xml:space="preserve">
+    <value>Używamy plików cookie i podobnych technologii, aby poprawić Twoje doświadczenia, analizować użytkowanie i dostarczać spersonalizowane treści. Kontynuując korzystanie z naszej usługi, wyrażasz zgodę na używanie plików cookie zgodnie z opisem w naszej {0} i {1}.</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Polityka Prywatności</value>
+  </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Polityka Plików Cookie</value>
+  </data>
+  <data name="CustomizeButton" xml:space="preserve">
+    <value>Dostosuj</value>
+  </data>
+  <data name="AcceptAllButton" xml:space="preserve">
+    <value>Zaakceptuj wszystkie</value>
+  </data>
+  <data name="PrivacyPreferencesTitle" xml:space="preserve">
+    <value>Preferencje Prywatności</value>
+  </data>
+  <data name="PrivacyPreferencesDescription" xml:space="preserve">
+    <value>Szanujemy Twoją prywatność i dajemy Ci kontrolę nad tym, jak Twoje dane są używane. Przejrzyj i dostosuj swoje preferencje poniżej.</value>
+  </data>
+  <data name="EssentialCookiesTitle" xml:space="preserve">
+    <value>Niezbędne Pliki Cookie</value>
+  </data>
+  <data name="EssentialCookiesDescription" xml:space="preserve">
+    <value>Te pliki cookie są niezbędne do działania strony internetowej i nie można ich wyłączyć. Są zwykle ustawiane tylko w odpowiedzi na Twoje działania.</value>
+  </data>
+  <data name="AlwaysActive" xml:space="preserve">
+    <value>Zawsze aktywne</value>
+  </data>
+  <data name="DataProcessingTitle" xml:space="preserve">
+    <value>Przetwarzanie Danych</value>
+  </data>
+  <data name="DataProcessingDescription" xml:space="preserve">
+    <value>Pozwól nam przetwarzać Twoje dane osobowe, aby zapewnić podstawową funkcjonalność aplikacji, w tym przechowywanie Twoich rekordów triatlonu i informacji o koncie.</value>
+  </data>
+  <data name="MarketingCommunicationsTitle" xml:space="preserve">
+    <value>Komunikacja Marketingowa</value>
+  </data>
+  <data name="MarketingCommunicationsDescription" xml:space="preserve">
+    <value>Otrzymuj aktualizacje o nowych funkcjach, wskazówki treningowe i treści promocyjne dostosowane do Twoich zainteresowań.</value>
+  </data>
+  <data name="AnalyticsPerformanceTitle" xml:space="preserve">
+    <value>Analityka i Wydajność</value>
+  </data>
+  <data name="AnalyticsPerformanceDescription" xml:space="preserve">
+    <value>Pomóż nam ulepszyć naszą usługę, pozwalając nam analizować, jak korzystasz z aplikacji i identyfikować obszary do poprawy.</value>
+  </data>
+  <data name="YourRightsNotice" xml:space="preserve">
+    <value>Możesz zmienić te preferencje w dowolnym momencie w swoim {0}. Masz również prawo do dostępu, eksportu lub usunięcia swoich danych osobowych.</value>
+  </data>
+  <data name="PrivacyDashboard" xml:space="preserve">
+    <value>Panel Prywatności</value>
+  </data>
+  <data name="EssentialOnlyButton" xml:space="preserve">
+    <value>Tylko niezbędne</value>
+  </data>
+  <data name="SavePreferencesButton" xml:space="preserve">
+    <value>Zapisz preferencje</value>
+  </data>
+  <data name="ConsentSavedSuccess" xml:space="preserve">
+    <value>Preferencje zgody zostały pomyślnie zapisane</value>
+  </data>
+  <data name="ConsentSaveError" xml:space="preserve">
+    <value>Błąd podczas zapisywania preferencji zgody: {0}</value>
+  </data>
+  <data name="ConsentSaveGenericError" xml:space="preserve">
+    <value>Wystąpił błąd podczas zapisywania Twoich preferencji</value>
+  </data>
+  <data name="YourRights" xml:space="preserve">
+    <value>Twoje Prawa</value>
+  </data>
+</root>

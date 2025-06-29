@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="Cookie Policy" xml:space="preserve">
+    <value>Politica sui Cookie</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Ultimo aggiornamento: Giugno 2025</value>
+  </data>
+  <data name="What Are Cookies" xml:space="preserve">
+    <value>Cosa Sono i Cookie</value>
+  </data>
+  <data name="Cookie explanation" xml:space="preserve">
+    <value>I cookie sono piccoli file di testo che i siti web posizionano sul tuo dispositivo per memorizzare informazioni sulle tue preferenze, migliorare la funzionalità del sito e fornire contenuti personalizzati.</value>
+  </data>
+  <data name="How We Use Cookies" xml:space="preserve">
+    <value>Come Utilizziamo i Cookie</value>
+  </data>
+  <data name="Essential Cookies" xml:space="preserve">
+    <value>Cookie Essenziali</value>
+  </data>
+  <data name="Essential cookies explanation" xml:space="preserve">
+    <value>Questi cookie sono necessari per il corretto funzionamento del sito web e non possono essere disabilitati nei nostri sistemi.</value>
+  </data>
+  <data name="Authentication cookie description" xml:space="preserve">
+    <value>Gestisce la tua sessione di accesso e lo stato di autenticazione</value>
+  </data>
+  <data name="Security cookie description" xml:space="preserve">
+    <value>Protegge contro attacchi di falsificazione delle richieste cross-site</value>
+  </data>
+  <data name="Functional Cookies" xml:space="preserve">
+    <value>Cookie Funzionali</value>
+  </data>
+  <data name="Functional cookies explanation" xml:space="preserve">
+    <value>Questi cookie abilitano funzionalità avanzate e personalizzazione del sito web.</value>
+  </data>
+  <data name="Language cookie description" xml:space="preserve">
+    <value>Ricorda la tua impostazione di lingua preferita</value>
+  </data>
+  <data name="Display cookie description" xml:space="preserve">
+    <value>Memorizza le tue preferenze di visualizzazione come tema e layout</value>
+  </data>
+  <data name="Analytics Cookies" xml:space="preserve">
+    <value>Cookie di Analisi</value>
+  </data>
+  <data name="Analytics cookies explanation" xml:space="preserve">
+    <value>Questi cookie ci aiutano a capire come i visitatori interagiscono con il nostro sito web.</value>
+  </data>
+  <data name="Google Analytics cookie description" xml:space="preserve">
+    <value>Traccia visitatori unici e modelli di utilizzo del sito</value>
+  </data>
+  <data name="Session cookie description" xml:space="preserve">
+    <value>Identifica sessioni uniche per scopi analitici</value>
+  </data>
+  <data name="Managing Cookies" xml:space="preserve">
+    <value>Gestione dei Cookie</value>
+  </data>
+  <data name="Cookie management explanation" xml:space="preserve">
+    <value>Puoi personalizzare le tue preferenze sui cookie utilizzando il pannello delle impostazioni. I cookie essenziali non possono essere disabilitati in quanto sono necessari per la funzionalità di base del sito.</value>
+  </data>
+  <data name="Browser settings notice" xml:space="preserve">
+    <value>Puoi anche controllare i cookie attraverso le impostazioni del tuo browser. Nota che bloccare alcuni tipi di cookie potrebbe influire sulla tua esperienza sul nostro sito.</value>
+  </data>
+  <data name="Third-Party Cookies" xml:space="preserve">
+    <value>Cookie di Terze Parti</value>
+  </data>
+  <data name="Third-party cookies explanation" xml:space="preserve">
+    <value>Alcune funzionalità del nostro sito utilizzano cookie di servizi di terze parti. Questi ci aiutano ad analizzare l'utilizzo del sito e fornire funzionalità avanzate.</value>
+  </data>
+  <data name="More Information" xml:space="preserve">
+    <value>Maggiori Informazioni</value>
+  </data>
+  <data name="Additional information text" xml:space="preserve">
+    <value>Se hai domande su come utilizziamo i cookie, contattaci utilizzando il pulsante qui sotto.</value>
+  </data>
+  <data name="Contact Us" xml:space="preserve">
+    <value>Contattaci</value>
+  </data>
+  <data name="Cookie Settings" xml:space="preserve">
+    <value>Impostazioni Cookie</value>
+  </data>
+  <data name="Essential cookies required" xml:space="preserve">
+    <value>Questi cookie sono richiesti e non possono essere disabilitati</value>
+  </data>
+  <data name="Save Preferences" xml:space="preserve">
+    <value>Salva Preferenze</value>
+  </data>
+  <data name="Cookie preferences saved" xml:space="preserve">
+    <value>Le tue preferenze sui cookie sono state salvate con successo</value>
+  </data>
+  <data name="Error saving preferences" xml:space="preserve">
+    <value>Si è verificato un errore durante il salvataggio delle tue preferenze sui cookie. Riprova.</value>
+  </data>
+</root>
