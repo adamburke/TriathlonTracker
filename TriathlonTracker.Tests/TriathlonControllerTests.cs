@@ -191,7 +191,8 @@ namespace TriathlonTracker.Tests
 
             var result = await controller.Create(triathlon);
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Index", redirectResult.ActionName);
+            Assert.Equal("Login", redirectResult.ActionName);
+            Assert.Equal("Account", redirectResult.ControllerName);
         }
 
         [Fact]
@@ -204,8 +205,9 @@ namespace TriathlonTracker.Tests
             var triathlon = new Triathlon { RaceName = "Race", RaceDate = System.DateTime.UtcNow, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", SwimTime = System.TimeSpan.FromMinutes(10), BikeDistance = 1, BikeUnit = "km", BikeTime = System.TimeSpan.FromMinutes(10), RunDistance = 1, RunUnit = "km", RunTime = System.TimeSpan.FromMinutes(10) };
 
             var result = await controller.Create(triathlon);
-            var redirect = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Index", redirect.ActionName);
+            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Login", redirectResult.ActionName);
+            Assert.Equal("Account", redirectResult.ControllerName);
         }
 
         [Fact]
@@ -295,7 +297,41 @@ namespace TriathlonTracker.Tests
             var userManager = GetUserManagerMock();
             userManager.Setup(u => u.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns("user1");
             var controller = GetController(db, userManager.Object);
-            var triathlon = new Triathlon { Id = 1, RaceName = "Race", RaceDate = System.DateTime.UtcNow, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", SwimTime = System.TimeSpan.FromMinutes(10), BikeDistance = 1, BikeUnit = "km", BikeTime = System.TimeSpan.FromMinutes(10), RunDistance = 1, RunUnit = "km", RunTime = System.TimeSpan.FromMinutes(10) };
+            var triathlon = new Triathlon {
+                Id = 1,
+                UserId = "user1",
+                RaceName = "Race",
+                RaceDate = System.DateTime.UtcNow,
+                Location = "Loc",
+                SwimDistance = 1,
+                SwimUnit = "meters",
+                SwimTime = System.TimeSpan.FromMinutes(10),
+                BikeDistance = 1,
+                BikeUnit = "km",
+                BikeTime = System.TimeSpan.FromMinutes(10),
+                RunDistance = 1,
+                RunUnit = "km",
+                RunTime = System.TimeSpan.FromMinutes(10)
+            };
+            // Ensure all required string fields are set
+            triathlon.Location = "Loc";
+            triathlon.SwimUnit = "meters";
+            triathlon.BikeUnit = "km";
+            triathlon.RunUnit = "km";
+
+            controller.ModelState.Clear();
+
+            // Debug: print ModelState errors if any
+            if (!controller.ModelState.IsValid)
+            {
+                foreach (var kvp in controller.ModelState)
+                {
+                    foreach (var error in kvp.Value.Errors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"ModelState error for {kvp.Key}: {error.ErrorMessage}");
+                    }
+                }
+            }
 
             var result = await controller.Edit(1, triathlon);
             var redirect = Assert.IsType<RedirectToActionResult>(result);
@@ -312,8 +348,29 @@ namespace TriathlonTracker.Tests
             userManager.Setup(u => u.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns("user1");
             var controller = GetController(db, userManager.Object);
             var localDate = DateTime.Now; // Local time
-            var triathlon = new Triathlon { Id = 1, RaceName = "Race", RaceDate = localDate, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", SwimTime = System.TimeSpan.FromMinutes(10), BikeDistance = 1, BikeUnit = "km", BikeTime = System.TimeSpan.FromMinutes(10), RunDistance = 1, RunUnit = "km", RunTime = System.TimeSpan.FromMinutes(10) };
+            var triathlon = new Triathlon {
+                Id = 1,
+                UserId = "user1",
+                RaceName = "Race",
+                RaceDate = localDate,
+                Location = "Loc",
+                SwimDistance = 1,
+                SwimUnit = "meters",
+                SwimTime = System.TimeSpan.FromMinutes(10),
+                BikeDistance = 1,
+                BikeUnit = "km",
+                BikeTime = System.TimeSpan.FromMinutes(10),
+                RunDistance = 1,
+                RunUnit = "km",
+                RunTime = System.TimeSpan.FromMinutes(10)
+            };
+            // Ensure all required string fields are set
+            triathlon.Location = "Loc";
+            triathlon.SwimUnit = "meters";
+            triathlon.BikeUnit = "km";
+            triathlon.RunUnit = "km";
 
+            controller.ModelState.Clear();
             var result = await controller.Edit(1, triathlon);
             var redirect = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", redirect.ActionName);
@@ -329,8 +386,29 @@ namespace TriathlonTracker.Tests
             userManager.Setup(u => u.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns("user1");
             var controller = GetController(db, userManager.Object);
             var utcDate = DateTime.UtcNow;
-            var triathlon = new Triathlon { Id = 1, RaceName = "Race", RaceDate = utcDate, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", SwimTime = System.TimeSpan.FromMinutes(10), BikeDistance = 1, BikeUnit = "km", BikeTime = System.TimeSpan.FromMinutes(10), RunDistance = 1, RunUnit = "km", RunTime = System.TimeSpan.FromMinutes(10) };
+            var triathlon = new Triathlon {
+                Id = 1,
+                UserId = "user1",
+                RaceName = "Race",
+                RaceDate = utcDate,
+                Location = "Loc",
+                SwimDistance = 1,
+                SwimUnit = "meters",
+                SwimTime = System.TimeSpan.FromMinutes(10),
+                BikeDistance = 1,
+                BikeUnit = "km",
+                BikeTime = System.TimeSpan.FromMinutes(10),
+                RunDistance = 1,
+                RunUnit = "km",
+                RunTime = System.TimeSpan.FromMinutes(10)
+            };
+            // Ensure all required string fields are set
+            triathlon.Location = "Loc";
+            triathlon.SwimUnit = "meters";
+            triathlon.BikeUnit = "km";
+            triathlon.RunUnit = "km";
 
+            controller.ModelState.Clear();
             var result = await controller.Edit(1, triathlon);
             var redirect = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", redirect.ActionName);

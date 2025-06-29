@@ -1,0 +1,220 @@
+/* Error Pages Styling */
+.error-container {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.error-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: slideInUp 0.6s ease-out;
+}
+
+.error-icon {
+    font-size: 4rem;
+    color: #f59e0b;
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite;
+}
+
+.error-content {
+    margin-bottom: 2rem;
+}
+
+.error-title {
+    color: var(--dark-grey);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.error-message {
+    color: var(--medium-grey);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.error-details {
+    background: var(--light-grey);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--secondary-blue);
+}
+
+.request-id {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.request-id strong {
+    color: var(--dark-grey);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.request-id code {
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #e5e7eb;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-actions .btn {
+    min-width: 140px;
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.error-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.help-section {
+    margin-top: 3rem;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.help-section h3 {
+    color: var(--dark-grey);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.help-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.help-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--white);
+    color: var(--primary-blue);
+    text-decoration: none;
+    border-radius: 15px;
+    border: 2px solid var(--light-blue);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.help-link:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.2);
+    text-decoration: none;
+}
+
+/* 404 Page Specific Styling */
+.notfound-icon {
+    font-size: 4rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@media (max-width: 768px) {
+    .error-container {
+        padding: 1rem;
+    }
+    
+    .error-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .error-title {
+        font-size: 2rem;
+    }
+    
+    .error-message {
+        font-size: 1.1rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .error-actions .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .help-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .help-link {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+} 

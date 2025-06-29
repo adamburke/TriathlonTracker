@@ -4,21 +4,49 @@
     ViewData["Title"] = Localizer["Error_Title"];
 }
 
-<h1 class="text-danger">@Localizer["Error_Title"]</h1>
-<h2 class="text-danger">@Localizer["Error_Message"]</h2>
-
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>@Localizer["RequestId"]</strong> <code>@Model.RequestId</code>
-    </p>
-}
-
-<h3>@Localizer["DevelopmentMode"]</h3>
-<p>
-    @Localizer["DevelopmentMode_Info1"]
-</p>
-<p>
-    <strong>@Localizer["DevelopmentMode_Warning"]</strong>
-    @Localizer["DevelopmentMode_Info2"]
-</p>
+<div class="error-container">
+    <div class="error-card">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        
+        <div class="error-content">
+            <h1 class="error-title">@Localizer["Error_Title"]</h1>
+            <p class="error-message">@Localizer["Error_Message"]</p>
+            
+            @if (Model.ShowRequestId)
+            {
+                <div class="error-details">
+                    <p class="request-id">
+                        <strong>@Localizer["RequestId"]</strong>
+                        <code>@Model.RequestId</code>
+                    </p>
+                </div>
+            }
+            
+            <div class="error-actions">
+                <a href="javascript:history.back()" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>@Localizer["GoBack"]
+                </a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                    <i class="fas fa-home me-2"></i>@Localizer["GoHome"]
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <div class="help-section">
+            <h3>@Localizer["NeedHelp"]</h3>
+            <div class="help-options">
+                <a asp-controller="Privacy" asp-action="Contact" class="help-link">
+                    <i class="fas fa-envelope me-2"></i>@Localizer["ContactSupport"]
+                </a>
+                <a asp-controller="Privacy" asp-action="Policy" class="help-link">
+                    <i class="fas fa-file-alt me-2"></i>@Localizer["PrivacyPolicy"]
+                </a>
+            </div>
+        </div>
+    }
+</div>

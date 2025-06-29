@@ -19,18 +19,33 @@
     <value>İsteğiniz işlenirken bir hata oluştu.</value>
   </data>
   <data name="RequestId" xml:space="preserve">
-    <value>İstek Kimliği:</value>
+    <value>İstek ID:</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Geri Dön</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="NeedHelp" xml:space="preserve">
+    <value>Yardıma mı ihtiyacınız var?</value>
+  </data>
+  <data name="ContactSupport" xml:space="preserve">
+    <value>Destek ile İletişim</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Gizlilik Politikası</value>
   </data>
   <data name="DevelopmentMode" xml:space="preserve">
     <value>Geliştirme Modu</value>
   </data>
   <data name="DevelopmentMode_Info1" xml:space="preserve">
-    <value><strong>Geliştirme</strong> ortamına geçmek, oluşan hatayla ilgili daha ayrıntılı bilgi gösterir.</value>
+    <value><strong>Geliştirme</strong> ortamına geçiş yapmak, oluşan hata hakkında daha ayrıntılı bilgi gösterecektir.</value>
   </data>
   <data name="DevelopmentMode_Warning" xml:space="preserve">
-    <value>Geliştirme ortamı, dağıtılmış uygulamalarda etkinleştirilmemelidir.</value>
+    <value>Geliştirme ortamı dağıtılan uygulamalar için etkinleştirilmemelidir.</value>
   </data>
   <data name="DevelopmentMode_Info2" xml:space="preserve">
-    <value>Bu, son kullanıcılara istisnalardan hassas bilgilerin gösterilmesine neden olabilir. Yerel hata ayıklama için, <strong>Geliştirme</strong> ortamını <strong>ASPNETCORE_ENVIRONMENT</strong> ortam değişkenini <strong>Development</strong> olarak ayarlayarak ve uygulamayı yeniden başlatarak etkinleştirin.</value>
+    <value>Bu, istisnalardan gelen hassas bilgilerin son kullanıcılara gösterilmesine neden olabilir. Yerel hata ayıklama için, <strong>ASPNETCORE_ENVIRONMENT</strong> ortam değişkenini <strong>Development</strong> olarak ayarlayarak ve uygulamayı yeniden başlatarak <strong>Geliştirme</strong> ortamını etkinleştirin.</value>
   </data>
 </root> 

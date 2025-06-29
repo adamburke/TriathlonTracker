@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using TriathlonTracker.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 
 namespace TriathlonTracker.Controllers;
 
@@ -14,14 +15,12 @@ namespace TriathlonTracker.Controllers;
 /// Controller for reporting functionality. Provides endpoints for generating, viewing, and managing reports.
 /// </summary>
 [Authorize]
-public class ReportingController : Controller
+public class ReportingController : BaseController
 {
     private readonly ApplicationDbContext _context;
     private readonly IWebHostEnvironment _env;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IAdminDashboardService _adminDashboardService;
-    private readonly ILogger<ReportingController> _logger;
-    private readonly IAuditService _auditService;
 
     /// <summary>
     /// Constructor for ReportingController.
@@ -32,14 +31,14 @@ public class ReportingController : Controller
     /// <param name="adminDashboardService">Admin dashboard service</param>
     /// <param name="logger">Logger</param>
     /// <param name="auditService">Audit service</param>
-    public ReportingController(ApplicationDbContext context, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, IAdminDashboardService adminDashboardService, ILogger<ReportingController> logger, IAuditService auditService)
+    /// <param name="userManager">User manager</param>
+    public ReportingController(ApplicationDbContext context, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, IAdminDashboardService adminDashboardService, ILogger<ReportingController> logger, IAuditService auditService, UserManager<User>? userManager = null)
+        : base(auditService, logger, userManager)
     {
         _context = context;
         _env = env;
         _httpContextAccessor = httpContextAccessor;
         _adminDashboardService = adminDashboardService;
-        _logger = logger;
-        _auditService = auditService;
     }
 
     [HttpGet]

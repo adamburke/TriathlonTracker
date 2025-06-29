@@ -198,6 +198,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Custom 404 handler for both development and production
+app.UseStatusCodePagesWithReExecute("/Home/NotFoundPage");
+
 // Enable Swagger UI in all environments (or restrict to dev if you prefer)
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -225,6 +228,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     var configService = scope.ServiceProvider.GetRequiredService<IConfigurationService>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<DatabaseConfigurationService>>();
     context.Database.EnsureCreated();
     
     // Migrate existing unencrypted sensitive values
@@ -233,8 +237,8 @@ using (var scope = app.Services.CreateScope())
     // Seed Google OAuth configuration from environment variables
     if (!string.IsNullOrEmpty(connectionString))
     {
-        await ConfigurationSeeder.SeedGoogleCredentialsFromEnvironment(connectionString);
-        await ConfigurationSeeder.SeedJwtConfigurationFromEnvironment(connectionString);
+        await ConfigurationSeeder.SeedGoogleCredentialsFromEnvironment(connectionString, logger);
+        await ConfigurationSeeder.SeedJwtConfigurationFromEnvironment(connectionString, logger);
     }
     
     // Seed roles and users

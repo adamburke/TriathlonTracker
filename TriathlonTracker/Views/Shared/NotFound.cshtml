@@ -1,0 +1,44 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["NotFound_Title"];
+}
+
+<div class="error-container">
+    <div class="error-card">
+        <div class="notfound-icon">
+            <i class="fas fa-search"></i>
+        </div>
+        
+        <div class="error-content">
+            <h1 class="error-title">@Localizer["NotFound_Title"]</h1>
+            <p class="error-message">@Localizer["NotFound_Message"]</p>
+            
+            <div class="error-actions">
+                <a href="javascript:history.back()" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>@Localizer["GoBack"]
+                </a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                    <i class="fas fa-home me-2"></i>@Localizer["GoHome"]
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <div class="help-section">
+            <h3>@Localizer["PopularPages"]</h3>
+            <div class="help-options">
+                <a asp-controller="Triathlon" asp-action="Index" class="help-link">
+                    <i class="fas fa-list me-2"></i>@Localizer["MyRaces"]
+                </a>
+                <a asp-controller="Triathlon" asp-action="Create" class="help-link">
+                    <i class="fas fa-plus me-2"></i>@Localizer["AddRace"]
+                </a>
+                <a asp-controller="Privacy" asp-action="Dashboard" class="help-link">
+                    <i class="fas fa-tachometer-alt me-2"></i>@Localizer["PrivacyDashboard"]
+                </a>
+            </div>
+        </div>
+    }
+</div> 

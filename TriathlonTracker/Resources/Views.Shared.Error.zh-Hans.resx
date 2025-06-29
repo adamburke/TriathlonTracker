@@ -21,16 +21,31 @@
   <data name="RequestId" xml:space="preserve">
     <value>请求 ID：</value>
   </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="NeedHelp" xml:space="preserve">
+    <value>需要帮助？</value>
+  </data>
+  <data name="ContactSupport" xml:space="preserve">
+    <value>联系支持</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>隐私政策</value>
+  </data>
   <data name="DevelopmentMode" xml:space="preserve">
     <value>开发模式</value>
   </data>
   <data name="DevelopmentMode_Info1" xml:space="preserve">
-    <value>切换到 <strong>开发</strong> 环境将显示有关发生错误的更多详细信息。</value>
+    <value>切换到<strong>开发</strong>环境将显示有关所发生错误的更详细信息。</value>
   </data>
   <data name="DevelopmentMode_Warning" xml:space="preserve">
     <value>不应为已部署的应用程序启用开发环境。</value>
   </data>
   <data name="DevelopmentMode_Info2" xml:space="preserve">
-    <value>这可能会导致向最终用户显示异常中的敏感信息。要进行本地调试，请将 <strong>ASPNETCORE_ENVIRONMENT</strong> 环境变量设置为 <strong>Development</strong> 并重新启动应用程序以启用 <strong>开发</strong> 环境。</value>
+    <value>这可能导致向最终用户显示来自异常的敏感信息。对于本地调试，通过将环境变量 <strong>ASPNETCORE_ENVIRONMENT</strong> 设置为 <strong>Development</strong> 并重新启动应用程序来启用<strong>开发</strong>环境。</value>
   </data>
 </root> 

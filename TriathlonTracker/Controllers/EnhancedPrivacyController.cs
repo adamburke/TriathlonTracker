@@ -3,17 +3,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TriathlonTracker.Models;
 using TriathlonTracker.Services;
+using Microsoft.Extensions.Logging;
 
 namespace TriathlonTracker.Controllers
 {
     [Route("Privacy/Enhanced")]
-    public class EnhancedPrivacyController : Controller
+    public class EnhancedPrivacyController : BaseController
     {
         private readonly IEnhancedGdprService _enhancedGdprService;
         private readonly IGdprService _gdprService;
-        private readonly UserManager<User> _userManager;
-        private readonly ILogger<EnhancedPrivacyController> _logger;
-        private readonly IAuditService _auditService;
 
         public EnhancedPrivacyController(
             IEnhancedGdprService enhancedGdprService,
@@ -21,12 +19,10 @@ namespace TriathlonTracker.Controllers
             UserManager<User> userManager,
             ILogger<EnhancedPrivacyController> logger,
             IAuditService auditService)
+            : base(auditService, logger, userManager)
         {
             _enhancedGdprService = enhancedGdprService;
             _gdprService = gdprService;
-            _userManager = userManager;
-            _logger = logger;
-            _auditService = auditService;
         }
 
         #region Enhanced Data Export
@@ -37,26 +33,20 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = _userManager.GetUserId(User);
-                if (userId == null)
-                {
-                    _logger.LogWarning("Unauthenticated user attempted to access data export");
-                    return RedirectToAction("Login", "Account");
-                }
-
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("User {UserId} accessing data export page", userId);
                 var requests = await _enhancedGdprService.GetUserExportRequestsAsync(userId);
                 
                 _logger.LogInformation("User {UserId} viewed data export page with {Count} requests", userId, requests.Count());
-                await _auditService.LogAsync("ViewDataExport", "DataExport", null, $"Viewed data export page with {requests.Count()} requests", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("ViewDataExport", "DataExport", null, $"Viewed data export page with {requests.Count()} requests", userId, "Information");
                 
                 return View(requests);
             }
             catch (Exception ex)
             {
-                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error loading data export page for user {UserId}", userId);
-                await _auditService.LogAsync("ViewDataExportError", "DataExport", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("ViewDataExportError", "DataExport", null, $"Error: {ex.Message}", userId, "Error");
                 return View("Error");
             }
         }
@@ -68,13 +58,7 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = _userManager.GetUserId(User);
-                if (userId == null)
-                {
-                    _logger.LogWarning("Unauthenticated user attempted to request data export");
-                    return Json(new { success = false, message = "User not authenticated" });
-                }
-
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("User {UserId} requesting data export in format {Format}", userId, format);
                 
                 var request = await _enhancedGdprService.CreateDataExportRequestAsync(userId, format);
@@ -83,7 +67,7 @@ namespace TriathlonTracker.Controllers
                 _ = Task.Run(async () => await _enhancedGdprService.ProcessDataExportRequestAsync(request.Id));
 
                 _logger.LogInformation("User {UserId} successfully requested data export {RequestId} in format {Format}", userId, request.Id, format);
-                await _auditService.LogAsync("RequestDataExport", "DataExport", request.Id.ToString(), $"Requested data export in {format} format", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("RequestDataExport", "DataExport", request.Id.ToString(), $"Requested data export in {format} format", userId, "Information");
 
                 return Json(new { 
                     success = true, 
@@ -93,9 +77,9 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error requesting data export for user {UserId}", userId);
-                await _auditService.LogAsync("RequestDataExportError", "DataExport", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("RequestDataExportError", "DataExport", null, $"Error: {ex.Message}", userId, "Error");
                 return Json(new { success = false, message = "An error occurred while processing your request" });
             }
         }
@@ -106,13 +90,7 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = _userManager.GetUserId(User);
-                if (userId == null)
-                {
-                    _logger.LogWarning("Unauthenticated user attempted to download export");
-                    return RedirectToAction("Login", "Account");
-                }
-
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("User {UserId} attempting to download export {RequestId}", userId, requestId);
                 
                 var requests = await _enhancedGdprService.GetUserExportRequestsAsync(userId);
@@ -121,14 +99,14 @@ namespace TriathlonTracker.Controllers
                 if (request == null || request.Status != "Completed")
                 {
                     _logger.LogWarning("User {UserId} attempted to download non-existent or incomplete export {RequestId}", userId, requestId);
-                    await _auditService.LogAsync("DownloadExportNotFound", "DataExport", requestId.ToString(), "Attempted to download non-existent or incomplete export", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("DownloadExportNotFound", "DataExport", requestId.ToString(), "Attempted to download non-existent or incomplete export", userId, "Warning");
                     return NotFound("Export request not found or not ready");
                 }
 
                 if (string.IsNullOrEmpty(request.FileName))
                 {
                     _logger.LogWarning("User {UserId} attempted to download export {RequestId} with no filename", userId, requestId);
-                    await _auditService.LogAsync("DownloadExportNoFile", "DataExport", requestId.ToString(), "Export has no filename", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("DownloadExportNoFile", "DataExport", requestId.ToString(), "Export has no filename", userId, "Warning");
                     return NotFound("Export file not found");
                 }
 
@@ -136,7 +114,7 @@ namespace TriathlonTracker.Controllers
                 if (!System.IO.File.Exists(filePath))
                 {
                     _logger.LogWarning("User {UserId} attempted to download export {RequestId} with missing file {FileName}", userId, requestId, request.FileName);
-                    await _auditService.LogAsync("DownloadExportFileMissing", "DataExport", requestId.ToString(), $"File missing: {request.FileName}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("DownloadExportFileMissing", "DataExport", requestId.ToString(), $"File missing: {request.FileName}", userId, "Warning");
                     return NotFound("Export file not found on disk");
                 }
 
@@ -155,15 +133,15 @@ namespace TriathlonTracker.Controllers
                 // Note: In a real implementation, you'd update this in the database
 
                 _logger.LogInformation("User {UserId} successfully downloaded export {RequestId} ({FileName})", userId, requestId, request.FileName);
-                await _auditService.LogAsync("DownloadExport", "DataExport", requestId.ToString(), $"Downloaded export: {request.FileName}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("DownloadExport", "DataExport", requestId.ToString(), $"Downloaded export: {request.FileName}", userId, "Information");
 
                 return File(fileBytes, contentType, request.FileName);
             }
             catch (Exception ex)
             {
-                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error downloading export for user {UserId}, request {RequestId}", userId, requestId);
-                await _auditService.LogAsync("DownloadExportError", "DataExport", requestId.ToString(), $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("DownloadExportError", "DataExport", requestId.ToString(), $"Error: {ex.Message}", userId, "Error");
                 return StatusCode(500, "An error occurred while downloading your export");
             }
         }
@@ -178,26 +156,20 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = _userManager.GetUserId(User);
-                if (userId == null)
-                {
-                    _logger.LogWarning("Unauthenticated user attempted to access data rectification");
-                    return RedirectToAction("Login", "Account");
-                }
-
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("User {UserId} accessing data rectification page", userId);
                 var requests = await _enhancedGdprService.GetUserRectificationRequestsAsync(userId);
                 
                 _logger.LogInformation("User {UserId} viewed data rectification page with {Count} requests", userId, requests.Count());
-                await _auditService.LogAsync("ViewDataRectification", "DataRectification", null, $"Viewed data rectification page with {requests.Count()} requests", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("ViewDataRectification", "DataRectification", null, $"Viewed data rectification page with {requests.Count()} requests", userId, "Information");
                 
                 return View(requests);
             }
             catch (Exception ex)
             {
-                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error loading data rectification page for user {UserId}", userId);
-                await _auditService.LogAsync("ViewDataRectificationError", "DataRectification", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("ViewDataRectificationError", "DataRectification", null, $"Error: {ex.Message}", userId, "Error");
                 return View("Error");
             }
         }
@@ -214,20 +186,14 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = _userManager.GetUserId(User);
-                if (userId == null)
-                {
-                    _logger.LogWarning("Unauthenticated user attempted to request data rectification");
-                    return Json(new { success = false, message = "User not authenticated" });
-                }
-
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("User {UserId} requesting data rectification: {DataType}.{FieldName}", userId, dataType, fieldName);
                 
                 var request = await _enhancedGdprService.CreateRectificationRequestAsync(
                     userId, dataType, fieldName, currentValue, requestedValue, reason);
 
                 _logger.LogInformation("User {UserId} successfully requested data rectification {RequestId}: {DataType}.{FieldName}", userId, request.Id, dataType, fieldName);
-                await _auditService.LogAsync("RequestDataRectification", "DataRectification", request.Id.ToString(), $"Requested rectification: {dataType}.{fieldName} = {currentValue} -> {requestedValue}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("RequestDataRectification", "DataRectification", request.Id.ToString(), $"Requested rectification: {dataType}.{fieldName} = {currentValue} -> {requestedValue}", userId, "Information");
 
                 return Json(new { 
                     success = true, 
@@ -237,9 +203,9 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error requesting data rectification for user {UserId}", userId);
-                await _auditService.LogAsync("RequestDataRectificationError", "DataRectification", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("RequestDataRectificationError", "DataRectification", null, $"Error: {ex.Message}", userId, "Error");
                 return Json(new { success = false, message = "An error occurred while processing your request" });
             }
         }
@@ -250,13 +216,7 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = _userManager.GetUserId(User);
-                if (userId == null)
-                {
-                    _logger.LogWarning("Unauthenticated user attempted to check rectification status");
-                    return RedirectToAction("Login", "Account");
-                }
-
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("User {UserId} checking status for rectification request {RequestId}", userId, requestId);
                 
                 var requests = await _enhancedGdprService.GetUserRectificationRequestsAsync(userId);
@@ -265,12 +225,12 @@ namespace TriathlonTracker.Controllers
                 if (request == null)
                 {
                     _logger.LogWarning("User {UserId} attempted to check status for non-existent rectification request {RequestId}", userId, requestId);
-                    await _auditService.LogAsync("RectificationStatusNotFound", "DataRectification", requestId.ToString(), "Attempted to check status for non-existent request", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("RectificationStatusNotFound", "DataRectification", requestId.ToString(), "Attempted to check status for non-existent request", userId, "Warning");
                     return NotFound();
                 }
 
                 _logger.LogDebug("User {UserId} checked status for rectification request {RequestId}: {Status}", userId, requestId, request.Status);
-                await _auditService.LogAsync("CheckRectificationStatus", "DataRectification", requestId.ToString(), $"Checked status: {request.Status}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("CheckRectificationStatus", "DataRectification", requestId.ToString(), $"Checked status: {request.Status}", userId, "Information");
 
                 return Json(new {
                     status = request.Status,
@@ -283,9 +243,9 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error checking rectification status for user {UserId}, request {RequestId}", userId, requestId);
-                await _auditService.LogAsync("RectificationStatusError", "DataRectification", requestId.ToString(), $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("RectificationStatusError", "DataRectification", requestId.ToString(), $"Error: {ex.Message}", userId, "Error");
                 return StatusCode(500, "An error occurred while checking the status");
             }
         }
@@ -300,13 +260,7 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = _userManager.GetUserId(User);
-                if (userId == null)
-                {
-                    _logger.LogWarning("Unauthenticated user attempted to access account deletion");
-                    return RedirectToAction("Login", "Account");
-                }
-
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("User {UserId} accessing account deletion page", userId);
                 
                 // Check if there's already a pending deletion request
@@ -319,15 +273,15 @@ namespace TriathlonTracker.Controllers
                 };
 
                 _logger.LogInformation("User {UserId} viewed account deletion page, has pending request: {HasPending}", userId, existingRequest);
-                await _auditService.LogAsync("ViewAccountDeletion", "AccountDeletion", null, $"Viewed account deletion page, pending request: {existingRequest}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("ViewAccountDeletion", "AccountDeletion", null, $"Viewed account deletion page, pending request: {existingRequest}", userId, "Information");
                 
                 return View(model);
             }
             catch (Exception ex)
             {
-                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error loading account deletion page for user {UserId}", userId);
-                await _auditService.LogAsync("ViewAccountDeletionError", "AccountDeletion", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("ViewAccountDeletionError", "AccountDeletion", null, $"Error: {ex.Message}", userId, "Error");
                 return View("Error");
             }
         }
@@ -337,10 +291,7 @@ namespace TriathlonTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RequestAccountDeletion(string reason, string deletionType = "SoftDelete")
         {
-            var userId = _userManager.GetUserId(User);
-            if (userId == null)
-                return Json(new { success = false, message = "User not authenticated" });
-
+            var userId = GetCurrentUserId();
             try
             {
                 var request = await _enhancedGdprService.CreateAccountDeletionRequestAsync(userId, reason, deletionType);
@@ -390,10 +341,7 @@ namespace TriathlonTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RecoverAccount()
         {
-            var userId = _userManager.GetUserId(User);
-            if (userId == null)
-                return Json(new { success = false, message = "User not authenticated" });
-
+            var userId = GetCurrentUserId();
             try
             {
                 var success = await _enhancedGdprService.RecoverAccountAsync(userId);
@@ -428,7 +376,7 @@ namespace TriathlonTracker.Controllers
         [Authorize]
         public async Task<IActionResult> EnhancedDashboard()
         {
-            var userId = _userManager.GetUserId(User);
+            var userId = GetCurrentUserId();
             if (userId == null) return RedirectToAction("Login", "Account");
 
             try
@@ -460,7 +408,7 @@ namespace TriathlonTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdatePrivacySettings([FromBody] Dictionary<string, object> settings)
         {
-            var userId = _userManager.GetUserId(User);
+            var userId = GetCurrentUserId();
             if (userId == null)
                 return Json(new { success = false, message = "User not authenticated" });
 
@@ -497,7 +445,7 @@ namespace TriathlonTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ReviewRectification(int requestId, bool approved, string reviewNotes)
         {
-            var reviewedBy = _userManager.GetUserName(User) ?? "Admin";
+            var reviewedBy = _userManager?.GetUserName(User) ?? "Admin";
             
             try
             {

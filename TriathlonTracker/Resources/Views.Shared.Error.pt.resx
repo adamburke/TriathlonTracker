@@ -27,16 +27,31 @@
   <data name="RequestId" xml:space="preserve">
     <value>ID da solicitação:</value>
   </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Voltar</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Início</value>
+  </data>
+  <data name="NeedHelp" xml:space="preserve">
+    <value>Precisa de ajuda?</value>
+  </data>
+  <data name="ContactSupport" xml:space="preserve">
+    <value>Contatar Suporte</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Política de Privacidade</value>
+  </data>
   <data name="DevelopmentMode" xml:space="preserve">
-    <value>Modo de desenvolvimento</value>
+    <value>Modo de Desenvolvimento</value>
   </data>
   <data name="DevelopmentMode_Info1" xml:space="preserve">
-    <value>Alternar para o ambiente <strong>Desenvolvimento</strong> exibirá informações mais detalhadas sobre o erro ocorrido.</value>
+    <value>Alternar para o ambiente <strong>Desenvolvimento</strong> exibirá informações mais detalhadas sobre o erro que ocorreu.</value>
   </data>
   <data name="DevelopmentMode_Warning" xml:space="preserve">
-    <value>O ambiente de desenvolvimento não deve ser ativado para aplicativos implantados.</value>
+    <value>O ambiente de desenvolvimento não deve ser habilitado para aplicativos implantados.</value>
   </data>
   <data name="DevelopmentMode_Info2" xml:space="preserve">
-    <value>Isso pode resultar na exibição de informações confidenciais de exceções para usuários finais. Para depuração local, ative o ambiente <strong>Desenvolvimento</strong> definindo a variável de ambiente <strong>ASPNETCORE_ENVIRONMENT</strong> como <strong>Development</strong> e reinicie o aplicativo.</value>
+    <value>Isso pode resultar na exibição de informações sensíveis de exceções para usuários finais. Para depuração local, habilite o ambiente <strong>Desenvolvimento</strong> definindo a variável de ambiente <strong>ASPNETCORE_ENVIRONMENT</strong> como <strong>Development</strong> e reiniciando o aplicativo.</value>
   </data>
 </root> 

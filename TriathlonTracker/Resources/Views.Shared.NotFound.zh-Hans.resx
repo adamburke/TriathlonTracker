@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="NotFound_Title" xml:space="preserve">
+    <value>页面未找到</value>
+  </data>
+  <data name="NotFound_Message" xml:space="preserve">
+    <value>您要查找的页面不存在或已被移动。</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="PopularPages" xml:space="preserve">
+    <value>热门页面</value>
+  </data>
+  <data name="MyRaces" xml:space="preserve">
+    <value>我的比赛</value>
+  </data>
+  <data name="AddRace" xml:space="preserve">
+    <value>添加比赛</value>
+  </data>
+  <data name="PrivacyDashboard" xml:space="preserve">
+    <value>隐私仪表板</value>
+  </data>
+</root> 

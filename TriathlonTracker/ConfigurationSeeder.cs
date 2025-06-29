@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using TriathlonTracker.Data;
 using TriathlonTracker.Services;
 
@@ -14,7 +16,7 @@ namespace TriathlonTracker
         /// Seeds Google OAuth credentials from environment variables.
         /// Environment variables: GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
         /// </summary>
-        public static async Task SeedGoogleCredentialsFromEnvironment(string connectionString)
+        public static async Task SeedGoogleCredentialsFromEnvironment(string connectionString, ILogger<DatabaseConfigurationService>? logger = null)
         {
             var clientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
             var clientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
@@ -26,20 +28,20 @@ namespace TriathlonTracker
                 return;
             }
 
-            await SeedGoogleCredentials(connectionString, clientId, clientSecret);
+            await SeedGoogleCredentials(connectionString, clientId, clientSecret, logger);
         }
 
         /// <summary>
         /// Seeds Google OAuth credentials with provided values.
         /// </summary>
-        public static async Task SeedGoogleCredentials(string connectionString, string clientId, string clientSecret)
+        public static async Task SeedGoogleCredentials(string connectionString, string clientId, string clientSecret, ILogger<DatabaseConfigurationService>? logger = null)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             optionsBuilder.UseNpgsql(connectionString);
 
             using var context = new ApplicationDbContext(optionsBuilder.Options);
             var encryptionService = new SimpleEncryptionService();
-            var configService = new DatabaseConfigurationService(context, encryptionService);
+            var configService = new DatabaseConfigurationService(context, encryptionService, logger ?? new NullLogger<DatabaseConfigurationService>());
 
             await configService.SetValueAsync(
                 "Authentication:Google:ClientId", 
@@ -60,7 +62,7 @@ namespace TriathlonTracker
         /// Seeds JWT configuration from environment variables.
         /// Environment variables: JWT_KEY, JWT_ISSUER, JWT_AUDIENCE
         /// </summary>
-        public static async Task SeedJwtConfigurationFromEnvironment(string connectionString)
+        public static async Task SeedJwtConfigurationFromEnvironment(string connectionString, ILogger<DatabaseConfigurationService>? logger = null)
         {
             var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
             var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
@@ -91,7 +93,7 @@ namespace TriathlonTracker
 
             using var context = new ApplicationDbContext(optionsBuilder.Options);
             var encryptionService = new SimpleEncryptionService();
-            var configService = new DatabaseConfigurationService(context, encryptionService);
+            var configService = new DatabaseConfigurationService(context, encryptionService, logger ?? new NullLogger<DatabaseConfigurationService>());
 
             await configService.SetValueAsync("Jwt:Key", jwtKey, "JWT signing key");
             await configService.SetValueAsync("Jwt:Issuer", jwtIssuer, "JWT issuer");
