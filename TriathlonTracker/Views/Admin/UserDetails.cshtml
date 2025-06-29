@@ -1,0 +1,254 @@
+@model TriathlonTracker.Models.UserGdprStatus
+@{
+    ViewData["Title"] = "User Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-user me-2"></i>User Details</h2>
+                <div class="d-flex gap-2">
+                    <a href="@Url.Action("EditUser", new { userId = Model.UserId })" class="btn btn-primary">
+                        <i class="fas fa-edit me-1"></i>Edit User
+                    </a>
+                    <a href="@Url.Action("Users")" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Back to Users
+                    </a>
+                </div>
+            </div>
+
+            <!-- User Information Card -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">User Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>User ID:</strong></td>
+                                    <td>@Model.UserId</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Name:</strong></td>
+                                    <td>@Model.Name</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td>@Model.Email</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Registration Date:</strong></td>
+                                    <td>@Model.CreatedDate.ToString("MMM dd, yyyy HH:mm")</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Consent Status:</strong></td>
+                                    <td>
+                                        <span class="badge @(Model.HasConsent ? "bg-success" : "bg-danger")">
+                                            @(Model.HasConsent ? "Active" : "Inactive")
+                                        </span>
+                                    </td>
+                                </tr>
+                                @if (Model.ConsentDate.HasValue)
+                                {
+                                    <tr>
+                                        <td><strong>Consent Date:</strong></td>
+                                        <td>@Model.ConsentDate.Value.ToString("MMM dd, yyyy HH:mm")</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td><strong>Last Data Access:</strong></td>
+                                    <td>@(Model.LastDataAccess?.ToString("MMM dd, yyyy HH:mm") ?? "Never")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pending Requests:</strong></td>
+                                    <td>
+                                        <span class="badge @(Model.PendingRequests > 0 ? "bg-warning" : "bg-success")">
+                                            @Model.PendingRequests
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GDPR Status Card -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">GDPR Compliance Status</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h4 class="@(Model.HasConsent ? "text-success" : "text-danger")">
+                                    @(Model.HasConsent ? "Compliant" : "Non-Compliant")
+                                </h4>
+                                <small class="text-muted">Overall Status</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h4 class="@(Model.HasRetentionViolation ? "text-danger" : "text-success")">
+                                    @(Model.HasRetentionViolation ? "Yes" : "No")
+                                </h4>
+                                <small class="text-muted">Retention Violations</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h4 class="@(Model.PendingRequests > 0 ? "text-warning" : "text-success")">
+                                    @Model.PendingRequests
+                                </h4>
+                                <small class="text-muted">Pending Requests</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <h4 class="text-info">
+                                    @(Model.LastDataAccess?.ToString("MMM dd") ?? "Never")
+                                </h4>
+                                <small class="text-muted">Last Access</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consent Management Card -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Consent Management</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="UpdateUserConsent" asp-route-userId="@Model.UserId">
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="consentType" class="form-label">Consent Type</label>
+                                    <select class="form-select" id="consentType" name="consentType" required>
+                                        <option value="">Select consent type...</option>
+                                        <option value="Essential">Essential</option>
+                                        <option value="Analytics">Analytics</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Functional">Functional</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="isGranted" class="form-label">Status</label>
+                                    <select class="form-select" id="isGranted" name="isGranted" required>
+                                        <option value="">Select status...</option>
+                                        <option value="true">Granted</option>
+                                        <option value="false">Withdrawn</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="mb-3">
+                                    <label for="reason" class="form-label">Reason</label>
+                                    <input type="text" class="form-control" id="reason" name="reason" 
+                                           placeholder="Reason for consent change..." required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Update Consent
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Actions Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">User Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a href="@Url.Action("EditUser", new { userId = Model.UserId })" class="btn btn-primary">
+                            <i class="fas fa-edit me-1"></i>Edit User
+                        </a>
+                        <button class="btn btn-info" onclick="exportUserData('@Model.UserId')">
+                            <i class="fas fa-download me-1"></i>Export User Data
+                        </button>
+                        <button class="btn btn-warning" onclick="anonymizeUser('@Model.UserId')">
+                            <i class="fas fa-user-secret me-1"></i>Anonymize User
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteUser('@Model.UserId', '@Model.Name')">
+                            <i class="fas fa-trash me-1"></i>Delete User
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function exportUserData(userId) {
+            if (confirm('Export all data for this user?')) {
+                window.location.href = '@Url.Action("ExportUserData")/' + userId;
+            }
+        }
+
+        function anonymizeUser(userId) {
+            if (confirm('This will anonymize all personal data for this user. This action cannot be undone. Continue?')) {
+                fetch('@Url.Action("AnonymizeUser")/' + userId, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('User data anonymized successfully.');
+                        location.reload();
+                    } else {
+                        alert('Error: ' + result.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while anonymizing user data.');
+                });
+            }
+        }
+
+        function deleteUser(userId, userName) {
+            if (confirm(`Are you sure you want to delete user "${userName}"? This action cannot be undone.`)) {
+                fetch('@Url.Action("DeleteUser")/' + userId, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('User deleted successfully.');
+                        window.location.href = '@Url.Action("Users")';
+                    } else {
+                        alert('Error deleting user.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting the user.');
+                });
+            }
+        }
+    </script>
+}

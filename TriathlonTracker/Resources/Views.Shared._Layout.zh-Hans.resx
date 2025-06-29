@@ -2,8 +2,13 @@
 <root>
   <data name="My Races" xml:space="preserve"><value>我的比赛</value></data>
   <data name="Add Race" xml:space="preserve"><value>添加比赛</value></data>
-  <data name="Logout" xml:space="preserve"><value>退出</value></data>
+  <data name="Logout" xml:space="preserve"><value>退出登录</value></data>
   <data name="Login" xml:space="preserve"><value>登录</value></data>
   <data name="Register" xml:space="preserve"><value>注册</value></data>
   <data name="Privacy" xml:space="preserve"><value>隐私</value></data>
+  <data name="PrivacyDashboard" xml:space="preserve"><value>隐私面板</value></data>
+  <data name="ManageConsent" xml:space="preserve"><value>管理同意</value></data>
+  <data name="PrivacyPolicy" xml:space="preserve"><value>隐私政策</value></data>
+  <data name="CookiePolicy" xml:space="preserve"><value>Cookie政策</value></data>
+  <data name="Contact" xml:space="preserve"><value>联系我们</value></data>
 </root> 

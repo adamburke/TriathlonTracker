@@ -17,6 +17,11 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        // Redirect admin users to admin dashboard, regular users to triathlon section
+        if (User?.IsInRole("Admin") == true)
+        {
+            return RedirectToAction("Dashboard", "Admin");
+        }
         return RedirectToAction("Index", "Triathlon");
     }
 

@@ -1,0 +1,161 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = @Localizer["Contact DPO"];
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="mb-4">@Localizer["Contact DPO"]</h1>
+            <p class="lead">@Localizer["Contact form description"]</p>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@Localizer["Data Protection Officer"]</h5>
+                    <p class="card-text">@Localizer["DPO contact information"]</p>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-envelope fa-fw me-2"></i>
+                        <span>@Localizer["DPO email"]</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-phone fa-fw me-2"></i>
+                        <span>@Localizer["DPO phone"]</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="privacyContactForm" class="needs-validation" novalidate>
+                <div class="mb-4">
+                    <label for="requestType" class="form-label">@Localizer["Request Type"]</label>
+                    <select class="form-select" id="requestType" required>
+                        <option value="">@Localizer["Select request type"]</option>
+                        <option value="access">@Localizer["Data Access Request"]</option>
+                        <option value="rectification">@Localizer["Data Rectification"]</option>
+                        <option value="erasure">@Localizer["Data Erasure"]</option>
+                        <option value="portability">@Localizer["Data Portability"]</option>
+                        <option value="consent">@Localizer["Consent Withdrawal"]</option>
+                        <option value="complaint">@Localizer["Privacy Complaint"]</option>
+                        <option value="other">@Localizer["Other"]</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        @Localizer["Please select a request type"]
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="fullName" class="form-label">@Localizer["Full Name"]</label>
+                    <input type="text" class="form-control" id="fullName" required>
+                    <div class="invalid-feedback">
+                        @Localizer["Please enter your full name"]
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="form-label">@Localizer["Email Address"]</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback">
+                        @Localizer["Please enter a valid email address"]
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="message" class="form-label">@Localizer["Message"]</label>
+                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                    <div class="invalid-feedback">
+                        @Localizer["Please enter your message"]
+                    </div>
+                    <small class="text-muted">@Localizer["Message length notice"]</small>
+                </div>
+
+                <div class="mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="identityVerification" required>
+                        <label class="form-check-label" for="identityVerification">
+                            @Localizer["Identity verification consent"]
+                        </label>
+                        <div class="invalid-feedback">
+                            @Localizer["Please confirm identity verification"]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="privacyPolicy" required>
+                        <label class="form-check-label" for="privacyPolicy">
+                            @Html.Raw(Localizer["Privacy policy agreement"].Value.Replace("{0}", 
+                                $"<a href='{Url.Action("Policy", "Privacy", new { culture = Context.Request.Query["culture"] })}'>{Localizer["Privacy Policy"]}</a>"))
+                        </label>
+                        <div class="invalid-feedback">
+                            @Localizer["Please accept privacy policy"]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    @Localizer["Response time notice"]
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane me-2"></i>@Localizer["Submit Request"]
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    } else {
+                        event.preventDefault()
+                        // Collect form data
+                        const formData = {
+                            requestType: document.getElementById('requestType').value,
+                            fullName: document.getElementById('fullName').value,
+                            email: document.getElementById('email').value,
+                            message: document.getElementById('message').value,
+                            identityVerification: document.getElementById('identityVerification').checked,
+                            privacyPolicy: document.getElementById('privacyPolicy').checked
+                        }
+
+                        // Submit form data
+                        fetch('/api/privacy/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('@Localizer["Request submitted successfully"]')
+                                form.reset()
+                                form.classList.remove('was-validated')
+                            } else {
+                                alert('@Localizer["Error submitting request"]')
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error)
+                            alert('@Localizer["Error submitting request"]')
+                        })
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+}

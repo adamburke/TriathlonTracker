@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cookie Policy" xml:space="preserve">
+    <value>Политика использования файлов cookie</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Последнее обновление: Июнь 2025</value>
+  </data>
+  <data name="What Are Cookies" xml:space="preserve">
+    <value>Что такое файлы cookie</value>
+  </data>
+  <data name="Cookie explanation" xml:space="preserve">
+    <value>Файлы cookie — это небольшие текстовые файлы, которые сохраняются на вашем устройстве при посещении нашего веб-сайта. Они помогают нам предоставлять вам лучший опыт и понимать, как вы используете наш сервис.</value>
+  </data>
+  <data name="How We Use Cookies" xml:space="preserve">
+    <value>Как мы используем файлы cookie</value>
+  </data>
+  <data name="Essential Cookies" xml:space="preserve">
+    <value>Необходимые файлы cookie</value>
+  </data>
+  <data name="Essential cookies explanation" xml:space="preserve">
+    <value>Эти файлы cookie необходимы для правильной работы веб-сайта и не могут быть отключены.</value>
+  </data>
+  <data name="Authentication cookie description" xml:space="preserve">
+    <value>Поддерживает вашу сессию входа и состояние аутентификации</value>
+  </data>
+  <data name="Security cookie description" xml:space="preserve">
+    <value>Защищает от атак подделки межсайтовых запросов</value>
+  </data>
+  <data name="Functional Cookies" xml:space="preserve">
+    <value>Функциональные файлы cookie</value>
+  </data>
+  <data name="Functional cookies explanation" xml:space="preserve">
+    <value>Эти файлы cookie улучшают ваш опыт, запоминая ваши предпочтения и настройки.</value>
+  </data>
+  <data name="Language cookie description" xml:space="preserve">
+    <value>Запоминает ваш предпочтительный языковой параметр</value>
+  </data>
+  <data name="Display cookie description" xml:space="preserve">
+    <value>Сохраняет ваши предпочтения отображения и настройки интерфейса</value>
+  </data>
+  <data name="Analytics Cookies" xml:space="preserve">
+    <value>Аналитические файлы cookie</value>
+  </data>
+  <data name="Analytics cookies explanation" xml:space="preserve">
+    <value>Эти файлы cookie помогают нам понимать, как посетители используют наш веб-сайт, и улучшать наши услуги.</value>
+  </data>
+  <data name="Google Analytics cookie description" xml:space="preserve">
+    <value>Используется для различения уникальных пользователей и отслеживания использования веб-сайта</value>
+  </data>
+  <data name="Session cookie description" xml:space="preserve">
+    <value>Используется для различения пользователей и отслеживания данных сессии</value>
+  </data>
+  <data name="Managing Cookies" xml:space="preserve">
+    <value>Управление файлами cookie</value>
+  </data>
+  <data name="Cookie management explanation" xml:space="preserve">
+    <value>Вы можете контролировать и управлять файлами cookie через настройки вашего браузера. Однако отключение определенных файлов cookie может повлиять на функциональность нашего веб-сайта.</value>
+  </data>
+  <data name="Browser settings notice" xml:space="preserve">
+    <value>Большинство браузеров позволяют вам просматривать, управлять и удалять файлы cookie. Пожалуйста, обратитесь к документации справки вашего браузера для получения конкретных инструкций.</value>
+  </data>
+  <data name="Third-Party Cookies" xml:space="preserve">
+    <value>Сторонние файлы cookie</value>
+  </data>
+  <data name="Third-party cookies explanation" xml:space="preserve">
+    <value>Мы можем использовать сторонние сервисы, которые устанавливают свои собственные файлы cookie. Эти сервисы помогают нам предоставлять аналитику и улучшать функциональность нашего веб-сайта.</value>
+  </data>
+  <data name="More Information" xml:space="preserve">
+    <value>Дополнительная информация</value>
+  </data>
+  <data name="Additional information text" xml:space="preserve">
+    <value>Если у вас есть вопросы о нашем использовании файлов cookie или этой Политике использования файлов cookie, пожалуйста, свяжитесь с нами.</value>
+  </data>
+  <data name="Contact Us" xml:space="preserve">
+    <value>Свяжитесь с нами</value>
+  </data>
+  <data name="Cookie Settings" xml:space="preserve">
+    <value>Настройки файлов cookie</value>
+  </data>
+  <data name="Essential cookies required" xml:space="preserve">
+    <value>Эти файлы cookie необходимы для работы веб-сайта</value>
+  </data>
+  <data name="Save Preferences" xml:space="preserve">
+    <value>Сохранить настройки</value>
+  </data>
+  <data name="Cookie preferences saved" xml:space="preserve">
+    <value>Настройки файлов cookie сохранены</value>
+  </data>
+  <data name="Error saving preferences" xml:space="preserve">
+    <value>Ошибка при сохранении настроек</value>
+  </data>
+</root>

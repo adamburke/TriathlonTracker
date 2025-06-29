@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="My Races" xml:space="preserve"><value>Le Mie Gare</value></data>
+  <data name="Add Race" xml:space="preserve"><value>Aggiungi Gara</value></data>
+  <data name="Logout" xml:space="preserve"><value>Disconnetti</value></data>
+  <data name="Login" xml:space="preserve"><value>Accedi</value></data>
+  <data name="Register" xml:space="preserve"><value>Registrati</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Privacy</value></data>
+  <data name="PrivacyDashboard" xml:space="preserve"><value>Dashboard Privacy</value></data>
+  <data name="ManageConsent" xml:space="preserve"><value>Gestisci Consenso</value></data>
+  <data name="PrivacyPolicy" xml:space="preserve"><value>Informativa sulla Privacy</value></data>
+  <data name="CookiePolicy" xml:space="preserve"><value>Politica sui Cookie</value></data>
+  <data name="Contact" xml:space="preserve"><value>Contatto</value></data>
+</root>

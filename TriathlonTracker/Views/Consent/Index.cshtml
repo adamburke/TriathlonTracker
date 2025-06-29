@@ -1,0 +1,305 @@
+@model TriathlonTracker.Controllers.ConsentManagementViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Consent Management"].Value;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>
+                    <i class="fas fa-shield-alt text-primary me-2"></i>
+                    @Localizer["Consent Management"]
+                </h2>
+                <a href="@Url.Action("Dashboard", "Privacy")" class="btn btn-outline-primary">
+                    <i class="fas fa-tachometer-alt me-1"></i>
+                    @Localizer["Privacy Dashboard"]
+                </a>
+            </div>
+
+            <!-- Current Consent Status -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-check-circle text-success me-2"></i>
+                        @Localizer["Current Consent Status"]
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="consent-status-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">@Localizer["Data Processing"]</span>
+                                    <span class="badge @(Model.HasDataProcessingConsent ? "bg-success" : "bg-danger")">
+                                        @(Model.HasDataProcessingConsent ? Localizer["Granted"].Value : Localizer["Not Granted"].Value)
+                                    </span>
+                                </div>
+                                <small class="text-muted">@Localizer["Essential for application functionality"]</small>
+                                <div class="mt-2">
+                                    @if (Model.HasDataProcessingConsent)
+                                    {
+                                        <button class="btn btn-sm btn-outline-danger" onclick="updateConsent('DataProcessing', false)">
+                                            @Localizer["Withdraw"]
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-sm btn-outline-success" onclick="updateConsent('DataProcessing', true)">
+                                            @Localizer["Grant"]
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="consent-status-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">@Localizer["Marketing"]</span>
+                                    <span class="badge @(Model.HasMarketingConsent ? "bg-success" : "bg-secondary")">
+                                        @(Model.HasMarketingConsent ? Localizer["Granted"].Value : Localizer["Not Granted"].Value)
+                                    </span>
+                                </div>
+                                <small class="text-muted">@Localizer["Promotional emails and updates"]</small>
+                                <div class="mt-2">
+                                    @if (Model.HasMarketingConsent)
+                                    {
+                                        <button class="btn btn-sm btn-outline-danger" onclick="updateConsent('Marketing', false)">
+                                            @Localizer["Withdraw"]
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-sm btn-outline-success" onclick="updateConsent('Marketing', true)">
+                                            @Localizer["Grant"]
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="consent-status-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">@Localizer["Analytics"]</span>
+                                    <span class="badge @(Model.HasAnalyticsConsent ? "bg-success" : "bg-secondary")">
+                                        @(Model.HasAnalyticsConsent ? Localizer["Granted"].Value : Localizer["Not Granted"].Value)
+                                    </span>
+                                </div>
+                                <small class="text-muted">@Localizer["Usage analytics and improvements"]</small>
+                                <div class="mt-2">
+                                    @if (Model.HasAnalyticsConsent)
+                                    {
+                                        <button class="btn btn-sm btn-outline-danger" onclick="updateConsent('Analytics', false)">
+                                            @Localizer["Withdraw"]
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-sm btn-outline-success" onclick="updateConsent('Analytics', true)">
+                                            @Localizer["Grant"]
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consent Information -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-info-circle text-info me-2"></i>
+                        @Localizer["What This Means"]
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>@Localizer["Data Processing Consent"]</h6>
+                            <p class="text-muted small">
+                                @Localizer["Data processing consent description"]
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>@Localizer["Marketing Consent"]</h6>
+                            <p class="text-muted small">
+                                @Localizer["Marketing consent description"]
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>@Localizer["Analytics Consent"]</h6>
+                            <p class="text-muted small">
+                                @Localizer["Analytics consent description"]
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>@Localizer["Your Rights"]</h6>
+                            <p class="text-muted small">
+                                @Localizer["Your rights description"]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Consent History -->
+            @if (Model.ConsentHistory.Any())
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-history text-secondary me-2"></i>
+                                @Localizer["Recent Consent Changes"]
+                            </h5>
+                            <a href="@Url.Action("History", "Consent")" class="btn btn-sm btn-outline-secondary">
+                                @Localizer["View Full History"]
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>@Localizer["Date"]</th>
+                                        <th>@Localizer["Consent Type"]</th>
+                                        <th>@Localizer["Action"]</th>
+                                        <th>@Localizer["Purpose"]</th>
+                                        <th>@Localizer["Version"]</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var consent in Model.ConsentHistory.Take(5))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <small>@consent.ConsentDate.ToString("MMM dd, yyyy HH:mm")</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-light text-dark">@consent.ConsentType</span>
+                                            </td>
+                                            <td>
+                                                @if (consent.IsGranted)
+                                                {
+                                                    <span class="badge bg-success">@Localizer["Granted"]</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-danger">@Localizer["Withdrawn"]</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <small class="text-muted">@consent.Purpose</small>
+                                            </td>
+                                            <td>
+                                                <small>@consent.ConsentVersion</small>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+.consent-status-item {
+    padding: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 0.375rem;
+    background-color: #f8f9fa;
+    height: 100%;
+}
+
+.consent-status-item .badge {
+    font-size: 0.75rem;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+}
+</style>
+
+<script>
+function updateConsent(consentType, isGranted) {
+    const action = isGranted ? 'grant' : 'withdraw';
+    const purpose = getConsentPurpose(consentType);
+    
+    const url = isGranted ? '@Url.Action("Grant", "Consent")' : '@Url.Action("Withdraw", "Consent")';
+    const data = isGranted ? 
+        { consentType: consentType, purpose: purpose } : 
+        { consentType: consentType };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+        },
+        body: new URLSearchParams(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showNotification(data.message, 'success');
+            // Reload page to update consent status
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        } else {
+            showNotification('Error: ' + data.message, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating consent:', error);
+        showNotification('@Localizer["An error occurred while updating your consent"]', 'error');
+    });
+}
+
+function getConsentPurpose(consentType) {
+    switch (consentType) {
+        case 'DataProcessing':
+            return '@Localizer["Processing personal data for application functionality"]';
+        case 'Marketing':
+            return '@Localizer["Marketing communications and promotional content"]';
+        case 'Analytics':
+            return '@Localizer["Analytics and performance tracking"]';
+        default:
+            return '@Localizer["User consent management"]';
+    }
+}
+
+function showNotification(message, type) {
+    const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    const notification = document.createElement('div');
+    notification.className = `alert ${alertClass} alert-dismissible fade show position-fixed`;
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 1060; min-width: 300px;';
+    notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 5000);
+}
+</script>

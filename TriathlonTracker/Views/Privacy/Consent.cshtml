@@ -1,0 +1,139 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = @Localizer["PageTitle"];
+}
+
+<!-- Privacy Banner -->
+<div id="privacy-banner" class="privacy-banner">
+    <h2>@Localizer["PrivacyBannerTitle"]</h2>
+    <p>@Localizer["PrivacyBannerContent"]</p>
+    <div class="banner-actions">
+        <button onclick="acceptAll()" class="btn btn-primary">@Localizer["AcceptAll"]</button>
+        <button onclick="rejectAll()" class="btn btn-secondary">@Localizer["RejectAll"]</button>
+        <button onclick="showPreferences()" class="btn btn-link">@Localizer["CustomizePreferences"]</button>
+    </div>
+</div>
+
+<div class="container consent-manager">
+    <h1>@Localizer["PageTitle"]</h1>
+    <p class="lead">@Localizer["PageDescription"]</p>
+
+    <div class="last-updated">
+        @Localizer["LastUpdated", Model.LastUpdated]
+    </div>
+
+    <form id="consentForm" method="post">
+        <div class="consent-section">
+            <h3>@Localizer["EssentialDataHeader"]</h3>
+            <p>@Localizer["EssentialDataDescription"]</p>
+            <div class="toggle-switch disabled">
+                <input type="checkbox" checked disabled />
+                <label>@Localizer["ToggleRequired"]</label>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <h3>@Localizer["AnalyticsHeader"]</h3>
+            <p>@Localizer["AnalyticsDescription"]</p>
+            <div class="toggle-switch">
+                <input type="checkbox" id="analyticsConsent" name="analyticsConsent" />
+                <label for="analyticsConsent">@Localizer[Model.AnalyticsEnabled ? "ToggleEnabled" : "ToggleDisabled"]</label>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <h3>@Localizer["MarketingHeader"]</h3>
+            <p>@Localizer["MarketingDescription"]</p>
+            <div class="toggle-switch">
+                <input type="checkbox" id="marketingConsent" name="marketingConsent" />
+                <label for="marketingConsent">@Localizer[Model.MarketingEnabled ? "ToggleEnabled" : "ToggleDisabled"]</label>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <h3>@Localizer["ThirdPartyHeader"]</h3>
+            <p>@Localizer["ThirdPartyDescription"]</p>
+            <div class="toggle-switch">
+                <input type="checkbox" id="thirdPartyConsent" name="thirdPartyConsent" />
+                <label for="thirdPartyConsent">@Localizer[Model.ThirdPartyEnabled ? "ToggleEnabled" : "ToggleDisabled"]</label>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" onclick="return confirmSave()">@Localizer["SavePreferences"]</button>
+            <button type="button" class="btn btn-secondary" onclick="cancelChanges()">@Localizer["CancelChanges"]</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        function showNotification(message, isError = false) {
+            // Implementation for showing notifications
+            alert(message); // Temporary implementation
+        }
+
+        function confirmSave() {
+            return confirm('@Localizer["ConfirmSaveMessage"]');
+        }
+
+        function acceptAll() {
+            if (confirm('@Localizer["ConfirmSaveMessage"]')) {
+                // Set all checkboxes
+                document.querySelectorAll('input[type="checkbox"]:not([disabled])').forEach(cb => cb.checked = true);
+                document.getElementById('consentForm').submit();
+                showNotification('@Localizer["PreferencesAccepted"]');
+            }
+        }
+
+        function rejectAll() {
+            if (confirm('@Localizer["ConfirmRejectMessage"]')) {
+                // Uncheck all optional checkboxes
+                document.querySelectorAll('input[type="checkbox"]:not([disabled])').forEach(cb => cb.checked = false);
+                document.getElementById('consentForm').submit();
+                showNotification('@Localizer["PreferencesRejected"]');
+            }
+        }
+
+        function showPreferences() {
+            document.getElementById('privacy-banner').style.display = 'none';
+            document.querySelector('.consent-manager').style.display = 'block';
+        }
+
+        function cancelChanges() {
+            if (confirm('@Localizer["ConfirmSaveMessage"]')) {
+                window.location.reload();
+            }
+        }
+
+        // Handle form submission errors
+        document.getElementById('consentForm').addEventListener('submit', function(e) {
+            try {
+                // Form validation logic here
+                showNotification('@Localizer["PreferencesSaved"]');
+            } catch (error) {
+                e.preventDefault();
+                showNotification('@Localizer["SaveError"]', true);
+            }
+        });
+
+        // Check for session expiry
+        window.addEventListener('load', function() {
+            if (@Model.IsSessionExpired) {
+                showNotification('@Localizer["SessionExpired"]', true);
+            }
+        });
+
+        // Check for consent expiry
+        if (@Model.IsConsentExpiring) {
+            showNotification('@Localizer["ConsentExpiring"]');
+        }
+
+        // Check for privacy policy updates
+        if (@Model.HasPolicyUpdates) {
+            showNotification('@Localizer["ConsentUpdated"]');
+        }
+    </script>
+}

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Consent Management</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Control how your data is collected and used</value>
+  </data>
+  <data name="EssentialDataHeader" xml:space="preserve">
+    <value>Essential Data Collection</value>
+  </data>
+  <data name="EssentialDataDescription" xml:space="preserve">
+    <value>Required data for core service functionality (cannot be disabled)</value>
+  </data>
+  <data name="AnalyticsHeader" xml:space="preserve">
+    <value>Analytics &amp; Performance</value>
+  </data>
+  <data name="AnalyticsDescription" xml:space="preserve">
+    <value>Data collection for service improvement and performance analysis</value>
+  </data>
+  <data name="MarketingHeader" xml:space="preserve">
+    <value>Marketing Communications</value>
+  </data>
+  <data name="MarketingDescription" xml:space="preserve">
+    <value>Receive updates about new features and training tips</value>
+  </data>
+  <data name="ThirdPartyHeader" xml:space="preserve">
+    <value>Third-Party Sharing</value>
+  </data>
+  <data name="ThirdPartyDescription" xml:space="preserve">
+    <value>Share data with trusted partners for enhanced services</value>
+  </data>
+  <data name="ToggleOn" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="ToggleOff" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="SavePreferences" xml:space="preserve">
+    <value>Save Preferences</value>
+  </data>
+  <data name="CancelChanges" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="PreferencesSaved" xml:space="preserve">
+    <value>Your privacy preferences have been saved</value>
+  </data>
+  <data name="PreferencesSaveError" xml:space="preserve">
+    <value>An error occurred while saving your preferences</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last Updated: {0}</value>
+  </data>
+  <!-- Privacy Banner -->
+  <data name="PrivacyBannerTitle" xml:space="preserve">
+    <value>We Value Your Privacy</value>
+  </data>
+  <data name="PrivacyBannerContent" xml:space="preserve">
+    <value>We use cookies and similar technologies to help personalize content, improve your experience, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</value>
+  </data>
+  <data name="AcceptAll" xml:space="preserve">
+    <value>Accept All</value>
+  </data>
+  <data name="RejectAll" xml:space="preserve">
+    <value>Reject All</value>
+  </data>
+  <data name="CustomizePreferences" xml:space="preserve">
+    <value>Customize Preferences</value>
+  </data>
+  <!-- Confirmation Dialogs -->
+  <data name="ConfirmSaveTitle" xml:space="preserve">
+    <value>Save Changes?</value>
+  </data>
+  <data name="ConfirmSaveMessage" xml:space="preserve">
+    <value>Are you sure you want to save these privacy preferences?</value>
+  </data>
+  <data name="ConfirmRejectTitle" xml:space="preserve">
+    <value>Reject All?</value>
+  </data>
+  <data name="ConfirmRejectMessage" xml:space="preserve">
+    <value>Are you sure you want to reject all optional cookies? This may limit some website functionality.</value>
+  </data>
+  <!-- Success Messages -->
+  <data name="PreferencesAccepted" xml:space="preserve">
+    <value>All cookies have been accepted</value>
+  </data>
+  <data name="PreferencesRejected" xml:space="preserve">
+    <value>All optional cookies have been rejected</value>
+  </data>
+  <data name="PreferencesCustomized" xml:space="preserve">
+    <value>Your custom preferences have been saved</value>
+  </data>
+  <!-- Error Messages -->
+  <data name="SaveError" xml:space="preserve">
+    <value>Failed to save preferences. Please try again.</value>
+  </data>
+  <data name="NetworkError" xml:space="preserve">
+    <value>Network error. Please check your connection and try again.</value>
+  </data>
+  <data name="ValidationError" xml:space="preserve">
+    <value>Invalid preferences configuration</value>
+  </data>
+  <!-- Form Labels -->
+  <data name="ConsentFormTitle" xml:space="preserve">
+    <value>Cookie Preferences</value>
+  </data>
+  <data name="ConsentValidUntil" xml:space="preserve">
+    <value>Consent Valid Until</value>
+  </data>
+  <data name="ConsentVersion" xml:space="preserve">
+    <value>Consent Version</value>
+  </data>
+  <!-- Toggle States -->
+  <data name="ToggleEnabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="ToggleDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="ToggleRequired" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <!-- Notifications -->
+  <data name="ConsentExpiring" xml:space="preserve">
+    <value>Your privacy consent will expire soon. Please review your preferences.</value>
+  </data>
+  <data name="ConsentUpdated" xml:space="preserve">
+    <value>Our privacy policy has been updated. Please review your preferences.</value>
+  </data>
+  <data name="SessionExpired" xml:space="preserve">
+    <value>Your session has expired. Please save your preferences again.</value>
+  </data>
+</root>

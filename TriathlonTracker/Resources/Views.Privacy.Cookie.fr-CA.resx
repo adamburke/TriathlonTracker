@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Politique sur les témoins</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Apprenez comment nous utilisons les témoins et technologies similaires</value>
+  </data>
+  <data name="WhatAreCookiesHeader" xml:space="preserve">
+    <value>Que sont les témoins?</value>
+  </data>
+  <data name="WhatAreCookiesText" xml:space="preserve">
+    <value>Les témoins sont de petits fichiers texte stockés sur votre appareil qui nous aident à fournir et améliorer nos services</value>
+  </data>
+  <data name="EssentialCookiesHeader" xml:space="preserve">
+    <value>Témoins essentiels</value>
+  </data>
+  <data name="EssentialCookiesText" xml:space="preserve">
+    <value>Requis pour les fonctionnalités de base du site et la sécurité (toujours activés)</value>
+  </data>
+  <data name="AnalyticsCookiesHeader" xml:space="preserve">
+    <value>Témoins d'analyse</value>
+  </data>
+  <data name="AnalyticsCookiesText" xml:space="preserve">
+    <value>Nous aident à comprendre comment les visiteurs utilisent notre site</value>
+  </data>
+  <data name="FunctionalCookiesHeader" xml:space="preserve">
+    <value>Témoins fonctionnels</value>
+  </data>
+  <data name="FunctionalCookiesText" xml:space="preserve">
+    <value>Permettent des fonctionnalités améliorées et la personnalisation</value>
+  </data>
+  <data name="MarketingCookiesHeader" xml:space="preserve">
+    <value>Témoins de marketing</value>
+  </data>
+  <data name="MarketingCookiesText" xml:space="preserve">
+    <value>Utilisés pour diffuser des publicités pertinentes et suivre leur efficacité</value>
+  </data>
+  <data name="CookieManagementHeader" xml:space="preserve">
+    <value>Gestion des témoins</value>
+  </data>
+  <data name="CookieManagementText" xml:space="preserve">
+    <value>Vous pouvez contrôler les paramètres des témoins dans les préférences de votre navigateur</value>
+  </data>
+  <data name="AcceptAllButton" xml:space="preserve">
+    <value>Accepter tous les témoins</value>
+  </data>
+  <data name="RejectAllButton" xml:space="preserve">
+    <value>Refuser les témoins optionnels</value>
+  </data>
+  <data name="SavePreferencesButton" xml:space="preserve">
+    <value>Enregistrer les préférences</value>
+  </data>
+  <data name="PreferencesSaved" xml:space="preserve">
+    <value>Vos préférences de témoins ont été enregistrées</value>
+  </data>
+  <data name="PreferencesSaveError" xml:space="preserve">
+    <value>Une erreur s'est produite lors de l'enregistrement de vos préférences</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Dernière mise à jour : {0}</value>
+  </data>
+</root>

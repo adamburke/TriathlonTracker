@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>隐私政策</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>最后更新：2025年6月</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概述</value>
+  </data>
+  <data name="Data Collection" xml:space="preserve">
+    <value>数据收集</value>
+  </data>
+  <data name="Data Use" xml:space="preserve">
+    <value>数据使用</value>
+  </data>
+  <data name="Data Sharing" xml:space="preserve">
+    <value>数据共享</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>您的权利</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>安全</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>联系</value>
+  </data>
+  <data name="Privacy policy overview text" xml:space="preserve">
+    <value>本隐私政策描述了TriathlonTracker在您使用我们的铁人三项跟踪服务时如何收集、使用和保护您的个人信息。</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>个人信息</value>
+  </data>
+  <data name="Personal information collection details" xml:space="preserve">
+    <value>我们收集基本的个人信息，包括您的姓名、电子邮件地址和账户偏好，以提供我们的服务。</value>
+  </data>
+  <data name="Training Data" xml:space="preserve">
+    <value>训练数据</value>
+  </data>
+  <data name="Training data collection details" xml:space="preserve">
+    <value>我们收集您的铁人三项比赛数据，包括距离、时间、地点和性能指标，以跟踪您的进度。</value>
+  </data>
+  <data name="Usage Data" xml:space="preserve">
+    <value>使用数据</value>
+  </data>
+  <data name="Usage data collection details" xml:space="preserve">
+    <value>我们收集有关您如何使用我们应用程序的信息，以改进我们的服务和用户体验。</value>
+  </data>
+  <data name="Data use explanation" xml:space="preserve">
+    <value>我们将您的数据用于以下目的：</value>
+  </data>
+  <data name="Service provision" xml:space="preserve">
+    <value>提供和维护我们的铁人三项跟踪服务</value>
+  </data>
+  <data name="Performance analysis" xml:space="preserve">
+    <value>分析您的表现并提供见解</value>
+  </data>
+  <data name="User support" xml:space="preserve">
+    <value>提供客户支持并回应询问</value>
+  </data>
+  <data name="Service improvement" xml:space="preserve">
+    <value>改进我们的服务并开发新功能</value>
+  </data>
+  <data name="Data sharing policy" xml:space="preserve">
+    <value>我们不出售您的个人信息。我们只能在特定情况下共享您的数据：</value>
+  </data>
+  <data name="Third-Party Service Providers" xml:space="preserve">
+    <value>第三方服务提供商</value>
+  </data>
+  <data name="Third-party service providers explanation" xml:space="preserve">
+    <value>我们可能与协助我们运营服务的可信服务提供商共享数据，如托管提供商和分析服务。</value>
+  </data>
+  <data name="Legal Requirements" xml:space="preserve">
+    <value>法律要求</value>
+  </data>
+  <data name="Legal requirements explanation" xml:space="preserve">
+    <value>如果法律要求或为了保护我们的权利和安全，我们可能会披露您的信息。</value>
+  </data>
+  <data name="User rights explanation" xml:space="preserve">
+    <value>根据GDPR和其他隐私法律，您对您的个人数据拥有多项权利：</value>
+  </data>
+  <data name="Right to Access" xml:space="preserve">
+    <value>访问权</value>
+  </data>
+  <data name="Right to access explanation" xml:space="preserve">
+    <value>您有权要求我们持有的关于您的个人数据副本。</value>
+  </data>
+  <data name="Right to Rectification" xml:space="preserve">
+    <value>更正权</value>
+  </data>
+  <data name="Right to rectification explanation" xml:space="preserve">
+    <value>您有权要求更正不准确或不完整的个人数据。</value>
+  </data>
+  <data name="Right to Erasure" xml:space="preserve">
+    <value>删除权</value>
+  </data>
+  <data name="Right to erasure explanation" xml:space="preserve">
+    <value>您有权在特定情况下要求删除您的个人数据。</value>
+  </data>
+  <data name="Security measures explanation" xml:space="preserve">
+    <value>我们实施适当的技术和组织措施来保护您的个人数据免受未经授权的访问、更改、披露或破坏。</value>
+  </data>
+  <data name="Contact information text" xml:space="preserve">
+    <value>如果您对本隐私政策有任何问题或希望行使您的权利，请联系我们的数据保护官。</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>联系数据保护官</value>
+  </data>
+</root>

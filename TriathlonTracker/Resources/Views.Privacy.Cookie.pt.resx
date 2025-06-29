@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cookie Policy" xml:space="preserve">
+    <value>Política de Cookies</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Última atualização: Junho 2025</value>
+  </data>
+  <data name="What Are Cookies" xml:space="preserve">
+    <value>O Que São Cookies</value>
+  </data>
+  <data name="Cookie explanation" xml:space="preserve">
+    <value>Cookies são pequenos arquivos de texto que são armazenados no seu dispositivo quando você visita nosso site. Eles nos ajudam a fornecer uma melhor experiência e entender como você usa nosso serviço.</value>
+  </data>
+  <data name="How We Use Cookies" xml:space="preserve">
+    <value>Como Usamos Cookies</value>
+  </data>
+  <data name="Essential Cookies" xml:space="preserve">
+    <value>Cookies Essenciais</value>
+  </data>
+  <data name="Essential cookies explanation" xml:space="preserve">
+    <value>Esses cookies são necessários para o funcionamento adequado do site e não podem ser desativados.</value>
+  </data>
+  <data name="Authentication cookie description" xml:space="preserve">
+    <value>Mantém sua sessão de login e estado de autenticação</value>
+  </data>
+  <data name="Security cookie description" xml:space="preserve">
+    <value>Protege contra ataques de falsificação de solicitação entre sites</value>
+  </data>
+  <data name="Functional Cookies" xml:space="preserve">
+    <value>Cookies Funcionais</value>
+  </data>
+  <data name="Functional cookies explanation" xml:space="preserve">
+    <value>Esses cookies melhoram sua experiência lembrando suas preferências e configurações.</value>
+  </data>
+  <data name="Language cookie description" xml:space="preserve">
+    <value>Lembra sua configuração de idioma preferida</value>
+  </data>
+  <data name="Display cookie description" xml:space="preserve">
+    <value>Armazena suas preferências de exibição e configurações de interface</value>
+  </data>
+  <data name="Analytics Cookies" xml:space="preserve">
+    <value>Cookies de Analytics</value>
+  </data>
+  <data name="Analytics cookies explanation" xml:space="preserve">
+    <value>Esses cookies nos ajudam a entender como os visitantes usam nosso site e melhorar nossos serviços.</value>
+  </data>
+  <data name="Google Analytics cookie description" xml:space="preserve">
+    <value>Usado para distinguir usuários únicos e rastrear o uso do site</value>
+  </data>
+  <data name="Session cookie description" xml:space="preserve">
+    <value>Usado para distinguir usuários e rastrear dados de sessão</value>
+  </data>
+  <data name="Managing Cookies" xml:space="preserve">
+    <value>Gerenciando Cookies</value>
+  </data>
+  <data name="Cookie management explanation" xml:space="preserve">
+    <value>Você pode controlar e gerenciar cookies através das configurações do seu navegador. No entanto, desativar certos cookies pode afetar a funcionalidade do nosso site.</value>
+  </data>
+  <data name="Browser settings notice" xml:space="preserve">
+    <value>A maioria dos navegadores permite que você visualize, gerencie e exclua cookies. Consulte a documentação de ajuda do seu navegador para instruções específicas.</value>
+  </data>
+  <data name="Third-Party Cookies" xml:space="preserve">
+    <value>Cookies de Terceiros</value>
+  </data>
+  <data name="Third-party cookies explanation" xml:space="preserve">
+    <value>Podemos usar serviços de terceiros que definem seus próprios cookies. Esses serviços nos ajudam a fornecer analytics e melhorar a funcionalidade do nosso site.</value>
+  </data>
+  <data name="More Information" xml:space="preserve">
+    <value>Mais Informações</value>
+  </data>
+  <data name="Additional information text" xml:space="preserve">
+    <value>Se você tiver alguma dúvida sobre nosso uso de cookies ou esta Política de Cookies, entre em contato conosco.</value>
+  </data>
+  <data name="Contact Us" xml:space="preserve">
+    <value>Entre em Contato</value>
+  </data>
+  <data name="Cookie Settings" xml:space="preserve">
+    <value>Configurações de Cookies</value>
+  </data>
+  <data name="Essential cookies required" xml:space="preserve">
+    <value>Esses cookies são necessários para o funcionamento do site</value>
+  </data>
+  <data name="Save Preferences" xml:space="preserve">
+    <value>Salvar Preferências</value>
+  </data>
+  <data name="Cookie preferences saved" xml:space="preserve">
+    <value>Preferências de cookies salvas</value>
+  </data>
+  <data name="Error saving preferences" xml:space="preserve">
+    <value>Erro ao salvar preferências</value>
+  </data>
+</root>

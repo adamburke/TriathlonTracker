@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Contactar al Equipo de Privacidad</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Comuníquese con nuestro equipo de privacidad para cualquier pregunta o inquietud</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Su Nombre</value>
+  </data>
+  <data name="NamePlaceholder" xml:space="preserve">
+    <value>Ingrese su nombre completo</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Correo Electrónico</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>Ingrese su dirección de correo electrónico</value>
+  </data>
+  <data name="SubjectLabel" xml:space="preserve">
+    <value>Asunto</value>
+  </data>
+  <data name="SubjectPlaceholder" xml:space="preserve">
+    <value>Seleccione el tema de su consulta</value>
+  </data>
+  <data name="SubjectDataAccess" xml:space="preserve">
+    <value>Solicitud de Acceso a Datos</value>
+  </data>
+  <data name="SubjectDataDeletion" xml:space="preserve">
+    <value>Solicitud de Eliminación de Datos</value>
+  </data>
+  <data name="SubjectDataCorrection" xml:space="preserve">
+    <value>Solicitud de Corrección de Datos</value>
+  </data>
+  <data name="SubjectConsent" xml:space="preserve">
+    <value>Administración de Consentimiento</value>
+  </data>
+  <data name="SubjectBreach" xml:space="preserve">
+    <value>Reporte de Violación de Datos</value>
+  </data>
+  <data name="SubjectOther" xml:space="preserve">
+    <value>Otro Asunto de Privacidad</value>
+  </data>
+  <data name="MessageLabel" xml:space="preserve">
+    <value>Su Mensaje</value>
+  </data>
+  <data name="MessagePlaceholder" xml:space="preserve">
+    <value>Por favor, proporcione detalles sobre su consulta relacionada con la privacidad</value>
+  </data>
+  <data name="ConsentCheckbox" xml:space="preserve">
+    <value>Otorgo mi consentimiento para el procesamiento de mis datos personales para atender esta consulta</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>Enviar Consulta</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>Su consulta ha sido enviada exitosamente. Le responderemos en un plazo de 48 horas.</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Ocurrió un error al enviar su consulta. Por favor, inténtelo nuevamente.</value>
+  </data>
+  <data name="ValidationNameRequired" xml:space="preserve">
+    <value>Por favor, ingrese su nombre</value>
+  </data>
+  <data name="ValidationEmailRequired" xml:space="preserve">
+    <value>Por favor, ingrese su dirección de correo electrónico</value>
+  </data>
+  <data name="ValidationEmailInvalid" xml:space="preserve">
+    <value>Por favor, ingrese una dirección de correo electrónico válida</value>
+  </data>
+  <data name="ValidationSubjectRequired" xml:space="preserve">
+    <value>Por favor, seleccione un asunto</value>
+  </data>
+  <data name="ValidationMessageRequired" xml:space="preserve">
+    <value>Por favor, ingrese su mensaje</value>
+  </data>
+  <data name="ValidationConsentRequired" xml:space="preserve">
+    <value>Por favor, otorgue su consentimiento para procesar su consulta</value>
+  </data>
+</root>

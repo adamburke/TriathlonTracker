@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-swimming-pool me-1"></i><i class="fas fa-bicycle me-1"></i><i class="fas fa-running me-1"></i> TriathlonTracker
+                    <i class="fas fa-swimming-pool text-white me-1"></i> TriathlonTracker
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -33,23 +33,95 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.Identity?.IsAuthenticated == true)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Triathlon" asp-action="Index">
-                                    <i class="fas fa-list me-1"></i>@Localizer["My Races"]
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Triathlon" asp-action="Create">
-                                    <i class="fas fa-plus me-1"></i>@Localizer["Add Race"]
-                                </a>
-                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <!-- Admin Navigation -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-controller="Admin" asp-action="Dashboard">
+                                        <i class="fas fa-tachometer-alt me-1"></i>Admin Dashboard
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-cogs me-1"></i>Admin Tools
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Users">
+                                            <i class="fas fa-users me-1"></i>User Management
+                                        </a></li>
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Compliance">
+                                            <i class="fas fa-shield-alt me-1"></i>Compliance
+                                        </a></li>
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="DataRetention">
+                                            <i class="fas fa-database me-1"></i>Data Retention
+                                        </a></li>
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Security">
+                                            <i class="fas fa-lock me-1"></i>Security
+                                        </a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Reports">
+                                            <i class="fas fa-chart-bar me-1"></i>Reports
+                                        </a></li>
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Analytics">
+                                            <i class="fas fa-analytics me-1"></i>Analytics
+                                        </a></li>
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="AuditLog">
+                                            <i class="fas fa-history me-1"></i>Audit Log
+                                        </a></li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <!-- Regular User Navigation -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Triathlon" asp-action="Index">
+                                        <i class="fas fa-list me-1"></i>@Localizer["My Races"]
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Triathlon" asp-action="Create">
+                                        <i class="fas fa-plus me-1"></i>@Localizer["Add Race"]
+                                    </a>
+                                </li>
+                            }
                         }
                     </ul>
                     <ul class="navbar-nav">
                         @if (User.Identity?.IsAuthenticated == true)
                         {
+                            @if (!User.IsInRole("Admin"))
+                            {
+                                <!-- Privacy dropdown only for regular users -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-shield-alt me-1"></i>@Localizer["Privacy"]
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-controller="Privacy" asp-action="Dashboard">
+                                            <i class="fas fa-tachometer-alt me-1"></i>@Localizer["PrivacyDashboard"]
+                                        </a></li>
+                                        <li><a class="dropdown-item" asp-controller="Consent" asp-action="Index">
+                                            <i class="fas fa-shield-alt me-1"></i>@Localizer["ManageConsent"]
+                                        </a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" asp-controller="Privacy" asp-action="Policy">
+                                            <i class="fas fa-file-alt me-1"></i>@Localizer["PrivacyPolicy"]
+                                        </a></li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <!-- Admin can only view privacy policy for reference -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-controller="Privacy" asp-action="Policy">
+                                        <i class="fas fa-file-alt me-1"></i>@Localizer["PrivacyPolicy"]
+                                    </a>
+                                </li>
+                            }
                             <li class="nav-item">
-                                <span class="navbar-text text-light me-3">
+                                <span class="nav-link text-light me-3">
                                     <i class="fas fa-user me-1"></i>@User.Identity.Name
                                 </span>
                             </li>
@@ -81,15 +153,27 @@
     </header>
     <div class="container-fluid">
         <main role="main" class="pb-3">
+            @if (User.IsInRole("Admin"))
+            {
+            }
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - TriathlonTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
+            &copy; 2025 - TriathlonTracker -
+            <a asp-controller="Privacy" asp-action="Policy">@Localizer["PrivacyPolicy"]</a> |
+            <a asp-controller="Privacy" asp-action="CookiePolicy">@Localizer["CookiePolicy"]</a> |
+            <a asp-controller="Privacy" asp-action="Contact">@Localizer["Contact"]</a>
         </div>
     </footer>
+    <!-- GDPR Consent Banner -->
+    @await Html.PartialAsync("_ConsentBanner")
+    
+    <!-- Anti-forgery token for AJAX requests -->
+    @Html.AntiForgeryToken()
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

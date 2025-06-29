@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Privacy Dashboard</value>
+  </data>
+  <data name="PageDescription" xml:space="preserve">
+    <value>Manage your privacy settings and data preferences in one place</value>
+  </data>
+  <data name="PersonalDataHeader" xml:space="preserve">
+    <value>Personal Data</value>
+  </data>
+  <data name="PersonalDataDescription" xml:space="preserve">
+    <value>View and manage the personal information we collect about you</value>
+  </data>
+  <data name="TrainingDataHeader" xml:space="preserve">
+    <value>Training Data</value>
+  </data>
+  <data name="TrainingDataDescription" xml:space="preserve">
+    <value>Information about your training sessions and performance metrics</value>
+  </data>
+  <data name="UsageDataHeader" xml:space="preserve">
+    <value>Usage Data</value>
+  </data>
+  <data name="UsageDataDescription" xml:space="preserve">
+    <value>Information about how you use our services and features</value>
+  </data>
+  <data name="RightToAccessHeader" xml:space="preserve">
+    <value>Right to Access</value>
+  </data>
+  <data name="RightToAccessDescription" xml:space="preserve">
+    <value>Request a copy of all personal data we hold about you</value>
+  </data>
+  <data name="RightToEraseHeader" xml:space="preserve">
+    <value>Right to Erasure</value>
+  </data>
+  <data name="RightToEraseDescription" xml:space="preserve">
+    <value>Request deletion of your personal data from our systems</value>
+  </data>
+  <data name="RightToRectifyHeader" xml:space="preserve">
+    <value>Right to Rectification</value>
+  </data>
+  <data name="RightToRectifyDescription" xml:space="preserve">
+    <value>Request corrections to inaccurate personal data</value>
+  </data>
+  <data name="ExportDataButton" xml:space="preserve">
+    <value>Export My Data</value>
+  </data>
+  <data name="DeleteDataButton" xml:space="preserve">
+    <value>Delete My Data</value>
+  </data>
+  <data name="UpdateDataButton" xml:space="preserve">
+    <value>Update My Data</value>
+  </data>
+  <data name="ManageConsentButton" xml:space="preserve">
+    <value>Manage Consent Settings</value>
+  </data>
+  <data name="Privacy Dashboard" xml:space="preserve">
+    <value>Privacy Dashboard</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Your Rights</value>
+  </data>
+  <data name="Quick Actions" xml:space="preserve">
+    <value>Quick Actions</value>
+  </data>
+  <data name="View Privacy Policy" xml:space="preserve">
+    <value>View Privacy Policy</value>
+  </data>
+  <data name="Manage Cookies" xml:space="preserve">
+    <value>Manage Cookies</value>
+  </data>
+  <data name="Manage Consent" xml:space="preserve">
+    <value>Manage Consent</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Contact DPO</value>
+  </data>
+  <data name="Confirm Data Deletion" xml:space="preserve">
+    <value>Confirm Data Deletion</value>
+  </data>
+  <data name="Data deletion warning" xml:space="preserve">
+    <value>Warning: This action cannot be undone</value>
+  </data>
+  <data name="Data deletion explanation" xml:space="preserve">
+    <value>By proceeding, you will initiate the process to permanently delete all your personal data from our systems. This process may take up to 30 days to complete.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Request Deletion" xml:space="preserve">
+    <value>Request Deletion</value>
+  </data>
+  <data name="Request Access" xml:space="preserve">
+    <value>Request Access</value>
+  </data>
+  <data name="Request Correction" xml:space="preserve">
+    <value>Request Correction</value>
+  </data>
+</root>

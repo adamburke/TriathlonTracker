@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cookie Policy" xml:space="preserve">
+    <value>Cookie Policy</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Last updated: June 2025</value>
+  </data>
+  <data name="What Are Cookies" xml:space="preserve">
+    <value>What Are Cookies</value>
+  </data>
+  <data name="Cookie explanation" xml:space="preserve">
+    <value>Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better experience and understand how you use our service.</value>
+  </data>
+  <data name="How We Use Cookies" xml:space="preserve">
+    <value>How We Use Cookies</value>
+  </data>
+  <data name="Essential Cookies" xml:space="preserve">
+    <value>Essential Cookies</value>
+  </data>
+  <data name="Essential cookies explanation" xml:space="preserve">
+    <value>These cookies are necessary for the website to function properly and cannot be disabled.</value>
+  </data>
+  <data name="Authentication cookie description" xml:space="preserve">
+    <value>Maintains your login session and authentication state</value>
+  </data>
+  <data name="Security cookie description" xml:space="preserve">
+    <value>Protects against cross-site request forgery attacks</value>
+  </data>
+  <data name="Functional Cookies" xml:space="preserve">
+    <value>Functional Cookies</value>
+  </data>
+  <data name="Functional cookies explanation" xml:space="preserve">
+    <value>These cookies enhance your experience by remembering your preferences and settings.</value>
+  </data>
+  <data name="Language cookie description" xml:space="preserve">
+    <value>Remembers your preferred language setting</value>
+  </data>
+  <data name="Display cookie description" xml:space="preserve">
+    <value>Stores your display preferences and UI settings</value>
+  </data>
+  <data name="Analytics Cookies" xml:space="preserve">
+    <value>Analytics Cookies</value>
+  </data>
+  <data name="Analytics cookies explanation" xml:space="preserve">
+    <value>These cookies help us understand how visitors use our website and improve our services.</value>
+  </data>
+  <data name="Google Analytics cookie description" xml:space="preserve">
+    <value>Used to distinguish unique users and track website usage</value>
+  </data>
+  <data name="Session cookie description" xml:space="preserve">
+    <value>Used to distinguish users and track session data</value>
+  </data>
+  <data name="Managing Cookies" xml:space="preserve">
+    <value>Managing Cookies</value>
+  </data>
+  <data name="Cookie management explanation" xml:space="preserve">
+    <value>You can control and manage cookies through your browser settings. However, disabling certain cookies may affect the functionality of our website.</value>
+  </data>
+  <data name="Browser settings notice" xml:space="preserve">
+    <value>Most browsers allow you to view, manage, and delete cookies. Please refer to your browser's help documentation for specific instructions.</value>
+  </data>
+  <data name="Third-Party Cookies" xml:space="preserve">
+    <value>Third-Party Cookies</value>
+  </data>
+  <data name="Third-party cookies explanation" xml:space="preserve">
+    <value>We may use third-party services that set their own cookies. These services help us provide analytics and improve our website functionality.</value>
+  </data>
+  <data name="More Information" xml:space="preserve">
+    <value>More Information</value>
+  </data>
+  <data name="Additional information text" xml:space="preserve">
+    <value>If you have any questions about our use of cookies or this Cookie Policy, please contact us.</value>
+  </data>
+  <data name="Contact Us" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="Cookie Settings" xml:space="preserve">
+    <value>Cookie Settings</value>
+  </data>
+  <data name="Essential cookies required" xml:space="preserve">
+    <value>These cookies are required for the website to function</value>
+  </data>
+  <data name="Save Preferences" xml:space="preserve">
+    <value>Save Preferences</value>
+  </data>
+  <data name="Cookie preferences saved" xml:space="preserve">
+    <value>Cookie preferences saved</value>
+  </data>
+  <data name="Error saving preferences" xml:space="preserve">
+    <value>Error saving preferences</value>
+  </data>
+</root>

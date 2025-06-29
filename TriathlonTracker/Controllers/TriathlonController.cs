@@ -7,7 +7,7 @@ using TriathlonTracker.Models;
 
 namespace TriathlonTracker.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User")]
     public class TriathlonController : Controller
     {
         private readonly ApplicationDbContext _context;

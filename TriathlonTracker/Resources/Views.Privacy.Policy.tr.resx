@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Gizlilik Politikası</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Son güncelleme: Haziran 2025</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Genel Bakış</value>
+  </data>
+  <data name="Data Collection" xml:space="preserve">
+    <value>Veri Toplama</value>
+  </data>
+  <data name="Data Use" xml:space="preserve">
+    <value>Veri Kullanımı</value>
+  </data>
+  <data name="Data Sharing" xml:space="preserve">
+    <value>Veri Paylaşımı</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Haklarınız</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Güvenlik</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>İletişim</value>
+  </data>
+  <data name="Privacy policy overview text" xml:space="preserve">
+    <value>Bu Gizlilik Politikası, TriathlonTracker'ın triatlon takip hizmetimizi kullandığınızda kişisel bilgilerinizi nasıl topladığını, kullandığını ve koruduğunu açıklar.</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>Kişisel Bilgiler</value>
+  </data>
+  <data name="Personal information collection details" xml:space="preserve">
+    <value>Hizmetlerimizi sağlamak için adınız, e-posta adresiniz ve hesap tercihleriniz dahil temel kişisel bilgileri topluyoruz.</value>
+  </data>
+  <data name="Training Data" xml:space="preserve">
+    <value>Antrenman Verileri</value>
+  </data>
+  <data name="Training data collection details" xml:space="preserve">
+    <value>İlerlemenizi takip etmek için mesafeler, süreler, konumlar ve performans metrikleri dahil triatlon yarış verilerinizi topluyoruz.</value>
+  </data>
+  <data name="Usage Data" xml:space="preserve">
+    <value>Kullanım Verileri</value>
+  </data>
+  <data name="Usage data collection details" xml:space="preserve">
+    <value>Hizmetlerimizi ve kullanıcı deneyimini iyileştirmek için uygulamamızı nasıl kullandığınız hakkında bilgi topluyoruz.</value>
+  </data>
+  <data name="Data use explanation" xml:space="preserve">
+    <value>Verilerinizi aşağıdaki amaçlar için kullanıyoruz:</value>
+  </data>
+  <data name="Service provision" xml:space="preserve">
+    <value>Triatlon takip hizmetimizi sağlamak ve sürdürmek için</value>
+  </data>
+  <data name="Performance analysis" xml:space="preserve">
+    <value>Performansınızı analiz etmek ve içgörüler sağlamak için</value>
+  </data>
+  <data name="User support" xml:space="preserve">
+    <value>Müşteri desteği sağlamak ve sorguları yanıtlamak için</value>
+  </data>
+  <data name="Service improvement" xml:space="preserve">
+    <value>Hizmetlerimizi iyileştirmek ve yeni özellikler geliştirmek için</value>
+  </data>
+  <data name="Data sharing policy" xml:space="preserve">
+    <value>Kişisel bilgilerinizi satmıyoruz. Verilerinizi yalnızca belirli durumlarda paylaşabiliriz:</value>
+  </data>
+  <data name="Third-Party Service Providers" xml:space="preserve">
+    <value>Üçüncü Taraf Hizmet Sağlayıcıları</value>
+  </data>
+  <data name="Third-party service providers explanation" xml:space="preserve">
+    <value>Hizmetimizi işletmemize yardımcı olan güvenilir hizmet sağlayıcılarıyla veri paylaşabiliriz, örneğin barındırma sağlayıcıları ve analiz hizmetleri.</value>
+  </data>
+  <data name="Legal Requirements" xml:space="preserve">
+    <value>Yasal Gereksinimler</value>
+  </data>
+  <data name="Legal requirements explanation" xml:space="preserve">
+    <value>Yasa gereği veya haklarımızı ve güvenliğimizi korumak için bilgilerinizi açıklayabiliriz.</value>
+  </data>
+  <data name="User rights explanation" xml:space="preserve">
+    <value>KVKK ve diğer gizlilik yasaları uyarınca, kişisel verilerinizle ilgili birkaç hakkınız vardır:</value>
+  </data>
+  <data name="Right to Access" xml:space="preserve">
+    <value>Erişim Hakkı</value>
+  </data>
+  <data name="Right to access explanation" xml:space="preserve">
+    <value>Hakkınızda tuttuğumuz kişisel verilerin bir kopyasını talep etme hakkınız vardır.</value>
+  </data>
+  <data name="Right to Rectification" xml:space="preserve">
+    <value>Düzeltme Hakkı</value>
+  </data>
+  <data name="Right to rectification explanation" xml:space="preserve">
+    <value>Yanlış veya eksik kişisel verilerin düzeltilmesini talep etme hakkınız vardır.</value>
+  </data>
+  <data name="Right to Erasure" xml:space="preserve">
+    <value>Silme Hakkı</value>
+  </data>
+  <data name="Right to erasure explanation" xml:space="preserve">
+    <value>Belirli durumlarda kişisel verilerinizin silinmesini talep etme hakkınız vardır.</value>
+  </data>
+  <data name="Security measures explanation" xml:space="preserve">
+    <value>Kişisel verilerinizi yetkisiz erişim, değişiklik, ifşa veya yıkıma karşı korumak için uygun teknik ve organizasyonel önlemler uyguluyoruz.</value>
+  </data>
+  <data name="Contact information text" xml:space="preserve">
+    <value>Bu Gizlilik Politikası hakkında sorularınız varsa veya haklarınızı kullanmak istiyorsanız, lütfen Veri Koruma Görevlimizle iletişime geçin.</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>VKG ile İletişim</value>
+  </data>
+</root>

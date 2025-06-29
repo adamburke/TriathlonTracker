@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Consent Management" xml:space="preserve">
+    <value>Einwilligungsverwaltung</value>
+  </data>
+  <data name="Privacy Dashboard" xml:space="preserve">
+    <value>Datenschutz-Dashboard</value>
+  </data>
+  <data name="Current Consent Status" xml:space="preserve">
+    <value>Aktueller Einwilligungsstatus</value>
+  </data>
+  <data name="Data Processing" xml:space="preserve">
+    <value>Datenverarbeitung</value>
+  </data>
+  <data name="Granted" xml:space="preserve">
+    <value>Erteilt</value>
+  </data>
+  <data name="Not Granted" xml:space="preserve">
+    <value>Nicht Erteilt</value>
+  </data>
+  <data name="Essential for application functionality" xml:space="preserve">
+    <value>Wesentlich für die Anwendungsfunktionalität</value>
+  </data>
+  <data name="Withdraw" xml:space="preserve">
+    <value>Zurückziehen</value>
+  </data>
+  <data name="Grant" xml:space="preserve">
+    <value>Erteilen</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="Promotional emails and updates" xml:space="preserve">
+    <value>Werbe-E-Mails und Updates</value>
+  </data>
+  <data name="Analytics" xml:space="preserve">
+    <value>Analytik</value>
+  </data>
+  <data name="Usage analytics and improvements" xml:space="preserve">
+    <value>Nutzungsanalytik und Verbesserungen</value>
+  </data>
+  <data name="What This Means" xml:space="preserve">
+    <value>Was Das Bedeutet</value>
+  </data>
+  <data name="Data Processing Consent" xml:space="preserve">
+    <value>Einwilligung zur Datenverarbeitung</value>
+  </data>
+  <data name="Data processing consent description" xml:space="preserve">
+    <value>Diese Einwilligung ermöglicht es uns, Ihre persönlichen Daten zu verarbeiten, um die Kernfunktionalität der Anwendung bereitzustellen, einschließlich der Speicherung Ihrer Triathlon-Aufzeichnungen, der Verwaltung Ihres Kontos und der Bereitstellung personalisierter Funktionen. Dies ist erforderlich, damit die Anwendung ordnungsgemäß funktioniert.</value>
+  </data>
+  <data name="Marketing Consent" xml:space="preserve">
+    <value>Marketing-Einwilligung</value>
+  </data>
+  <data name="Marketing consent description" xml:space="preserve">
+    <value>Diese Einwilligung ermöglicht es uns, Ihnen Werbe-E-Mails, Trainings-Tipps, Funktions-Updates und andere Marketing-Kommunikation zu senden. Sie können diese Einwilligung jederzeit zurückziehen, ohne Ihre Nutzung der Anwendung zu beeinträchtigen.</value>
+  </data>
+  <data name="Analytics Consent" xml:space="preserve">
+    <value>Analytik-Einwilligung</value>
+  </data>
+  <data name="Analytics consent description" xml:space="preserve">
+    <value>Diese Einwilligung ermöglicht es uns, anonyme Nutzungsdaten zu sammeln, um zu verstehen, wie Sie die Anwendung nutzen, beliebte Funktionen zu identifizieren und unseren Service zu verbessern. Diese Daten sind aggregiert und können nicht verwendet werden, um Sie persönlich zu identifizieren.</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Ihre Rechte</value>
+  </data>
+  <data name="Your rights description" xml:space="preserve">
+    <value>Sie haben das Recht, Ihre Einwilligung jederzeit zurückzuziehen. Sie haben auch das Recht, auf Ihre persönlichen Daten zuzugreifen, sie zu exportieren, zu korrigieren oder zu löschen. Besuchen Sie Ihr Datenschutz-Dashboard, um diese Rechte auszuüben.</value>
+  </data>
+  <data name="Recent Consent Changes" xml:space="preserve">
+    <value>Letzte Einwilligungsänderungen</value>
+  </data>
+  <data name="View Full History" xml:space="preserve">
+    <value>Vollständigen Verlauf anzeigen</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Consent Type" xml:space="preserve">
+    <value>Einwilligungstyp</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Zweck</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Zurückgezogen</value>
+  </data>
+  <data name="An error occurred while updating your consent" xml:space="preserve">
+    <value>Beim Aktualisieren Ihrer Einwilligung ist ein Fehler aufgetreten</value>
+  </data>
+  <data name="Processing personal data for application functionality" xml:space="preserve">
+    <value>Verarbeitung persönlicher Daten für Anwendungsfunktionalität</value>
+  </data>
+  <data name="Marketing communications and promotional content" xml:space="preserve">
+    <value>Marketing-Kommunikation und Werbeinhalte</value>
+  </data>
+  <data name="Analytics and performance tracking" xml:space="preserve">
+    <value>Analytik und Leistungsverfolgung</value>
+  </data>
+  <data name="User consent management" xml:space="preserve">
+    <value>Benutzereinwilligungsverwaltung</value>
+  </data>
+</root> 

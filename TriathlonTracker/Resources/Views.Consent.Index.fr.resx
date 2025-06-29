@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Consent Management" xml:space="preserve">
+    <value>Gestion du Consentement</value>
+  </data>
+  <data name="Privacy Dashboard" xml:space="preserve">
+    <value>Tableau de Bord de Confidentialité</value>
+  </data>
+  <data name="Current Consent Status" xml:space="preserve">
+    <value>Statut Actuel du Consentement</value>
+  </data>
+  <data name="Data Processing" xml:space="preserve">
+    <value>Traitement des Données</value>
+  </data>
+  <data name="Granted" xml:space="preserve">
+    <value>Accordé</value>
+  </data>
+  <data name="Not Granted" xml:space="preserve">
+    <value>Non Accordé</value>
+  </data>
+  <data name="Essential for application functionality" xml:space="preserve">
+    <value>Essentiel pour la fonctionnalité de l'application</value>
+  </data>
+  <data name="Withdraw" xml:space="preserve">
+    <value>Retirer</value>
+  </data>
+  <data name="Grant" xml:space="preserve">
+    <value>Accorder</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="Promotional emails and updates" xml:space="preserve">
+    <value>E-mails promotionnels et mises à jour</value>
+  </data>
+  <data name="Analytics" xml:space="preserve">
+    <value>Analytiques</value>
+  </data>
+  <data name="Usage analytics and improvements" xml:space="preserve">
+    <value>Analytiques d'utilisation et améliorations</value>
+  </data>
+  <data name="What This Means" xml:space="preserve">
+    <value>Ce Que Cela Signifie</value>
+  </data>
+  <data name="Data Processing Consent" xml:space="preserve">
+    <value>Consentement au Traitement des Données</value>
+  </data>
+  <data name="Data processing consent description" xml:space="preserve">
+    <value>Ce consentement nous permet de traiter vos données personnelles pour fournir la fonctionnalité de base de l'application, y compris le stockage de vos enregistrements de triathlon, la gestion de votre compte et la fourniture de fonctionnalités personnalisées. Ceci est requis pour que l'application fonctionne correctement.</value>
+  </data>
+  <data name="Marketing Consent" xml:space="preserve">
+    <value>Consentement Marketing</value>
+  </data>
+  <data name="Marketing consent description" xml:space="preserve">
+    <value>Ce consentement nous permet de vous envoyer des e-mails promotionnels, des conseils d'entraînement, des mises à jour de fonctionnalités et d'autres communications marketing. Vous pouvez retirer ce consentement à tout moment sans affecter votre utilisation de l'application.</value>
+  </data>
+  <data name="Analytics Consent" xml:space="preserve">
+    <value>Consentement Analytiques</value>
+  </data>
+  <data name="Analytics consent description" xml:space="preserve">
+    <value>Ce consentement nous permet de collecter des données d'utilisation anonymes pour comprendre comment vous utilisez l'application, identifier les fonctionnalités populaires et améliorer notre service. Ces données sont agrégées et ne peuvent pas être utilisées pour vous identifier personnellement.</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Vos Droits</value>
+  </data>
+  <data name="Your rights description" xml:space="preserve">
+    <value>Vous avez le droit de retirer votre consentement à tout moment. Vous avez également le droit d'accéder, d'exporter, de corriger ou de supprimer vos données personnelles. Visitez votre Tableau de Bord de Confidentialité pour exercer ces droits.</value>
+  </data>
+  <data name="Recent Consent Changes" xml:space="preserve">
+    <value>Changements Récents de Consentement</value>
+  </data>
+  <data name="View Full History" xml:space="preserve">
+    <value>Voir l'Historique Complet</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Consent Type" xml:space="preserve">
+    <value>Type de Consentement</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Objectif</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Retiré</value>
+  </data>
+  <data name="An error occurred while updating your consent" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la mise à jour de votre consentement</value>
+  </data>
+  <data name="Processing personal data for application functionality" xml:space="preserve">
+    <value>Traitement des données personnelles pour la fonctionnalité de l'application</value>
+  </data>
+  <data name="Marketing communications and promotional content" xml:space="preserve">
+    <value>Communications marketing et contenu promotionnel</value>
+  </data>
+  <data name="Analytics and performance tracking" xml:space="preserve">
+    <value>Analytiques et suivi des performances</value>
+  </data>
+  <data name="User consent management" xml:space="preserve">
+    <value>Gestion du consentement utilisateur</value>
+  </data>
+</root> 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Политика конфиденциальности</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Последнее обновление: Июнь 2025</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Обзор</value>
+  </data>
+  <data name="Data Collection" xml:space="preserve">
+    <value>Сбор данных</value>
+  </data>
+  <data name="Data Use" xml:space="preserve">
+    <value>Использование данных</value>
+  </data>
+  <data name="Data Sharing" xml:space="preserve">
+    <value>Обмен данными</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>Ваши права</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Безопасность</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="Privacy policy overview text" xml:space="preserve">
+    <value>Эта Политика конфиденциальности описывает, как TriathlonTracker собирает, использует и защищает вашу личную информацию при использовании нашего сервиса отслеживания триатлона.</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>Личная информация</value>
+  </data>
+  <data name="Personal information collection details" xml:space="preserve">
+    <value>Мы собираем основную личную информацию, включая ваше имя, адрес электронной почты и настройки аккаунта для предоставления наших услуг.</value>
+  </data>
+  <data name="Training Data" xml:space="preserve">
+    <value>Данные тренировок</value>
+  </data>
+  <data name="Training data collection details" xml:space="preserve">
+    <value>Мы собираем данные о ваших гонках триатлона, включая расстояния, время, местоположения и метрики производительности для отслеживания вашего прогресса.</value>
+  </data>
+  <data name="Usage Data" xml:space="preserve">
+    <value>Данные использования</value>
+  </data>
+  <data name="Usage data collection details" xml:space="preserve">
+    <value>Мы собираем информацию о том, как вы используете наше приложение, чтобы улучшить наши услуги и пользовательский опыт.</value>
+  </data>
+  <data name="Data use explanation" xml:space="preserve">
+    <value>Мы используем ваши данные для следующих целей:</value>
+  </data>
+  <data name="Service provision" xml:space="preserve">
+    <value>Для предоставления и поддержания нашего сервиса отслеживания триатлона</value>
+  </data>
+  <data name="Performance analysis" xml:space="preserve">
+    <value>Для анализа вашей производительности и предоставления аналитики</value>
+  </data>
+  <data name="User support" xml:space="preserve">
+    <value>Для предоставления поддержки клиентов и ответов на запросы</value>
+  </data>
+  <data name="Service improvement" xml:space="preserve">
+    <value>Для улучшения наших услуг и разработки новых функций</value>
+  </data>
+  <data name="Data sharing policy" xml:space="preserve">
+    <value>Мы не продаем вашу личную информацию. Мы можем делиться вашими данными только в определенных обстоятельствах:</value>
+  </data>
+  <data name="Third-Party Service Providers" xml:space="preserve">
+    <value>Сторонние поставщики услуг</value>
+  </data>
+  <data name="Third-party service providers explanation" xml:space="preserve">
+    <value>Мы можем делиться данными с доверенными поставщиками услуг, которые помогают нам управлять нашим сервисом, такими как хостинг-провайдеры и аналитические сервисы.</value>
+  </data>
+  <data name="Legal Requirements" xml:space="preserve">
+    <value>Правовые требования</value>
+  </data>
+  <data name="Legal requirements explanation" xml:space="preserve">
+    <value>Мы можем раскрыть вашу информацию, если это требуется по закону или для защиты наших прав и безопасности.</value>
+  </data>
+  <data name="User rights explanation" xml:space="preserve">
+    <value>В соответствии с GDPR и другими законами о конфиденциальности, у вас есть несколько прав в отношении ваших персональных данных:</value>
+  </data>
+  <data name="Right to Access" xml:space="preserve">
+    <value>Право на доступ</value>
+  </data>
+  <data name="Right to access explanation" xml:space="preserve">
+    <value>Вы имеете право запросить копию персональных данных, которые мы храним о вас.</value>
+  </data>
+  <data name="Right to Rectification" xml:space="preserve">
+    <value>Право на исправление</value>
+  </data>
+  <data name="Right to rectification explanation" xml:space="preserve">
+    <value>Вы имеете право запросить исправление неточных или неполных персональных данных.</value>
+  </data>
+  <data name="Right to Erasure" xml:space="preserve">
+    <value>Право на удаление</value>
+  </data>
+  <data name="Right to erasure explanation" xml:space="preserve">
+    <value>Вы имеете право запросить удаление ваших персональных данных в определенных обстоятельствах.</value>
+  </data>
+  <data name="Security measures explanation" xml:space="preserve">
+    <value>Мы реализуем соответствующие технические и организационные меры для защиты ваших персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</value>
+  </data>
+  <data name="Contact information text" xml:space="preserve">
+    <value>Если у вас есть вопросы об этой Политике конфиденциальности или вы хотите воспользоваться своими правами, пожалуйста, свяжитесь с нашим Специалистом по защите данных.</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Связаться с СЗД</value>
+  </data>
+</root>

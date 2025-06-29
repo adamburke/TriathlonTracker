@@ -6,4 +6,9 @@
   <data name="Login" xml:space="preserve"><value>Anmelden</value></data>
   <data name="Register" xml:space="preserve"><value>Registrieren</value></data>
   <data name="Privacy" xml:space="preserve"><value>Datenschutz</value></data>
-</root> 
+  <data name="PrivacyDashboard" xml:space="preserve"><value>Datenschutz-Dashboard</value></data>
+  <data name="ManageConsent" xml:space="preserve"><value>Zustimmung verwalten</value></data>
+  <data name="PrivacyPolicy" xml:space="preserve"><value>Datenschutzrichtlinie</value></data>
+  <data name="CookiePolicy" xml:space="preserve"><value>Cookie-Richtlinie</value></data>
+  <data name="Contact" xml:space="preserve"><value>Kontakt</value></data>
+</root>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Cookie-Richtlinie</value>
+  </data>
+  <data name="LastUpdatedJune2025" xml:space="preserve">
+    <value>Zuletzt aktualisiert: 28. Juni 2025 | Version 1.0</value>
+  </data>
+  <data name="WhatAreCookies" xml:space="preserve">
+    <value>Was sind Cookies?</value>
+  </data>
+  <data name="CookiesDescription" xml:space="preserve">
+    <value>Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie unsere Website besuchen. Sie helfen uns, Ihnen eine bessere Erfahrung zu bieten, indem sie sich an Ihre Präferenzen erinnern und bestimmte Funktionen ermöglichen.</value>
+  </data>
+  <data name="HowWeUseCookies" xml:space="preserve">
+    <value>Wie wir Cookies verwenden</value>
+  </data>
+  <data name="EssentialCookies" xml:space="preserve">
+    <value>Wesentliche Cookies</value>
+  </data>
+  <data name="EssentialCookiesDescription" xml:space="preserve">
+    <value>Diese Cookies sind notwendig, damit die Website ordnungsgemäß funktioniert:</value>
+  </data>
+  <data name="Authentication" xml:space="preserve">
+    <value>Authentifizierung:</value>
+  </data>
+  <data name="KeepLoggedInSession" xml:space="preserve">
+    <value>Sie während Ihrer Sitzung angemeldet halten</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Sicherheit:</value>
+  </data>
+  <data name="ProtectAgainstCSRF" xml:space="preserve">
+    <value>Schutz vor Cross-Site-Request-Forgery</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Präferenzen:</value>
+  </data>
+  <data name="RememberLanguageSettings" xml:space="preserve">
+    <value>Ihre Sprach- und Anzeigeeinstellungen merken</value>
+  </data>
+  <data name="FunctionalCookies" xml:space="preserve">
+    <value>Funktionale Cookies</value>
+  </data>
+  <data name="FunctionalCookiesDescription" xml:space="preserve">
+    <value>Diese Cookies verbessern Ihre Erfahrung (mit Ihrer Zustimmung):</value>
+  </data>
+  <data name="UserPreferences" xml:space="preserve">
+    <value>Benutzerpräferenzen:</value>
+  </data>
+  <data name="RememberDashboardLayout" xml:space="preserve">
+    <value>Ihr Dashboard-Layout und Einstellungen merken</value>
+  </data>
+  <data name="FormData" xml:space="preserve">
+    <value>Formulardaten:</value>
+  </data>
+  <data name="SavePartialForms" xml:space="preserve">
+    <value>Teilweise ausgefüllte Formulare speichern</value>
+  </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Barrierefreiheit:</value>
+  </data>
+  <data name="RememberAccessibilityPreferences" xml:space="preserve">
+    <value>Barrierefreiheits-Präferenzen merken</value>
+  </data>
+  <data name="AnalyticsCookies" xml:space="preserve">
+    <value>Analyse-Cookies</value>
+  </data>
+  <data name="AnalyticsCookiesDescription" xml:space="preserve">
+    <value>Diese Cookies helfen uns zu verstehen, wie Sie unseren Service nutzen (mit Ihrer Zustimmung):</value>
+  </data>
+  <data name="UsageAnalytics" xml:space="preserve">
+    <value>Nutzungsanalyse:</value>
+  </data>
+  <data name="TrackPageViews" xml:space="preserve">
+    <value>Seitenaufrufe und Benutzerinteraktionen verfolgen</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Leistung:</value>
+  </data>
+  <data name="MonitorPerformance" xml:space="preserve">
+    <value>Anwendungsleistung und Fehler überwachen</value>
+  </data>
+  <data name="Improvements" xml:space="preserve">
+    <value>Verbesserungen:</value>
+  </data>
+  <data name="IdentifyEnhancements" xml:space="preserve">
+    <value>Bereiche für Verbesserungen identifizieren</value>
+  </data>
+  <data name="CookieCategories" xml:space="preserve">
+    <value>Cookie-Kategorien</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Zweck</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Dauer</value>
+  </data>
+  <data name="ConsentRequired" xml:space="preserve">
+    <value>Zustimmung erforderlich</value>
+  </data>
+  <data name="Essential" xml:space="preserve">
+    <value>Wesentlich</value>
+  </data>
+  <data name="AuthSecurityBasicFunc" xml:space="preserve">
+    <value>Authentifizierung, Sicherheit, Grundfunktionen</value>
+  </data>
+  <data name="SessionOneYear" xml:space="preserve">
+    <value>Sitzung / 1 Jahr</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="Functional" xml:space="preserve">
+    <value>Funktional</value>
+  </data>
+  <data name="EnhancedUserExperience" xml:space="preserve">
+    <value>Verbesserte Benutzererfahrung und Präferenzen</value>
+  </data>
+  <data name="OneYear" xml:space="preserve">
+    <value>1 Jahr</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Analytics" xml:space="preserve">
+    <value>Analyse</value>
+  </data>
+  <data name="UsageTrackingPerformance" xml:space="preserve">
+    <value>Nutzungsverfolgung und Leistungsüberwachung</value>
+  </data>
+  <data name="TwoYears" xml:space="preserve">
+    <value>2 Jahre</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="PersonalizedContent" xml:space="preserve">
+    <value>Personalisierte Inhalte und Werbung</value>
+  </data>
+  <data name="ManagingCookiePreferences" xml:space="preserve">
+    <value>Verwaltung Ihrer Cookie-Präferenzen</value>
+  </data>
+  <data name="ThroughOurWebsite" xml:space="preserve">
+    <value>Über unsere Website</value>
+  </data>
+  <data name="ManageCookiePreferencesAnytime" xml:space="preserve">
+    <value>Sie können Ihre Cookie-Präferenzen jederzeit verwalten:</value>
+  </data>
+  <data name="VisitYour" xml:space="preserve">
+    <value>Besuchen Sie Ihre</value>
+  </data>
+  <data name="ConsentManagement" xml:space="preserve">
+    <value>Zustimmungsverwaltung</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Seite</value>
+  </data>
+  <data name="UseCookieBanner" xml:space="preserve">
+    <value>Verwenden Sie das Cookie-Banner, wenn es erscheint</value>
+  </data>
+  <data name="AccessSettingsThrough" xml:space="preserve">
+    <value>Greifen Sie auf Einstellungen über Ihr</value>
+  </data>
+  <data name="PrivacyDashboard" xml:space="preserve">
+    <value>Datenschutz-Dashboard</value>
+  </data>
+  <data name="ThroughYourBrowser" xml:space="preserve">
+    <value>Über Ihren Browser</value>
+  </data>
+  <data name="ControlCookiesBrowser" xml:space="preserve">
+    <value>Sie können Cookies auch über Ihre Browser-Einstellungen steuern:</value>
+  </data>
+  <data name="Chrome" xml:space="preserve">
+    <value>Chrome:</value>
+  </data>
+  <data name="ChromeSettings" xml:space="preserve">
+    <value>Einstellungen > Datenschutz und Sicherheit > Cookies</value>
+  </data>
+  <data name="Firefox" xml:space="preserve">
+    <value>Firefox:</value>
+  </data>
+  <data name="FirefoxOptions" xml:space="preserve">
+    <value>Optionen > Datenschutz &amp; Sicherheit > Cookies</value>
+  </data>
+  <data name="Safari" xml:space="preserve">
+    <value>Safari:</value>
+  </data>
+  <data name="SafariPreferences" xml:space="preserve">
+    <value>Einstellungen > Datenschutz > Cookies</value>
+  </data>
+  <data name="Edge" xml:space="preserve">
+    <value>Edge:</value>
+  </data>
+  <data name="EdgeSettings" xml:space="preserve">
+    <value>Einstellungen > Cookies und Website-Berechtigungen</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Hinweis:</value>
+  </data>
+  <data name="DisablingEssentialCookies" xml:space="preserve">
+    <value>Das Deaktivieren wesentlicher Cookies kann die Funktionalität unserer Website beeinträchtigen.</value>
+  </data>
+  <data name="ThirdPartyCookies" xml:space="preserve">
+    <value>Drittanbieter-Cookies</value>
+  </data>
+  <data name="ThirdPartyServices" xml:space="preserve">
+    <value>Wir können Drittanbieterdienste verwenden, die ihre eigenen Cookies setzen:</value>
+  </data>
+  <data name="AuthenticationServices" xml:space="preserve">
+    <value>Authentifizierungsdienste</value>
+  </data>
+  <data name="GoogleOAuth" xml:space="preserve">
+    <value>Google OAuth:</value>
+  </data>
+  <data name="SecureLoginFunctionality" xml:space="preserve">
+    <value>Für sichere Anmeldefunktionalität</value>
+  </data>
+  <data name="AnalyticsServicesConsent" xml:space="preserve">
+    <value>Analysedienste (mit Zustimmung)</value>
+  </data>
+  <data name="ApplicationInsights" xml:space="preserve">
+    <value>Application Insights:</value>
+  </data>
+  <data name="PerformanceMonitoring" xml:space="preserve">
+    <value>Für Leistungsüberwachung</value>
+  </data>
+  <data name="CustomAnalytics" xml:space="preserve">
+    <value>Benutzerdefinierte Analyse:</value>
+  </data>
+  <data name="UsageTracking" xml:space="preserve">
+    <value>Für Nutzungsverfolgung</value>
+  </data>
+  <data name="ThirdPartyPolicies" xml:space="preserve">
+    <value>Diese Drittanbieter haben ihre eigenen Datenschutzrichtlinien und Cookie-Praktiken. Wir empfehlen, ihre Richtlinien für weitere Informationen zu überprüfen.</value>
+  </data>
+  <data name="CookieRetention" xml:space="preserve">
+    <value>Cookie-Aufbewahrung</value>
+  </data>
+  <data name="CookieRetentionPeriods" xml:space="preserve">
+    <value>Verschiedene Arten von Cookies werden für unterschiedliche Zeiträume aufbewahrt:</value>
+  </data>
+  <data name="SessionCookies" xml:space="preserve">
+    <value>Sitzungs-Cookies:</value>
+  </data>
+  <data name="DeletedWhenCloseBrowser" xml:space="preserve">
+    <value>Gelöscht, wenn Sie Ihren Browser schließen</value>
+  </data>
+  <data name="PersistentCookies" xml:space="preserve">
+    <value>Persistente Cookies:</value>
+  </data>
+  <data name="RemainUntilExpiration" xml:space="preserve">
+    <value>Bleiben bis zum Ablauf oder manueller Löschung</value>
+  </data>
+  <data name="EssentialCookiesColon" xml:space="preserve">
+    <value>Wesentliche Cookies:</value>
+  </data>
+  <data name="UpToOneYear" xml:space="preserve">
+    <value>Bis zu 1 Jahr</value>
+  </data>
+  <data name="PreferenceCookies" xml:space="preserve">
+    <value>Präferenz-Cookies:</value>
+  </data>
+  <data name="AnalyticsCookiesColon" xml:space="preserve">
+    <value>Analyse-Cookies:</value>
+  </data>
+  <data name="UpToTwoYears" xml:space="preserve">
+    <value>Bis zu 2 Jahre</value>
+  </data>
+  <data name="UpdatesToPolicy" xml:space="preserve">
+    <value>Updates zu dieser Richtlinie</value>
+  </data>
+  <data name="PolicyUpdateNotice" xml:space="preserve">
+    <value>Wir können diese Cookie-Richtlinie von Zeit zu Zeit aktualisieren, um Änderungen in unseren Praktiken oder aus anderen betrieblichen, rechtlichen oder regulatorischen Gründen zu reflektieren. Wir werden Sie über wesentliche Änderungen informieren, indem wir die aktualisierte Richtlinie auf dieser Seite veröffentlichen.</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Kontaktieren Sie uns</value>
+  </data>
+  <data name="CookieQuestions" xml:space="preserve">
+    <value>Wenn Sie Fragen zu unserer Verwendung von Cookies haben, kontaktieren Sie uns bitte:</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-Mail:</value>
+  </data>
+  <data name="ContactForm" xml:space="preserve">
+    <value>Kontaktformular:</value>
+  </data>
+  <data name="PrivacyContact" xml:space="preserve">
+    <value>Datenschutz-Kontakt</value>
+  </data>
+  <data name="QuickActions" xml:space="preserve">
+    <value>Schnelle Aktionen</value>
+  </data>
+  <data name="ManageCookies" xml:space="preserve">
+    <value>Cookies verwalten</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Datenschutzrichtlinie</value>
+  </data>
+</root>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Informativa sulla Privacy</value>
+  </data>
+  <data name="Last updated: June 2025" xml:space="preserve">
+    <value>Ultimo aggiornamento: Giugno 2025</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Panoramica</value>
+  </data>
+  <data name="Data Collection" xml:space="preserve">
+    <value>Raccolta Dati</value>
+  </data>
+  <data name="Data Use" xml:space="preserve">
+    <value>Utilizzo dei Dati</value>
+  </data>
+  <data name="Data Sharing" xml:space="preserve">
+    <value>Condivisione dei Dati</value>
+  </data>
+  <data name="Your Rights" xml:space="preserve">
+    <value>I Tuoi Diritti</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Sicurezza</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contatti</value>
+  </data>
+  <data name="Privacy policy overview text" xml:space="preserve">
+    <value>Questa Informativa sulla Privacy descrive come raccogliamo, utilizziamo e proteggiamo le tue informazioni personali quando utilizzi i nostri servizi di tracciamento triathlon. Ci impegniamo a garantire la tua privacy e proteggere i tuoi dati in conformità alle leggi e regolamenti applicabili.</value>
+  </data>
+  <data name="Personal Information" xml:space="preserve">
+    <value>Informazioni Personali</value>
+  </data>
+  <data name="Personal information collection details" xml:space="preserve">
+    <value>Raccogliamo informazioni personali come nome, indirizzo email, data di nascita e dettagli di contatto quando ti registri ai nostri servizi.</value>
+  </data>
+  <data name="Training Data" xml:space="preserve">
+    <value>Dati di Allenamento</value>
+  </data>
+  <data name="Training data collection details" xml:space="preserve">
+    <value>Raccogliamo dati relativi all'allenamento inclusi dettagli degli allenamenti, metriche delle prestazioni e programmi di allenamento per fornirti tracciamento e analisi completi.</value>
+  </data>
+  <data name="Usage Data" xml:space="preserve">
+    <value>Dati di Utilizzo</value>
+  </data>
+  <data name="Usage data collection details" xml:space="preserve">
+    <value>Raccogliamo informazioni su come utilizzi il nostro servizio, incluse informazioni sul dispositivo, indirizzo IP e statistiche di utilizzo per migliorare la nostra piattaforma.</value>
+  </data>
+  <data name="Data use explanation" xml:space="preserve">
+    <value>Utilizziamo i tuoi dati per i seguenti scopi:</value>
+  </data>
+  <data name="Service provision" xml:space="preserve">
+    <value>Per fornire e mantenere i nostri servizi di tracciamento triathlon</value>
+  </data>
+  <data name="Performance analysis" xml:space="preserve">
+    <value>Per analizzare e migliorare le tue prestazioni di allenamento</value>
+  </data>
+  <data name="User support" xml:space="preserve">
+    <value>Per fornire supporto clienti e assistenza</value>
+  </data>
+  <data name="Service improvement" xml:space="preserve">
+    <value>Per migliorare e potenziare i nostri servizi</value>
+  </data>
+  <data name="Data sharing policy" xml:space="preserve">
+    <value>Prendiamo sul serio la tua privacy e siamo selettivi su come condividiamo i tuoi dati.</value>
+  </data>
+  <data name="Third-Party Service Providers" xml:space="preserve">
+    <value>Fornitori di Servizi Terzi</value>
+  </data>
+  <data name="Third-party service providers explanation" xml:space="preserve">
+    <value>Potremmo condividere i tuoi dati con fornitori di servizi terzi fidati che ci assistono nel gestire la nostra piattaforma, condurre la nostra attività o servire i nostri utenti.</value>
+  </data>
+  <data name="Legal Requirements" xml:space="preserve">
+    <value>Requisiti Legali</value>
+  </data>
+  <data name="Legal requirements explanation" xml:space="preserve">
+    <value>Potremmo divulgare le tue informazioni quando richiesto dalla legge o per proteggere i nostri diritti, privacy, sicurezza o proprietà.</value>
+  </data>
+  <data name="User rights explanation" xml:space="preserve">
+    <value>Sotto le leggi applicabili sulla protezione dei dati, hai diversi diritti riguardo ai tuoi dati personali:</value>
+  </data>
+  <data name="Right to Access" xml:space="preserve">
+    <value>Diritto di Accesso</value>
+  </data>
+  <data name="Right to access explanation" xml:space="preserve">
+    <value>Hai il diritto di richiedere una copia dei tuoi dati personali che conserviamo su di te.</value>
+  </data>
+  <data name="Right to Rectification" xml:space="preserve">
+    <value>Diritto di Rettifica</value>
+  </data>
+  <data name="Right to rectification explanation" xml:space="preserve">
+    <value>Hai il diritto di richiedere la correzione di qualsiasi dato personale inesatto che conserviamo su di te.</value>
+  </data>
+  <data name="Right to Erasure" xml:space="preserve">
+    <value>Diritto alla Cancellazione</value>
+  </data>
+  <data name="Right to erasure explanation" xml:space="preserve">
+    <value>Hai il diritto di richiedere la cancellazione dei tuoi dati personali in determinate circostanze.</value>
+  </data>
+  <data name="Security measures explanation" xml:space="preserve">
+    <value>Implementiamo misure tecniche e organizzative appropriate per proteggere i tuoi dati personali contro accesso non autorizzato, alterazione, divulgazione o distruzione.</value>
+  </data>
+  <data name="Contact information text" xml:space="preserve">
+    <value>Se hai domande su questa Informativa sulla Privacy o sulle nostre pratiche sui dati, contatta il nostro Responsabile della Protezione dei Dati:</value>
+  </data>
+  <data name="Contact DPO" xml:space="preserve">
+    <value>Contatta DPO</value>
+  </data>
+</root>

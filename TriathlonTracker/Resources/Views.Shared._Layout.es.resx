@@ -2,8 +2,13 @@
 <root>
   <data name="My Races" xml:space="preserve"><value>Mis Carreras</value></data>
   <data name="Add Race" xml:space="preserve"><value>Agregar Carrera</value></data>
-  <data name="Logout" xml:space="preserve"><value>Cerrar sesión</value></data>
-  <data name="Login" xml:space="preserve"><value>Iniciar sesión</value></data>
+  <data name="Logout" xml:space="preserve"><value>Cerrar Sesión</value></data>
+  <data name="Login" xml:space="preserve"><value>Iniciar Sesión</value></data>
   <data name="Register" xml:space="preserve"><value>Registrarse</value></data>
   <data name="Privacy" xml:space="preserve"><value>Privacidad</value></data>
-</root> 
+  <data name="PrivacyDashboard" xml:space="preserve"><value>Panel de Privacidad</value></data>
+  <data name="ManageConsent" xml:space="preserve"><value>Gestionar Consentimiento</value></data>
+  <data name="PrivacyPolicy" xml:space="preserve"><value>Política de Privacidad</value></data>
+  <data name="CookiePolicy" xml:space="preserve"><value>Política de Cookies</value></data>
+  <data name="Contact" xml:space="preserve"><value>Contacto</value></data>
+</root>
