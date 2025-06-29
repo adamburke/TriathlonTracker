@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TriathlonTracker.Models;
+using TriathlonTracker.Models.Base;
 
 namespace TriathlonTracker.Data
 {
@@ -69,7 +70,8 @@ namespace TriathlonTracker.Data
                 entity.Property(e => e.LastName).IsRequired();
                 entity.Property(e => e.CreatedAt).IsRequired();
                 entity.Property(e => e.ConsentVersion).HasMaxLength(50);
-                entity.Property(e => e.DataRetentionPreference).HasMaxLength(50);
+                entity.Property(e => e.DataRetentionPreference)
+                      .HasConversion<string>();
                 entity.Property(e => e.PreferredDataFormat).HasMaxLength(20);
                 entity.Property(e => e.UpdatedAt).IsRequired();
             });
@@ -285,6 +287,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.ConsentType);
                 entity.Ignore(e => e.ConsentByPurpose);
                 entity.Property(e => e.ConsentByPurposeJson).HasColumnName("ConsentByPurpose");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
 
             // Configure DataProcessingAnalytics entity
@@ -295,6 +299,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.Date);
                 entity.Ignore(e => e.ProcessingByType);
                 entity.Property(e => e.ProcessingByTypeJson).HasColumnName("ProcessingByType");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
 
             // Configure ComplianceMonitor entity
@@ -310,6 +316,8 @@ namespace TriathlonTracker.Data
                 entity.Property(e => e.ConfigurationJson).HasColumnName("Configuration");
                 entity.Ignore(e => e.LastResult);
                 entity.Property(e => e.LastResultJson).HasColumnName("LastResult");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
 
             // Configure SuspiciousActivity entity
@@ -344,6 +352,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.IsActive);
                 entity.Ignore(e => e.AccessedResources);
                 entity.Property(e => e.AccessedResourcesJson).HasColumnName("AccessedResources");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
 
             // Configure RetentionJob entity
@@ -360,6 +370,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.JobType);
                 entity.Ignore(e => e.Configuration);
                 entity.Property(e => e.ConfigurationJson).HasColumnName("Configuration");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
 
             // Configure RetentionJobExecution entity
@@ -372,6 +384,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.StartTime);
                 entity.Ignore(e => e.ExecutionDetails);
                 entity.Property(e => e.ExecutionDetailsJson).HasColumnName("ExecutionDetails");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
                 
                 // Configure relationship with RetentionJob
                 entity.HasOne(e => e.Job)
@@ -392,6 +406,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.UserId);
                 entity.HasIndex(e => e.ArchivedAt);
                 entity.HasIndex(e => e.OriginalEntityType);
+                entity.Ignore(e => e.StringMetadata);
+                entity.Property(e => e.StringMetadataJson).HasColumnName("StringMetadata");
                 entity.Ignore(e => e.Metadata);
                 entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
@@ -410,6 +426,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.CreatedAt);
                 entity.Ignore(e => e.NotificationData);
                 entity.Property(e => e.NotificationDataJson).HasColumnName("NotificationData");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
 
             // Configure RetentionAuditTrail entity
@@ -427,6 +445,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.Action);
                 entity.Ignore(e => e.ActionDetails);
                 entity.Property(e => e.ActionDetailsJson).HasColumnName("ActionDetails");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
                 
                 // Configure relationship with RetentionJob
                 entity.HasOne(e => e.Job)
@@ -471,6 +491,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.IsResolved);
                 entity.Ignore(e => e.EventData);
                 entity.Property(e => e.EventDataJson).HasColumnName("EventData");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
 
             // Configure EncryptionKey entity
@@ -486,6 +508,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.KeyType);
                 entity.Ignore(e => e.KeyMetadata);
                 entity.Property(e => e.KeyMetadataJson).HasColumnName("KeyMetadata");
+                entity.Ignore(e => e.StringMetadata);
+                entity.Property(e => e.StringMetadataJson).HasColumnName("StringMetadata");
             });
 
             // Configure AccessAttempt entity
@@ -504,6 +528,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.IpAddress);
                 entity.HasIndex(e => e.IsSuccessful);
                 entity.HasIndex(e => e.IsSuspicious);
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
                 entity.Ignore(e => e.AdditionalData);
                 entity.Property(e => e.AdditionalDataJson).HasColumnName("AdditionalData");
             });
@@ -523,6 +549,8 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.ThreatType);
                 entity.Ignore(e => e.ThreatData);
                 entity.Property(e => e.ThreatDataJson).HasColumnName("ThreatData");
+                entity.Ignore(e => e.Metadata);
+                entity.Property(e => e.MetadataJson).HasColumnName("Metadata");
             });
 
             // Configure AuditLogEntry entity

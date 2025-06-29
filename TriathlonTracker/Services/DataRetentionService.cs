@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TriathlonTracker.Data;
 using TriathlonTracker.Models;
+using TriathlonTracker.Models.Enums;
 
 namespace TriathlonTracker.Services
 {

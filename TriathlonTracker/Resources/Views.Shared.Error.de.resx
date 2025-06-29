@@ -21,16 +21,31 @@
   <data name="RequestId" xml:space="preserve">
     <value>Anfrage-ID:</value>
   </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Startseite</value>
+  </data>
+  <data name="NeedHelp" xml:space="preserve">
+    <value>Benötigen Sie Hilfe?</value>
+  </data>
+  <data name="ContactSupport" xml:space="preserve">
+    <value>Support kontaktieren</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Datenschutzerklärung</value>
+  </data>
   <data name="DevelopmentMode" xml:space="preserve">
     <value>Entwicklungsmodus</value>
   </data>
   <data name="DevelopmentMode_Info1" xml:space="preserve">
-    <value>Das Wechseln in die <strong>Entwicklungsumgebung</strong> zeigt detailliertere Informationen über den aufgetretenen Fehler an.</value>
+    <value>Das Umschalten auf die <strong>Entwicklungsumgebung</strong> zeigt detailliertere Informationen über den aufgetretenen Fehler an.</value>
   </data>
   <data name="DevelopmentMode_Warning" xml:space="preserve">
-    <value>Die Entwicklungsumgebung sollte für bereitgestellte Anwendungen nicht aktiviert sein.</value>
+    <value>Die Entwicklungsumgebung sollte für bereitgestellte Anwendungen nicht aktiviert werden.</value>
   </data>
   <data name="DevelopmentMode_Info2" xml:space="preserve">
-    <value>Dies kann dazu führen, dass sensible Informationen aus Ausnahmen Endbenutzern angezeigt werden. Für das lokale Debugging aktivieren Sie die <strong>Entwicklungsumgebung</strong>, indem Sie die Umgebungsvariable <strong>ASPNETCORE_ENVIRONMENT</strong> auf <strong>Development</strong> setzen und die App neu starten.</value>
+    <value>Dies kann dazu führen, dass sensible Informationen aus Ausnahmen für Endbenutzer angezeigt werden. Aktivieren Sie für das lokale Debugging die <strong>Entwicklungsumgebung</strong>, indem Sie die Umgebungsvariable <strong>ASPNETCORE_ENVIRONMENT</strong> auf <strong>Development</strong> setzen und die Anwendung neu starten.</value>
   </data>
 </root> 

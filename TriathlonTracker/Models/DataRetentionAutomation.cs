@@ -1,40 +1,47 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TriathlonTracker.Models.Base;
+using TriathlonTracker.Models.Enums;
 
 namespace TriathlonTracker.Models
 {
-    public class RetentionJob
+    public class RetentionJob : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(100)]
         public string Name { get; set; } = string.Empty;
         
+        [StringLength(500)]
         public string Description { get; set; } = string.Empty;
         
-        [Required]
-        public string JobType { get; set; } = string.Empty; // Cleanup, Archive, Notify
+        public string JobType { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(100)]
         public string DataType { get; set; } = string.Empty;
         
         public bool IsEnabled { get; set; } = true;
         
         [Required]
+        [StringLength(100)]
         public string Schedule { get; set; } = string.Empty; // Cron expression
         
         public DateTime? LastRun { get; set; }
         
         public DateTime? NextRun { get; set; }
         
-        public string Status { get; set; } = "Scheduled";
+        public string Status { get; set; } = "Pending";
         
         public int ProcessedRecords { get; set; } = 0;
         
         public int FailedRecords { get; set; } = 0;
         
+        [StringLength(1000)]
         public string? LastError { get; set; }
+        
+        [Required]
+        [StringLength(100)]
+        public string CreatedBy { get; set; } = string.Empty;
         
         public Dictionary<string, object> Configuration { get; set; } = new();
         
@@ -46,18 +53,12 @@ namespace TriathlonTracker.Models
                 ? new Dictionary<string, object>() 
                 : System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(value) ?? new();
         }
-        
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        
-        public string CreatedBy { get; set; } = string.Empty;
     }
 
-    public class RetentionJobExecution
+    public class RetentionJobExecution : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(450)]
         public string JobId { get; set; } = string.Empty;
         
         [Required]
@@ -65,7 +66,7 @@ namespace TriathlonTracker.Models
         
         public DateTime? EndTime { get; set; }
         
-        public string Status { get; set; } = "Running";
+        public string Status { get; set; } = "Processing";
         
         public int ProcessedRecords { get; set; } = 0;
         
@@ -73,7 +74,13 @@ namespace TriathlonTracker.Models
         
         public int FailedRecords { get; set; } = 0;
         
+        [StringLength(1000)]
         public string? ErrorMessage { get; set; }
+        
+        public TimeSpan Duration => EndTime.HasValue ? EndTime.Value - StartTime : TimeSpan.Zero;
+        
+        // Navigation property
+        public RetentionJob? Job { get; set; }
         
         public Dictionary<string, object> ExecutionDetails { get; set; } = new();
         
@@ -85,25 +92,20 @@ namespace TriathlonTracker.Models
                 ? new Dictionary<string, object>() 
                 : System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(value) ?? new();
         }
-        
-        public TimeSpan Duration => EndTime.HasValue ? EndTime.Value - StartTime : TimeSpan.Zero;
-        
-        // Navigation property
-        public RetentionJob? Job { get; set; }
     }
 
-    public class DataArchive
+    public class DataArchive : BaseEntityWithStringMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(100)]
         public string OriginalEntityType { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(450)]
         public string OriginalEntityId { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
         [Required]
@@ -115,57 +117,61 @@ namespace TriathlonTracker.Models
         [Required]
         public DateTime OriginalCreatedAt { get; set; }
         
+        [StringLength(500)]
         public string ArchiveReason { get; set; } = string.Empty;
         
+        [Required]
+        [StringLength(100)]
         public string ArchivedBy { get; set; } = string.Empty;
         
         public DateTime? ExpiresAt { get; set; }
         
         public bool IsEncrypted { get; set; } = true;
         
+        [StringLength(100)]
         public string? EncryptionKey { get; set; }
         
-        public Dictionary<string, string> Metadata { get; set; } = new();
+        public Dictionary<string, object> Metadata { get; set; } = new();
         
         [NotMapped]
         public string MetadataJson
         {
             get => System.Text.Json.JsonSerializer.Serialize(Metadata);
             set => Metadata = string.IsNullOrEmpty(value) 
-                ? new Dictionary<string, string>() 
-                : System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(value) ?? new();
+                ? new Dictionary<string, object>() 
+                : System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(value) ?? new();
         }
     }
 
-    public class RetentionNotification
+    public class RetentionNotification : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
-        [Required]
-        public string NotificationType { get; set; } = string.Empty; // DataExpiring, DataExpired, DataArchived
+        public string NotificationType { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(200)]
         public string Subject { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(2000)]
         public string Message { get; set; } = string.Empty;
         
+        [StringLength(100)]
         public string DataType { get; set; } = string.Empty;
         
         public DateTime ExpirationDate { get; set; }
-        
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         
         public DateTime? SentAt { get; set; }
         
         public bool IsSent { get; set; } = false;
         
+        [StringLength(100)]
         public string? DeliveryStatus { get; set; }
         
+        [StringLength(500)]
         public string? DeliveryError { get; set; }
         
         public int RetryCount { get; set; } = 0;
@@ -184,31 +190,39 @@ namespace TriathlonTracker.Models
         }
     }
 
-    public class RetentionAuditTrail
+    public class RetentionAuditTrail : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(100)]
         public string Action { get; set; } = string.Empty; // Archived, Deleted, Notified
         
         [Required]
+        [StringLength(100)]
         public string EntityType { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(450)]
         public string EntityId { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
         [Required]
         public DateTime ActionDate { get; set; } = DateTime.UtcNow;
         
+        [StringLength(500)]
         public string Reason { get; set; } = string.Empty;
         
+        [Required]
+        [StringLength(100)]
         public string PerformedBy { get; set; } = string.Empty;
         
+        [StringLength(450)]
         public string? JobId { get; set; }
+        
+        // Navigation properties
+        public RetentionJob? Job { get; set; }
         
         public Dictionary<string, object> ActionDetails { get; set; } = new();
         
@@ -220,8 +234,5 @@ namespace TriathlonTracker.Models
                 ? new Dictionary<string, object>() 
                 : System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(value) ?? new();
         }
-        
-        // Navigation properties
-        public RetentionJob? Job { get; set; }
     }
 }

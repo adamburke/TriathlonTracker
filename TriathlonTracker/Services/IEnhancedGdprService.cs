@@ -6,16 +6,16 @@ namespace TriathlonTracker.Services
     {
         // Enhanced Data Export
         Task<DataExportRequest> CreateDataExportRequestAsync(string userId, string format);
-        Task<bool> ProcessDataExportRequestAsync(int requestId);
-        Task<string> GenerateSecureDownloadLinkAsync(int requestId);
+        Task<bool> ProcessDataExportRequestAsync(string requestId);
+        Task<string> GenerateSecureDownloadLinkAsync(string requestId);
         Task<IEnumerable<DataExportRequest>> GetUserExportRequestsAsync(string userId);
         Task<bool> CleanupExpiredExportRequestsAsync();
         Task<byte[]> ExportUserDataInFormatAsync(string userId, string format);
         
         // Data Rectification System
         Task<DataRectificationRequest> CreateRectificationRequestAsync(string userId, string dataType, string fieldName, string currentValue, string requestedValue, string reason);
-        Task<bool> ReviewRectificationRequestAsync(int requestId, bool approved, string reviewNotes, string reviewedBy);
-        Task<bool> ProcessApprovedRectificationAsync(int requestId);
+        Task<bool> ReviewRectificationRequestAsync(string requestId, bool approved, string reviewNotes, string reviewedBy);
+        Task<bool> ProcessApprovedRectificationAsync(string requestId);
         Task<IEnumerable<DataRectificationRequest>> GetUserRectificationRequestsAsync(string userId);
         Task<IEnumerable<DataRectificationRequest>> GetPendingRectificationRequestsAsync();
         Task<bool> ValidateRectificationRequestAsync(DataRectificationRequest request);
@@ -23,7 +23,7 @@ namespace TriathlonTracker.Services
         // Enhanced Account Deletion
         Task<AccountDeletionRequest> CreateAccountDeletionRequestAsync(string userId, string reason, string deletionType = "SoftDelete");
         Task<bool> ConfirmAccountDeletionAsync(string confirmationToken);
-        Task<bool> ProcessAccountDeletionAsync(int requestId);
+        Task<bool> ProcessAccountDeletionAsync(string requestId);
         Task<bool> RecoverAccountAsync(string userId);
         Task<IEnumerable<AccountDeletionRequest>> GetPendingDeletionRequestsAsync();
         Task<bool> CleanupExpiredDeletionRequestsAsync();

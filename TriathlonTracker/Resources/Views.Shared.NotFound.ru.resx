@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="NotFound_Title" xml:space="preserve">
+    <value>Страница Не Найдена</value>
+  </data>
+  <data name="NotFound_Message" xml:space="preserve">
+    <value>Запрашиваемая страница не существует или была перемещена.</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="PopularPages" xml:space="preserve">
+    <value>Популярные Страницы</value>
+  </data>
+  <data name="MyRaces" xml:space="preserve">
+    <value>Мои Гонки</value>
+  </data>
+  <data name="AddRace" xml:space="preserve">
+    <value>Добавить Гонку</value>
+  </data>
+  <data name="PrivacyDashboard" xml:space="preserve">
+    <value>Панель Конфиденциальности</value>
+  </data>
+</root> 

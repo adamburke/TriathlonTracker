@@ -1,27 +1,25 @@
 using System.ComponentModel.DataAnnotations;
+using TriathlonTracker.Models.Base;
+using TriathlonTracker.Models.Enums;
 
 namespace TriathlonTracker.Models
 {
-    public class AccountDeletionRequest
+    public class AccountDeletionRequest : BaseEntity
     {
-        public int Id { get; set; }
-        
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
         [Required]
         public DateTime RequestDate { get; set; } = DateTime.UtcNow;
         
-        [Required]
-        [StringLength(50)]
-        public string Status { get; set; } = "Pending"; // Pending, Confirmed, Processing, Completed, Cancelled
+        public string Status { get; set; } = "Pending";
         
         [StringLength(1000)]
         public string Reason { get; set; } = string.Empty;
         
         [Required]
-        [StringLength(50)]
-        public string DeletionType { get; set; } = "SoftDelete"; // SoftDelete, HardDelete, Anonymize
+        public DeletionType DeletionType { get; set; } = DeletionType.SoftDelete;
         
         public DateTime? ConfirmationDate { get; set; }
         

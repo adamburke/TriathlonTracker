@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="NotFound_Title" xml:space="preserve">
+    <value>Página Não Encontrada</value>
+  </data>
+  <data name="NotFound_Message" xml:space="preserve">
+    <value>A página que você está procurando não existe ou foi movida.</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Voltar</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Início</value>
+  </data>
+  <data name="PopularPages" xml:space="preserve">
+    <value>Páginas Populares</value>
+  </data>
+  <data name="MyRaces" xml:space="preserve">
+    <value>Minhas Corridas</value>
+  </data>
+  <data name="AddRace" xml:space="preserve">
+    <value>Adicionar Corrida</value>
+  </data>
+  <data name="PrivacyDashboard" xml:space="preserve">
+    <value>Painel de Privacidade</value>
+  </data>
+</root> 

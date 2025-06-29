@@ -94,5 +94,8 @@ namespace TriathlonTracker.Models
         
         [StringLength(100)]
         public string UpdatedBy { get; set; } = string.Empty;
+        
+        // Additional property for compatibility
+        public DateTime DetectedAt => DetectedDate;
     }
 }

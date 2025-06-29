@@ -3,19 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using TriathlonTracker.Models;
 using TriathlonTracker.Services;
 using System.Security.Claims;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 
 namespace TriathlonTracker.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Route("Admin")]
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private readonly IAdminDashboardService _adminDashboardService;
         private readonly IGdprMonitoringService _monitoringService;
         private readonly IDataRetentionService _retentionService;
         private readonly ISecurityService _securityService;
-        private readonly ILogger<AdminController> _logger;
-        private readonly IAuditService _auditService;
 
         public AdminController(
             IAdminDashboardService adminDashboardService,
@@ -23,14 +23,14 @@ namespace TriathlonTracker.Controllers
             IDataRetentionService retentionService,
             ISecurityService securityService,
             ILogger<AdminController> logger,
-            IAuditService auditService)
+            IAuditService auditService,
+            UserManager<User>? userManager = null)
+            : base(auditService, logger, userManager)
         {
             _adminDashboardService = adminDashboardService;
             _monitoringService = monitoringService;
             _retentionService = retentionService;
             _securityService = securityService;
-            _logger = logger;
-            _auditService = auditService;
         }
 
         [HttpGet("")]
@@ -39,7 +39,7 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = User.Identity?.Name ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("Admin dashboard accessed by {UserId}", userId);
                 
                 var dashboardData = await _adminDashboardService.GetDashboardDataAsync();
@@ -48,15 +48,15 @@ namespace TriathlonTracker.Controllers
                 ViewBag.SystemStatus = systemStatus;
                 
                 _logger.LogInformation("Admin {UserId} accessed dashboard", userId);
-                await _auditService.LogAsync("ViewAdminDashboard", "Admin", null, "Admin dashboard accessed", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("ViewAdminDashboard", "Admin", null, "Admin dashboard accessed", userId, "Information");
                 
                 return View(dashboardData);
             }
             catch (Exception ex)
             {
-                var userId = User.Identity?.Name ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error loading admin dashboard for {UserId}", userId);
-                await _auditService.LogAsync("ViewAdminDashboardError", "Admin", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("ViewAdminDashboardError", "Admin", null, $"Error: {ex.Message}", userId, "Error");
                 return View("Error", new ErrorViewModel { RequestId = HttpContext.TraceIdentifier });
             }
         }
@@ -66,7 +66,7 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var userId = User.Identity?.Name ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogDebug("Admin {UserId} viewing users page {Page} with search: {Search}", userId, page, search ?? "none");
                 
                 var users = string.IsNullOrEmpty(search) 
@@ -74,7 +74,7 @@ namespace TriathlonTracker.Controllers
                     : await _adminDashboardService.SearchUsersAsync(search, page, pageSize);
                 
                 _logger.LogInformation("Admin {UserId} viewed users page {Page} with {Count} results", userId, page, users.Count());
-                await _auditService.LogAsync("ViewUsers", "UserManagement", null, $"Viewed users page {page} with {users.Count()} results", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("ViewUsers", "UserManagement", null, $"Viewed users page {page} with {users.Count()} results", userId, "Information");
                 
                 ViewBag.CurrentPage = page;
                 ViewBag.PageSize = pageSize;
@@ -84,9 +84,9 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                var userId = User.Identity?.Name ?? "Unknown";
+                var userId = GetCurrentUserId();
                 _logger.LogError(ex, "Error loading users page for admin {UserId}", userId);
-                await _auditService.LogAsync("ViewUsersError", "UserManagement", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("ViewUsersError", "UserManagement", null, $"Error: {ex.Message}", userId, "Error");
                 return View("Error", new ErrorViewModel { RequestId = HttpContext.TraceIdentifier });
             }
         }
@@ -96,27 +96,27 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogDebug("Admin {AdminId} viewing details for user {UserId}", adminId, userId);
                 
                 var userStatus = await _adminDashboardService.GetUserGdprStatusAsync(userId);
                 if (userStatus == null)
                 {
                     _logger.LogWarning("Admin {AdminId} attempted to view non-existent user {UserId}", adminId, userId);
-                    await _auditService.LogAsync("ViewUserDetailsNotFound", "User", userId, "Attempted to view non-existent user", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("ViewUserDetailsNotFound", "User", userId, "Attempted to view non-existent user", adminId, "Warning");
                     return NotFound();
                 }
 
                 _logger.LogInformation("Admin {AdminId} viewed details for user {UserId}", adminId, userId);
-                await _auditService.LogAsync("ViewUserDetails", "User", userId, "Viewed user GDPR details", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("ViewUserDetails", "User", userId, "Viewed user GDPR details", adminId, "Information");
                 
                 return View(userStatus);
             }
             catch (Exception ex)
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogError(ex, "Error loading user details for {UserId} by admin {AdminId}", userId, adminId);
-                await _auditService.LogAsync("ViewUserDetailsError", "User", userId, $"Error: {ex.Message}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("ViewUserDetailsError", "User", userId, $"Error: {ex.Message}", adminId, "Error");
                 return View("Error", new ErrorViewModel { RequestId = HttpContext.TraceIdentifier });
             }
         }
@@ -126,27 +126,27 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogDebug("Admin {AdminId} accessing edit form for user {UserId}", adminId, userId);
                 
                 var userStatus = await _adminDashboardService.GetUserGdprStatusAsync(userId);
                 if (userStatus == null)
                 {
                     _logger.LogWarning("Admin {AdminId} attempted to edit non-existent user {UserId}", adminId, userId);
-                    await _auditService.LogAsync("EditUserNotFound", "User", userId, "Attempted to edit non-existent user", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("EditUserNotFound", "User", userId, "Attempted to edit non-existent user", adminId, "Warning");
                     return NotFound();
                 }
 
                 _logger.LogInformation("Admin {AdminId} accessed edit form for user {UserId}", adminId, userId);
-                await _auditService.LogAsync("ViewUserEdit", "User", userId, "Viewed user edit form", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("ViewUserEdit", "User", userId, "Viewed user edit form", adminId, "Information");
                 
                 return View("EditUser", userStatus);
             }
             catch (Exception ex)
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogError(ex, "Error loading user edit form for {UserId} by admin {AdminId}", userId, adminId);
-                await _auditService.LogAsync("EditUserError", "User", userId, $"Error: {ex.Message}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("EditUserError", "User", userId, $"Error: {ex.Message}", adminId, "Error");
                 return View("Error", new ErrorViewModel { RequestId = HttpContext.TraceIdentifier });
             }
         }
@@ -156,20 +156,20 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogDebug("Admin {AdminId} updating user {UserId}", adminId, userId);
                 
                 var success = await _adminDashboardService.UpdateUserDetailsAsync(userId, firstName, lastName, email, hasConsent);
                 if (success)
                 {
                     _logger.LogInformation("Admin {AdminId} successfully updated user {UserId}", adminId, userId);
-                    await _auditService.LogAsync("EditUser", "User", userId, $"Updated user details: {firstName} {lastName}, {email}, consent: {hasConsent}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                    await AuditAsync("EditUser", "User", userId, $"Updated user details: {firstName} {lastName}, {email}, consent: {hasConsent}", adminId, "Information");
                     TempData["Success"] = "User updated successfully.";
                 }
                 else
                 {
                     _logger.LogWarning("Admin {AdminId} failed to update user {UserId}", adminId, userId);
-                    await _auditService.LogAsync("EditUserFailed", "User", userId, "Failed to update user details", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("EditUserFailed", "User", userId, "Failed to update user details", adminId, "Warning");
                     TempData["Error"] = "Failed to update user.";
                 }
 
@@ -177,9 +177,9 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogError(ex, "Error updating user {UserId} by admin {AdminId}", userId, adminId);
-                await _auditService.LogAsync("EditUserError", "User", userId, $"Error: {ex.Message}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("EditUserError", "User", userId, $"Error: {ex.Message}", adminId, "Error");
                 TempData["Error"] = "An error occurred while updating the user.";
                 return RedirectToAction("Users");
             }
@@ -190,20 +190,20 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogDebug("Admin {AdminId} updating consent for user {UserId}: {ConsentType} = {IsGranted}", adminId, userId, consentType, isGranted);
                 
                 var success = await _adminDashboardService.UpdateUserConsentAsync(userId, consentType, isGranted, reason);
                 if (success)
                 {
                     _logger.LogInformation("Admin {AdminId} successfully updated consent for user {UserId}: {ConsentType} = {IsGranted}", adminId, userId, consentType, isGranted);
-                    await _auditService.LogAsync("UpdateConsent", "ConsentRecord", userId, $"Updated consent: {consentType} = {isGranted}, reason: {reason}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                    await AuditAsync("UpdateConsent", "ConsentRecord", userId, $"Updated consent: {consentType} = {isGranted}, reason: {reason}", adminId, "Information");
                     TempData["Success"] = "User consent updated successfully.";
                 }
                 else
                 {
                     _logger.LogWarning("Admin {AdminId} failed to update consent for user {UserId}", adminId, userId);
-                    await _auditService.LogAsync("UpdateConsentFailed", "ConsentRecord", userId, $"Failed to update consent: {consentType}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("UpdateConsentFailed", "ConsentRecord", userId, $"Failed to update consent: {consentType}", adminId, "Warning");
                     TempData["Error"] = "Failed to update user consent.";
                 }
 
@@ -211,9 +211,9 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogError(ex, "Error updating consent for user {UserId} by admin {AdminId}", userId, adminId);
-                await _auditService.LogAsync("UpdateConsentError", "ConsentRecord", userId, $"Error: {ex.Message}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("UpdateConsentError", "ConsentRecord", userId, $"Error: {ex.Message}", adminId, "Error");
                 TempData["Error"] = "An error occurred while updating consent.";
                 return RedirectToAction("UserDetails", new { userId });
             }
@@ -224,7 +224,7 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogDebug("Admin {AdminId} performing bulk consent operation: {Operation} for {Count} users", adminId, operation.Operation, operation.UserIds.Count);
                 
                 var success = await _adminDashboardService.BulkUpdateConsentAsync(operation);
@@ -232,21 +232,21 @@ namespace TriathlonTracker.Controllers
                 if (success)
                 {
                     _logger.LogInformation("Admin {AdminId} successfully performed bulk consent operation: {Operation} for {Count} users", adminId, operation.Operation, operation.UserIds.Count);
-                    await _auditService.LogAsync("BulkConsentOperation", "ConsentRecord", null, $"Bulk operation: {operation.Operation} for {operation.UserIds.Count} users", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                    await AuditAsync("BulkConsentOperation", "ConsentRecord", null, $"Bulk operation: {operation.Operation} for {operation.UserIds.Count} users", adminId, "Information");
                 }
                 else
                 {
                     _logger.LogWarning("Admin {AdminId} failed to perform bulk consent operation: {Operation}", adminId, operation.Operation);
-                    await _auditService.LogAsync("BulkConsentOperationFailed", "ConsentRecord", null, $"Failed bulk operation: {operation.Operation} for {operation.UserIds.Count} users", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    await AuditAsync("BulkConsentOperationFailed", "ConsentRecord", null, $"Failed bulk operation: {operation.Operation} for {operation.UserIds.Count} users", adminId, "Warning");
                 }
                 
                 return Json(new { success, message = success ? "Bulk operation completed successfully." : "Bulk operation failed." });
             }
             catch (Exception ex)
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogError(ex, "Error performing bulk consent operation by admin {AdminId}", adminId);
-                await _auditService.LogAsync("BulkConsentOperationError", "ConsentRecord", null, $"Error: {ex.Message}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("BulkConsentOperationError", "ConsentRecord", null, $"Error: {ex.Message}", adminId, "Error");
                 return Json(new { success = false, message = "An error occurred during bulk operation." });
             }
         }
@@ -256,7 +256,7 @@ namespace TriathlonTracker.Controllers
         {
             try
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogDebug("Admin {AdminId} accessing compliance dashboard", adminId);
                 
                 var complianceStatus = await _adminDashboardService.GetComplianceStatusAsync();
@@ -266,15 +266,15 @@ namespace TriathlonTracker.Controllers
                 ViewBag.Alerts = alerts;
                 
                 _logger.LogInformation("Admin {AdminId} accessed compliance dashboard with {AlertCount} active alerts", adminId, alerts.Count());
-                await _auditService.LogAsync("ViewCompliance", "Compliance", null, $"Viewed compliance dashboard with {alerts.Count()} active alerts", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                await AuditAsync("ViewCompliance", "Compliance", null, $"Viewed compliance dashboard with {alerts.Count()} active alerts", adminId, "Information");
                 
                 return View();
             }
             catch (Exception ex)
             {
-                var adminId = User.Identity?.Name ?? "Unknown";
+                var adminId = GetCurrentUserId();
                 _logger.LogError(ex, "Error loading compliance dashboard for admin {AdminId}", adminId);
-                await _auditService.LogAsync("ViewComplianceError", "Compliance", null, $"Error: {ex.Message}", adminId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                await AuditAsync("ViewComplianceError", "Compliance", null, $"Error: {ex.Message}", adminId, "Error");
                 return View("Error", new ErrorViewModel { RequestId = HttpContext.TraceIdentifier });
             }
         }
@@ -285,7 +285,7 @@ namespace TriathlonTracker.Controllers
             try
             {
                 var success = await _adminDashboardService.RunComplianceCheckAsync();
-                await LogAdminAction("RunComplianceCheck", "Compliance", "", "Manual compliance check executed");
+                await AuditAsync("RunComplianceCheck", "Compliance", "", "Manual compliance check executed", null, "Information");
                 
                 return Json(new { success, message = success ? "Compliance check completed." : "Compliance check failed." });
             }
@@ -302,7 +302,7 @@ namespace TriathlonTracker.Controllers
             try
             {
                 var success = await _adminDashboardService.ResolveAlertAsync(alertId, resolutionNotes);
-                await LogAdminAction("ResolveAlert", "ComplianceAlert", alertId, $"Alert resolved: {resolutionNotes}");
+                await AuditAsync("ResolveAlert", "ComplianceAlert", alertId, $"Alert resolved: {resolutionNotes}", null, "Information");
                 
                 return Json(new { success, message = success ? "Alert resolved successfully." : "Failed to resolve alert." });
             }
@@ -326,7 +326,7 @@ namespace TriathlonTracker.Controllers
                 ViewBag.RetentionJobs = jobs;
                 ViewBag.ExpiredData = expiredData;
                 
-                await LogAdminAction("ViewDataRetention", "DataRetention", "", "Viewed data retention dashboard");
+                await AuditAsync("ViewDataRetention", "DataRetention", "", "Viewed data retention dashboard", null, "Information");
                 return View();
             }
             catch (Exception ex)
@@ -342,7 +342,7 @@ namespace TriathlonTracker.Controllers
             try
             {
                 var success = await _adminDashboardService.ExecuteRetentionPolicyAsync(policyId);
-                await LogAdminAction("ExecuteRetentionPolicy", "DataRetentionPolicy", policyId, "Manual retention policy execution");
+                await AuditAsync("ExecuteRetentionPolicy", "DataRetentionPolicy", policyId, "Manual retention policy execution", null, "Information");
                 
                 return Json(new { success, message = success ? "Retention policy executed successfully." : "Failed to execute retention policy." });
             }
@@ -359,7 +359,7 @@ namespace TriathlonTracker.Controllers
             try
             {
                 var reports = await _adminDashboardService.GetReportsAsync(page, pageSize);
-                await LogAdminAction("ViewReports", "Reports", "", $"Viewed reports page {page}");
+                await AuditAsync("ViewReports", "Reports", "", $"Viewed reports page {page}", null, "Information");
                 
                 ViewBag.CurrentPage = page;
                 ViewBag.PageSize = pageSize;
@@ -379,7 +379,7 @@ namespace TriathlonTracker.Controllers
             try
             {
                 var report = await _adminDashboardService.GenerateComplianceReportAsync(reportType, startDate, endDate);
-                await LogAdminAction("GenerateReport", "ComplianceReport", report.Id, $"Generated {reportType} report");
+                await AuditAsync("GenerateReport", "ComplianceReport", report.Id, $"Generated {reportType} report", null, "Information");
                 
                 return Json(new { success = true, reportId = report.Id, message = "Report generated successfully." });
             }
@@ -396,7 +396,7 @@ namespace TriathlonTracker.Controllers
             try
             {
                 var reportData = await _adminDashboardService.ExportComplianceReportAsync(reportId, format);
-                await LogAdminAction("ExportReport", "ComplianceReport", reportId, $"Exported report in {format} format");
+                await AuditAsync("ExportReport", "ComplianceReport", reportId, $"Exported report in {format} format", null, "Information");
                 
                 var contentType = format.ToLower() switch
                 {
@@ -434,7 +434,7 @@ namespace TriathlonTracker.Controllers
                 ViewBag.StartDate = start;
                 ViewBag.EndDate = end;
                 
-                await LogAdminAction("ViewAnalytics", "Analytics", "", $"Viewed analytics for {start:yyyy-MM-dd} to {end:yyyy-MM-dd}");
+                await AuditAsync("ViewAnalytics", "Analytics", "", $"Viewed analytics for {start:yyyy-MM-dd} to {end:yyyy-MM-dd}", null, "Information");
                 return View();
             }
             catch (Exception ex)
@@ -460,7 +460,7 @@ namespace TriathlonTracker.Controllers
                 ViewBag.PageSize = pageSize;
                 ViewBag.Search = search;
                 
-                await LogAdminAction("ViewAuditLog", "AuditLog", "", "Viewed audit log");
+                await AuditAsync("ViewAuditLog", "AuditLog", "", "Viewed audit log", userId, "Information");
                 return View(auditLogs);
             }
             catch (Exception ex)
@@ -483,7 +483,7 @@ namespace TriathlonTracker.Controllers
                 ViewBag.RecentEvents = recentEvents;
                 ViewBag.IpControls = ipControls;
                 
-                await LogAdminAction("ViewSecurity", "Security", "", "Viewed security dashboard");
+                await AuditAsync("ViewSecurity", "Security", "", "Viewed security dashboard", null, "Information");
                 return View();
             }
             catch (Exception ex)
@@ -499,7 +499,7 @@ namespace TriathlonTracker.Controllers
             try
             {
                 var users = await _adminDashboardService.GetUserGdprStatusesAsync(1, int.MaxValue);
-                await LogAdminAction("ExportUsers", "User", "", $"Exported users in {format} format");
+                await AuditAsync("ExportUsers", "User", "", $"Exported users in {format} format", null, "Information");
                 
                 if (format.ToLower() == "excel")
                 {
@@ -527,7 +527,7 @@ namespace TriathlonTracker.Controllers
             try
             {
                 var success = await _adminDashboardService.DeleteUserAsync(userId);
-                await LogAdminAction("DeleteUser", "User", userId, "User account deleted");
+                await AuditAsync("DeleteUser", "User", userId, "User account deleted", null, success ? "Information" : "Warning");
                 
                 if (success)
                 {
@@ -557,7 +557,7 @@ namespace TriathlonTracker.Controllers
                 var end = endDate ?? DateTime.UtcNow;
                 
                 var analyticsData = await _adminDashboardService.ExportAnalyticsDataAsync(start, end, format);
-                await LogAdminAction("ExportAnalytics", "Analytics", "", $"Exported analytics data in {format} format");
+                await AuditAsync("ExportAnalytics", "Analytics", "", $"Exported analytics data in {format} format", null, "Information");
                 
                 var contentType = format.ToLower() switch
                 {
@@ -588,19 +588,6 @@ namespace TriathlonTracker.Controllers
             }
             
             return csv.ToString();
-        }
-
-        private async Task LogAdminAction(string action, string entityType, string entityId, string details)
-        {
-            try
-            {
-                var adminUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Unknown";
-                await _adminDashboardService.LogAdminActionAsync(action, entityType, entityId, details);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error logging admin action: {Action}", action);
-            }
         }
     }
 }

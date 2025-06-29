@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TriathlonTracker.Data;
 using TriathlonTracker.Models;
+using TriathlonTracker.Models.Enums;
 using Microsoft.Extensions.Logging;
 using TriathlonTracker.Services;
 
@@ -48,7 +49,7 @@ namespace TriathlonTracker.Services
         {
             return await _context.IpAccessControls
                 .Where(c => c.IsActive)
-                .OrderByDescending(c => c.CreatedAt)
+                .OrderBy(c => c.CreatedAt)
                 .ToListAsync();
         }
 

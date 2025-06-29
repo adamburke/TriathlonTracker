@@ -1,12 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using TriathlonTracker.Models.Base;
+using TriathlonTracker.Models.Enums;
 
 namespace TriathlonTracker.Models
 {
-    public class DataRectificationRequest
+    public class DataRectificationRequest : BaseEntity
     {
-        public int Id { get; set; }
-        
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
         [Required]
@@ -31,13 +32,13 @@ namespace TriathlonTracker.Models
         [Required]
         public DateTime RequestDate { get; set; } = DateTime.UtcNow;
         
-        [Required]
-        [StringLength(50)]
-        public string Status { get; set; } = "Pending"; // Pending, UnderReview, Approved, Rejected, Completed
+        public string Status { get; set; } = "Pending";
         
         public DateTime? ReviewDate { get; set; }
         
         public DateTime? CompletedDate { get; set; }
+        
+        public DateTime? ProcessedDate { get; set; }
         
         [StringLength(100)]
         public string ReviewedBy { get; set; } = string.Empty; // Admin who reviewed

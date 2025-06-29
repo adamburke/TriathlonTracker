@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="NotFound_Title" xml:space="preserve">
+    <value>Sayfa Bulunamadı</value>
+  </data>
+  <data name="NotFound_Message" xml:space="preserve">
+    <value>Aradığınız sayfa mevcut değil veya taşınmış.</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Geri Dön</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Ana Sayfa</value>
+  </data>
+  <data name="PopularPages" xml:space="preserve">
+    <value>Popüler Sayfalar</value>
+  </data>
+  <data name="MyRaces" xml:space="preserve">
+    <value>Yarışlarım</value>
+  </data>
+  <data name="AddRace" xml:space="preserve">
+    <value>Yarış Ekle</value>
+  </data>
+  <data name="PrivacyDashboard" xml:space="preserve">
+    <value>Gizlilik Paneli</value>
+  </data>
+</root> 

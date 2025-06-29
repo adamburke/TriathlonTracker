@@ -21,6 +21,21 @@
   <data name="RequestId" xml:space="preserve">
     <value>ID de solicitud:</value>
   </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Volver</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Ir al Inicio</value>
+  </data>
+  <data name="NeedHelp" xml:space="preserve">
+    <value>¿Necesita Ayuda?</value>
+  </data>
+  <data name="ContactSupport" xml:space="preserve">
+    <value>Contactar Soporte</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Política de Privacidad</value>
+  </data>
   <data name="DevelopmentMode" xml:space="preserve">
     <value>Modo de desarrollo</value>
   </data>

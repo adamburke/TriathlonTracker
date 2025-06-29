@@ -19,18 +19,33 @@
     <value>Une erreur s'est produite lors du traitement de votre demande.</value>
   </data>
   <data name="RequestId" xml:space="preserve">
-    <value>ID de la requête :</value>
+    <value>ID de demande :</value>
+  </data>
+  <data name="GoBack" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="GoHome" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="NeedHelp" xml:space="preserve">
+    <value>Besoin d'aide ?</value>
+  </data>
+  <data name="ContactSupport" xml:space="preserve">
+    <value>Contacter le Support</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Politique de Confidentialité</value>
   </data>
   <data name="DevelopmentMode" xml:space="preserve">
-    <value>Mode développement</value>
+    <value>Mode de développement</value>
   </data>
   <data name="DevelopmentMode_Info1" xml:space="preserve">
-    <value>Passer à l'environnement <strong>Développement</strong> affichera des informations plus détaillées sur l'erreur survenue.</value>
+    <value>Passer à l'environnement <strong>Développement</strong> affichera des informations plus détaillées sur l'erreur qui s'est produite.</value>
   </data>
   <data name="DevelopmentMode_Warning" xml:space="preserve">
     <value>L'environnement de développement ne doit pas être activé pour les applications déployées.</value>
   </data>
   <data name="DevelopmentMode_Info2" xml:space="preserve">
-    <value>Cela peut entraîner l'affichage d'informations sensibles provenant des exceptions aux utilisateurs finaux. Pour le débogage local, activez l'environnement <strong>Développement</strong> en définissant la variable d'environnement <strong>ASPNETCORE_ENVIRONMENT</strong> sur <strong>Development</strong> et en redémarrant l'application.</value>
+    <value>Cela peut entraîner l'affichage d'informations sensibles des exceptions aux utilisateurs finaux. Pour le débogage local, activez l'environnement <strong>Développement</strong> en définissant la variable d'environnement <strong>ASPNETCORE_ENVIRONMENT</strong> sur <strong>Development</strong> et en redémarrant l'application.</value>
   </data>
 </root> 
