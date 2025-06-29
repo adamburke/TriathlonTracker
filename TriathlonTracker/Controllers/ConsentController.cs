@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TriathlonTracker.Models;
 using TriathlonTracker.Services;
+using Microsoft.Extensions.Logging;
 
 namespace TriathlonTracker.Controllers
 {
@@ -13,17 +14,20 @@ namespace TriathlonTracker.Controllers
         private readonly IGdprService _gdprService;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<ConsentController> _logger;
+        private readonly IAuditService _auditService;
 
         public ConsentController(
             IConsentService consentService,
             IGdprService gdprService,
             UserManager<User> userManager,
-            ILogger<ConsentController> logger)
+            ILogger<ConsentController> logger,
+            IAuditService auditService)
         {
             _consentService = consentService;
             _gdprService = gdprService;
             _userManager = userManager;
             _logger = logger;
+            _auditService = auditService;
         }
 
         // GET: /Consent
@@ -33,19 +37,31 @@ namespace TriathlonTracker.Controllers
             if (userId == null)
                 return RedirectToAction("Login", "Account");
 
-            var consentSummary = await _consentService.GetConsentSummaryAsync(userId);
-            var consentHistory = await _consentService.GetConsentHistoryAsync(userId);
-
-            var viewModel = new ConsentManagementViewModel
+            try
             {
-                ConsentSummary = consentSummary,
-                ConsentHistory = consentHistory,
-                HasDataProcessingConsent = await _consentService.HasDataProcessingConsentAsync(userId),
-                HasMarketingConsent = await _consentService.HasMarketingConsentAsync(userId),
-                HasAnalyticsConsent = await _consentService.HasAnalyticsConsentAsync(userId)
-            };
+                var consentSummary = await _consentService.GetConsentSummaryAsync(userId);
+                var consentHistory = await _consentService.GetConsentHistoryAsync(userId);
+                
+                var viewModel = new ConsentManagementViewModel
+                {
+                    ConsentSummary = consentSummary,
+                    ConsentHistory = consentHistory.ToList(),
+                    HasDataProcessingConsent = await _consentService.HasDataProcessingConsentAsync(userId),
+                    HasMarketingConsent = await _consentService.HasMarketingConsentAsync(userId),
+                    HasAnalyticsConsent = await _consentService.HasAnalyticsConsentAsync(userId)
+                };
 
-            return View(viewModel);
+                _logger.LogDebug("User {UserId} accessed consent management page", userId);
+                await _auditService.LogAsync("ViewConsentManagement", "Consent", userId, "Accessed consent management page", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error loading consent management for user {UserId}", userId);
+                await _auditService.LogAsync("ViewConsentManagementError", "Consent", userId, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                return View("Error");
+            }
         }
 
         // POST: /Consent/Grant
@@ -65,6 +81,7 @@ namespace TriathlonTracker.Controllers
             if (success)
             {
                 _logger.LogInformation("Consent granted for user {UserId}, type {ConsentType}", userId, consentType);
+                await _auditService.LogAsync("GrantConsent", "Consent", userId, $"Granted consent: {consentType}, purpose: {purpose}, legal basis: {legalBasis}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
                 return Json(new { success = true, message = "Consent granted successfully" });
             }
 
@@ -88,6 +105,7 @@ namespace TriathlonTracker.Controllers
             if (success)
             {
                 _logger.LogInformation("Consent withdrawn for user {UserId}, type {ConsentType}", userId, consentType);
+                await _auditService.LogAsync("WithdrawConsent", "Consent", userId, $"Withdrawn consent: {consentType}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
                 return Json(new { success = true, message = "Consent withdrawn successfully" });
             }
 
@@ -109,6 +127,7 @@ namespace TriathlonTracker.Controllers
             {
                 var action = isGranted ? "granted" : "withdrawn";
                 _logger.LogInformation("Consent {Action} for user {UserId}, type {ConsentType}", action, userId, consentType);
+                await _auditService.LogAsync("UpdateConsent", "Consent", userId, $"Updated consent: {consentType} = {isGranted}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
                 return Json(new { success = true, message = $"Consent {action} successfully" });
             }
 
@@ -161,6 +180,7 @@ namespace TriathlonTracker.Controllers
 
                 if (allSuccess)
                 {
+                    await _auditService.LogAsync("GrantAllConsent", "Consent", userId, "Granted all consent", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
                     return Json(new { success = true, message = "All consents granted successfully" });
                 }
 
@@ -168,7 +188,9 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error accepting all consents for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "Error accepting all consents for user {UserId}", currentUserId);
+                await _auditService.LogAsync("GrantAllConsentError", "Consent", currentUserId, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
                 return Json(new { success = false, message = "An error occurred while processing consents" });
             }
         }
@@ -217,6 +239,7 @@ namespace TriathlonTracker.Controllers
 
                 if (allSuccess)
                 {
+                    await _auditService.LogAsync("GrantSelectedConsent", "Consent", userId, $"Granted selected consent: DataProcessing={model.DataProcessing}, Marketing={model.Marketing}, Analytics={model.Analytics}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
                     return Json(new { success = true, message = "Selected consents granted successfully" });
                 }
 
@@ -224,7 +247,9 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error accepting selected consents for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "Error accepting selected consents for user {UserId}", currentUserId);
+                await _auditService.LogAsync("GrantSelectedConsentError", "Consent", currentUserId, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
                 return Json(new { success = false, message = "An error occurred while processing consents" });
             }
         }
@@ -245,6 +270,180 @@ namespace TriathlonTracker.Controllers
             };
 
             return Json(status);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateConsent(string consentType, bool isGranted, string? reason = null)
+        {
+            try
+            {
+                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogDebug("User {UserId} updating consent: {ConsentType} = {IsGranted}", userId, consentType, isGranted);
+                
+                var success = await _consentService.UpdateConsentAsync(userId, consentType, isGranted, reason);
+                
+                if (success)
+                {
+                    _logger.LogInformation("User {UserId} successfully updated consent: {ConsentType} = {IsGranted}", userId, consentType, isGranted);
+                    await _auditService.LogAsync("UpdateConsent", "Consent", userId, $"Updated consent: {consentType} = {isGranted}, reason: {reason ?? "none"}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                    TempData["Success"] = "Consent updated successfully.";
+                }
+                else
+                {
+                    _logger.LogWarning("User {UserId} failed to update consent: {ConsentType}", userId, consentType);
+                    await _auditService.LogAsync("UpdateConsentFailed", "Consent", userId, $"Failed to update consent: {consentType}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    TempData["Error"] = "Failed to update consent.";
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "Error updating consent for user {UserId}: {ConsentType}", currentUserId, consentType);
+                await _auditService.LogAsync("UpdateConsentError", "Consent", currentUserId, $"Error updating {consentType}: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                TempData["Error"] = "An error occurred while updating consent.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RevokeAllConsent()
+        {
+            try
+            {
+                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogDebug("User {UserId} revoking all consent", userId);
+                
+                var consentTypes = new[] { "DataProcessing", "Marketing", "Analytics" };
+                var success = await _consentService.BulkWithdrawConsentAsync(userId, consentTypes);
+                
+                if (success)
+                {
+                    _logger.LogInformation("User {UserId} successfully revoked all consent", userId);
+                    await _auditService.LogAsync("RevokeAllConsent", "Consent", userId, "Revoked all consent", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                    TempData["Success"] = "All consent has been revoked.";
+                }
+                else
+                {
+                    _logger.LogWarning("User {UserId} failed to revoke all consent", userId);
+                    await _auditService.LogAsync("RevokeAllConsentFailed", "Consent", userId, "Failed to revoke all consent", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    TempData["Error"] = "Failed to revoke all consent.";
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "Error revoking all consent for user {UserId}", currentUserId);
+                await _auditService.LogAsync("RevokeAllConsentError", "Consent", currentUserId, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                TempData["Error"] = "An error occurred while revoking consent.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GrantAllConsent()
+        {
+            try
+            {
+                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogDebug("User {UserId} granting all consent", userId);
+                
+                var dataSuccess = await _consentService.GrantConsentAsync(userId, "DataProcessing", "Processing personal data for application functionality", "Contract");
+                var marketingSuccess = await _consentService.GrantConsentAsync(userId, "Marketing", "Marketing communications and promotional content", "Consent");
+                var analyticsSuccess = await _consentService.GrantConsentAsync(userId, "Analytics", "Analytics and performance tracking", "Consent");
+                
+                if (dataSuccess && marketingSuccess && analyticsSuccess)
+                {
+                    _logger.LogInformation("User {UserId} successfully granted all consent", userId);
+                    await _auditService.LogAsync("GrantAllConsent", "Consent", userId, "Granted all consent", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                    TempData["Success"] = "All consent has been granted.";
+                }
+                else
+                {
+                    _logger.LogWarning("User {UserId} failed to grant all consent", userId);
+                    await _auditService.LogAsync("GrantAllConsentFailed", "Consent", userId, "Failed to grant all consent", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    TempData["Error"] = "Failed to grant all consent.";
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "Error granting all consent for user {UserId}", currentUserId);
+                await _auditService.LogAsync("GrantAllConsentError", "Consent", currentUserId, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                TempData["Error"] = "An error occurred while granting consent.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ExportConsentData()
+        {
+            try
+            {
+                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogDebug("User {UserId} exporting consent data", userId);
+                
+                var consentHistory = await _consentService.GetConsentHistoryAsync(userId);
+                var consentSummary = await _consentService.GetConsentSummaryAsync(userId);
+                
+                var exportData = new
+                {
+                    UserId = userId,
+                    ExportDate = DateTime.UtcNow,
+                    ConsentSummary = consentSummary,
+                    ConsentHistory = consentHistory.Select(c => new
+                    {
+                        c.ConsentType,
+                        c.IsGranted,
+                        c.ConsentDate,
+                        c.WithdrawnDate,
+                        c.Purpose,
+                        c.LegalBasis,
+                        c.ConsentVersion
+                    })
+                };
+
+                _logger.LogInformation("User {UserId} successfully exported consent data", userId);
+                await _auditService.LogAsync("ExportConsentData", "Consent", userId, "Exported consent data", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+
+                return Json(exportData);
+            }
+            catch (Exception ex)
+            {
+                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "Error exporting consent data for user {UserId}", userId);
+                await _auditService.LogAsync("ExportConsentDataError", "Consent", userId, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                return Json(new { error = "Failed to export consent data" });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConsentHistory()
+        {
+            try
+            {
+                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogDebug("User {UserId} viewing consent history", userId);
+                
+                var consentHistory = await _consentService.GetConsentHistoryAsync(userId);
+                
+                _logger.LogInformation("User {UserId} viewed consent history with {Count} records", userId, consentHistory.Count());
+                await _auditService.LogAsync("ViewConsentHistory", "Consent", userId, $"Viewed consent history with {consentHistory.Count()} records", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                
+                return View(consentHistory);
+            }
+            catch (Exception ex)
+            {
+                var userId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "Error loading consent history for user {UserId}", userId);
+                await _auditService.LogAsync("ViewConsentHistoryError", "Consent", userId, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                return View("Error");
+            }
         }
     }
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using TriathlonTracker.Models;
 using TriathlonTracker.Services;
+using Microsoft.Extensions.Logging;
 
 namespace TriathlonTracker.Controllers.Api
 {
@@ -18,19 +19,22 @@ namespace TriathlonTracker.Controllers.Api
         private readonly IConsentService _consentService;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<GdprApiController> _logger;
+        private readonly IAuditService _auditService;
 
         public GdprApiController(
             IEnhancedGdprService enhancedGdprService,
             IGdprService gdprService,
             IConsentService consentService,
             UserManager<User> userManager,
-            ILogger<GdprApiController> logger)
+            ILogger<GdprApiController> logger,
+            IAuditService auditService)
         {
             _enhancedGdprService = enhancedGdprService;
             _gdprService = gdprService;
             _consentService = consentService;
             _userManager = userManager;
             _logger = logger;
+            _auditService = auditService;
         }
 
         #region Data Export API
@@ -47,11 +51,16 @@ namespace TriathlonTracker.Controllers.Api
 
             try
             {
+                _logger.LogDebug("API: User {UserId} requesting data export in format {Format}", userId, request.Format);
+                
                 var exportRequest = await _enhancedGdprService.CreateDataExportRequestAsync(userId, request.Format);
                 
                 // Process asynchronously
                 _ = Task.Run(async () => await _enhancedGdprService.ProcessDataExportRequestAsync(exportRequest.Id));
-
+                
+                _logger.LogInformation("API: User {UserId} successfully requested data export {RequestId}", userId, exportRequest.Id);
+                await _auditService.LogAsync("ApiRequestDataExport", "GdprApi", exportRequest.Id.ToString(), $"Requested data export in {request.Format} format", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                
                 return Ok(new
                 {
                     requestId = exportRequest.Id,
@@ -63,7 +72,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error requesting data export for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error requesting data export for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiRequestDataExportError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -101,7 +113,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error getting data export requests for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error getting data export requests for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiGetDataExportRequestsError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -118,12 +133,21 @@ namespace TriathlonTracker.Controllers.Api
 
             try
             {
+                _logger.LogDebug("API: User {UserId} checking export status for request {RequestId}", userId, requestId);
+                
                 var requests = await _enhancedGdprService.GetUserExportRequestsAsync(userId);
                 var request = requests.FirstOrDefault(r => r.Id == requestId);
 
                 if (request == null)
+                {
+                    _logger.LogWarning("API: User {UserId} attempted to access export request {RequestId} that doesn't exist or doesn't belong to them", userId, requestId);
+                    await _auditService.LogAsync("ApiExportStatusAccessDenied", "GdprApi", requestId.ToString(), "Attempted to access export request that doesn't exist or doesn't belong to user", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
                     return NotFound(new { error = "Export request not found" });
-
+                }
+                
+                _logger.LogDebug("API: User {UserId} checked export status for request {RequestId}: {Status}", userId, requestId, request.Status);
+                await _auditService.LogAsync("ApiCheckExportStatus", "GdprApi", requestId.ToString(), $"Checked export status: {request.Status}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                
                 return Ok(new
                 {
                     id = request.Id,
@@ -136,7 +160,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error getting export request status for user {UserId}, request {RequestId}", userId, requestId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error getting export request status for user {UserId}, request {RequestId}", currentUserId, requestId);
+                await _auditService.LogAsync("ApiCheckExportStatusError", "GdprApi", requestId.ToString(), $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -157,9 +184,14 @@ namespace TriathlonTracker.Controllers.Api
 
             try
             {
+                _logger.LogDebug("API: User {UserId} requesting data rectification: {DataType}.{FieldName}", userId, request.DataType, request.FieldName);
+                
                 var rectificationRequest = await _enhancedGdprService.CreateRectificationRequestAsync(
                     userId, request.DataType, request.FieldName, request.CurrentValue, request.RequestedValue, request.Reason);
-
+                
+                _logger.LogInformation("API: User {UserId} successfully requested data rectification {RequestId}: {DataType}.{FieldName}", userId, rectificationRequest.Id, request.DataType, request.FieldName);
+                await _auditService.LogAsync("ApiRequestDataRectification", "GdprApi", rectificationRequest.Id.ToString(), $"Requested rectification: {request.DataType}.{request.FieldName} = {request.CurrentValue} -> {request.RequestedValue}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                
                 return Ok(new
                 {
                     requestId = rectificationRequest.Id,
@@ -171,7 +203,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error requesting data rectification for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error requesting data rectification for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiRequestDataRectificationError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -211,7 +246,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error getting data rectification requests for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error getting data rectification requests for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiGetDataRectificationRequestsError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -232,24 +270,35 @@ namespace TriathlonTracker.Controllers.Api
 
             try
             {
-                var deletionRequest = await _enhancedGdprService.CreateAccountDeletionRequestAsync(
-                    userId, request.Reason, request.DeletionType);
-
-                return Ok(new
+                _logger.LogDebug("API: User {UserId} requesting account deletion with reason: {Reason}", userId, request.Reason);
+                
+                var success = await _gdprService.RequestAccountDeletionAsync(userId, request.Reason);
+                
+                if (success)
                 {
-                    requestId = deletionRequest.Id,
-                    status = deletionRequest.Status,
-                    deletionType = deletionRequest.DeletionType,
-                    requestDate = deletionRequest.RequestDate,
-                    confirmationToken = deletionRequest.ConfirmationToken,
-                    tokenExpirationDate = deletionRequest.TokenExpirationDate,
-                    recoveryPeriodDays = deletionRequest.RecoveryPeriodDays,
-                    message = "Account deletion request submitted. Please check your email for confirmation instructions."
-                });
+                    _logger.LogInformation("API: User {UserId} successfully requested account deletion", userId);
+                    await _auditService.LogAsync("ApiRequestAccountDeletion", "GdprApi", null, $"Requested account deletion with reason: {request.Reason}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                    
+                    return Ok(new
+                    {
+                        success = true,
+                        message = "Account deletion request submitted successfully"
+                    });
+                }
+                else
+                {
+                    _logger.LogWarning("API: User {UserId} failed to request account deletion", userId);
+                    await _auditService.LogAsync("ApiRequestAccountDeletionFailed", "GdprApi", null, "Failed to request account deletion", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    
+                    return BadRequest(new { error = "Failed to submit account deletion request" });
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error requesting account deletion for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error requesting account deletion for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiRequestAccountDeletionError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -279,7 +328,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error recovering account for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error recovering account for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiRecoverAccountError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -318,7 +370,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error getting consent history for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error getting consent history for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiGetConsentHistoryError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -349,7 +404,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error granting consent for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error granting consent for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiGrantConsentError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }
@@ -379,7 +437,10 @@ namespace TriathlonTracker.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "API: Error withdrawing consent for user {UserId}", userId);
+                var currentUserId = _userManager.GetUserId(User) ?? "Unknown";
+                _logger.LogError(ex, "API: Error withdrawing consent for user {UserId}", currentUserId);
+                await _auditService.LogAsync("ApiWithdrawConsentError", "GdprApi", null, $"Error: {ex.Message}", currentUserId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                
                 return StatusCode(500, new { error = "Internal server error" });
             }
         }

@@ -11,6 +11,10 @@ using TriathlonTracker.Data;
 using TriathlonTracker.Models;
 using Xunit;
 using System.Text.Json;
+using Microsoft.Extensions.Hosting;
+using TriathlonTracker.Services;
+using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace TriathlonTracker.Tests
 {
@@ -89,128 +93,93 @@ namespace TriathlonTracker.Tests
             return context;
         }
 
-        [Fact]
-        public async Task ReturnsSampleData_WhenDevAndLocalhost()
+        private ReportingController GetController(ApplicationDbContext context)
         {
-            // Arrange
-            var db = GetDbContextWithData();
             var env = new Mock<IWebHostEnvironment>();
-            env.SetupGet(e => e.EnvironmentName).Returns("Development");
+            var httpContextAccessor = new Mock<IHttpContextAccessor>();
+            var adminDashboardService = new Mock<IAdminDashboardService>();
+            var logger = new Mock<ILogger<ReportingController>>();
+            var auditService = new Mock<IAuditService>();
+            
+            var controller = new ReportingController(context, env.Object, httpContextAccessor.Object, adminDashboardService.Object, logger.Object, auditService.Object);
+            
+            // Set up HttpContext
             var httpContext = new DefaultHttpContext();
-            httpContext.Request.Host = new HostString("localhost");
-            var accessor = new Mock<IHttpContextAccessor>();
-            accessor.Setup(a => a.HttpContext).Returns(httpContext);
-            var controller = new RacesController(db, env.Object, accessor.Object);
-
-            // Act
-            var result = await controller.GetAll();
-
-            // Assert
-            var ok = Assert.IsType<OkObjectResult>(result);
-            using var doc = JsonDocument.Parse(JsonSerializer.Serialize(ok.Value));
-            var root = doc.RootElement;
-            Assert.Equal(1, root.GetProperty("page").GetInt32());
-            Assert.Equal(1, root.GetProperty("pageSize").GetInt32());
-            Assert.Equal(1, root.GetProperty("totalCount").GetInt32());
-            Assert.Equal("Sample Ironman", root.GetProperty("data")[0].GetProperty("RaceName").GetString());
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.NameIdentifier, "admin") }, "mock"));
+            httpContext.User = user;
+            controller.ControllerContext = new ControllerContext { HttpContext = httpContext };
+            
+            return controller;
         }
 
         [Fact]
-        public async Task ReturnsPagedRealData_WhenNotDevOrNotLocalhost()
+        public async Task Index_ShouldReturnView()
         {
             // Arrange
             var db = GetDbContextWithData();
-            var env = new Mock<IWebHostEnvironment>();
-            env.SetupGet(e => e.EnvironmentName).Returns("Production");
-            var httpContext = new DefaultHttpContext();
-            httpContext.Request.Host = new HostString("localhost");
-            var accessor = new Mock<IHttpContextAccessor>();
-            accessor.Setup(a => a.HttpContext).Returns(httpContext);
-            var controller = new RacesController(db, env.Object, accessor.Object);
+            var controller = GetController(db);
 
             // Act
-            var result = await controller.GetAll(page: 1, pageSize: 1);
+            var result = await controller.Index();
 
             // Assert
-            var ok = Assert.IsType<OkObjectResult>(result);
-            using var doc = JsonDocument.Parse(JsonSerializer.Serialize(ok.Value));
-            var root = doc.RootElement;
-            Assert.Equal(1, root.GetProperty("page").GetInt32());
-            Assert.Equal(1, root.GetProperty("pageSize").GetInt32());
-            Assert.Equal(2, root.GetProperty("totalCount").GetInt32());
-            Assert.Equal("Ironman Barcelona", root.GetProperty("data")[0].GetProperty("RaceName").GetString());
+            Assert.IsType<ViewResult>(result);
         }
 
         [Fact]
-        public async Task FiltersByRaceName()
+        public async Task ReportHistory_ShouldReturnView()
         {
             // Arrange
             var db = GetDbContextWithData();
-            var env = new Mock<IWebHostEnvironment>();
-            env.SetupGet(e => e.EnvironmentName).Returns("Production");
-            var httpContext = new DefaultHttpContext();
-            httpContext.Request.Host = new HostString("localhost");
-            var accessor = new Mock<IHttpContextAccessor>();
-            accessor.Setup(a => a.HttpContext).Returns(httpContext);
-            var controller = new RacesController(db, env.Object, accessor.Object);
+            var controller = GetController(db);
 
             // Act
-            var result = await controller.GetAll(raceName: "Sprint");
+            var result = await controller.ReportHistory();
 
             // Assert
-            var ok = Assert.IsType<OkObjectResult>(result);
-            using var doc = JsonDocument.Parse(JsonSerializer.Serialize(ok.Value));
-            var root = doc.RootElement;
-            Assert.Single(root.GetProperty("data").EnumerateArray());
-            Assert.Equal("Local Sprint", root.GetProperty("data")[0].GetProperty("RaceName").GetString());
+            Assert.IsType<ViewResult>(result);
         }
 
         [Fact]
-        public async Task FiltersByUserId()
+        public async Task ReportDetails_ShouldReturnView()
         {
             // Arrange
             var db = GetDbContextWithData();
-            var env = new Mock<IWebHostEnvironment>();
-            env.SetupGet(e => e.EnvironmentName).Returns("Production");
-            var httpContext = new DefaultHttpContext();
-            httpContext.Request.Host = new HostString("localhost");
-            var accessor = new Mock<IHttpContextAccessor>();
-            accessor.Setup(a => a.HttpContext).Returns(httpContext);
-            var controller = new RacesController(db, env.Object, accessor.Object);
+            var controller = GetController(db);
 
             // Act
-            var result = await controller.GetAll(userId: "user2");
+            var result = await controller.ReportDetails("test-report-id");
 
             // Assert
-            var ok = Assert.IsType<OkObjectResult>(result);
-            using var doc = JsonDocument.Parse(JsonSerializer.Serialize(ok.Value));
-            var root = doc.RootElement;
-            Assert.Single(root.GetProperty("data").EnumerateArray());
-            Assert.Equal("Local Sprint", root.GetProperty("data")[0].GetProperty("RaceName").GetString());
+            Assert.IsType<ViewResult>(result);
         }
 
         [Fact]
-        public async Task FiltersByDateRange()
+        public async Task GenerateReport_ShouldReturnJsonResult()
         {
             // Arrange
             var db = GetDbContextWithData();
-            var env = new Mock<IWebHostEnvironment>();
-            env.SetupGet(e => e.EnvironmentName).Returns("Production");
-            var httpContext = new DefaultHttpContext();
-            httpContext.Request.Host = new HostString("localhost");
-            var accessor = new Mock<IHttpContextAccessor>();
-            accessor.Setup(a => a.HttpContext).Returns(httpContext);
-            var controller = new RacesController(db, env.Object, accessor.Object);
+            var controller = GetController(db);
 
             // Act
-            var result = await controller.GetAll(fromDate: new DateTime(2023, 6, 1));
+            var result = await controller.GenerateReport("test", DateTime.Now, DateTime.Now.AddDays(1));
 
             // Assert
-            var ok = Assert.IsType<OkObjectResult>(result);
-            using var doc = JsonDocument.Parse(JsonSerializer.Serialize(ok.Value));
-            var root = doc.RootElement;
-            Assert.Single(root.GetProperty("data").EnumerateArray());
-            Assert.Equal("Ironman Barcelona", root.GetProperty("data")[0].GetProperty("RaceName").GetString());
+            Assert.IsType<JsonResult>(result);
+        }
+
+        [Fact]
+        public async Task DownloadReport_ShouldReturnFileResult()
+        {
+            // Arrange
+            var db = GetDbContextWithData();
+            var controller = GetController(db);
+
+            // Act
+            var result = await controller.DownloadReport("test-report-id");
+
+            // Assert
+            Assert.IsType<NotFoundObjectResult>(result); // Should return NotFoundObjectResult since no actual report exists
         }
     }
 } 

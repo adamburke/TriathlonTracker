@@ -39,6 +39,7 @@ namespace TriathlonTracker.Data
         public DbSet<AccessAttempt> AccessAttempts { get; set; }
         public DbSet<ThreatIntelligence> ThreatIntelligence { get; set; }
         public DbSet<AuditLogEntry> AuditLogEntries { get; set; }
+        public DbSet<AuditLog> AuditLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -537,6 +538,21 @@ namespace TriathlonTracker.Data
                 entity.HasIndex(e => e.Timestamp);
                 entity.HasIndex(e => e.Action);
                 entity.HasIndex(e => e.UserId);
+            });
+
+            // Configure AuditLog entity
+            builder.Entity<AuditLog>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Timestamp).IsRequired();
+                entity.Property(e => e.Action).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.EntityType).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.LogLevel).HasMaxLength(20);
+                entity.Property(e => e.UserId).HasMaxLength(100);
+                entity.Property(e => e.EntityId);
+                entity.Property(e => e.Details).HasMaxLength(1000);
+                entity.Property(e => e.IpAddress).HasMaxLength(50);
+                entity.Property(e => e.UserAgent).HasMaxLength(200);
             });
         }
     }

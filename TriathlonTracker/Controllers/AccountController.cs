@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TriathlonTracker.Models;
 using TriathlonTracker.ViewModels;
+using Microsoft.Extensions.Logging;
+using TriathlonTracker.Services;
 
 namespace TriathlonTracker.Controllers
 {
@@ -12,11 +14,15 @@ namespace TriathlonTracker.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ILogger<AccountController> _logger;
+        private readonly IAuditService _auditService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ILogger<AccountController> logger, IAuditService auditService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _logger = logger;
+            _auditService = auditService;
         }
 
         [HttpGet]
@@ -27,22 +33,38 @@ namespace TriathlonTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
-                {
-                    return RedirectToLocal(returnUrl);
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
-                }
+                _logger.LogWarning("Login attempt failed due to invalid model state for user {Email}", model.Email);
+                return View(model);
             }
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                _logger.LogWarning("Login attempt failed: user not found for {Email}", model.Email);
+                await _auditService.LogAsync("LoginFailed", "User", null, "User not found", null, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return View(model);
+            }
+            var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, lockoutOnFailure: true);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User {Email} logged in successfully", model.Email);
+                await _auditService.LogAsync("LoginSuccess", "User", user.Id, "User logged in", user.Id, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                return RedirectToLocal(returnUrl);
+            }
+            if (result.IsLockedOut)
+            {
+                _logger.LogWarning("User {Email} account locked out", model.Email);
+                await _auditService.LogAsync("LoginLockedOut", "User", user.Id, "Account locked out", user.Id, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                return View("Lockout");
+            }
+            _logger.LogWarning("Invalid login attempt for user {Email}", model.Email);
+            await _auditService.LogAsync("LoginFailed", "User", user.Id, "Invalid login attempt", user.Id, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View(model);
         }
 
@@ -54,6 +76,7 @@ namespace TriathlonTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -71,18 +94,28 @@ namespace TriathlonTracker.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("User {Email} registered and logged in", model.Email);
+                    await _auditService.LogAsync("Register", "User", user.Id, "User registered", user.Id, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
                     return RedirectToLocal(returnUrl);
                 }
-                AddErrors(result);
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                    _logger.LogWarning("Registration error for {Email}: {Error}", model.Email, error.Description);
+                }
             }
             return View(model);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            var userId = _userManager.GetUserId(User);
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login");
+            _logger.LogInformation("User {UserId} logged out", userId);
+            await _auditService.LogAsync("Logout", "User", userId, "User logged out", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
