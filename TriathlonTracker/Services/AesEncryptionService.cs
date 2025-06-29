@@ -9,14 +9,13 @@ namespace TriathlonTracker.Services
         private readonly byte[] _iv;
         private const string EncryptedPrefix = "ENC:";
 
-        public AesEncryptionService(IConfiguration configuration)
+        public AesEncryptionService()
         {
-            // Use a key from configuration or generate one
-            var keyString = configuration["Encryption:Key"] ?? "TriathlonTracker2024SecretKey32"; // 32 chars for AES-256
-            _key = Encoding.UTF8.GetBytes(keyString.PadRight(32).Substring(0, 32));
-            
-            var ivString = configuration["Encryption:IV"] ?? "TriathlonIV16Bit"; // 16 chars for AES IV
-            _iv = Encoding.UTF8.GetBytes(ivString.PadRight(16).Substring(0, 16));
+            var keyString = Environment.GetEnvironmentVariable("ENCRYPTION_KEY") ?? "TriathlonTracker2024SecretKey32";
+            _key = System.Text.Encoding.UTF8.GetBytes(keyString.PadRight(32).Substring(0, 32));
+
+            var ivString = Environment.GetEnvironmentVariable("ENCRYPTION_IV") ?? "TriathlonIV16Bit";
+            _iv = System.Text.Encoding.UTF8.GetBytes(ivString.PadRight(16).Substring(0, 16));
         }
 
         public string Encrypt(string plainText)
