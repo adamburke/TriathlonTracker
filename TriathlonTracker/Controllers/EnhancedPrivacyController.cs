@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TriathlonTracker.Models;
+using TriathlonTracker.Models.Enums;
 using TriathlonTracker.Services;
 using Microsoft.Extensions.Logging;
 
@@ -86,7 +87,7 @@ namespace TriathlonTracker.Controllers
 
         [HttpGet("DownloadExport")]
         [Authorize]
-        public async Task<IActionResult> DownloadExport(int requestId, string token)
+        public async Task<IActionResult> DownloadExport(string requestId, string token)
         {
             try
             {
@@ -212,7 +213,7 @@ namespace TriathlonTracker.Controllers
 
         [HttpGet("RectificationStatus/{requestId}")]
         [Authorize]
-        public async Task<IActionResult> RectificationStatus(int requestId)
+        public async Task<IActionResult> RectificationStatus(string requestId)
         {
             try
             {
@@ -443,28 +444,33 @@ namespace TriathlonTracker.Controllers
         [HttpPost("Admin/ReviewRectification")]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ReviewRectification(int requestId, bool approved, string reviewNotes)
+        public async Task<IActionResult> ReviewRectification(string requestId, bool approved, string reviewNotes)
         {
-            var reviewedBy = _userManager?.GetUserName(User) ?? "Admin";
-            
             try
             {
-                var success = await _enhancedGdprService.ReviewRectificationRequestAsync(requestId, approved, reviewNotes, reviewedBy);
+                var adminUserId = GetCurrentUserId();
+                _logger.LogDebug("Admin {AdminUserId} reviewing rectification request {RequestId}: {Approved}", adminUserId, requestId, approved);
                 
-                if (success && approved)
-                {
-                    // Process the approved rectification
-                    await _enhancedGdprService.ProcessApprovedRectificationAsync(requestId);
-                }
+                var success = await _enhancedGdprService.ReviewRectificationRequestAsync(requestId, approved, reviewNotes, adminUserId);
 
-                return Json(new { 
-                    success = success, 
-                    message = success ? "Rectification request reviewed successfully" : "Failed to review rectification request" 
-                });
+                if (success)
+                {
+                    _logger.LogInformation("Admin {AdminUserId} successfully reviewed rectification request {RequestId}: {Approved}", adminUserId, requestId, approved);
+                    await AuditAsync("ReviewRectification", "DataRectification", requestId.ToString(), $"Reviewed rectification request: {(approved ? "Approved" : "Rejected")} - {reviewNotes}", adminUserId, "Information");
+                    return Json(new { success = true, message = "Rectification request reviewed successfully" });
+                }
+                else
+                {
+                    _logger.LogWarning("Admin {AdminUserId} failed to review rectification request {RequestId}", adminUserId, requestId);
+                    await AuditAsync("ReviewRectificationFailed", "DataRectification", requestId.ToString(), "Failed to review rectification request", adminUserId, "Warning");
+                    return Json(new { success = false, message = "Failed to review rectification request" });
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error reviewing rectification request {RequestId}", requestId);
+                var adminUserId = GetCurrentUserId();
+                _logger.LogError(ex, "Error reviewing rectification request {RequestId} by admin {AdminUserId}", requestId, adminUserId);
+                await AuditAsync("ReviewRectificationError", "DataRectification", requestId.ToString(), $"Error: {ex.Message}", adminUserId, "Error");
                 return Json(new { success = false, message = "An error occurred while reviewing the request" });
             }
         }
@@ -480,21 +486,34 @@ namespace TriathlonTracker.Controllers
         [HttpPost("Admin/ProcessDeletion")]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ProcessDeletion(int requestId)
+        public async Task<IActionResult> ProcessDeletion(string requestId)
         {
             try
             {
-                var success = await _enhancedGdprService.ProcessAccountDeletionAsync(requestId);
+                var adminUserId = GetCurrentUserId();
+                _logger.LogDebug("Admin {AdminUserId} processing deletion request {RequestId}", adminUserId, requestId);
                 
-                return Json(new { 
-                    success = success, 
-                    message = success ? "Account deletion processed successfully" : "Failed to process account deletion" 
-                });
+                var success = await _enhancedGdprService.ProcessAccountDeletionAsync(requestId);
+
+                if (success)
+                {
+                    _logger.LogInformation("Admin {AdminUserId} successfully processed deletion request {RequestId}", adminUserId, requestId);
+                    await AuditAsync("ProcessDeletion", "AccountDeletion", requestId.ToString(), "Processed account deletion request", adminUserId, "Information");
+                    return Json(new { success = true, message = "Account deletion processed successfully" });
+                }
+                else
+                {
+                    _logger.LogWarning("Admin {AdminUserId} failed to process deletion request {RequestId}", adminUserId, requestId);
+                    await AuditAsync("ProcessDeletionFailed", "AccountDeletion", requestId.ToString(), "Failed to process account deletion request", adminUserId, "Warning");
+                    return Json(new { success = false, message = "Failed to process account deletion request" });
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error processing account deletion request {RequestId}", requestId);
-                return Json(new { success = false, message = "An error occurred while processing the deletion" });
+                var adminUserId = GetCurrentUserId();
+                _logger.LogError(ex, "Error processing deletion request {RequestId} by admin {AdminUserId}", requestId, adminUserId);
+                await AuditAsync("ProcessDeletionError", "AccountDeletion", requestId.ToString(), $"Error: {ex.Message}", adminUserId, "Error");
+                return Json(new { success = false, message = "An error occurred while processing the deletion request" });
             }
         }
 

@@ -120,6 +120,19 @@ namespace TriathlonTracker.Controllers
                         }
                         return View(model);
                     }
+
+                    // Assign the "User" role to the newly created user
+                    var roleResult = await _userManager.AddToRoleAsync(user, "User");
+                    if (!roleResult.Succeeded)
+                    {
+                        _logger.LogWarning("Failed to assign User role to {Email}: {Errors}", model.Email, string.Join(", ", roleResult.Errors.Select(e => e.Description)));
+                        // Don't fail registration if role assignment fails, but log it
+                    }
+                    else
+                    {
+                        _logger.LogInformation("Assigned User role to {Email}", model.Email);
+                    }
+
                     await _signInManager.SignInAsync(user!, isPersistent: false);
                     _logger.LogInformation("User {Email} registered and logged in", model.Email);
                     await _auditService.LogAsync("Register", "User", user!.Id, "User registered", user!.Id, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");

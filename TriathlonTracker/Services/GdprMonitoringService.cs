@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TriathlonTracker.Data;
 using TriathlonTracker.Models;
+using TriathlonTracker.Models.Enums;
 
 namespace TriathlonTracker.Services
 {
@@ -135,11 +136,11 @@ namespace TriathlonTracker.Services
         {
             return eventType.ToLower() switch
             {
-                "login_failed" => "Medium",
-                "unauthorized_access" => "High",
+                "login_failed" => "Warning",
+                "unauthorized_access" => "Error",
                 "data_breach" => "Critical",
-                "suspicious_activity" => "High",
-                _ => "Low"
+                "suspicious_activity" => "Error",
+                _ => "Information"
             };
         }
     }

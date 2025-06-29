@@ -120,7 +120,7 @@ namespace TriathlonTracker.Controllers.Api
         /// Get data export request status
         /// </summary>
         [HttpGet("export/requests/{requestId}/status")]
-        public async Task<IActionResult> GetExportRequestStatus(int requestId)
+        public async Task<IActionResult> GetExportRequestStatus(string requestId)
         {
             var userId = _userManager?.GetUserId(User) ?? "Unknown";
             if (string.IsNullOrEmpty(userId) || userId == "Unknown")

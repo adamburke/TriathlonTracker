@@ -224,7 +224,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("IsSuspicious");
 
-                    b.ToTable("AccessAttempts");
+                    b.ToTable("AccessAttempts", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.AccountDeletionRequest", b =>
@@ -321,7 +321,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AccountDeletionRequests");
+                    b.ToTable("AccountDeletionRequests", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.AuditLog", b =>
@@ -370,7 +370,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AuditLogs");
+                    b.ToTable("AuditLogs", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.AuditLogEntry", b =>
@@ -416,7 +416,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AuditLogEntries");
+                    b.ToTable("AuditLogEntries", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.BreachIncident", b =>
@@ -567,7 +567,7 @@ namespace TriathlonTracker.Migrations
                     b.HasIndex("IncidentId")
                         .IsUnique();
 
-                    b.ToTable("BreachIncidents");
+                    b.ToTable("BreachIncidents", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.ComplianceMonitor", b =>
@@ -625,7 +625,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("MonitorType");
 
-                    b.ToTable("ComplianceMonitors");
+                    b.ToTable("ComplianceMonitors", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.Configuration", b =>
@@ -653,7 +653,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasKey("Key");
 
-                    b.ToTable("Configurations");
+                    b.ToTable("Configurations", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.ConsentAnalytics", b =>
@@ -699,7 +699,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("Date");
 
-                    b.ToTable("ConsentAnalytics");
+                    b.ToTable("ConsentAnalytics", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.ConsentRecord", b =>
@@ -763,7 +763,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ConsentRecords");
+                    b.ToTable("ConsentRecords", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.DataArchive", b =>
@@ -828,7 +828,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DataArchives");
+                    b.ToTable("DataArchives", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.DataExportRequest", b =>
@@ -903,7 +903,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DataExportRequests");
+                    b.ToTable("DataExportRequests", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.DataProcessingAnalytics", b =>
@@ -944,7 +944,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("Date");
 
-                    b.ToTable("DataProcessingAnalytics");
+                    b.ToTable("DataProcessingAnalytics", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.DataProcessingLog", b =>
@@ -1014,7 +1014,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DataProcessingLogs");
+                    b.ToTable("DataProcessingLogs", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.DataRectificationRequest", b =>
@@ -1108,7 +1108,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DataRectificationRequests");
+                    b.ToTable("DataRectificationRequests", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.DataRetentionPolicy", b =>
@@ -1176,7 +1176,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DataRetentionPolicies");
+                    b.ToTable("DataRetentionPolicies", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.EncryptionKey", b =>
@@ -1241,7 +1241,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("KeyType");
 
-                    b.ToTable("EncryptionKeys");
+                    b.ToTable("EncryptionKeys", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.GdprAuditLog", b =>
@@ -1314,7 +1314,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("GdprAuditLogs");
+                    b.ToTable("GdprAuditLogs", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.IpAccessControl", b =>
@@ -1385,7 +1385,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("IsActive");
 
-                    b.ToTable("IpAccessControls");
+                    b.ToTable("IpAccessControls", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.RetentionAuditTrail", b =>
@@ -1444,7 +1444,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RetentionAuditTrails");
+                    b.ToTable("RetentionAuditTrails", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.RetentionJob", b =>
@@ -1518,7 +1518,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("JobType");
 
-                    b.ToTable("RetentionJobs");
+                    b.ToTable("RetentionJobs", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.RetentionJobExecution", b =>
@@ -1565,7 +1565,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("StartTime");
 
-                    b.ToTable("RetentionJobExecutions");
+                    b.ToTable("RetentionJobExecutions", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.RetentionNotification", b =>
@@ -1635,7 +1635,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RetentionNotifications");
+                    b.ToTable("RetentionNotifications", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.SecurityEvent", b =>
@@ -1708,7 +1708,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("Timestamp");
 
-                    b.ToTable("SecurityEvents");
+                    b.ToTable("SecurityEvents", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.SessionMonitoring", b =>
@@ -1771,7 +1771,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SessionMonitorings");
+                    b.ToTable("SessionMonitorings", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.SuspiciousActivity", b =>
@@ -1839,7 +1839,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SuspiciousActivities");
+                    b.ToTable("SuspiciousActivities", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.ThreatIntelligence", b =>
@@ -1906,7 +1906,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("ThreatType");
 
-                    b.ToTable("ThreatIntelligence");
+                    b.ToTable("ThreatIntelligence", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.Triathlon", b =>
@@ -1973,7 +1973,7 @@ namespace TriathlonTracker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Triathlons");
+                    b.ToTable("Triathlons", (string)null);
                 });
 
             modelBuilder.Entity("TriathlonTracker.Models.User", b =>

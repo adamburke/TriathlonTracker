@@ -1,53 +1,62 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TriathlonTracker.Models.Base;
+using TriathlonTracker.Models.Enums;
 
 namespace TriathlonTracker.Models
 {
-    public class GdprAuditLog
+    public class GdprAuditLog : BaseEntity
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(100)]
         public string Action { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(100)]
         public string EntityType { get; set; } = string.Empty;
         
+        [StringLength(450)]
         public string? EntityId { get; set; }
         
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
+        [StringLength(450)]
         public string? AdminUserId { get; set; }
         
         [Required]
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
         
+        [StringLength(45)]
         public string? IpAddress { get; set; }
         
+        [StringLength(500)]
         public string? UserAgent { get; set; }
         
+        [StringLength(1000)]
         public string? Details { get; set; }
         
+        [StringLength(2000)]
         public string? OldValues { get; set; }
         
+        [StringLength(2000)]
         public string? NewValues { get; set; }
         
         public bool IsSuccessful { get; set; } = true;
         
+        [StringLength(1000)]
         public string? ErrorMessage { get; set; }
         
+        [StringLength(100)]
         public string? SessionId { get; set; }
         
+        [StringLength(100)]
         public string? RequestId { get; set; }
     }
 
-    public class ConsentAnalytics
+    public class ConsentAnalytics : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
         public DateTime Date { get; set; }
         
@@ -59,10 +68,13 @@ namespace TriathlonTracker.Models
         
         public int UpdatedConsents { get; set; }
         
+        [Required]
+        [StringLength(100)]
         public string ConsentType { get; set; } = string.Empty;
         
         public double ConsentRate { get; set; }
         
+        [StringLength(100)]
         public string? Source { get; set; }
         
         public Dictionary<string, int> ConsentByPurpose { get; set; } = new();
@@ -77,11 +89,8 @@ namespace TriathlonTracker.Models
         }
     }
 
-    public class DataProcessingAnalytics
+    public class DataProcessingAnalytics : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
         public DateTime Date { get; set; }
         
@@ -111,17 +120,17 @@ namespace TriathlonTracker.Models
         }
     }
 
-    public class ComplianceMonitor
+    public class ComplianceMonitor : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(100)]
         public string MonitorType { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(100)]
         public string Name { get; set; } = string.Empty;
         
+        [StringLength(500)]
         public string Description { get; set; } = string.Empty;
         
         public bool IsActive { get; set; } = true;
@@ -132,8 +141,11 @@ namespace TriathlonTracker.Models
         
         public DateTime NextCheck { get; set; }
         
+        [Required]
+        [StringLength(50)]
         public string Status { get; set; } = "OK";
         
+        [StringLength(1000)]
         public string? LastError { get; set; }
         
         public Dictionary<string, object> Configuration { get; set; } = new();
@@ -159,63 +171,60 @@ namespace TriathlonTracker.Models
         }
     }
 
-    public class SuspiciousActivity
+    public class SuspiciousActivity : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(100)]
         public string ActivityType { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
+        [StringLength(45)]
         public string? IpAddress { get; set; }
         
+        [StringLength(500)]
         public string? UserAgent { get; set; }
         
         [Required]
         public DateTime DetectedAt { get; set; } = DateTime.UtcNow;
         
+        [Required]
+        [StringLength(1000)]
         public string Description { get; set; } = string.Empty;
         
         public string Severity { get; set; } = "Medium";
         
         public bool IsInvestigated { get; set; } = false;
         
+        [StringLength(1000)]
         public string? InvestigationNotes { get; set; }
         
+        [StringLength(100)]
         public string? InvestigatedBy { get; set; }
         
         public DateTime? InvestigatedAt { get; set; }
         
+        [Required]
+        [StringLength(50)]
         public string Status { get; set; } = "Open";
-        
-        public Dictionary<string, object> Metadata { get; set; } = new();
-        
-        [NotMapped]
-        public string MetadataJson
-        {
-            get => System.Text.Json.JsonSerializer.Serialize(Metadata);
-            set => Metadata = string.IsNullOrEmpty(value) 
-                ? new Dictionary<string, object>() 
-                : System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(value) ?? new();
-        }
     }
 
-    public class SessionMonitoring
+    public class SessionMonitoring : BaseEntityWithMetadata
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        
         [Required]
+        [StringLength(100)]
         public string SessionId { get; set; } = string.Empty;
         
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
+        [StringLength(45)]
         public string? IpAddress { get; set; }
         
+        [StringLength(500)]
         public string? UserAgent { get; set; }
         
         [Required]
@@ -229,8 +238,10 @@ namespace TriathlonTracker.Models
         
         public bool IsActive { get; set; } = true;
         
+        [StringLength(200)]
         public string? Location { get; set; }
         
+        [StringLength(200)]
         public string? Device { get; set; }
         
         public List<string> AccessedResources { get; set; } = new();

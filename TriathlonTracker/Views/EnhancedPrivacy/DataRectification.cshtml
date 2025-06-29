@@ -1,4 +1,6 @@
 @model IEnumerable<TriathlonTracker.Models.DataRectificationRequest>
+@using TriathlonTracker.Models.Enums
+
 @{
     ViewData["Title"] = "Data Rectification Requests";
 }
@@ -58,17 +60,17 @@
                                                     case "Pending":
                                                         <span class="badge bg-warning">Pending</span>
                                                         break;
-                                                    case "UnderReview":
+                                                    case "Processing":
                                                         <span class="badge bg-info">Under Review</span>
-                                                        break;
-                                                    case "Approved":
-                                                        <span class="badge bg-primary">Approved</span>
-                                                        break;
-                                                    case "Rejected":
-                                                        <span class="badge bg-danger">Rejected</span>
                                                         break;
                                                     case "Completed":
                                                         <span class="badge bg-success">Completed</span>
+                                                        break;
+                                                    case "Failed":
+                                                        <span class="badge bg-danger">Rejected</span>
+                                                        break;
+                                                    case "Expired":
+                                                        <span class="badge bg-dark">Expired</span>
                                                         break;
                                                 }
                                             </td>

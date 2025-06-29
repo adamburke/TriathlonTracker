@@ -1,12 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using TriathlonTracker.Models.Base;
+using TriathlonTracker.Models.Enums;
 
 namespace TriathlonTracker.Models
 {
-    public class DataExportRequest
+    public class DataExportRequest : BaseEntity
     {
-        public int Id { get; set; }
-        
         [Required]
+        [StringLength(450)]
         public string UserId { get; set; } = string.Empty;
         
         [Required]
@@ -16,9 +17,7 @@ namespace TriathlonTracker.Models
         [Required]
         public DateTime RequestDate { get; set; } = DateTime.UtcNow;
         
-        [Required]
-        [StringLength(50)]
-        public string Status { get; set; } = "Pending"; // Pending, Processing, Completed, Failed, Expired
+        public string Status { get; set; } = "Pending";
         
         public DateTime? CompletedDate { get; set; }
         

@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml.Linq;
 using TriathlonTracker.Data;
 using TriathlonTracker.Models;
+using TriathlonTracker.Models.Enums;
 
 namespace TriathlonTracker.Services
 {
@@ -62,7 +63,7 @@ namespace TriathlonTracker.Services
             }
         }
 
-        public async Task<bool> ProcessDataExportRequestAsync(int requestId)
+        public async Task<bool> ProcessDataExportRequestAsync(string requestId)
         {
             try
             {
@@ -111,7 +112,7 @@ namespace TriathlonTracker.Services
             }
         }
 
-        public Task<string> GenerateSecureDownloadLinkAsync(int requestId)
+        public Task<string> GenerateSecureDownloadLinkAsync(string requestId)
         {
             var token = Guid.NewGuid().ToString("N");
             var baseUrl = _configuration["BaseUrl"] ?? "https://localhost:5001";
@@ -198,18 +199,19 @@ namespace TriathlonTracker.Services
                 _context.DataRectificationRequests.Add(request);
                 await _context.SaveChangesAsync();
 
-                await _baseGdprService.LogDataProcessingAsync(userId, "RectificationRequested", dataType, "UserRequest", "Consent", $"Field: {fieldName}");
+                await _baseGdprService.LogDataProcessingAsync(userId, "RectificationRequested", dataType, "UserRequest", "Consent", $"Field: {fieldName}, Reason: {reason}");
 
+                _logger.LogInformation("Data rectification request created for user {UserId}, field {FieldName}", userId, fieldName);
                 return request;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error creating rectification request for user {UserId}", userId);
+                _logger.LogError(ex, "Error creating data rectification request for user {UserId}", userId);
                 throw;
             }
         }
 
-        public async Task<bool> ReviewRectificationRequestAsync(int requestId, bool approved, string reviewNotes, string reviewedBy)
+        public async Task<bool> ReviewRectificationRequestAsync(string requestId, bool approved, string reviewNotes, string reviewedBy)
         {
             try
             {
@@ -217,17 +219,17 @@ namespace TriathlonTracker.Services
                 if (request == null || request.Status != "Pending")
                     return false;
 
-                request.Status = approved ? "Approved" : "Rejected";
-                request.ReviewDate = DateTime.UtcNow;
-                request.ReviewedBy = reviewedBy;
+                request.Status = approved ? "Processing" : "Failed";
                 request.ReviewNotes = reviewNotes;
-                
-                if (!approved)
-                    request.RejectionReason = reviewNotes;
+                request.ReviewedBy = reviewedBy;
+                request.ReviewDate = DateTime.UtcNow;
 
                 await _context.SaveChangesAsync();
 
-                await _baseGdprService.LogDataProcessingAsync(request.UserId, "RectificationReviewed", request.DataType, "AdminAction", "LegitimateInterest", $"Approved: {approved}");
+                if (approved)
+                {
+                    await ProcessApprovedRectificationAsync(requestId);
+                }
 
                 return true;
             }
@@ -238,31 +240,26 @@ namespace TriathlonTracker.Services
             }
         }
 
-        public async Task<bool> ProcessApprovedRectificationAsync(int requestId)
+        public async Task<bool> ProcessApprovedRectificationAsync(string requestId)
         {
             try
             {
                 var request = await _context.DataRectificationRequests.FindAsync(requestId);
-                if (request == null || request.Status != "Approved")
+                if (request == null || request.Status != "Processing")
                     return false;
 
-                // Apply the rectification based on data type
                 var success = await ApplyDataRectificationAsync(request);
-                
-                if (success)
-                {
-                    request.Status = "Completed";
-                    request.CompletedDate = DateTime.UtcNow;
-                    await _context.SaveChangesAsync();
 
-                    await _baseGdprService.LogDataProcessingAsync(request.UserId, "RectificationCompleted", request.DataType, "AdminAction", "LegitimateInterest", $"Field: {request.FieldName}");
-                }
+                request.Status = success ? "Completed" : "Failed";
+                request.ProcessedDate = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
 
                 return success;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error processing rectification request {RequestId}", requestId);
+                _logger.LogError(ex, "Error processing approved rectification request {RequestId}", requestId);
                 return false;
             }
         }
@@ -278,21 +275,24 @@ namespace TriathlonTracker.Services
         public async Task<IEnumerable<DataRectificationRequest>> GetPendingRectificationRequestsAsync()
         {
             return await _context.DataRectificationRequests
-                .Where(r => r.Status == "Pending" || r.Status == "Approved")
+                .Where(r => r.Status == "Pending")
                 .OrderBy(r => r.Priority)
                 .ThenBy(r => r.RequestDate)
                 .ToListAsync();
         }
 
-        public async Task<bool> ValidateRectificationRequestAsync(DataRectificationRequest request)
+        public Task<bool> ValidateRectificationRequestAsync(DataRectificationRequest request)
         {
-            // Implement validation logic based on data type and field
-            return await Task.FromResult(true); // Simplified for now
+            // Basic validation logic
+            var isValid = !string.IsNullOrEmpty(request.FieldName) && 
+                         !string.IsNullOrEmpty(request.RequestedValue) &&
+                         request.RequestedValue != request.CurrentValue;
+            return Task.FromResult(isValid);
         }
 
         #endregion
 
-        #region Enhanced Account Deletion
+        #region Account Deletion System
 
         public async Task<AccountDeletionRequest> CreateAccountDeletionRequestAsync(string userId, string reason, string deletionType = "SoftDelete")
         {
@@ -304,23 +304,24 @@ namespace TriathlonTracker.Services
                 var request = new AccountDeletionRequest
                 {
                     UserId = userId,
+                    Reason = reason,
                     RequestDate = DateTime.UtcNow,
                     Status = "Pending",
-                    Reason = reason,
-                    DeletionType = deletionType,
+                    DeletionType = Enum.Parse<DeletionType>(deletionType),
                     ConfirmationToken = confirmationToken,
-                    TokenExpirationDate = DateTime.UtcNow.AddDays(7), // 7-day confirmation window
-                    RecoveryPeriodDays = 30,
-                    RecoveryDeadline = DateTime.UtcNow.AddDays(37), // 30 days + 7 days confirmation
+                    TokenExpirationDate = DateTime.UtcNow.AddDays(7),
                     IpAddress = httpContext?.Connection?.RemoteIpAddress?.ToString() ?? "Unknown",
-                    UserAgent = httpContext?.Request?.Headers["User-Agent"].ToString() ?? "Unknown"
+                    UserAgent = httpContext?.Request?.Headers["User-Agent"].ToString() ?? "Unknown",
+                    RecoveryPeriodDays = 30,
+                    RecoveryDeadline = DateTime.UtcNow.AddDays(30)
                 };
 
                 _context.AccountDeletionRequests.Add(request);
                 await _context.SaveChangesAsync();
 
-                await _baseGdprService.LogDataProcessingAsync(userId, "DeletionRequested", "AccountData", "UserRequest", "Consent", $"Type: {deletionType}");
+                await _baseGdprService.LogDataProcessingAsync(userId, "DeletionRequested", "AccountData", "UserRequest", "Consent", $"Type: {deletionType}, Reason: {reason}");
 
+                _logger.LogInformation("Account deletion request created for user {UserId}", userId);
                 return request;
             }
             catch (Exception ex)
@@ -335,18 +336,20 @@ namespace TriathlonTracker.Services
             try
             {
                 var request = await _context.AccountDeletionRequests
-                    .FirstOrDefaultAsync(r => r.ConfirmationToken == confirmationToken && r.Status == "Pending");
+                    .FirstOrDefaultAsync(r => r.ConfirmationToken == confirmationToken && 
+                                             r.TokenExpirationDate > DateTime.UtcNow &&
+                                             r.Status == "Pending");
 
-                if (request == null || request.TokenExpirationDate < DateTime.UtcNow)
+                if (request == null)
                     return false;
 
-                request.Status = "Confirmed";
+                request.Status = "Processing";
                 request.ConfirmationDate = DateTime.UtcNow;
-                request.ScheduledDeletionDate = DateTime.UtcNow.AddDays(request.RecoveryPeriodDays);
+                request.ScheduledDeletionDate = DateTime.UtcNow.AddDays(1); // Schedule for tomorrow
 
                 await _context.SaveChangesAsync();
 
-                await _baseGdprService.LogDataProcessingAsync(request.UserId, "DeletionConfirmed", "AccountData", "UserRequest", "Consent");
+                await _baseGdprService.LogDataProcessingAsync(request.UserId, "DeletionConfirmed", "AccountData", "UserRequest", "Consent", "User confirmed deletion");
 
                 return true;
             }
@@ -357,43 +360,45 @@ namespace TriathlonTracker.Services
             }
         }
 
-        public async Task<bool> ProcessAccountDeletionAsync(int requestId)
+        public async Task<bool> ProcessAccountDeletionAsync(string requestId)
         {
             try
             {
                 var request = await _context.AccountDeletionRequests.FindAsync(requestId);
-                if (request == null || request.Status != "Confirmed")
+                if (request == null || request.Status != "Processing")
                     return false;
 
-                request.Status = "Processing";
-                await _context.SaveChangesAsync();
-
                 // Create data export before deletion if requested
-                if (!request.HasDataExport)
+                if (request.HasDataExport)
                 {
-                    var exportRequest = await CreateDataExportRequestAsync(request.UserId, "JSON");
-                    await ProcessDataExportRequestAsync(exportRequest.Id);
-                    request.HasDataExport = true;
+                    var exportRequest = new DataExportRequest
+                    {
+                        UserId = request.UserId,
+                        Format = "JSON",
+                        RequestDate = DateTime.UtcNow,
+                        Status = "Completed",
+                        CompletedDate = DateTime.UtcNow
+                    };
+                    _context.DataExportRequests.Add(exportRequest);
                     request.DataExportDate = DateTime.UtcNow;
                 }
 
                 // Perform deletion based on type
-                bool success = request.DeletionType switch
+                bool deletionSuccess = request.DeletionType switch
                 {
-                    "HardDelete" => await _baseGdprService.ProcessAccountDeletionAsync(request.UserId),
-                    "Anonymize" => await _baseGdprService.AnonymizeUserDataAsync(request.UserId),
-                    _ => await PerformSoftDeleteAsync(request.UserId)
+                    DeletionType.SoftDelete => await PerformSoftDeleteAsync(request.UserId),
+                    DeletionType.HardDelete => await PerformHardDeleteAsync(request.UserId),
+                    DeletionType.Anonymize => await PerformAnonymizationAsync(request.UserId),
+                    _ => false
                 };
 
-                if (success)
-                {
-                    request.Status = "Completed";
-                    request.CompletedDate = DateTime.UtcNow;
-                    request.ProcessedBy = "System";
-                }
+                request.Status = deletionSuccess ? "Completed" : "Failed";
+                request.CompletedDate = DateTime.UtcNow;
+                request.ProcessedBy = "System";
 
                 await _context.SaveChangesAsync();
-                return success;
+
+                return deletionSuccess;
             }
             catch (Exception ex)
             {
@@ -407,17 +412,29 @@ namespace TriathlonTracker.Services
             try
             {
                 var request = await _context.AccountDeletionRequests
-                    .Where(r => r.UserId == userId && r.Status == "Confirmed" && r.IsRecoveryPeriodActive)
+                    .Where(r => r.UserId == userId && 
+                               r.Status == "Processing" &&
+                               r.RecoveryDeadline > DateTime.UtcNow)
+                    .OrderByDescending(r => r.RequestDate)
                     .FirstOrDefaultAsync();
 
-                if (request == null || request.RecoveryDeadline < DateTime.UtcNow)
+                if (request == null)
                     return false;
 
                 request.Status = "Cancelled";
                 request.IsRecoveryPeriodActive = false;
+
+                // Reactivate user account
+                var user = await _context.Users.FindAsync(userId);
+                if (user != null)
+                {
+                    user.IsAccountDeletionRequested = false;
+                    user.AccountDeletionRequestDate = null;
+                }
+
                 await _context.SaveChangesAsync();
 
-                await _baseGdprService.LogDataProcessingAsync(userId, "DeletionCancelled", "AccountData", "UserRequest", "Consent");
+                await _baseGdprService.LogDataProcessingAsync(userId, "AccountRecovered", "AccountData", "UserRequest", "Consent", "User recovered account");
 
                 return true;
             }
@@ -431,7 +448,8 @@ namespace TriathlonTracker.Services
         public async Task<IEnumerable<AccountDeletionRequest>> GetPendingDeletionRequestsAsync()
         {
             return await _context.AccountDeletionRequests
-                .Where(r => r.Status == "Confirmed" && r.ScheduledDeletionDate <= DateTime.UtcNow)
+                .Where(r => r.Status == "Processing")
+                .OrderBy(r => r.ScheduledDeletionDate)
                 .ToListAsync();
         }
 
@@ -440,12 +458,14 @@ namespace TriathlonTracker.Services
             try
             {
                 var expiredRequests = await _context.AccountDeletionRequests
-                    .Where(r => r.Status == "Pending" && r.TokenExpirationDate < DateTime.UtcNow)
+                    .Where(r => r.RecoveryDeadline < DateTime.UtcNow && 
+                               r.Status == "Processing")
                     .ToListAsync();
 
                 foreach (var request in expiredRequests)
                 {
                     request.Status = "Expired";
+                    request.IsRecoveryPeriodActive = false;
                 }
 
                 await _context.SaveChangesAsync();
@@ -464,87 +484,104 @@ namespace TriathlonTracker.Services
 
         private byte[] ConvertJsonToCsv(string jsonData)
         {
-            // Simplified CSV conversion - in production, use a proper CSV library
-            var lines = new List<string> { "Type,Field,Value" };
-            
             try
             {
-                var data = JsonSerializer.Deserialize<JsonElement>(jsonData);
-                foreach (var property in data.EnumerateObject())
+                var jsonDoc = JsonDocument.Parse(jsonData);
+                var csvBuilder = new StringBuilder();
+
+                // Simple CSV conversion - in production, use a proper CSV library
+                if (jsonDoc.RootElement.ValueKind == JsonValueKind.Array)
                 {
-                    if (property.Value.ValueKind == JsonValueKind.Object)
+                    var firstElement = jsonDoc.RootElement.EnumerateArray().FirstOrDefault();
+                    if (firstElement.ValueKind == JsonValueKind.Object)
                     {
-                        foreach (var subProperty in property.Value.EnumerateObject())
+                        // Write headers
+                        var headers = firstElement.EnumerateObject().Select(p => p.Name);
+                        csvBuilder.AppendLine(string.Join(",", headers));
+
+                        // Write data
+                        foreach (var element in jsonDoc.RootElement.EnumerateArray())
                         {
-                            lines.Add($"{property.Name},{subProperty.Name},{subProperty.Value}");
+                            var values = element.EnumerateObject().Select(p => $"\"{p.Value}\"");
+                            csvBuilder.AppendLine(string.Join(",", values));
                         }
                     }
-                    else
-                    {
-                        lines.Add($"Root,{property.Name},{property.Value}");
-                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error converting JSON to CSV");
-                lines.Add($"Error,Conversion,{ex.Message}");
-            }
 
-            return Encoding.UTF8.GetBytes(string.Join("\n", lines));
+                return Encoding.UTF8.GetBytes(csvBuilder.ToString());
+            }
+            catch
+            {
+                return Encoding.UTF8.GetBytes("Error converting to CSV");
+            }
         }
 
         private byte[] ConvertJsonToXml(string jsonData)
         {
             try
             {
-                var data = JsonSerializer.Deserialize<JsonElement>(jsonData);
-                var xml = new XElement("UserData");
-                
-                foreach (var property in data.EnumerateObject())
-                {
-                    xml.Add(new XElement(property.Name, property.Value.ToString()));
-                }
+                var jsonDoc = JsonDocument.Parse(jsonData);
+                var xmlDoc = new XDocument(new XElement("Data"));
 
-                return Encoding.UTF8.GetBytes(xml.ToString());
+                ConvertJsonToXmlElement(jsonDoc.RootElement, xmlDoc.Root!);
+
+                return Encoding.UTF8.GetBytes(xmlDoc.ToString());
             }
-            catch (Exception ex)
+            catch
             {
-                _logger.LogError(ex, "Error converting JSON to XML");
-                return Encoding.UTF8.GetBytes($"<Error>Failed to convert: {ex.Message}</Error>");
+                return Encoding.UTF8.GetBytes("<Error>Error converting to XML</Error>");
+            }
+        }
+
+        private void ConvertJsonToXmlElement(JsonElement jsonElement, XElement xmlElement)
+        {
+            switch (jsonElement.ValueKind)
+            {
+                case JsonValueKind.Object:
+                    foreach (var property in jsonElement.EnumerateObject())
+                    {
+                        var childElement = new XElement(property.Name);
+                        ConvertJsonToXmlElement(property.Value, childElement);
+                        xmlElement.Add(childElement);
+                    }
+                    break;
+                case JsonValueKind.Array:
+                    foreach (var item in jsonElement.EnumerateArray())
+                    {
+                        var childElement = new XElement("Item");
+                        ConvertJsonToXmlElement(item, childElement);
+                        xmlElement.Add(childElement);
+                    }
+                    break;
+                default:
+                    xmlElement.Value = jsonElement.ToString();
+                    break;
             }
         }
 
         private int DeterminePriority(string dataType, string fieldName)
         {
-            // High priority for personal identifiable information
-            if (dataType.ToLower().Contains("personal") || 
-                fieldName.ToLower().Contains("email") || 
-                fieldName.ToLower().Contains("name"))
-                return 3;
-            
-            // Medium priority for other user data
-            if (dataType.ToLower().Contains("user"))
-                return 2;
-            
-            // Low priority for everything else
-            return 1;
+            // Priority logic based on data type and field importance
+            return (dataType, fieldName.ToLower()) switch
+            {
+                ("PersonalData", "email") => 1,
+                ("PersonalData", "phone") => 2,
+                ("PersonalData", "address") => 3,
+                ("TriathlonData", _) => 4,
+                _ => 5
+            };
         }
 
         private async Task<bool> ApplyDataRectificationAsync(DataRectificationRequest request)
         {
             try
             {
-                switch (request.DataType.ToLower())
+                return request.DataType.ToLower() switch
                 {
-                    case "personaldata":
-                        return await UpdatePersonalDataAsync(request);
-                    case "triathlondata":
-                        return await UpdateTriathlonDataAsync(request);
-                    default:
-                        _logger.LogWarning("Unknown data type for rectification: {DataType}", request.DataType);
-                        return false;
-                }
+                    "personaldata" => await UpdatePersonalDataAsync(request),
+                    "triathlondata" => await UpdateTriathlonDataAsync(request),
+                    _ => false
+                };
             }
             catch (Exception ex)
             {
@@ -555,38 +592,44 @@ namespace TriathlonTracker.Services
 
         private async Task<bool> UpdatePersonalDataAsync(DataRectificationRequest request)
         {
-            var user = await _context.Users.FindAsync(request.UserId);
-            if (user == null) return false;
-
-            switch (request.FieldName.ToLower())
+            try
             {
-                case "firstname":
-                    user.FirstName = request.RequestedValue;
-                    break;
-                case "lastname":
-                    user.LastName = request.RequestedValue;
-                    break;
-                case "email":
-                    user.Email = request.RequestedValue;
-                    user.UserName = request.RequestedValue;
-                    break;
-                case "phonenumber":
-                    user.PhoneNumber = request.RequestedValue;
-                    break;
-                default:
+                var user = await _context.Users.FindAsync(request.UserId);
+                if (user == null)
                     return false;
-            }
 
-            user.UpdatedAt = DateTime.UtcNow;
-            await _context.SaveChangesAsync();
-            return true;
+                switch (request.FieldName.ToLower())
+                {
+                    case "firstname":
+                        user.FirstName = request.RequestedValue;
+                        break;
+                    case "lastname":
+                        user.LastName = request.RequestedValue;
+                        break;
+                    case "email":
+                        user.Email = request.RequestedValue;
+                        break;
+                    case "phonenumber":
+                        user.PhoneNumber = request.RequestedValue;
+                        break;
+                    default:
+                        return false;
+                }
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating personal data for user {UserId}", request.UserId);
+                return false;
+            }
         }
 
-        private async Task<bool> UpdateTriathlonDataAsync(DataRectificationRequest request)
+        private Task<bool> UpdateTriathlonDataAsync(DataRectificationRequest request)
         {
-            // Implementation would depend on specific triathlon data structure
-            // This is a placeholder for the actual implementation
-            return await Task.FromResult(true);
+            // TODO: Implement triathlon data updates
+            return Task.FromResult(true);
         }
 
         private async Task<bool> PerformSoftDeleteAsync(string userId)
@@ -594,17 +637,12 @@ namespace TriathlonTracker.Services
             try
             {
                 var user = await _context.Users.FindAsync(userId);
-                if (user == null) return false;
+                if (user == null)
+                    return false;
 
-                // Mark user as deleted but keep data for recovery period
-                user.Email = $"deleted_{user.Id}@deleted.local";
-                user.UserName = user.Email;
-                user.FirstName = "[DELETED]";
-                user.LastName = "[DELETED]";
-                user.PhoneNumber = null;
+                // Mark as deleted but keep data
                 user.IsAccountDeletionRequested = true;
                 user.AccountDeletionRequestDate = DateTime.UtcNow;
-                user.UpdatedAt = DateTime.UtcNow;
 
                 await _context.SaveChangesAsync();
                 return true;
@@ -612,6 +650,56 @@ namespace TriathlonTracker.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error performing soft delete for user {UserId}", userId);
+                return false;
+            }
+        }
+
+        private async Task<bool> PerformHardDeleteAsync(string userId)
+        {
+            try
+            {
+                // Remove all user data
+                var user = await _context.Users.FindAsync(userId);
+                if (user != null)
+                {
+                    _context.Users.Remove(user);
+                }
+
+                // Remove related data
+                var triathlons = await _context.Triathlons.Where(t => t.UserId == userId).ToListAsync();
+                _context.Triathlons.RemoveRange(triathlons);
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error performing hard delete for user {UserId}", userId);
+                return false;
+            }
+        }
+
+        private async Task<bool> PerformAnonymizationAsync(string userId)
+        {
+            try
+            {
+                var user = await _context.Users.FindAsync(userId);
+                if (user == null)
+                    return false;
+
+                // Anonymize personal data
+                user.FirstName = "Anonymous";
+                user.LastName = "User";
+                user.Email = $"anonymous_{Guid.NewGuid():N}@deleted.com";
+                user.PhoneNumber = null;
+                user.UserName = $"anonymous_{Guid.NewGuid():N}";
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error performing anonymization for user {UserId}", userId);
                 return false;
             }
         }

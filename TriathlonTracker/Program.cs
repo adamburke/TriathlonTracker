@@ -316,6 +316,18 @@ using (var scope = app.Services.CreateScope())
         }
     }
     
+    // Fix ALL existing users who don't have roles assigned (comprehensive fix)
+    var allUsers = await context.Users.ToListAsync();
+    foreach (var user in allUsers)
+    {
+        var userRoles = await userManager.GetRolesAsync(user);
+        if (!userRoles.Any())
+        {
+            logger.LogInformation("Assigning User role to existing user {Email} who had no roles", user.Email);
+            await userManager.AddToRoleAsync(user, "User");
+        }
+    }
+    
     // Seed default data retention policies
     await SeedDataRetentionPolicies(context);
 }
