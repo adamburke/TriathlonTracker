@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TriathlonTracker.Data;
 using TriathlonTracker.Models;
+using Microsoft.Extensions.Logging;
+using TriathlonTracker.Services;
 
 namespace TriathlonTracker.Controllers
 {
@@ -12,123 +14,131 @@ namespace TriathlonTracker.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
+        private readonly ILogger<TriathlonController> _logger;
+        private readonly IAuditService _auditService;
 
-        public TriathlonController(ApplicationDbContext context, UserManager<User> userManager)
+        public TriathlonController(ApplicationDbContext context, UserManager<User> userManager, ILogger<TriathlonController> logger, IAuditService auditService)
         {
             _context = context;
             _userManager = userManager;
+            _logger = logger;
+            _auditService = auditService;
         }
 
         // GET: Triathlon
         public async Task<IActionResult> Index()
         {
-            var userId = _userManager.GetUserId(User)!;
-            var triathlons = await _context.Triathlons
-                .Where(t => t.UserId == userId)
-                .OrderByDescending(t => t.RaceDate)
-                .ToListAsync();
-            return View(triathlons);
+            try
+            {
+                var userId = _userManager.GetUserId(User);
+                _logger.LogDebug("User {UserId} accessing triathlon index", userId);
+
+                var triathlons = await _context.Triathlons
+                    .Where(t => t.UserId == userId)
+                    .OrderByDescending(t => t.RaceDate)
+                    .ToListAsync();
+
+                _logger.LogInformation("User {UserId} viewed {Count} triathlons", userId, triathlons.Count);
+                await _auditService.LogAsync("ViewTriathlons", "Triathlon", null, $"Viewed {triathlons.Count} triathlons", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+
+                return View(triathlons);
+            }
+            catch (Exception ex)
+            {
+                var userId = _userManager.GetUserId(User);
+                _logger.LogError(ex, "Error retrieving triathlons for user {UserId}", userId);
+                await _auditService.LogAsync("ViewTriathlonsError", "Triathlon", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                return View("Error");
+            }
+        }
+
+        // GET: Triathlon/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                _logger.LogWarning("Details requested with null ID");
+                return NotFound();
+            }
+
+            try
+            {
+                var userId = _userManager.GetUserId(User);
+                var triathlon = await _context.Triathlons
+                    .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
+
+                if (triathlon == null)
+                {
+                    _logger.LogWarning("Triathlon {TriathlonId} not found or access denied for user {UserId}", id, userId);
+                    await _auditService.LogAsync("AccessDenied", "Triathlon", id.ToString(), "Triathlon not found or access denied", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    return NotFound();
+                }
+
+                _logger.LogInformation("User {UserId} viewed triathlon {TriathlonId}", userId, id);
+                await _auditService.LogAsync("ViewTriathlon", "Triathlon", id.ToString(), $"Viewed triathlon: {triathlon.RaceName}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+
+                return View(triathlon);
+            }
+            catch (Exception ex)
+            {
+                var userId = _userManager.GetUserId(User);
+                _logger.LogError(ex, "Error retrieving triathlon {TriathlonId} for user {UserId}", id, userId);
+                await _auditService.LogAsync("ViewTriathlonError", "Triathlon", id?.ToString(), $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                return View("Error");
+            }
         }
 
         // GET: Triathlon/Create
         public IActionResult Create()
         {
+            var userId = _userManager.GetUserId(User);
+            _logger.LogDebug("User {UserId} accessing triathlon create form", userId);
             return View();
         }
 
         // POST: Triathlon/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RaceName,RaceDate,Location,SwimDistance,SwimUnit,SwimTime,BikeDistance,BikeUnit,BikeTime,RunDistance,RunUnit,RunTime")] Triathlon triathlon)
+        public async Task<IActionResult> Create([Bind("RaceName,RaceDate,Location,SwimDistance,SwimTime,SwimUnit,BikeDistance,BikeTime,BikeUnit,RunDistance,RunTime,RunUnit")] Triathlon triathlon)
         {
-            // Set UserId before validation
-            if (!User.Identity?.IsAuthenticated ?? true)
-            {
-                ModelState.AddModelError("", "You must be logged in to create a race.");
-                return View(triathlon);
-            }
-
-            var userId = _userManager.GetUserId(User);
-            if (string.IsNullOrEmpty(userId))
-            {
-                ModelState.AddModelError("", "Unable to determine user. Please log in again.");
-                return View(triathlon);
-            }
-
-            triathlon.UserId = userId;
-
-            // Validate that UserId is set
-            if (string.IsNullOrEmpty(triathlon.UserId))
-            {
-                ModelState.AddModelError("UserId", "User ID is required.");
-                return View(triathlon);
-            }
-
-            // Ensure RaceDate is UTC
-            if (triathlon.RaceDate.Kind != DateTimeKind.Utc)
-            {
-                triathlon.RaceDate = DateTime.SpecifyKind(triathlon.RaceDate, DateTimeKind.Utc);
-            }
-
-            // Try to parse TimeSpan values from form data if they're zero
-            if (triathlon.SwimTime == TimeSpan.Zero && !string.IsNullOrEmpty(Request.Form["SwimTime"]))
-            {
-                if (TimeSpan.TryParse(Request.Form["SwimTime"], out TimeSpan swimTime))
-                {
-                    triathlon.SwimTime = swimTime;
-                }
-            }
-            
-            if (triathlon.BikeTime == TimeSpan.Zero && !string.IsNullOrEmpty(Request.Form["BikeTime"]))
-            {
-                if (TimeSpan.TryParse(Request.Form["BikeTime"], out TimeSpan bikeTime))
-                {
-                    triathlon.BikeTime = bikeTime;
-                }
-            }
-            
-            if (triathlon.RunTime == TimeSpan.Zero && !string.IsNullOrEmpty(Request.Form["RunTime"]))
-            {
-                if (TimeSpan.TryParse(Request.Form["RunTime"], out TimeSpan runTime))
-                {
-                    triathlon.RunTime = runTime;
-                }
-            }
-
-            // Validate TimeSpan values only when distances are provided
-            if (triathlon.SwimDistance > 0 && triathlon.SwimTime == TimeSpan.Zero)
-            {
-                ModelState.AddModelError("SwimTime", "Swim time is required when swim distance is provided.");
-            }
-            
-            if (triathlon.BikeDistance > 0 && triathlon.BikeTime == TimeSpan.Zero)
-            {
-                ModelState.AddModelError("BikeTime", "Bike time is required when bike distance is provided.");
-            }
-            
-            if (triathlon.RunDistance > 0 && triathlon.RunTime == TimeSpan.Zero)
-            {
-                ModelState.AddModelError("RunTime", "Run time is required when run distance is provided.");
-            }
-
-            // Debug: Log ModelState errors
-            if (!ModelState.IsValid)
-            {
-                Console.WriteLine("ModelState errors:");
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine($"Error: {error.ErrorMessage}");
-                }
-            }
-
             if (ModelState.IsValid)
             {
-                triathlon.CreatedAt = DateTime.UtcNow;
-                triathlon.UpdatedAt = DateTime.UtcNow;
-                _context.Add(triathlon);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    var userId = _userManager.GetUserId(User);
+                    if (userId == null)
+                    {
+                        _logger.LogWarning("User not authenticated for triathlon creation");
+                        return RedirectToAction("Login", "Account");
+                    }
+                    
+                    triathlon.UserId = userId;
+                    triathlon.CreatedAt = DateTime.UtcNow;
+                    triathlon.UpdatedAt = DateTime.UtcNow;
+
+                    _context.Add(triathlon);
+                    await _context.SaveChangesAsync();
+
+                    _logger.LogInformation("User {UserId} created triathlon {TriathlonId}: {RaceName} at {Location}", userId, triathlon.Id, triathlon.RaceName, triathlon.Location);
+                    await _auditService.LogAsync("CreateTriathlon", "Triathlon", triathlon.Id.ToString(), $"Created triathlon: {triathlon.RaceName} at {triathlon.Location} on {triathlon.RaceDate:yyyy-MM-dd}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    var userId = _userManager.GetUserId(User);
+                    _logger.LogError(ex, "Error creating triathlon for user {UserId}", userId);
+                    await _auditService.LogAsync("CreateTriathlonError", "Triathlon", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                    ModelState.AddModelError("", "An error occurred while creating the triathlon.");
+                }
             }
+            else
+            {
+                var userId = _userManager.GetUserId(User);
+                _logger.LogWarning("Invalid model state for triathlon creation by user {UserId}", userId);
+                await _auditService.LogAsync("CreateTriathlonValidationError", "Triathlon", null, "Invalid model state", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+            }
+
             return View(triathlon);
         }
 
@@ -137,88 +147,95 @@ namespace TriathlonTracker.Controllers
         {
             if (id == null)
             {
+                _logger.LogWarning("Edit requested with null ID");
                 return NotFound();
             }
 
-            var userId = _userManager.GetUserId(User)!;
-            var triathlon = await _context.Triathlons
-                .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
-
-            if (triathlon == null)
+            try
             {
-                return NotFound();
-            }
+                var userId = _userManager.GetUserId(User);
+                var triathlon = await _context.Triathlons
+                    .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
 
-            return View(triathlon);
+                if (triathlon == null)
+                {
+                    _logger.LogWarning("Triathlon {TriathlonId} not found or access denied for user {UserId}", id, userId);
+                    await _auditService.LogAsync("AccessDenied", "Triathlon", id.ToString(), "Triathlon not found or access denied for edit", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    return NotFound();
+                }
+
+                _logger.LogDebug("User {UserId} accessing edit form for triathlon {TriathlonId}", userId, id);
+                return View(triathlon);
+            }
+            catch (Exception ex)
+            {
+                var userId = _userManager.GetUserId(User);
+                _logger.LogError(ex, "Error accessing edit form for triathlon {TriathlonId} by user {UserId}", id, userId);
+                await _auditService.LogAsync("EditTriathlonError", "Triathlon", id?.ToString(), $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                return View("Error");
+            }
         }
 
         // POST: Triathlon/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,RaceName,RaceDate,Location,SwimDistance,SwimUnit,SwimTime,BikeDistance,BikeUnit,BikeTime,RunDistance,RunUnit,RunTime")] Triathlon triathlon)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,RaceName,RaceDate,Location,SwimDistance,SwimTime,SwimUnit,BikeDistance,BikeTime,BikeUnit,RunDistance,RunTime,RunUnit")] Triathlon triathlon)
         {
             if (id != triathlon.Id)
             {
+                _logger.LogWarning("ID mismatch in triathlon edit: {ExpectedId} vs {ActualId}", id, triathlon.Id);
                 return NotFound();
-            }
-
-            var userId = _userManager.GetUserId(User)!;
-            var existingTriathlon = await _context.Triathlons
-                .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
-
-            if (existingTriathlon == null)
-            {
-                return NotFound();
-            }
-
-            // Validate TimeSpan values
-            if (triathlon.SwimDistance > 0 && triathlon.SwimTime == TimeSpan.Zero)
-            {
-                ModelState.AddModelError("SwimTime", "Swim time is required when swim distance is provided.");
-            }
-            
-            if (triathlon.BikeDistance > 0 && triathlon.BikeTime == TimeSpan.Zero)
-            {
-                ModelState.AddModelError("BikeTime", "Bike time is required when bike distance is provided.");
-            }
-            
-            if (triathlon.RunDistance > 0 && triathlon.RunTime == TimeSpan.Zero)
-            {
-                ModelState.AddModelError("RunTime", "Run time is required when run distance is provided.");
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var userId = _userManager.GetUserId(User);
+                    var existingTriathlon = await _context.Triathlons
+                        .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
+
+                    if (existingTriathlon == null)
+                    {
+                        _logger.LogWarning("Triathlon {TriathlonId} not found or access denied for user {UserId}", id, userId);
+                        await _auditService.LogAsync("AccessDenied", "Triathlon", id.ToString(), "Triathlon not found or access denied for edit", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                        return NotFound();
+                    }
+
+                    // Store original values for audit
+                    var originalRaceName = existingTriathlon.RaceName;
+                    var originalLocation = existingTriathlon.Location;
+                    var originalDate = existingTriathlon.RaceDate;
+
+                    // Update properties
                     existingTriathlon.RaceName = triathlon.RaceName;
-                    // Ensure RaceDate is UTC
-                    if (triathlon.RaceDate.Kind != DateTimeKind.Utc)
-                    {
-                        existingTriathlon.RaceDate = DateTime.SpecifyKind(triathlon.RaceDate, DateTimeKind.Utc);
-                    }
-                    else
-                    {
-                        existingTriathlon.RaceDate = triathlon.RaceDate;
-                    }
+                    existingTriathlon.RaceDate = triathlon.RaceDate;
                     existingTriathlon.Location = triathlon.Location;
                     existingTriathlon.SwimDistance = triathlon.SwimDistance;
-                    existingTriathlon.SwimUnit = triathlon.SwimUnit;
                     existingTriathlon.SwimTime = triathlon.SwimTime;
+                    existingTriathlon.SwimUnit = triathlon.SwimUnit;
                     existingTriathlon.BikeDistance = triathlon.BikeDistance;
-                    existingTriathlon.BikeUnit = triathlon.BikeUnit;
                     existingTriathlon.BikeTime = triathlon.BikeTime;
+                    existingTriathlon.BikeUnit = triathlon.BikeUnit;
                     existingTriathlon.RunDistance = triathlon.RunDistance;
-                    existingTriathlon.RunUnit = triathlon.RunUnit;
                     existingTriathlon.RunTime = triathlon.RunTime;
+                    existingTriathlon.RunUnit = triathlon.RunUnit;
                     existingTriathlon.UpdatedAt = DateTime.UtcNow;
 
-                    _context.Update(existingTriathlon);
                     await _context.SaveChangesAsync();
+
+                    _logger.LogInformation("User {UserId} updated triathlon {TriathlonId}: {OriginalRaceName} -> {NewRaceName}", userId, id, originalRaceName, triathlon.RaceName);
+                    await _auditService.LogAsync("UpdateTriathlon", "Triathlon", id.ToString(), $"Updated triathlon: {originalRaceName} -> {triathlon.RaceName}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
-                    if (!TriathlonExists(triathlon.Id))
+                    var userId = _userManager.GetUserId(User);
+                    _logger.LogError(ex, "Concurrency error updating triathlon {TriathlonId} by user {UserId}", id, userId);
+                    await _auditService.LogAsync("UpdateTriathlonConcurrencyError", "Triathlon", id.ToString(), $"Concurrency error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                    
+                    if (!TriathlonExists(id))
                     {
                         return NotFound();
                     }
@@ -227,8 +244,21 @@ namespace TriathlonTracker.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                catch (Exception ex)
+                {
+                    var userId = _userManager.GetUserId(User);
+                    _logger.LogError(ex, "Error updating triathlon {TriathlonId} by user {UserId}", id, userId);
+                    await _auditService.LogAsync("UpdateTriathlonError", "Triathlon", id.ToString(), $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                    ModelState.AddModelError("", "An error occurred while updating the triathlon.");
+                }
             }
+            else
+            {
+                var userId = _userManager.GetUserId(User);
+                _logger.LogWarning("Invalid model state for triathlon update {TriathlonId} by user {UserId}", id, userId);
+                await _auditService.LogAsync("UpdateTriathlonValidationError", "Triathlon", id.ToString(), "Invalid model state", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+            }
+
             return View(triathlon);
         }
 
@@ -237,19 +267,33 @@ namespace TriathlonTracker.Controllers
         {
             if (id == null)
             {
+                _logger.LogWarning("Delete requested with null ID");
                 return NotFound();
             }
 
-            var userId = _userManager.GetUserId(User)!;
-            var triathlon = await _context.Triathlons
-                .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
-
-            if (triathlon == null)
+            try
             {
-                return NotFound();
-            }
+                var userId = _userManager.GetUserId(User);
+                var triathlon = await _context.Triathlons
+                    .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
 
-            return View(triathlon);
+                if (triathlon == null)
+                {
+                    _logger.LogWarning("Triathlon {TriathlonId} not found or access denied for user {UserId}", id, userId);
+                    await _auditService.LogAsync("AccessDenied", "Triathlon", id.ToString(), "Triathlon not found or access denied for delete", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    return NotFound();
+                }
+
+                _logger.LogDebug("User {UserId} accessing delete confirmation for triathlon {TriathlonId}", userId, id);
+                return View(triathlon);
+            }
+            catch (Exception ex)
+            {
+                var userId = _userManager.GetUserId(User);
+                _logger.LogError(ex, "Error accessing delete form for triathlon {TriathlonId} by user {UserId}", id, userId);
+                await _auditService.LogAsync("DeleteTriathlonError", "Triathlon", id?.ToString(), $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                return View("Error");
+            }
         }
 
         // POST: Triathlon/Delete/5
@@ -257,23 +301,43 @@ namespace TriathlonTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var userId = _userManager.GetUserId(User)!;
-            var triathlon = await _context.Triathlons
-                .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
-
-            if (triathlon != null)
+            try
             {
+                var userId = _userManager.GetUserId(User);
+                var triathlon = await _context.Triathlons
+                    .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
+
+                if (triathlon == null)
+                {
+                    _logger.LogWarning("Triathlon {TriathlonId} not found or access denied for user {UserId}", id, userId);
+                    await _auditService.LogAsync("AccessDenied", "Triathlon", id.ToString(), "Triathlon not found or access denied for delete", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                    return NotFound();
+                }
+
+                var raceName = triathlon.RaceName;
+                var location = triathlon.Location;
+                var date = triathlon.RaceDate;
+
                 _context.Triathlons.Remove(triathlon);
                 await _context.SaveChangesAsync();
-            }
 
-            return RedirectToAction(nameof(Index));
+                _logger.LogInformation("User {UserId} deleted triathlon {TriathlonId}: {RaceName} at {Location} on {Date}", userId, id, raceName, location, date.ToString("yyyy-MM-dd"));
+                await _auditService.LogAsync("DeleteTriathlon", "Triathlon", id.ToString(), $"Deleted triathlon: {raceName} at {location} on {date:yyyy-MM-dd}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                var userId = _userManager.GetUserId(User);
+                _logger.LogError(ex, "Error deleting triathlon {TriathlonId} by user {UserId}", id, userId);
+                await _auditService.LogAsync("DeleteTriathlonError", "Triathlon", id.ToString(), $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+                return View("Error");
+            }
         }
 
         private bool TriathlonExists(int id)
         {
-            var userId = _userManager.GetUserId(User)!;
-            return _context.Triathlons.Any(e => e.Id == id && e.UserId == userId);
+            return _context.Triathlons.Any(e => e.Id == id);
         }
     }
 } 

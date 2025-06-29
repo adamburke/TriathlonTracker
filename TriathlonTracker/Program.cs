@@ -9,11 +9,15 @@ using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Threading.RateLimiting;
+using TriathlonTracker;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add database configuration provider
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var envConnectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+var connectionString = !string.IsNullOrEmpty(envConnectionString)
+    ? envConnectionString
+    : builder.Configuration.GetConnectionString("DefaultConnection");
 if (!string.IsNullOrEmpty(connectionString))
 {
     builder.Configuration.AddDatabase(connectionString);
@@ -28,7 +32,7 @@ builder.Services.AddControllersWithViews()
 
 // Add Entity Framework with PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 // Add Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -152,6 +156,15 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddScoped<IAuditService, AuditService>();
+
+// Configure logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+builder.Logging.SetMinimumLevel(LogLevel.Information);
+
+// Build the application
 var app = builder.Build();
 
 // Supported cultures
@@ -217,23 +230,11 @@ using (var scope = app.Services.CreateScope())
     // Migrate existing unencrypted sensitive values
     await MigrateExistingSensitiveValues(context, configService);
     
-    // Seed Google OAuth configuration if not exists
-    if (!await configService.ExistsAsync("Authentication:Google:ClientId"))
+    // Seed Google OAuth configuration from environment variables
+    if (!string.IsNullOrEmpty(connectionString))
     {
-        await configService.SetValueAsync(
-            "Authentication:Google:ClientId",
-            "YOUR_GOOGLE_CLIENT_ID_HERE",
-            "Google OAuth Client ID for authentication"
-        );
-    }
-    
-    if (!await configService.ExistsAsync("Authentication:Google:ClientSecret"))
-    {
-        await configService.SetValueAsync(
-            "Authentication:Google:ClientSecret",
-            "YOUR_GOOGLE_CLIENT_SECRET_HERE",
-            "Google OAuth Client Secret for authentication"
-        );
+        await ConfigurationSeeder.SeedGoogleCredentialsFromEnvironment(connectionString);
+        await ConfigurationSeeder.SeedJwtConfigurationFromEnvironment(connectionString);
     }
     
     // Seed roles and users

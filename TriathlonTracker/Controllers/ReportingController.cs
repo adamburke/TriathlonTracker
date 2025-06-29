@@ -5,159 +5,213 @@ using TriathlonTracker.Data;
 using TriathlonTracker.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
+using TriathlonTracker.Services;
+using Microsoft.Extensions.Logging;
 
 namespace TriathlonTracker.Controllers;
 
 /// <summary>
-/// API endpoints for reporting system integration. Secured with JWT Bearer (OAuth2).
+/// Controller for reporting functionality. Provides endpoints for generating, viewing, and managing reports.
 /// </summary>
-[ApiController]
-[Route("api/reporting/[controller]")]
-[Authorize(AuthenticationSchemes = "Bearer")] // JWT Bearer auth
-public class RacesController : ControllerBase
+[Authorize]
+public class ReportingController : Controller
 {
     private readonly ApplicationDbContext _context;
     private readonly IWebHostEnvironment _env;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IAdminDashboardService _adminDashboardService;
+    private readonly ILogger<ReportingController> _logger;
+    private readonly IAuditService _auditService;
 
     /// <summary>
-    /// Constructor for RacesController.
+    /// Constructor for ReportingController.
     /// </summary>
     /// <param name="context">Application database context</param>
     /// <param name="env">Web host environment</param>
     /// <param name="httpContextAccessor">HTTP context accessor</param>
-    public RacesController(ApplicationDbContext context, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor)
+    /// <param name="adminDashboardService">Admin dashboard service</param>
+    /// <param name="logger">Logger</param>
+    /// <param name="auditService">Audit service</param>
+    public ReportingController(ApplicationDbContext context, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, IAdminDashboardService adminDashboardService, ILogger<ReportingController> logger, IAuditService auditService)
     {
         _context = context;
         _env = env;
         _httpContextAccessor = httpContextAccessor;
+        _adminDashboardService = adminDashboardService;
+        _logger = logger;
+        _auditService = auditService;
     }
 
-    /// <summary>
-    /// Retrieves all race data for all users, with pagination and filtering. Secured with JWT Bearer (OAuth2).
-    /// </summary>
-    /// <remarks>
-    /// Returns a paged list of triathlon race data for all users. Supports filtering by race name, user ID, and race date range.
-    /// Requires a valid Bearer token in the Authorization header.
-    /// </remarks>
-    /// <param name="page">Page number (1-based, default: 1)</param>
-    /// <param name="pageSize">Page size (default: 100, max: 1000)</param>
-    /// <param name="raceName">Optional: filter by race name (contains, case-insensitive)</param>
-    /// <param name="userId">Optional: filter by user ID</param>
-    /// <param name="fromDate">Optional: filter by race date from (inclusive)</param>
-    /// <param name="toDate">Optional: filter by race date to (inclusive)</param>
-    /// <response code="200">Returns paged race data</response>
-    /// <response code="401">Unauthorized - missing or invalid Bearer token</response>
     [HttpGet]
-    public async Task<IActionResult> GetAll(
-        int page = 1,
-        int pageSize = 100,
-        string? raceName = null,
-        string? userId = null,
-        DateTime? fromDate = null,
-        DateTime? toDate = null)
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Index()
     {
-        // Return sample data ONLY if running in Development and request is from localhost
-        var isDev = _env.IsDevelopment();
-        var isLocalhost = _httpContextAccessor.HttpContext?.Request.Host.Host == "localhost" ||
-                          _httpContextAccessor.HttpContext?.Request.Host.Host == "127.0.0.1";
-        if (isDev && isLocalhost)
+        try
         {
-            var sample = new[]
-            {
-                new {
-                    Id = 1,
-                    RaceName = "Sample Ironman",
-                    RaceDate = new DateTime(2023, 10, 1),
-                    Location = "Sample City",
-                    SwimDistance = 3800,
-                    SwimUnit = "meters",
-                    SwimTime = "01:10:00",
-                    BikeDistance = 180,
-                    BikeUnit = "km",
-                    BikeTime = "05:00:00",
-                    RunDistance = 42.2,
-                    RunUnit = "km",
-                    RunTime = "03:45:00",
-                    TotalDistance = 226,
-                    TotalTime = "09:55:00",
-                    UserId = "sample-user-id",
-                    User = new {
-                        Id = "sample-user-id",
-                        Email = "athlete@example.com",
-                        FirstName = "Jane",
-                        LastName = "Doe"
-                    },
-                    CreatedAt = new DateTime(2023, 10, 1, 12, 0, 0),
-                    UpdatedAt = new DateTime(2023, 10, 1, 12, 0, 0)
-                }
-            };
-            return Ok(new {
-                page = 1,
-                pageSize = 1,
-                totalCount = 1,
-                totalPages = 1,
-                data = sample
-            });
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogDebug("Admin {UserId} accessing reporting dashboard", userId);
+            
+            var dashboardData = await _adminDashboardService.GetDashboardDataAsync();
+            var recentActivities = await _adminDashboardService.GetRecentActivitiesAsync(10);
+            
+            ViewBag.DashboardData = dashboardData;
+            ViewBag.RecentActivities = recentActivities;
+            
+            _logger.LogInformation("Admin {UserId} accessed reporting dashboard with {ActivityCount} recent activities", userId, recentActivities.Count);
+            await _auditService.LogAsync("ViewReportingDashboard", "Reporting", null, $"Viewed reporting dashboard with {recentActivities.Count} recent activities", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+            
+            return View();
         }
+        catch (Exception ex)
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogError(ex, "Error loading reporting dashboard for admin {UserId}", userId);
+            await _auditService.LogAsync("ViewReportingDashboardError", "Reporting", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+            return View("Error");
+        }
+    }
 
-        if (page < 1) page = 1;
-        if (pageSize < 1) pageSize = 100;
-        if (pageSize > 1000) pageSize = 1000;
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> GenerateReport(string reportType, DateTime startDate, DateTime endDate, string format = "PDF")
+    {
+        try
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogDebug("Admin {UserId} generating {ReportType} report from {StartDate} to {EndDate} in {Format} format", userId, reportType, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"), format);
+            
+            var report = await _adminDashboardService.GenerateComplianceReportAsync(reportType, startDate, endDate);
+            
+            if (report != null)
+            {
+                _logger.LogInformation("Admin {UserId} successfully generated {ReportType} report {ReportId} from {StartDate} to {EndDate}", userId, reportType, report.Id, startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
+                await _auditService.LogAsync("GenerateReport", "Reporting", report.Id.ToString(), $"Generated {reportType} report from {startDate:yyyy-MM-dd} to {endDate:yyyy-MM-dd} in {format} format", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+                
+                return Json(new { success = true, reportId = report.Id, message = "Report generated successfully" });
+            }
+            else
+            {
+                _logger.LogWarning("Admin {UserId} failed to generate {ReportType} report", userId, reportType);
+                await _auditService.LogAsync("GenerateReportFailed", "Reporting", null, $"Failed to generate {reportType} report", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                
+                return Json(new { success = false, message = "Failed to generate report" });
+            }
+        }
+        catch (Exception ex)
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogError(ex, "Error generating {ReportType} report for admin {UserId}", reportType, userId);
+            await _auditService.LogAsync("GenerateReportError", "Reporting", null, $"Error generating {reportType} report: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+            
+            return Json(new { success = false, message = "An error occurred while generating the report" });
+        }
+    }
 
-        var query = _context.Triathlons
-            .AsNoTracking()
-            .Include(t => t.User)
-            .AsQueryable();
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> DownloadReport(string reportId, string format = "PDF")
+    {
+        try
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogDebug("Admin {UserId} downloading report {ReportId} in {Format} format", userId, reportId, format);
+            
+            var fileBytes = await _adminDashboardService.ExportComplianceReportAsync(reportId, format);
+            
+            if (fileBytes == null || fileBytes.Length == 0)
+            {
+                _logger.LogWarning("Admin {UserId} attempted to download report {ReportId} with no file content", userId, reportId);
+                await _auditService.LogAsync("DownloadReportNoContent", "Reporting", reportId, "Report has no file content", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                return NotFound("Report file not found");
+            }
 
-        if (!string.IsNullOrWhiteSpace(raceName))
-            query = query.Where(t => t.RaceName.ToLower().Contains(raceName.ToLower()));
-        if (!string.IsNullOrWhiteSpace(userId))
-            query = query.Where(t => t.UserId == userId);
-        if (fromDate.HasValue)
-            query = query.Where(t => t.RaceDate >= fromDate.Value);
-        if (toDate.HasValue)
-            query = query.Where(t => t.RaceDate <= toDate.Value);
+            var contentType = format.ToLower() switch
+            {
+                "pdf" => "application/pdf",
+                "excel" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "csv" => "text/csv",
+                "json" => "application/json",
+                _ => "application/octet-stream"
+            };
 
-        var totalCount = await query.CountAsync();
-        var races = await query
-            .OrderByDescending(t => t.RaceDate)
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .Select(t => new {
-                t.Id,
-                t.RaceName,
-                t.RaceDate,
-                t.Location,
-                t.SwimDistance,
-                t.SwimUnit,
-                t.SwimTime,
-                t.BikeDistance,
-                t.BikeUnit,
-                t.BikeTime,
-                t.RunDistance,
-                t.RunUnit,
-                t.RunTime,
-                t.TotalDistance,
-                t.TotalTime,
-                t.UserId,
-                User = t.User == null ? null : new {
-                    t.User.Id,
-                    t.User.Email,
-                    t.User.FirstName,
-                    t.User.LastName
-                },
-                t.CreatedAt,
-                t.UpdatedAt
-            })
-            .ToListAsync();
+            var fileName = $"compliance_report_{reportId}_{DateTime.Now:yyyyMMdd}.{format.ToLower()}";
 
-        return Ok(new {
-            page,
-            pageSize,
-            totalCount,
-            totalPages = (int)Math.Ceiling(totalCount / (double)pageSize),
-            data = races
-        });
+            _logger.LogInformation("Admin {UserId} successfully downloaded report {ReportId} ({FileName})", userId, reportId, fileName);
+            await _auditService.LogAsync("DownloadReport", "Reporting", reportId, $"Downloaded report: {fileName}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+
+            return File(fileBytes, contentType, fileName);
+        }
+        catch (Exception ex)
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogError(ex, "Error downloading report {ReportId} for admin {UserId}", reportId, userId);
+            await _auditService.LogAsync("DownloadReportError", "Reporting", reportId, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+            
+            return StatusCode(500, "An error occurred while downloading the report");
+        }
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> ReportHistory(int page = 1, int pageSize = 20)
+    {
+        try
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogDebug("Admin {UserId} viewing report history page {Page}", userId, page);
+            
+            var reports = await _adminDashboardService.GetReportsAsync(page, pageSize);
+            
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalReports = reports.Count;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)reports.Count / pageSize);
+            
+            _logger.LogInformation("Admin {UserId} viewed report history page {Page} with {Count} reports", userId, page, reports.Count);
+            await _auditService.LogAsync("ViewReportHistory", "Reporting", null, $"Viewed report history page {page} with {reports.Count} reports", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+            
+            return View(reports);
+        }
+        catch (Exception ex)
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogError(ex, "Error loading report history for admin {UserId}", userId);
+            await _auditService.LogAsync("ViewReportHistoryError", "Reporting", null, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+            return View("Error");
+        }
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> ReportDetails(string reportId)
+    {
+        try
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogDebug("Admin {UserId} viewing details for report {ReportId}", userId, reportId);
+            
+            var reports = await _adminDashboardService.GetReportsAsync(1, 1000); // Get all reports to find the specific one
+            var report = reports.FirstOrDefault(r => r.Id == reportId);
+            
+            if (report == null)
+            {
+                _logger.LogWarning("Admin {UserId} attempted to view non-existent report {ReportId}", userId, reportId);
+                await _auditService.LogAsync("ViewReportDetailsNotFound", "Reporting", reportId, "Attempted to view non-existent report", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Warning");
+                return NotFound("Report not found");
+            }
+
+            _logger.LogInformation("Admin {UserId} viewed details for report {ReportId}", userId, reportId);
+            await _auditService.LogAsync("ViewReportDetails", "Reporting", reportId, $"Viewed details for compliance report", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Information");
+            
+            return View(report);
+        }
+        catch (Exception ex)
+        {
+            var userId = User.Identity?.Name ?? "Unknown";
+            _logger.LogError(ex, "Error loading report details for admin {UserId}, report {ReportId}", userId, reportId);
+            await _auditService.LogAsync("ViewReportDetailsError", "Reporting", reportId, $"Error: {ex.Message}", userId, HttpContext.Connection.RemoteIpAddress?.ToString(), Request.Headers["User-Agent"], "Error");
+            return View("Error");
+        }
     }
 } 

@@ -9,6 +9,8 @@ using TriathlonTracker.Controllers;
 using TriathlonTracker.Models;
 using TriathlonTracker.ViewModels;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using TriathlonTracker.Services;
 
 namespace TriathlonTracker.Tests
 {
@@ -29,7 +31,9 @@ namespace TriathlonTracker.Tests
 
         private AccountController GetController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
-            var controller = new AccountController(userManager, signInManager);
+            var loggerMock = new Mock<ILogger<AccountController>>();
+            var auditServiceMock = new Mock<IAuditService>();
+            var controller = new AccountController(userManager, signInManager, loggerMock.Object, auditServiceMock.Object);
             
             // Set up HttpContext and Url
             var httpContext = new DefaultHttpContext();

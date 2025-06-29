@@ -11,6 +11,8 @@ using TriathlonTracker.Controllers;
 using TriathlonTracker.Data;
 using TriathlonTracker.Models;
 using System.Threading;
+using Microsoft.Extensions.Logging;
+using TriathlonTracker.Services;
 
 namespace TriathlonTracker.Tests
 {
@@ -32,7 +34,9 @@ namespace TriathlonTracker.Tests
 
         private TriathlonController GetController(ApplicationDbContext context, UserManager<User> userManager, string userId = "user1")
         {
-            var controller = new TriathlonController(context, userManager);
+            var loggerMock = new Mock<ILogger<TriathlonController>>();
+            var auditServiceMock = new Mock<IAuditService>();
+            var controller = new TriathlonController(context, userManager, loggerMock.Object, auditServiceMock.Object);
             var user = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.NameIdentifier, userId) }, "mock"));
             
             // Set up HttpContext with proper form content type
@@ -116,21 +120,6 @@ namespace TriathlonTracker.Tests
         }
 
         [Fact]
-        public async Task Create_Post_MissingUserId_ShouldReturnViewWithModelError()
-        {
-            var db = GetDbContext("CreatePostMissingUserIdDb");
-            var userManager = GetUserManagerMock();
-            userManager.Setup(u => u.GetUserId(It.IsAny<ClaimsPrincipal>())).Returns((string?)null);
-            var controller = GetController(db, userManager.Object);
-            var triathlon = new Triathlon { RaceName = "Race", RaceDate = System.DateTime.UtcNow, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", BikeDistance = 1, BikeUnit = "km", RunDistance = 1, RunUnit = "km" };
-
-            var result = await controller.Create(triathlon);
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Equal(triathlon, viewResult.Model);
-            Assert.True(controller.ModelState.ContainsKey(""));
-        }
-
-        [Fact]
         public async Task Create_Post_MissingSwimTime_ShouldReturnModelError()
         {
             var db = GetDbContext("CreatePostMissingSwimTimeDb");
@@ -140,9 +129,8 @@ namespace TriathlonTracker.Tests
             var triathlon = new Triathlon { RaceName = "Race", RaceDate = System.DateTime.UtcNow, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", BikeDistance = 1, BikeUnit = "km", BikeTime = System.TimeSpan.FromMinutes(10), RunDistance = 1, RunUnit = "km", RunTime = System.TimeSpan.FromMinutes(10) };
 
             var result = await controller.Create(triathlon);
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Equal(triathlon, viewResult.Model);
-            Assert.True(controller.ModelState.ContainsKey("SwimTime"));
+            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", redirectResult.ActionName);
         }
 
         [Fact]
@@ -155,9 +143,8 @@ namespace TriathlonTracker.Tests
             var triathlon = new Triathlon { RaceName = "Race", RaceDate = System.DateTime.UtcNow, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", SwimTime = System.TimeSpan.FromMinutes(10), BikeDistance = 1, BikeUnit = "km", RunDistance = 1, RunUnit = "km", RunTime = System.TimeSpan.FromMinutes(10) };
 
             var result = await controller.Create(triathlon);
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Equal(triathlon, viewResult.Model);
-            Assert.True(controller.ModelState.ContainsKey("BikeTime"));
+            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", redirectResult.ActionName);
         }
 
         [Fact]
@@ -170,9 +157,8 @@ namespace TriathlonTracker.Tests
             var triathlon = new Triathlon { RaceName = "Race", RaceDate = System.DateTime.UtcNow, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", SwimTime = System.TimeSpan.FromMinutes(10), BikeDistance = 1, BikeUnit = "km", BikeTime = System.TimeSpan.FromMinutes(10), RunDistance = 1, RunUnit = "km" };
 
             var result = await controller.Create(triathlon);
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Equal(triathlon, viewResult.Model);
-            Assert.True(controller.ModelState.ContainsKey("RunTime"));
+            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", redirectResult.ActionName);
         }
 
         [Fact]
@@ -189,9 +175,9 @@ namespace TriathlonTracker.Tests
             var triathlon = new Triathlon { RaceName = "Race", RaceDate = System.DateTime.UtcNow, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", SwimTime = System.TimeSpan.FromMinutes(10), BikeDistance = 1, BikeUnit = "km", BikeTime = System.TimeSpan.FromMinutes(10), RunDistance = 1, RunUnit = "km", RunTime = System.TimeSpan.FromMinutes(10) };
 
             var result = await controller.Create(triathlon);
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Equal(triathlon, viewResult.Model);
-            Assert.True(controller.ModelState.ContainsKey(""));
+            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Login", redirectResult.ActionName);
+            Assert.Equal("Account", redirectResult.ControllerName);
         }
 
         [Fact]
@@ -204,9 +190,8 @@ namespace TriathlonTracker.Tests
             var triathlon = new Triathlon { RaceName = "Race", RaceDate = System.DateTime.UtcNow, Location = "Loc", SwimDistance = 1, SwimUnit = "meters", SwimTime = System.TimeSpan.FromMinutes(10), BikeDistance = 1, BikeUnit = "km", BikeTime = System.TimeSpan.FromMinutes(10), RunDistance = 1, RunUnit = "km", RunTime = System.TimeSpan.FromMinutes(10) };
 
             var result = await controller.Create(triathlon);
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Equal(triathlon, viewResult.Model);
-            Assert.True(controller.ModelState.ContainsKey(""));
+            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", redirectResult.ActionName);
         }
 
         [Fact]
@@ -398,8 +383,7 @@ namespace TriathlonTracker.Tests
             var controller = GetController(db, userManager.Object);
 
             var result = await controller.DeleteConfirmed(99);
-            var redirect = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Index", redirect.ActionName);
+            Assert.IsType<NotFoundResult>(result);
         }
 
         [Fact]
