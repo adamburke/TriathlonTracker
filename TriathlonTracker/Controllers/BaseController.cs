@@ -36,9 +36,7 @@ namespace TriathlonTracker.Controllers
 
         protected IActionResult ErrorView(string? requestId = null)
         {
-            if (requestId != null)
-                return View("Error", new ErrorViewModel { RequestId = requestId });
-            return View("Error");
+            return View("Error", new ErrorViewModel { RequestId = requestId });
         }
     }
 } 

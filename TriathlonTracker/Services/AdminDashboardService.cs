@@ -660,6 +660,30 @@ namespace TriathlonTracker.Services
             return _httpContextAccessor.HttpContext?.Request?.Headers["User-Agent"].ToString() ?? "Unknown";
         }
 
+        public async Task<List<BreachIncident>> GetBreachIncidentsAsync(int count = 50)
+        {
+            return await _context.BreachIncidents
+                .OrderByDescending(b => b.DetectedDate)
+                .Take(count)
+                .ToListAsync();
+        }
+
+        public async Task<List<SuspiciousActivity>> GetSuspiciousActivitiesAsync(int count = 50)
+        {
+            return await _context.SuspiciousActivities
+                .OrderByDescending(s => s.DetectedAt)
+                .Take(count)
+                .ToListAsync();
+        }
+
+        public async Task<List<AuditLog>> GetRecentAuditLogsAsync(int count = 50)
+        {
+            return await _context.AuditLogs
+                .OrderByDescending(a => a.Timestamp)
+                .Take(count)
+                .ToListAsync();
+        }
+
         public async Task<bool> DeleteUserAsync(string userId)
         {
             try

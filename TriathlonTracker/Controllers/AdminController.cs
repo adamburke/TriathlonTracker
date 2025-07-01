@@ -331,8 +331,21 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error loading data retention page");
-                return View("Error", new ErrorViewModel { RequestId = HttpContext.TraceIdentifier });
+                var requestId = HttpContext.TraceIdentifier;
+                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                var endpoint = $"{Request.Path}{Request.QueryString}";
+                var fullException = ex.ToString();
+                
+                _logger.LogError(
+                    ex,
+                    "[DataRetention] Error loading data retention page - RequestId: {RequestId}, UserId: {UserId}, Endpoint: {Endpoint}, Exception: {Exception}",
+                    requestId,
+                    userId ?? "anonymous",
+                    endpoint,
+                    fullException
+                );
+                
+                return View("Error", new ErrorViewModel { RequestId = requestId });
             }
         }
 
@@ -488,7 +501,57 @@ namespace TriathlonTracker.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error loading security page");
+                var requestId = HttpContext.TraceIdentifier;
+                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                var endpoint = $"{Request.Path}{Request.QueryString}";
+                var fullException = ex.ToString();
+                
+                _logger.LogError(
+                    ex,
+                    "[Security] Error loading security page - RequestId: {RequestId}, UserId: {UserId}, Endpoint: {Endpoint}, Exception: {Exception}",
+                    requestId,
+                    userId ?? "anonymous",
+                    endpoint,
+                    fullException
+                );
+                
+                return View("Error", new ErrorViewModel { RequestId = requestId });
+            }
+        }
+
+        [HttpGet("Telemetry")]
+        public async Task<IActionResult> Telemetry()
+        {
+            try
+            {
+                var userId = GetCurrentUserId();
+                _logger.LogDebug("[Telemetry] Loading telemetry incidents page - RequestId: {RequestId}, UserId: {UserId}", HttpContext.TraceIdentifier, userId);
+                
+                // Get incidents from various tables
+                var breachIncidents = await _adminDashboardService.GetBreachIncidentsAsync(50);
+                var securityEvents = await _securityService.GetRecentSecurityEventsAsync(50);
+                var suspiciousActivities = await _adminDashboardService.GetSuspiciousActivitiesAsync(50);
+                var auditLogs = await _adminDashboardService.GetRecentAuditLogsAsync(50);
+                
+                var viewModel = new TelemetryIncidentsViewModel
+                {
+                    BreachIncidents = breachIncidents,
+                    SecurityEvents = securityEvents.ToList(),
+                    SuspiciousActivities = suspiciousActivities,
+                    AuditLogs = auditLogs,
+                    TotalIncidents = breachIncidents.Count + securityEvents.Count() + suspiciousActivities.Count + auditLogs.Count
+                };
+                
+                _logger.LogInformation("[Telemetry] Telemetry incidents page loaded successfully - RequestId: {RequestId}, UserId: {UserId}, Total: {TotalIncidents}", 
+                    HttpContext.TraceIdentifier, userId, viewModel.TotalIncidents);
+                
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                var userId = GetCurrentUserId();
+                _logger.LogError(ex, "[Telemetry] Error loading telemetry incidents page - RequestId: {RequestId}, UserId: {UserId}, Endpoint: {Endpoint}", 
+                    HttpContext.TraceIdentifier, userId, "/Admin/Telemetry");
                 return View("Error", new ErrorViewModel { RequestId = HttpContext.TraceIdentifier });
             }
         }

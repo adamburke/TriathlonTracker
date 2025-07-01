@@ -178,4 +178,26 @@ namespace TriathlonTracker.Models
         public DateTime PeriodEnd { get; set; }
         public Dictionary<string, object> Data { get; set; } = new();
     }
+
+    public class TelemetryIncidentsViewModel : BaseEntity
+    {
+        public List<BreachIncident> BreachIncidents { get; set; } = new();
+        public List<SecurityEvent> SecurityEvents { get; set; } = new();
+        public List<SuspiciousActivity> SuspiciousActivities { get; set; } = new();
+        public List<AuditLog> AuditLogs { get; set; } = new();
+        public int TotalIncidents { get; set; }
+        
+        // Summary statistics
+        public int CriticalIncidents => BreachIncidents.Count(x => x.Severity == "Critical") + 
+                                       SecurityEvents.Count(x => x.Severity == "Critical");
+        
+        public int HighSeverityIncidents => BreachIncidents.Count(x => x.Severity == "High") + 
+                                           SecurityEvents.Count(x => x.Severity == "High");
+        
+        public int OpenIncidents => BreachIncidents.Count(x => x.Status == "Open") + 
+                                   SecurityEvents.Count(x => !x.IsResolved);
+        
+        public int ResolvedIncidents => BreachIncidents.Count(x => x.Status == "Resolved") + 
+                                       SecurityEvents.Count(x => x.IsResolved);
+    }
 } 

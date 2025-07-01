@@ -358,16 +358,15 @@
                     document.getElementById('bikeTime').value = '';
                 }
 
-                // Calculate run pace
+                // Calculate run pace (always in min/mile)
                 if (runDistance > 0 && (runHours > 0 || runMinutes > 0 || runSeconds > 0)) {
                     const totalMinutes = runHours * 60 + runMinutes + runSeconds / 60;
                     if (runUnit === 'miles') {
                         runPace = totalMinutes / runDistance; // min/mile
-                        document.getElementById('runPaceUnit').textContent = 'min/mile';
                     } else {
-                        runPace = totalMinutes / runDistance; // min/km
-                        document.getElementById('runPaceUnit').textContent = 'min/km';
+                        runPace = totalMinutes / (runDistance * 0.621371); // convert km to miles for pace calculation
                     }
+                    document.getElementById('runPaceUnit').textContent = 'min/mile';
                     totalTime += totalMinutes * 60;
                     
                     // Update hidden field
@@ -444,7 +443,7 @@
                     bikePaceUnitDisplay.textContent = bikeUnit === 'miles' ? 'mph' : 'km/hr';
                 }
                 if (runPaceUnitDisplay) {
-                    runPaceUnitDisplay.textContent = runUnit === 'miles' ? 'min/mile' : 'min/km';
+                    runPaceUnitDisplay.textContent = 'min/mile';
                 }
             };
 

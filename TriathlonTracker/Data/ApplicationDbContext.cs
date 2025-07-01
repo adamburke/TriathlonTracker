@@ -46,6 +46,8 @@ namespace TriathlonTracker.Data
         {
             base.OnModelCreating(builder);
 
+
+
             // Configure Triathlon entity
             builder.Entity<Triathlon>(entity =>
             {
@@ -55,6 +57,17 @@ namespace TriathlonTracker.Data
                 entity.Property(e => e.SwimDistance).IsRequired();
                 entity.Property(e => e.BikeDistance).IsRequired();
                 entity.Property(e => e.RunDistance).IsRequired();
+                
+                // Configure DateTime properties for PostgreSQL
+                entity.Property(e => e.RaceDate).HasConversion(
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc),
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
+                entity.Property(e => e.CreatedAt).HasConversion(
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc),
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
+                entity.Property(e => e.UpdatedAt).HasConversion(
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc),
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
                 
                 // Configure relationship with User
                 entity.HasOne(e => e.User)
@@ -581,6 +594,11 @@ namespace TriathlonTracker.Data
                 entity.Property(e => e.Details).HasMaxLength(1000);
                 entity.Property(e => e.IpAddress).HasMaxLength(50);
                 entity.Property(e => e.UserAgent).HasMaxLength(200);
+                
+                // Configure DateTime properties for PostgreSQL
+                entity.Property(e => e.Timestamp).HasConversion(
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc),
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
             });
         }
     }
