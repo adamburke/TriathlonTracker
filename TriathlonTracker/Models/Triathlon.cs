@@ -50,7 +50,7 @@ namespace TriathlonTracker.Models
         
         public TimeSpan RunTime { get; set; }
         
-        public double RunPace => RunDistance > 0 ? RunTime.TotalMinutes / RunDistance : 0; // minutes per km or mile
+        public double RunPace => RunDistance > 0 ? RunTime.TotalMinutes / (RunUnit == "miles" ? RunDistance : RunDistance * 0.621371) : 0; // always minutes per mile
         
         // Total Information
         public TimeSpan TotalTime => SwimTime + BikeTime + RunTime;

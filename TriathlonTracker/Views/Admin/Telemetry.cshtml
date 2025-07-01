@@ -1,0 +1,267 @@
+@model TriathlonTracker.Models.TelemetryIncidentsViewModel
+@{
+    ViewData["Title"] = "Telemetry Incidents";
+    ViewData["ActivePage"] = "Telemetry";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-exclamation-triangle text-warning"></i>
+                        Telemetry Incidents Dashboard
+                    </h3>
+                    <div class="card-tools">
+                        <span class="badge badge-primary">Total: @Model.TotalIncidents</span>
+                        <span class="badge badge-danger">Critical: @Model.CriticalIncidents</span>
+                        <span class="badge badge-warning">High: @Model.HighSeverityIncidents</span>
+                        <span class="badge badge-info">Open: @Model.OpenIncidents</span>
+                        <span class="badge badge-success">Resolved: @Model.ResolvedIncidents</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Breach Incidents -->
+                    <div class="mb-4">
+                        <h5 class="text-danger">
+                            <i class="fas fa-shield-alt"></i>
+                            Breach Incidents (@Model.BreachIncidents.Count)
+                        </h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Severity</th>
+                                        <th>Status</th>
+                                        <th>Detected</th>
+                                        <th>Description</th>
+                                        <th>Affected Users</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.BreachIncidents.Any())
+                                    {
+                                        @foreach (var incident in Model.BreachIncidents)
+                                        {
+                                            <tr>
+                                                <td><code>@incident.IncidentId</code></td>
+                                                <td>@incident.BreachType</td>
+                                                <td>
+                                                    <span class="badge badge-@(incident.Severity.ToLower() switch {
+                                                        "critical" => "danger",
+                                                        "high" => "warning",
+                                                        "medium" => "info",
+                                                        _ => "secondary"
+                                                    })">@incident.Severity</span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-@(incident.Status.ToLower() switch {
+                                                        "open" => "danger",
+                                                        "resolved" => "success",
+                                                        "underinvestigation" => "warning",
+                                                        _ => "secondary"
+                                                    })">@incident.Status</span>
+                                                </td>
+                                                <td>@incident.DetectedDate.ToString("yyyy-MM-dd HH:mm")</td>
+                                                <td>@(incident.Description.Length > 50 ? incident.Description.Substring(0, 50) + "..." : incident.Description)</td>
+                                                <td>@incident.EstimatedAffectedUsers</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="7" class="text-center text-muted">No breach incidents found</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Security Events -->
+                    <div class="mb-4">
+                        <h5 class="text-warning">
+                            <i class="fas fa-lock"></i>
+                            Security Events (@Model.SecurityEvents.Count)
+                        </h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Severity</th>
+                                        <th>Status</th>
+                                        <th>Timestamp</th>
+                                        <th>User</th>
+                                        <th>IP Address</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.SecurityEvents.Any())
+                                    {
+                                        @foreach (var evt in Model.SecurityEvents)
+                                        {
+                                            <tr>
+                                                <td><code>@evt.Id.Substring(0, 8)</code></td>
+                                                <td>@evt.EventType</td>
+                                                <td>
+                                                    <span class="badge badge-@(evt.Severity.ToLower() switch {
+                                                        "critical" => "danger",
+                                                        "high" => "warning",
+                                                        "medium" => "info",
+                                                        _ => "secondary"
+                                                    })">@evt.Severity</span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-@(evt.IsResolved ? "success" : "danger")">
+                                                        @(evt.IsResolved ? "Resolved" : "Open")
+                                                    </span>
+                                                </td>
+                                                <td>@evt.Timestamp.ToString("yyyy-MM-dd HH:mm")</td>
+                                                <td>@(evt.UserId ?? "Anonymous")</td>
+                                                <td><code>@(evt.IpAddress ?? "Unknown")</code></td>
+                                                <td>@(evt.Description.Length > 50 ? evt.Description.Substring(0, 50) + "..." : evt.Description)</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="8" class="text-center text-muted">No security events found</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Suspicious Activities -->
+                    <div class="mb-4">
+                        <h5 class="text-info">
+                            <i class="fas fa-user-secret"></i>
+                            Suspicious Activities (@Model.SuspiciousActivities.Count)
+                        </h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Severity</th>
+                                        <th>Status</th>
+                                        <th>Detected</th>
+                                        <th>User</th>
+                                        <th>IP Address</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.SuspiciousActivities.Any())
+                                    {
+                                        @foreach (var activity in Model.SuspiciousActivities)
+                                        {
+                                            <tr>
+                                                <td><code>@activity.Id.Substring(0, 8)</code></td>
+                                                <td>@activity.ActivityType</td>
+                                                <td>
+                                                    <span class="badge badge-@(activity.Severity?.ToLower() switch {
+                                                        "critical" => "danger",
+                                                        "high" => "warning",
+                                                        "medium" => "info",
+                                                        _ => "secondary"
+                                                    })">@(activity.Severity ?? "Unknown")</span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-@(activity.IsInvestigated ? "success" : "warning")">
+                                                        @(activity.IsInvestigated ? "Investigated" : "Pending")
+                                                    </span>
+                                                </td>
+                                                <td>@activity.DetectedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                                                <td>@activity.UserId</td>
+                                                <td><code>@(activity.IpAddress ?? "Unknown")</code></td>
+                                                <td>@(activity.Description.Length > 50 ? activity.Description.Substring(0, 50) + "..." : activity.Description)</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="8" class="text-center text-muted">No suspicious activities found</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Audit Logs -->
+                    <div class="mb-4">
+                        <h5 class="text-secondary">
+                            <i class="fas fa-clipboard-list"></i>
+                            Recent Audit Logs (@Model.AuditLogs.Count)
+                        </h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Action</th>
+                                        <th>Entity</th>
+                                        <th>User</th>
+                                        <th>Timestamp</th>
+                                        <th>IP Address</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.AuditLogs.Any())
+                                    {
+                                        @foreach (var log in Model.AuditLogs)
+                                        {
+                                            <tr>
+                                                <td><code>@log.Id.ToString().Substring(0, Math.Min(8, log.Id.ToString().Length))</code></td>
+                                                <td>@log.Action</td>
+                                                <td>@log.EntityType @(log.EntityId != null ? $"({log.EntityId})" : "")</td>
+                                                <td>@log.UserId</td>
+                                                <td>@log.Timestamp.ToString("yyyy-MM-dd HH:mm")</td>
+                                                <td><code>@(log.IpAddress ?? "Unknown")</code></td>
+                                                <td>@(log.Details?.Length > 50 ? log.Details.Substring(0, 50) + "..." : log.Details ?? "No details")</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="7" class="text-center text-muted">No audit logs found</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle"></i>
+                        Last updated: @DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") UTC
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto-refresh the page every 30 seconds to show latest incidents
+        setTimeout(function() {
+            location.reload();
+        }, 30000);
+    </script>
+} 

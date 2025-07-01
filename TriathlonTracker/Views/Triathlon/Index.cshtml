@@ -90,7 +90,7 @@
                                             <div class="discipline-data">
                                                 <div class="distance">@race.RunDistance @(race.RunUnit == "miles" ? "mi" : "km")</div>
                                                 <div class="time">@race.RunTime.ToString(@"mm\:ss")</div>
-                                                <div class="pace">@TimeSpan.FromMinutes(race.RunPace).ToString(@"mm\:ss") /@(race.RunUnit == "miles" ? "mile" : "km")</div>
+                                                <div class="pace">@TimeSpan.FromMinutes(race.RunPace).ToString(@"mm\:ss") /mile</div>
                                             </div>
                                         </td>
                                         <td>

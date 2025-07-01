@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TriathlonTracker.Data;
 using TriathlonTracker.Models;
 using TriathlonTracker.Services;
+using TriathlonTracker.Middleware;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using Microsoft.OpenApi.Models;
@@ -32,7 +33,10 @@ builder.Services.AddControllersWithViews()
 
 // Add Entity Framework with PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(connectionString, o => 
+    {
+        o.EnableRetryOnFailure();
+    }));
 
 // Add Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -158,6 +162,9 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddScoped<IAuditService, AuditService>();
 
+// Add telemetry services
+builder.Services.AddScoped<ITelemetryService, TelemetryService>();
+
 // Configure logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -214,6 +221,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Add telemetry middleware
+app.UseMiddleware<TelemetryMiddleware>();
+
 // TODO: app.UseRateLimiter(); - Add back when rate limiting is properly configured
 
 app.UseAuthentication();

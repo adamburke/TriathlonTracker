@@ -1,5 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
-@model ErrorViewModel
+@model ErrorViewModel?
 @{
     ViewData["Title"] = Localizer["Error_Title"];
 }
@@ -14,7 +14,7 @@
             <h1 class="error-title">@Localizer["Error_Title"]</h1>
             <p class="error-message">@Localizer["Error_Message"]</p>
             
-            @if (Model.ShowRequestId)
+            @if (Model?.ShowRequestId == true)
             {
                 <div class="error-details">
                     <p class="request-id">

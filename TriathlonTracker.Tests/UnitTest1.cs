@@ -79,8 +79,8 @@ namespace TriathlonTracker.Tests
             var runPace = triathlon.RunPace;
 
             // Assert
-            // 45 minutes / 10 km = 4.5 minutes per km
-            var expectedPace = 45.0 / 10.0;
+            // 45 minutes / (10 km * 0.621371 miles/km) = 45 / 6.21371 = 7.24 minutes per mile
+            var expectedPace = 45.0 / (10.0 * 0.621371);
             Assert.Equal(expectedPace, runPace, 2);
         }
 
@@ -144,6 +144,26 @@ namespace TriathlonTracker.Tests
 
             // Assert
             Assert.Equal(0, bikePace);
+        }
+
+        [Fact]
+        public void RunPace_ShouldCalculateCorrectly_WhenUnitIsMiles()
+        {
+            // Arrange
+            var triathlon = new Triathlon
+            {
+                RunDistance = 6.2, // miles (10k equivalent)
+                RunTime = TimeSpan.FromMinutes(45), // 45 minutes
+                RunUnit = "miles"
+            };
+
+            // Act
+            var runPace = triathlon.RunPace;
+
+            // Assert
+            // 45 minutes / 6.2 miles = 7.26 minutes per mile
+            var expectedPace = 45.0 / 6.2;
+            Assert.Equal(expectedPace, runPace, 2);
         }
 
         [Fact]
